@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property bool blockUpdate: true
@@ -151,7 +151,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: ["hfov", "vfov", "interpolation"]
@@ -182,7 +182,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: interpolationComboBox
 
             currentIndex: 0
@@ -190,7 +190,7 @@ Item {
             onCurrentIndexChanged: updateProperty_interpolation()
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: interpolationUndo
 
             onClicked: interpolationComboBox.currentIndex = 0
@@ -205,7 +205,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: hfovSlider
 
             minimumValue: 0
@@ -217,13 +217,13 @@ Item {
             onValueChanged: updateProperty_hfov(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: hfovUndo
 
             onClicked: hfovSlider.value = 90
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: hfovKeyframesButton
 
             onToggled: {
@@ -249,7 +249,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: vfovSlider
 
             minimumValue: 0
@@ -261,13 +261,13 @@ Item {
             onValueChanged: updateProperty_vfov(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: vfovUndo
 
             onClicked: vfovSlider.value = 60
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: vfovKeyframesButton
 
             onToggled: {

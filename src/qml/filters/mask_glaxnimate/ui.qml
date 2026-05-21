@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2026 Meltytech, LLC
+ * Copyright (c) 2022-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
 Item {
     id: shapeRoot
@@ -53,7 +53,7 @@ Item {
         setControls();
     }
 
-    Shotcut.File {
+    Bossa.File {
         id: shapeFile
 
         onUrlChanged: {
@@ -66,13 +66,13 @@ Item {
         onFileChanged: filter.set('filter.producer.refresh', 1)
     }
 
-    Shotcut.FileDialog {
+    Bossa.FileDialog {
         id: fileDialog
 
-        fileMode: Shotcut.FileDialog.OpenFile
+        fileMode: Bossa.FileDialog.OpenFile
         onAccepted: {
             shapeFile.url = fileDialog.selectedFile;
-            if (fileDialog.fileMode === Shotcut.FileDialog.SaveFile) {
+            if (fileDialog.fileMode === Bossa.FileDialog.SaveFile) {
                 // Force file extension to ".rawr"
                 var filename = shapeFile.url;
                 var extension = ".rawr";
@@ -86,7 +86,7 @@ Item {
             filter.set('filter.resource', shapeFile.url);
             fileLabelTip.text = shapeFile.filePath;
             settings.openPath = shapeFile.path;
-            if (fileDialog.fileMode === Shotcut.FileDialog.SaveFile)
+            if (fileDialog.fileMode === Bossa.FileDialog.SaveFile)
                 producer.launchGlaxnimate(shapeFile.url);
         }
     }
@@ -99,7 +99,7 @@ Item {
         RowLayout {
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.Button {
+            Bossa.Button {
                 text: qsTr('New...')
                 onClicked: {
                     var filename = application.getNextProjectFile('rawr');
@@ -110,17 +110,17 @@ Item {
                         settings.openPath = shapeFile.path;
                         producer.launchGlaxnimate(shapeFile.url);
                     } else {
-                        fileDialog.fileMode = Shotcut.FileDialog.SaveFile;
+                        fileDialog.fileMode = Bossa.FileDialog.SaveFile;
                         fileDialog.title = qsTr('New Animation File');
                         fileDialog.open();
                     }
                 }
             }
 
-            Shotcut.Button {
+            Bossa.Button {
                 text: qsTr('Open...')
                 onClicked: {
-                    fileDialog.fileMode = Shotcut.FileDialog.OpenFile;
+                    fileDialog.fileMode = Bossa.FileDialog.OpenFile;
                     fileDialog.title = qsTr('Open Animation File');
                     fileDialog.open();
                 }
@@ -133,7 +133,7 @@ Item {
             Layout.columnSpan: parent.columns - 1
             text: qsTr('Click <b>New...</b> or <b>Open...</b> to use this filter')
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 id: fileLabelTip
             }
         }
@@ -145,12 +145,12 @@ Item {
         RowLayout {
             Layout.columnSpan: parent.columns - 1
 
-            Shotcut.Button {
+            Bossa.Button {
                 text: qsTr('Edit...')
                 onClicked: producer.launchGlaxnimate(filter.get('filter.resource'))
             }
 
-            Shotcut.Button {
+            Bossa.Button {
                 text: qsTr('Reload')
                 onClicked: {
                     filter.set('filter.producer.refresh', 1);
@@ -172,7 +172,7 @@ Item {
                 onClicked: filter.set('filter.invert', checked)
             }
 
-            Shotcut.UndoButton {
+            Bossa.UndoButton {
                 onClicked: {
                     invertCheckBox.checked = false;
                     filter.set('filter.invert', 0);
@@ -190,7 +190,7 @@ Item {
                 onClicked: filter.set('filter.invert_mask', checked)
             }
 
-            Shotcut.UndoButton {
+            Bossa.UndoButton {
                 onClicked: {
                     reverseCheckBox.checked = false;
                     filter.set('filter.invert_mask', checked);
@@ -206,7 +206,7 @@ Item {
         RowLayout {
             Layout.columnSpan: parent.columns - 1
 
-            Shotcut.ComboBox {
+            Bossa.ComboBox {
                 id: operationCombo
 
                 implicitWidth: 180
@@ -244,7 +244,7 @@ Item {
                 }
             }
 
-            Shotcut.UndoButton {
+            Bossa.UndoButton {
                 onClicked: {
                     operationCombo.currentIndex = 0;
                     filter.set('filter.alpha_operation', 'overwrite');
@@ -252,7 +252,7 @@ Item {
             }
         }
 
-        Shotcut.TipBox {
+        Bossa.TipBox {
             Layout.columnSpan: parent.columns
             Layout.fillWidth: true
             Layout.margins: 10

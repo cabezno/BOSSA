@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2026 Meltytech, LLC
+ * Copyright (c) 2022-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -145,7 +145,7 @@ NotesDock::NotesDock(QWidget *parent)
     QIcon icon = QIcon::fromTheme("document-edit",
                                   QIcon(":/icons/oxygen/32x32/actions/document-edit.png"));
     toggleViewAction()->setIcon(icon);
-    setWhatsThis("https://forum.shotcut.org/t/notes-panel/33110/1");
+    setWhatsThis("https://forum.bossa.org/t/notes-panel/33110/1");
 
     QObject::connect(m_textEdit, SIGNAL(textChanged()), SLOT(onTextChanged()));
     // Wrap the text editor with a container so we can place a toolbar beneath it.

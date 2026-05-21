@@ -137,7 +137,7 @@ add_executable(bossa WIN32 MACOSX_BUNDLE
   scrubbar.cpp scrubbar.h
   settings.cpp settings.h
   sharedframe.cpp sharedframe.h
-  shotcut_mlt_properties.h
+  bossa_mlt_properties.h
   transcoder.cpp transcoder.h
   screencapture/rectangleselector.cpp
   screencapture/rectangleselector.h
@@ -258,18 +258,18 @@ add_custom_target(OTHER_FILES
   ../icons/light/index.theme
   ../packaging/linux/appimage/appimage.yml
   ../packaging/linux/Makefile
-  ../packaging/linux/org.shotcut.Shotcut.desktop
-  ../packaging/linux/org.shotcut.Shotcut.metainfo.xml.in
-  ../packaging/linux/org.shotcut.Shotcut.xml
-  ../packaging/linux/shotcut.1
+  ../packaging/linux/org.bossa.Bossa.desktop
+  ../packaging/linux/org.bossa.Bossa.metainfo.xml.in
+  ../packaging/linux/org.bossa.Bossa.xml
+  ../packaging/linux/bossa.1
   ../packaging/linux/snapcraft.yaml.in
   ../packaging/macos/Info.plist.in
-  ../packaging/macos/shotcut.icns
-  ../packaging/windows/shotcut.iss
-  ../packaging/windows/shotcut.rc.in
+  ../packaging/macos/bossa.icns
+  ../packaging/windows/bossa.iss
+  ../packaging/windows/bossa.rc.in
   ../README.md
-  ../scripts/build-shotcut-msys2.sh
-  ../scripts/build-shotcut.sh
+  ../scripts/build-bossa-msys2.sh
+  ../scripts/build-bossa.sh
   ../scripts/codesign_and_notarize.sh
   ../scripts/notarize.sh
   ../scripts/staple.sh
@@ -314,8 +314,8 @@ endif()
 if(WIN32)
   # Windows resource
   string(REPLACE . , PRODUCT_VERSION ${PROJECT_VERSION})
-  configure_file(${CMAKE_SOURCE_DIR}/packaging/windows/shotcut.rc.in ${CMAKE_SOURCE_DIR}/packaging/windows/shotcut.rc)
-  target_sources(bossa PRIVATE ${CMAKE_SOURCE_DIR}/packaging/windows/shotcut.rc)
+  configure_file(${CMAKE_SOURCE_DIR}/packaging/windows/bossa.rc.in ${CMAKE_SOURCE_DIR}/packaging/windows/bossa.rc)
+  target_sources(bossa PRIVATE ${CMAKE_SOURCE_DIR}/packaging/windows/bossa.rc)
 
   # Windows integration features
   target_sources(bossa PRIVATE windowstools.cpp windowstools.h)
@@ -337,9 +337,9 @@ if(WIN32)
     install(TARGETS bossa RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
   endif()
 
-  install(DIRECTORY qml DESTINATION ${CMAKE_INSTALL_PREFIX}/share/shotcut/)
-  install(DIRECTORY ${CMAKE_SOURCE_DIR}/filter-sets DESTINATION ${CMAKE_INSTALL_PREFIX}/share/shotcut/)
-  install(DIRECTORY ${CMAKE_SOURCE_DIR}/voices DESTINATION ${CMAKE_INSTALL_PREFIX}/share/shotcut/)
+  install(DIRECTORY qml DESTINATION ${CMAKE_INSTALL_PREFIX}/share/bossa/)
+  install(DIRECTORY ${CMAKE_SOURCE_DIR}/filter-sets DESTINATION ${CMAKE_INSTALL_PREFIX}/share/bossa/)
+  install(DIRECTORY ${CMAKE_SOURCE_DIR}/voices DESTINATION ${CMAKE_INSTALL_PREFIX}/share/bossa/)
 else()
     target_sources(bossa PRIVATE widgets/openglvideowidget.h widgets/openglvideowidget.cpp)
 endif()
@@ -353,50 +353,50 @@ if(APPLE)
   find_library(FOUNDATION Foundation)
   find_library(COCOA Cocoa)
   target_link_libraries(bossa PRIVATE ${FOUNDATION} ${COCOA})
-  set(APP_ICON ${CMAKE_SOURCE_DIR}/packaging/macos/shotcut.icns)
+  set(APP_ICON ${CMAKE_SOURCE_DIR}/packaging/macos/bossa.icns)
   target_sources(bossa PRIVATE ${APP_ICON})
   set_source_files_properties(${APP_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 
   # Create a symlink to the qml folder after building
   # These are skipped for release because it breaks the app bundling and is only for development.
   if(NOT CMAKE_BUILD_TYPE STREQUAL "Release")
-    file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Bossa.app/Contents/Resources/shotcut)
-    file(CREATE_LINK ${CMAKE_SOURCE_DIR}/src/qml ${CMAKE_CURRENT_BINARY_DIR}/Bossa.app/Contents/Resources/shotcut/qml SYMBOLIC)
-    file(CREATE_LINK ${CMAKE_SOURCE_DIR}/filter-sets ${CMAKE_CURRENT_BINARY_DIR}/Bossa.app/Contents/Resources/shotcut/filter-sets SYMBOLIC)
-    file(CREATE_LINK ${CMAKE_SOURCE_DIR}/voices ${CMAKE_CURRENT_BINARY_DIR}/Bossa.app/Contents/Resources/shotcut/voices SYMBOLIC)
+    file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Bossa.app/Contents/Resources/bossa)
+    file(CREATE_LINK ${CMAKE_SOURCE_DIR}/src/qml ${CMAKE_CURRENT_BINARY_DIR}/Bossa.app/Contents/Resources/bossa/qml SYMBOLIC)
+    file(CREATE_LINK ${CMAKE_SOURCE_DIR}/filter-sets ${CMAKE_CURRENT_BINARY_DIR}/Bossa.app/Contents/Resources/bossa/filter-sets SYMBOLIC)
+    file(CREATE_LINK ${CMAKE_SOURCE_DIR}/voices ${CMAKE_CURRENT_BINARY_DIR}/Bossa.app/Contents/Resources/bossa/voices SYMBOLIC)
   endif()
 
   install(TARGETS bossa BUNDLE DESTINATION ${CMAKE_INSTALL_PREFIX})
-  install(DIRECTORY qml DESTINATION ${CMAKE_INSTALL_PREFIX}/Bossa.app/Contents/Resources/shotcut/)
-  install(DIRECTORY ${CMAKE_SOURCE_DIR}/filter-sets DESTINATION ${CMAKE_INSTALL_PREFIX}/Bossa.app/Contents/Resources/shotcut/)
-  install(DIRECTORY ${CMAKE_SOURCE_DIR}/voices DESTINATION ${CMAKE_INSTALL_PREFIX}/Bossa.app/Contents/Resources/shotcut/)
+  install(DIRECTORY qml DESTINATION ${CMAKE_INSTALL_PREFIX}/Bossa.app/Contents/Resources/bossa/)
+  install(DIRECTORY ${CMAKE_SOURCE_DIR}/filter-sets DESTINATION ${CMAKE_INSTALL_PREFIX}/Bossa.app/Contents/Resources/bossa/)
+  install(DIRECTORY ${CMAKE_SOURCE_DIR}/voices DESTINATION ${CMAKE_INSTALL_PREFIX}/Bossa.app/Contents/Resources/bossa/)
 endif()
 
 if(UNIX AND NOT APPLE)
-  file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/share/shotcut)
-  file(CREATE_LINK ${CMAKE_SOURCE_DIR}/src/qml ${CMAKE_BINARY_DIR}/share/shotcut/qml SYMBOLIC)
-  file(CREATE_LINK ${CMAKE_SOURCE_DIR}/filter-sets ${CMAKE_BINARY_DIR}/share/shotcut/filter-sets SYMBOLIC)
-  file(CREATE_LINK ${CMAKE_SOURCE_DIR}/voices ${CMAKE_BINARY_DIR}/share/shotcut/voices SYMBOLIC)
+  file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/share/bossa)
+  file(CREATE_LINK ${CMAKE_SOURCE_DIR}/src/qml ${CMAKE_BINARY_DIR}/share/bossa/qml SYMBOLIC)
+  file(CREATE_LINK ${CMAKE_SOURCE_DIR}/filter-sets ${CMAKE_BINARY_DIR}/share/bossa/filter-sets SYMBOLIC)
+  file(CREATE_LINK ${CMAKE_SOURCE_DIR}/voices ${CMAKE_BINARY_DIR}/share/bossa/voices SYMBOLIC)
   include(GNUInstallDirs)
   install(TARGETS bossa RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
-  install(DIRECTORY qml DESTINATION ${CMAKE_INSTALL_DATADIR}/shotcut/)
-  install(DIRECTORY ${CMAKE_SOURCE_DIR}/filter-sets DESTINATION ${CMAKE_INSTALL_DATADIR}/shotcut/)
-  install(DIRECTORY ${CMAKE_SOURCE_DIR}/voices DESTINATION ${CMAKE_INSTALL_DATADIR}/shotcut/)
+  install(DIRECTORY qml DESTINATION ${CMAKE_INSTALL_DATADIR}/bossa/)
+  install(DIRECTORY ${CMAKE_SOURCE_DIR}/filter-sets DESTINATION ${CMAKE_INSTALL_DATADIR}/bossa/)
+  install(DIRECTORY ${CMAKE_SOURCE_DIR}/voices DESTINATION ${CMAKE_INSTALL_DATADIR}/bossa/)
 
   string(REPLACE . - SHOTCUT_DATE  ${SHOTCUT_VERSION})
   string(PREPEND SHOTCUT_DATE "20")
-  configure_file(${CMAKE_SOURCE_DIR}/packaging/linux/org.shotcut.Shotcut.metainfo.xml.in
-    ${CMAKE_BINARY_DIR}/packaging/linux/org.shotcut.Shotcut.metainfo.xml)
-  install(FILES ${CMAKE_BINARY_DIR}/packaging/linux/org.shotcut.Shotcut.metainfo.xml
+  configure_file(${CMAKE_SOURCE_DIR}/packaging/linux/org.bossa.Bossa.metainfo.xml.in
+    ${CMAKE_BINARY_DIR}/packaging/linux/org.bossa.Bossa.metainfo.xml)
+  install(FILES ${CMAKE_BINARY_DIR}/packaging/linux/org.bossa.Bossa.metainfo.xml
     DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo/)
-  install(FILES ${CMAKE_SOURCE_DIR}/packaging/linux/org.shotcut.Shotcut.desktop
+  install(FILES ${CMAKE_SOURCE_DIR}/packaging/linux/org.bossa.Bossa.desktop
     DESTINATION ${CMAKE_INSTALL_DATADIR}/applications/)
-  install(FILES ${CMAKE_SOURCE_DIR}/packaging/linux/org.shotcut.Shotcut.xml
+  install(FILES ${CMAKE_SOURCE_DIR}/packaging/linux/org.bossa.Bossa.xml
     DESTINATION ${CMAKE_INSTALL_DATADIR}/mime/packages/)
-  install(FILES ${CMAKE_SOURCE_DIR}/packaging/linux/icons/64x64/org.shotcut.Shotcut.png
+  install(FILES ${CMAKE_SOURCE_DIR}/packaging/linux/icons/64x64/org.bossa.Bossa.png
     DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/64x64/apps/)
-  install(FILES ${CMAKE_SOURCE_DIR}/packaging/linux/icons/128x128/org.shotcut.Shotcut.png
+  install(FILES ${CMAKE_SOURCE_DIR}/packaging/linux/icons/128x128/org.bossa.Bossa.png
     DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/128x128/apps/)
-  install(FILES ${CMAKE_SOURCE_DIR}/packaging/linux/shotcut.1
+  install(FILES ${CMAKE_SOURCE_DIR}/packaging/linux/bossa.1
     DESTINATION ${CMAKE_INSTALL_DATADIR}/man/man1/)
 endif()

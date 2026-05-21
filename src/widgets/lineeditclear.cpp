@@ -1,7 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (c) 2007 Trolltech ASA <info@trolltech.com>
-** Copyright (c) 2024 Meltytech, LLC
+** Copyright (c) 2024 Bossa Project, LLC
 **
 ** Use, modification and distribution is allowed without limitation,
 ** warranty, liability or support of any kind.

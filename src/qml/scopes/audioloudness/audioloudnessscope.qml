@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2023 Meltytech, LLC
+ * Copyright (c) 2016-2023 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ import QtQml
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Rectangle {
     id: root
@@ -182,7 +182,7 @@ Rectangle {
             color: activePalette.text
             visible: enableMomentary
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Momentary Loudness.')
             }
         }
@@ -208,7 +208,7 @@ Rectangle {
             visible: enableMomentary
         }
 
-        Shotcut.Gauge {
+        Bossa.Gauge {
             id: momentaryGauge
 
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -225,7 +225,7 @@ Rectangle {
             color: activePalette.text
             visible: enableShortterm
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Short-term Loudness.')
             }
         }
@@ -251,7 +251,7 @@ Rectangle {
             visible: enableShortterm
         }
 
-        Shotcut.Gauge {
+        Bossa.Gauge {
             id: shorttermGauge
 
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -268,7 +268,7 @@ Rectangle {
             color: activePalette.text
             visible: enableIntegrated
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Integrated Loudness.')
             }
         }
@@ -294,7 +294,7 @@ Rectangle {
             visible: enableIntegrated
         }
 
-        Shotcut.Gauge {
+        Bossa.Gauge {
             id: integratedGauge
 
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -311,7 +311,7 @@ Rectangle {
             color: activePalette.text
             visible: enableRange
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Loudness Range.')
             }
         }
@@ -337,7 +337,7 @@ Rectangle {
             visible: enableRange
         }
 
-        Shotcut.Gauge {
+        Bossa.Gauge {
             id: rangeGauge
 
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -354,7 +354,7 @@ Rectangle {
             color: activePalette.text
             visible: enablePeak
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Peak.')
             }
         }
@@ -380,7 +380,7 @@ Rectangle {
             visible: enablePeak
         }
 
-        Shotcut.Gauge {
+        Bossa.Gauge {
             id: peakGauge
 
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -397,7 +397,7 @@ Rectangle {
             color: activePalette.text
             visible: enableTruePeak
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('True Peak.')
             }
         }
@@ -423,7 +423,7 @@ Rectangle {
             visible: enableTruePeak
         }
 
-        Shotcut.Gauge {
+        Bossa.Gauge {
             id: truePeakGauge
 
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter

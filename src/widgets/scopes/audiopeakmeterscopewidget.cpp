@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2026 Meltytech, LLC
+ * Copyright (c) 2015-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ AudioPeakMeterScopeWidget::AudioPeakMeterScopeWidget()
     LOG_DEBUG() << "begin";
     qRegisterMetaType<QVector<double>>("QVector<double>");
     setAutoFillBackground(true);
-    setWhatsThis("https://forum.shotcut.org/t/audio-peak-meter-scope/12918/1");
+    setWhatsThis("https://forum.bossa.org/t/audio-peak-meter-scope/12918/1");
     QVBoxLayout *vlayout = new QVBoxLayout(this);
     vlayout->setContentsMargins(4, 4, 4, 4);
     m_audioMeter = new AudioMeterWidget(this);

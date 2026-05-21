@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2026 Meltytech, LLC
+ * Copyright (c) 2014-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 #include "qmltypes/qmlmetadata.h"
 #include "qmltypes/qmlutilities.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 
 #include <MltLink.h>
 #include <QApplication>
@@ -288,7 +288,7 @@ void FilterController::loadAddOnFilterMetadata(Mlt::Properties *mltFilters)
 bool FilterController::ensureAddOnTempDir()
 {
     if (!m_addOnTempDir) {
-        m_addOnTempDir = new QTemporaryDir(QDir::tempPath() + "/shotcut-addon-XXXXXX");
+        m_addOnTempDir = new QTemporaryDir(QDir::tempPath() + "/bossa-addon-XXXXXX");
     }
     if (!m_addOnTempDir || !m_addOnTempDir->isValid()) {
         LOG_WARNING() << "Add-on temporary directory is invalid";
@@ -365,7 +365,7 @@ QmlMetadata *FilterController::metadata(const QString &id)
 
 QmlMetadata *FilterController::metadataForService(Mlt::Service *service)
 {
-    QString uniqueId = service->get(kShotcutFilterProperty);
+    QString uniqueId = service->get(kBossaFilterProperty);
 
     // Fallback to mlt_service for legacy filters
     if (uniqueId.isEmpty()) {
@@ -379,14 +379,14 @@ bool FilterController::isOutputTrackSelected() const
 {
     return m_attachedModel.producer() && m_attachedModel.producer()->is_valid()
            && mlt_service_tractor_type == m_attachedModel.producer()->type()
-           && !m_attachedModel.producer()->get(kShotcutTransitionProperty)
+           && !m_attachedModel.producer()->get(kBossaTransitionProperty)
            && m_attachedModel.rowCount() == 0;
 }
 
 void FilterController::loadFilterSets()
 {
     auto dir = QmlApplication::dataDir();
-    if (dir.cd("shotcut") && dir.cd("filter-sets")) {
+    if (dir.cd("bossa") && dir.cd("filter-sets")) {
         QStringList entries = dir.entryList(QDir::Files | QDir::Readable);
         for (const auto &s : entries) {
             auto meta = new QmlMetadata;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024-2026 Meltytech, LLC
+ * Copyright (c) 2024-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
 #include "models/subtitlesselectionmodel.h"
 #include "qmltypes/qmlapplication.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 #include "widgets/docktoolbar.h"
 
@@ -134,7 +134,7 @@ SubtitlesDock::SubtitlesDock(QWidget *parent)
     QDockWidget::setWindowTitle(tr("Subtitles"));
     QIcon icon = QIcon::fromTheme("subtitle", QIcon(":/icons/oxygen/32x32/actions/subtitle.png"));
     toggleViewAction()->setIcon(icon);
-    setWhatsThis("https://forum.shotcut.org/t/subtitles-panel/45312/1");
+    setWhatsThis("https://forum.bossa.org/t/subtitles-panel/45312/1");
 
     setupActions();
 
@@ -1140,7 +1140,7 @@ void SubtitlesDock::burnInOnTimeline()
     int trackIndex = m_trackCombo->currentIndex();
     auto track = m_model->getTrack(trackIndex);
     Mlt::Filter filter(MLT.profile(), "subtitle");
-    filter.set(kShotcutFilterProperty, "subtitles");
+    filter.set(kBossaFilterProperty, "subtitles");
 #if defined(Q_OS_WIN)
     filter.set("family", "Verdana");
 #elif defined(Q_OS_MAC)
@@ -1238,7 +1238,7 @@ void SubtitlesDock::generateTextOnTimeline()
         filterProperties.set("valign", "bottom");
         filterProperties.set("halign", "center");
     }
-    filterProperties.set(kShotcutFilterProperty, "dynamicText");
+    filterProperties.set(kBossaFilterProperty, "dynamicText");
 
     Mlt::Playlist playlist(MLT.profile());
     int lastItemFrameEnd = 0;

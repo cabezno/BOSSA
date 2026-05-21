@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Meltytech, LLC
+ * Copyright (c) 2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property bool blockUpdate: true
@@ -153,7 +153,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: ["azimuth", "elevation"]
@@ -182,7 +182,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: azimuthSlider
 
             minimumValue: -360
@@ -194,13 +194,13 @@ Item {
             onValueChanged: updateProperty_azimuth(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: azimuthUndo
 
             onClicked: azimuthSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: azimuthKeyframesButton
 
             onToggled: {
@@ -226,7 +226,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: elevationSlider
 
             minimumValue: -360
@@ -238,13 +238,13 @@ Item {
             onValueChanged: updateProperty_elevation(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: elevationUndo
 
             onClicked: elevationSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: elevationKeyframesButton
 
             onToggled: {

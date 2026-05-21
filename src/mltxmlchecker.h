@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2026 Meltytech, LLC
+ * Copyright (c) 2014-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ class QUIDevice;
 class MltXmlChecker
 {
 public:
-    enum { ShotcutHashRole = Qt::UserRole + 1 };
+    enum { BossaHashRole = Qt::UserRole + 1 };
 
     enum { MissingColumn = 0, ReplacementColumn, ColumnCount };
 
@@ -48,7 +48,7 @@ public:
     bool isUpdated() const { return m_isUpdated; }
     QTemporaryFile &tempFile() const { return *m_tempFile; }
     QStandardItemModel &unlinkedFilesModel() { return m_unlinkedFilesModel; }
-    QString shotcutVersion() const { return m_shotcutVersion; }
+    QString bossaVersion() const { return m_bossaVersion; }
 
 private:
     typedef QPair<QString, QString> MltProperty;
@@ -116,7 +116,7 @@ private:
         }
     } m_resource;
     QVersionNumber m_mltVersion;
-    QString m_shotcutVersion;
+    QString m_bossaVersion;
     QString m_processingMode;
     bool m_isTractorTransition;
 };

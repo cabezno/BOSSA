@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2025 Meltytech, LLC
+ * Copyright (c) 2012-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 #include "mltcontroller.h"
 #include "qmltypes/colordialog.h"
 #include "qmltypes/qmlapplication.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <QFileInfo>
@@ -84,12 +84,12 @@ void ColorProducerWidget::on_colorButton_clicked()
             m_producer->set("resource",
                             colorStringToResource(ui->colorLabel->text()).toLatin1().constData());
             if (ui->lineEdit->text().isEmpty() || ui->lineEdit->text() == m_title) {
-                m_producer->set(kShotcutCaptionProperty,
+                m_producer->set(kBossaCaptionProperty,
                                 ui->colorLabel->text().toLatin1().constData());
             } else {
-                m_producer->set(kShotcutCaptionProperty, ui->lineEdit->text().toUtf8().constData());
+                m_producer->set(kBossaCaptionProperty, ui->lineEdit->text().toUtf8().constData());
             }
-            m_producer->set(kShotcutDetailProperty, ui->colorLabel->text().toLatin1().constData());
+            m_producer->set(kBossaDetailProperty, ui->colorLabel->text().toLatin1().constData());
             emit producerChanged(m_producer.data());
         }
     }
@@ -102,11 +102,11 @@ Mlt::Producer *ColorProducerWidget::newProducer(Mlt::Profile &profile)
     p->set("mlt_image_format", "rgba");
     MLT.setDurationFromDefault(p);
     if (ui->lineEdit->text().isEmpty() || ui->lineEdit->text() == m_title) {
-        p->set(kShotcutCaptionProperty, ui->colorLabel->text().toLatin1().constData());
+        p->set(kBossaCaptionProperty, ui->colorLabel->text().toLatin1().constData());
     } else {
-        p->set(kShotcutCaptionProperty, ui->lineEdit->text().toUtf8().constData());
+        p->set(kBossaCaptionProperty, ui->lineEdit->text().toUtf8().constData());
     }
-    p->set(kShotcutDetailProperty, ui->colorLabel->text().toLatin1().constData());
+    p->set(kBossaDetailProperty, ui->colorLabel->text().toLatin1().constData());
     return p;
 }
 
@@ -128,16 +128,16 @@ void ColorProducerWidget::loadPreset(Mlt::Properties &p)
     if (m_producer) {
         m_producer->set("resource",
                         colorStringToResource(ui->colorLabel->text()).toLatin1().constData());
-        caption = m_producer->get(kShotcutCaptionProperty);
-        detail = m_producer->get(kShotcutDetailProperty);
+        caption = m_producer->get(kBossaCaptionProperty);
+        detail = m_producer->get(kBossaDetailProperty);
 
         if (caption.isEmpty() || caption == detail)
-            m_producer->set(kShotcutCaptionProperty, ui->colorLabel->text().toLatin1().constData());
-        m_producer->set(kShotcutDetailProperty, ui->colorLabel->text().toLatin1().constData());
+            m_producer->set(kBossaCaptionProperty, ui->colorLabel->text().toLatin1().constData());
+        m_producer->set(kBossaDetailProperty, ui->colorLabel->text().toLatin1().constData());
         emit producerChanged(m_producer.data());
     } else {
-        caption = p.get(kShotcutCaptionProperty);
-        detail = p.get(kShotcutDetailProperty);
+        caption = p.get(kBossaCaptionProperty);
+        detail = p.get(kBossaDetailProperty);
     }
     if (caption.isEmpty() || caption == detail) {
         caption = m_title;
@@ -171,10 +171,10 @@ void ColorProducerWidget::on_lineEdit_editingFinished()
     if (m_producer) {
         const auto caption = ui->lineEdit->text();
         if (caption.isEmpty()) {
-            m_producer->set(kShotcutCaptionProperty, ui->colorLabel->text().toLatin1().constData());
+            m_producer->set(kBossaCaptionProperty, ui->colorLabel->text().toLatin1().constData());
             ui->lineEdit->setText(m_title);
         } else {
-            m_producer->set(kShotcutCaptionProperty, caption.toUtf8().constData());
+            m_producer->set(kBossaCaptionProperty, caption.toUtf8().constData());
         }
         emit modified();
     }

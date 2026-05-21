@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2026 Meltytech, LLC
+ * Copyright (c) 2013-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,44 +52,44 @@ QmlUtilities::QmlUtilities(QObject *parent)
 
 void QmlUtilities::registerCommonTypes()
 {
-    qmlRegisterType<QmlExtension>("org.shotcut.qml", 1, 0, "Extension");
-    qmlRegisterType<QmlExtensionFile>("org.shotcut.qml", 1, 0, "ExtensionFile");
-    qmlRegisterType<QmlFile>("org.shotcut.qml", 1, 0, "File");
-    qmlRegisterType<QmlFilter>("org.shotcut.qml", 1, 0, "Filter");
-    qmlRegisterType<QmlMetadata>("org.shotcut.qml", 1, 0, "Metadata");
-    qmlRegisterAnonymousType<QmlKeyframesMetadata>("org.shotcut.qml", 1);
-    qmlRegisterType<QmlKeyframesParameter>("org.shotcut.qml", 1, 0, "Parameter");
-    qmlRegisterType<QmlRichText>("org.shotcut.qml", 1, 0, "RichText");
-    qmlRegisterType<KeyframesModel>("org.shotcut.qml", 1, 0, "KeyframesModel");
-    qmlRegisterType<SubtitlesModel>("org.shotcut.qml", 1, 0, "SubtitlesModel");
-    qmlRegisterType<SubtitlesSelectionModel>("org.shotcut.qml", 1, 0, "SubtitlesSelectionModel");
-    qmlRegisterType<QmlUtilities>("org.shotcut.qml", 1, 0, "Utilities");
+    qmlRegisterType<QmlExtension>("org.bossa.qml", 1, 0, "Extension");
+    qmlRegisterType<QmlExtensionFile>("org.bossa.qml", 1, 0, "ExtensionFile");
+    qmlRegisterType<QmlFile>("org.bossa.qml", 1, 0, "File");
+    qmlRegisterType<QmlFilter>("org.bossa.qml", 1, 0, "Filter");
+    qmlRegisterType<QmlMetadata>("org.bossa.qml", 1, 0, "Metadata");
+    qmlRegisterAnonymousType<QmlKeyframesMetadata>("org.bossa.qml", 1);
+    qmlRegisterType<QmlKeyframesParameter>("org.bossa.qml", 1, 0, "Parameter");
+    qmlRegisterType<QmlRichText>("org.bossa.qml", 1, 0, "RichText");
+    qmlRegisterType<KeyframesModel>("org.bossa.qml", 1, 0, "KeyframesModel");
+    qmlRegisterType<SubtitlesModel>("org.bossa.qml", 1, 0, "SubtitlesModel");
+    qmlRegisterType<SubtitlesSelectionModel>("org.bossa.qml", 1, 0, "SubtitlesSelectionModel");
+    qmlRegisterType<QmlUtilities>("org.bossa.qml", 1, 0, "Utilities");
     // MetadataModel is registered to access its MetadataFilter enum.
-    qmlRegisterUncreatableType<MetadataModel>("org.shotcut.qml",
+    qmlRegisterUncreatableType<MetadataModel>("org.bossa.qml",
                                               1,
                                               0,
                                               "MetadataModel",
                                               "You cannot create a MetadataModel from QML.");
-    qmlRegisterUncreatableType<ShotcutSettings>("org.shotcut.qml",
+    qmlRegisterUncreatableType<BossaSettings>("org.bossa.qml",
                                                 1,
                                                 0,
                                                 "Settings",
                                                 "You cannot create a Settings from QML.");
-    qmlRegisterType<ColorPickerItem>("Shotcut.Controls", 1, 0, "ColorPickerItem");
-    qmlRegisterType<ColorWheelItem>("Shotcut.Controls", 1, 0, "ColorWheelItem");
-    qmlRegisterType<QmlMarkerMenu>("Shotcut.Controls", 1, 0, "MarkerMenu");
-    qmlRegisterType<QmlEditMenu>("Shotcut.Controls", 1, 0, "EditContextMenu");
-    qmlRegisterType<QmlRichTextMenu>("Shotcut.Controls", 1, 0, "RichTextMenu");
-    qmlRegisterType<ColorDialog>("Shotcut.Controls", 1, 0, "ColorDialog");
-    qmlRegisterType<FontDialog>("Shotcut.Controls", 1, 0, "FontDialog");
-    qmlRegisterType<MessageDialog>("Shotcut.Controls", 1, 0, "MessageDialog");
-    qmlRegisterType<FileDialog>("Shotcut.Controls", 1, 0, "FileDialog");
+    qmlRegisterType<ColorPickerItem>("Bossa.Controls", 1, 0, "ColorPickerItem");
+    qmlRegisterType<ColorWheelItem>("Bossa.Controls", 1, 0, "ColorWheelItem");
+    qmlRegisterType<QmlMarkerMenu>("Bossa.Controls", 1, 0, "MarkerMenu");
+    qmlRegisterType<QmlEditMenu>("Bossa.Controls", 1, 0, "EditContextMenu");
+    qmlRegisterType<QmlRichTextMenu>("Bossa.Controls", 1, 0, "RichTextMenu");
+    qmlRegisterType<ColorDialog>("Bossa.Controls", 1, 0, "ColorDialog");
+    qmlRegisterType<FontDialog>("Bossa.Controls", 1, 0, "FontDialog");
+    qmlRegisterType<MessageDialog>("Bossa.Controls", 1, 0, "MessageDialog");
+    qmlRegisterType<FileDialog>("Bossa.Controls", 1, 0, "FileDialog");
     registerTimelineItems();
 }
 
 void QmlUtilities::setCommonProperties(QQmlContext *context)
 {
-    context->setContextProperty("settings", &ShotcutSettings::singleton());
+    context->setContextProperty("settings", &BossaSettings::singleton());
     context->setContextProperty("application", &QmlApplication::singleton());
     context->setContextProperty("profile", &QmlProfile::singleton());
 }
@@ -97,7 +97,7 @@ void QmlUtilities::setCommonProperties(QQmlContext *context)
 QDir QmlUtilities::qmlDir()
 {
     QDir dir = QmlApplication::dataDir();
-    dir.cd("shotcut");
+    dir.cd("bossa");
     dir.cd("qml");
     return dir;
 }
@@ -114,7 +114,7 @@ QUrl QmlUtilities::blankVui()
 {
     QDir dir = qmlDir();
     dir.cd("modules");
-    dir.cd("Shotcut");
+    dir.cd("Bossa");
     dir.cd("Controls");
     return QUrl::fromLocalFile(dir.absoluteFilePath("VuiBase.qml"));
 }

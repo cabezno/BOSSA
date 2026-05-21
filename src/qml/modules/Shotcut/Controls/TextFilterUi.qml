@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2026 Meltytech, LLC
+ * Copyright (c) 2014-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,8 +17,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
 GridLayout {
     property bool showOpacity: true
@@ -165,7 +165,7 @@ GridLayout {
         const data = motionTrackerModel.trackingData(motionTrackerRow);
         let previous = null;
         let interval = motionTrackerModel.keyframeIntervalFrames(motionTrackerRow);
-        let interpolation = Shotcut.KeyframesModel.SmoothNaturalInterpolation;
+        let interpolation = Bossa.KeyframesModel.SmoothNaturalInterpolation;
         filter.blockSignals = true;
         data.forEach(i => {
             let current = filter.getRect(rectProperty, frame);
@@ -187,14 +187,14 @@ GridLayout {
             case 'absPos':
                 current.x = i.x + i.width / 2 - current.width / 2;
                 current.y = i.y + i.height / 2 - current.height / 2;
-                interpolation = Shotcut.KeyframesModel.LinearInterpolation;
+                interpolation = Bossa.KeyframesModel.LinearInterpolation;
                 break;
             case 'absSizePos':
                 current.x = i.x;
                 current.y = i.y;
                 current.width = i.width;
                 current.height = i.height;
-                interpolation = Shotcut.KeyframesModel.LinearInterpolation;
+                interpolation = Bossa.KeyframesModel.LinearInterpolation;
                 break;
             }
             previous = i;
@@ -221,7 +221,7 @@ GridLayout {
     }
 
     RowLayout {
-        Shotcut.ColorPicker {
+        Bossa.ColorPicker {
             id: fgColor
 
             eyedropper: false
@@ -229,7 +229,7 @@ GridLayout {
             onValueChanged: updateFilter('fgcolour', Qt.color(value), fgcolorKeyframesButton, getPosition())
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: fgcolorKeyframesButton
             onToggled: toggleKeyframes(checked, 'fgcolour', Qt.color(fgColor.value))
         }
@@ -238,7 +238,7 @@ GridLayout {
     RowLayout {
         Layout.columnSpan: 4
 
-        Shotcut.Button {
+        Bossa.Button {
             id: fontButton
 
             onClicked: {
@@ -249,7 +249,7 @@ GridLayout {
                 fontDialog.open();
             }
 
-            Shotcut.FontDialog {
+            Bossa.FontDialog {
                 id: fontDialog
 
                 property string fontFamily: ''
@@ -308,7 +308,7 @@ GridLayout {
     }
 
     RowLayout {
-        Shotcut.ColorPicker {
+        Bossa.ColorPicker {
             id: outlineColor
 
             eyedropper: false
@@ -317,7 +317,7 @@ GridLayout {
             onValueChanged: updateFilter('olcolour', Qt.color(value), olcolorKeyframesButton, getPosition())
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: olcolorKeyframesButton
             onToggled: toggleKeyframes(checked, 'olcolour', Qt.color(outlineColor.value))
         }
@@ -328,7 +328,7 @@ GridLayout {
         Layout.alignment: Qt.AlignRight
     }
 
-    Shotcut.DoubleSpinBox {
+    Bossa.DoubleSpinBox {
         id: outlineSpinner
 
         Layout.minimumWidth: 50
@@ -344,7 +344,7 @@ GridLayout {
     }
 
     RowLayout {
-        Shotcut.ColorPicker {
+        Bossa.ColorPicker {
             id: bgColor
 
             eyedropper: false
@@ -353,7 +353,7 @@ GridLayout {
             onValueChanged: updateFilter('bgcolour', Qt.color(value), bgcolorKeyframesButton, getPosition())
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: bgcolorKeyframesButton
             onToggled: toggleKeyframes(checked, 'bgcolour', Qt.color(bgColor.value))
         }
@@ -364,7 +364,7 @@ GridLayout {
         Layout.alignment: Qt.AlignRight
     }
 
-    Shotcut.DoubleSpinBox {
+    Bossa.DoubleSpinBox {
         id: padSpinner
 
         Layout.minimumWidth: 50
@@ -380,7 +380,7 @@ GridLayout {
         Layout.alignment: Qt.AlignRight
     }
 
-    Shotcut.SliderSpinner {
+    Bossa.SliderSpinner {
         id: opacitySlider
         visible: showOpacity
         Layout.columnSpan: 3
@@ -393,12 +393,12 @@ GridLayout {
         onValueChanged: updateFilter('opacity', value / 100.0, opacityKeyframesButton, getPosition())
     }
 
-    Shotcut.UndoButton {
+    Bossa.UndoButton {
         visible: showOpacity
         onClicked: opacitySlider.value = 100
     }
 
-    Shotcut.KeyframesButton {
+    Bossa.KeyframesButton {
         id: opacityKeyframesButton
         visible: showOpacity
         onToggled: toggleKeyframes(checked, 'opacity', opacitySlider.value / 100.0)
@@ -412,7 +412,7 @@ GridLayout {
     RowLayout {
         Layout.columnSpan: 3
 
-        Shotcut.DoubleSpinBox {
+        Bossa.DoubleSpinBox {
             id: rectX
 
             Layout.minimumWidth: 100
@@ -435,7 +435,7 @@ GridLayout {
             horizontalAlignment: Qt.AlignHCenter
         }
 
-        Shotcut.DoubleSpinBox {
+        Bossa.DoubleSpinBox {
             id: rectY
 
             Layout.minimumWidth: 100
@@ -453,7 +453,7 @@ GridLayout {
         }
     }
 
-    Shotcut.UndoButton {
+    Bossa.UndoButton {
         onClicked: {
             rectX.value = rectY.value = 0;
             filterRect.x = filterRect.y = 0;
@@ -461,7 +461,7 @@ GridLayout {
         }
     }
 
-    Shotcut.KeyframesButton {
+    Bossa.KeyframesButton {
         id: positionKeyframesButton
 
         Layout.rowSpan: 2
@@ -489,7 +489,7 @@ GridLayout {
     RowLayout {
         Layout.columnSpan: 3
 
-        Shotcut.DoubleSpinBox {
+        Bossa.DoubleSpinBox {
             id: rectW
 
             Layout.minimumWidth: 100
@@ -512,7 +512,7 @@ GridLayout {
             horizontalAlignment: Qt.AlignHCenter
         }
 
-        Shotcut.DoubleSpinBox {
+        Bossa.DoubleSpinBox {
             id: rectH
 
             Layout.minimumWidth: 100
@@ -530,7 +530,7 @@ GridLayout {
         }
     }
 
-    Shotcut.UndoButton {
+    Bossa.UndoButton {
         onClicked: {
             rectW.value = profile.width;
             rectH.value = profile.height;
@@ -569,7 +569,7 @@ GridLayout {
         onClicked: filter.set(halignProperty, 'right')
     }
 
-    Shotcut.UndoButton {
+    Bossa.UndoButton {
         onClicked: {
             centerRadioButton.checked = true;
             filter.set(halignProperty, 'center');
@@ -609,7 +609,7 @@ GridLayout {
         onClicked: filter.set(valignProperty, 'bottom')
     }
 
-    Shotcut.UndoButton {
+    Bossa.UndoButton {
         onClicked: {
             bottomRadioButton.checked = true;
             filter.set(valignProperty, 'bottom');
@@ -620,7 +620,7 @@ GridLayout {
         width: 1
     }
 
-    Shotcut.Button {
+    Bossa.Button {
         Layout.columnSpan: parent.columns - 1
         text: motionTrackerDialog.title
         onClicked: motionTrackerDialog.show()
@@ -630,7 +630,7 @@ GridLayout {
         Layout.fillWidth: true
     }
 
-    Shotcut.MotionTrackerDialog {
+    Bossa.MotionTrackerDialog {
         id: motionTrackerDialog
         onAccepted: (motionTrackerRow, operation, startFrame) => applyTracking(motionTrackerRow, operation, startFrame)
         onReset: if (filter.keyframeCount(rectProperty) > 0 && filter.animateIn <= 0 && filter.animateOut <= 0) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024-2026 Meltytech, LLC
+ * Copyright (c) 2024-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,8 +54,8 @@ AudioSurroundScopeWidget::AudioSurroundScopeWidget()
 {
     LOG_DEBUG() << "begin";
 
-    setWhatsThis("https://forum.shotcut.org/t/audio-surround-scope/43816/1");
-    connect(&Settings, &ShotcutSettings::playerAudioChannelsChanged, this, [&]() {
+    setWhatsThis("https://forum.bossa.org/t/audio-surround-scope/43816/1");
+    connect(&Settings, &BossaSettings::playerAudioChannelsChanged, this, [&]() {
         m_channelsChanged = true;
         m_channels = Settings.playerAudioChannels();
         requestRefresh();

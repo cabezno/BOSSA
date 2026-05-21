@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2015 Meltytech, LLC
+ * Copyright (c) 2013-2015 Bossa Project, LLC
  * Author: Dan Dennedy <dan@dennedy.org>
  * Some ideas came from Qt-Plus: https://github.com/liuyanghejerry/Qt-Plus
  * and Steinar Gunderson's Movit demo app.

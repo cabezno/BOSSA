@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2022 Meltytech, LLC
+ * Copyright (c) 2020-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property bool blockUpdate: true
@@ -139,7 +139,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             Layout.columnSpan: parent.columns - 1
@@ -161,12 +161,12 @@ Item {
             text: qsTr('Octave Shift')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Specify the pitch shift in octaves.\n-1 shifts down an octave.\n+1 shifts up an octave.\n0 is unchanged.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: octaveSlider
 
             minimumValue: -2
@@ -177,11 +177,11 @@ Item {
             onValueChanged: updateFilter(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: octaveSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: octaveKeyframesButton
 
             onToggled: {
@@ -201,12 +201,12 @@ Item {
             text: qsTr('Speed Compensation')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Specify the speed change that should be compensated for.\n2x will halve the pitch to compensate for the speed being doubled.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: frequencySlider
 
             minimumValue: 0.25

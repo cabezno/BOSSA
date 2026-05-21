@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property bool blockUpdate: true
@@ -693,7 +693,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: ["yaw", "pitch", "roll", "frontX", "frontY", "frontUp", "backX", "backY", "backUp", "fov", "radius", "nadirRadius", "nadirCorrectionStart", "interpolation", "projection"]
@@ -792,7 +792,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: interpolationComboBox
 
             currentIndex: 0
@@ -800,7 +800,7 @@ Item {
             onCurrentIndexChanged: updateProperty_interpolation()
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: interpolationUndo
 
             onClicked: interpolationComboBox.currentIndex = 0
@@ -821,7 +821,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: yawSlider
 
             minimumValue: -360
@@ -833,13 +833,13 @@ Item {
             onValueChanged: updateProperty_yaw(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: yawUndo
 
             onClicked: yawSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: yawKeyframesButton
 
             onToggled: {
@@ -865,7 +865,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: pitchSlider
 
             minimumValue: -180
@@ -877,13 +877,13 @@ Item {
             onValueChanged: updateProperty_pitch(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: pitchUndo
 
             onClicked: pitchSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: pitchKeyframesButton
 
             checked: filter.animateIn <= 0 && filter.animateOut <= 0 && filter.keyframeCount("pitch") > 0
@@ -910,7 +910,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: rollSlider
 
             minimumValue: -180
@@ -922,13 +922,13 @@ Item {
             onValueChanged: updateProperty_roll(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: rollUndo
 
             onClicked: rollSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: rollKeyframesButton
 
             onToggled: {
@@ -960,7 +960,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: projectionComboBox
 
             currentIndex: 0
@@ -968,7 +968,7 @@ Item {
             onCurrentIndexChanged: updateProperty_projection()
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: projectionUndo
 
             onClicked: projectionComboBox.currentIndex = 0
@@ -981,12 +981,12 @@ Item {
         Label {
             text: qsTr('FOV')
             Layout.alignment: Qt.AlignRight
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Field of view')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: fovSlider
 
             minimumValue: 0
@@ -998,13 +998,13 @@ Item {
             onValueChanged: updateProperty_fov(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: fovUndo
 
             onClicked: fovSlider.value = 180
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: fovKeyframesButton
 
             onToggled: {
@@ -1030,7 +1030,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: radiusSlider
 
             minimumValue: 0
@@ -1041,13 +1041,13 @@ Item {
             onValueChanged: updateProperty_radius(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: radiusUndo
 
             onClicked: radiusSlider.value = 0.25
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: radiusKeyframesButton
 
             onToggled: {
@@ -1079,7 +1079,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: frontXSlider
 
             minimumValue: 0
@@ -1090,13 +1090,13 @@ Item {
             onValueChanged: updateProperty_frontX(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: frontXUndo
 
             onClicked: frontXSlider.value = 0.25
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: frontXKeyframesButton
 
             onToggled: {
@@ -1122,7 +1122,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: frontYSlider
 
             minimumValue: 0
@@ -1133,13 +1133,13 @@ Item {
             onValueChanged: updateProperty_frontY(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: frontYUndo
 
             onClicked: frontYSlider.value = 0.25
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: frontYKeyframesButton
 
             onToggled: {
@@ -1165,7 +1165,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: frontUpSlider
 
             minimumValue: 0
@@ -1177,13 +1177,13 @@ Item {
             onValueChanged: updateProperty_frontUp(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: frontUpUndo
 
             onClicked: frontUpSlider.value = 90
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: frontUpKeyframesButton
 
             checked: filter.animateIn <= 0 && filter.animateOut <= 0 && filter.keyframeCount("frontUp") > 0
@@ -1216,7 +1216,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: backXSlider
 
             minimumValue: 0
@@ -1227,13 +1227,13 @@ Item {
             onValueChanged: updateProperty_backX(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: backXUndo
 
             onClicked: backXSlider.value = 0.25
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: backXKeyframesButton
 
             onToggled: {
@@ -1259,7 +1259,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: backYSlider
 
             minimumValue: 0
@@ -1270,13 +1270,13 @@ Item {
             onValueChanged: updateProperty_backY(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: backYUndo
 
             onClicked: backYSlider.value = 0.25
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: backYKeyframesButton
 
             onToggled: {
@@ -1302,7 +1302,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: backUpSlider
 
             minimumValue: 0
@@ -1314,13 +1314,13 @@ Item {
             onValueChanged: updateProperty_backUp(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: backUpUndo
 
             onClicked: backUpSlider.value = 90
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: backUpKeyframesButton
 
             checked: filter.animateIn <= 0 && filter.animateOut <= 0 && filter.keyframeCount("backUp") > 0
@@ -1353,7 +1353,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: nadirRadiusSlider
 
             minimumValue: 0
@@ -1364,13 +1364,13 @@ Item {
             onValueChanged: updateProperty_nadirRadius(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: nadirRadiusUndo
 
             onClicked: nadirRadiusSlider.value = 0.2229
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: nadirRadiusKeyframesButton
 
             onToggled: {
@@ -1396,7 +1396,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: nadirCorrectionStartSlider
 
             minimumValue: 0
@@ -1407,13 +1407,13 @@ Item {
             onValueChanged: updateProperty_nadirCorrectionStart(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: nadirCorrectionStartUndo
 
             onClicked: radiusSlider.value = 0.8
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: nadirCorrectionStartKeyframesButton
 
             onToggled: {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2022 Meltytech, LLC
+ * Copyright (c) 2013-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property bool blockUpdate: true
@@ -103,7 +103,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             Layout.columnSpan: parent.columns - 1
@@ -127,7 +127,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: combo
 
             Layout.columnSpan: 3
@@ -140,7 +140,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: slider
 
             minimumValue: 0
@@ -151,11 +151,11 @@ Item {
             onValueChanged: updateFilter(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: slider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: keyframesButton
 
             onToggled: {

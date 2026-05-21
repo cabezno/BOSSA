@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2025 Meltytech, LLC
+ * Copyright (c) 2015-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     function setControls() {
@@ -58,7 +58,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: ['0', '1', '2', '3', '4', '5', '6', channelMask.channelMaskProperty]
@@ -70,12 +70,12 @@ Item {
             text: qsTr('RMS')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The balance between the RMS and peak envelope followers.\nRMS is generally better for subtle, musical compression.\nPeak is better for heavier, fast compression and percussion.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderPeak
 
             minimumValue: 0
@@ -89,7 +89,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderPeak.value = sliderPeak.minimumValue
         }
 
@@ -98,7 +98,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderAttack
 
             minimumValue: 2
@@ -110,7 +110,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderAttack.value = 100
         }
 
@@ -119,7 +119,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderRelease
 
             minimumValue: 2
@@ -131,7 +131,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderRelease.value = 400
         }
 
@@ -139,12 +139,12 @@ Item {
             text: qsTr('Threshold')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The point at which the compressor will start to kick in.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderThreshold
 
             minimumValue: -30
@@ -157,7 +157,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderThreshold.value = 0
         }
 
@@ -165,12 +165,12 @@ Item {
             text: qsTr('Ratio')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The gain reduction ratio used when the signal level exceeds the threshold.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderRatio
 
             minimumValue: 1
@@ -182,7 +182,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderRatio.value = 1
         }
 
@@ -190,12 +190,12 @@ Item {
             text: qsTr('Knee radius')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The distance from the threshold where the knee curve starts.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderRadius
 
             minimumValue: 1
@@ -208,7 +208,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderRadius.value = 3.25
         }
 
@@ -216,12 +216,12 @@ Item {
             text: qsTr('Attenuation')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The gain of the output signal.\nUsed to correct for excessive amplitude caused by the extra dynamic range.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderGain
 
             minimumValue: -24
@@ -234,7 +234,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderGain.value = 0
         }
 
@@ -243,7 +243,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ChannelMask {
+        Bossa.ChannelMask {
             id: channelMask
 
             Layout.columnSpan: 2

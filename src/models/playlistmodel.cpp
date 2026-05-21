@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2025 Meltytech, LLC
+ * Copyright (c) 2012-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 #include "mainwindow.h"
 #include "proxymanager.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <QApplication>
@@ -106,7 +106,7 @@ public:
         // without much loss of accuracy.
         time = time.left(time.size() - 1);
         QString key;
-        QString resource = m_producer.get(kShotcutHashProperty);
+        QString resource = m_producer.get(kBossaHashProperty);
         if (resource.isEmpty()) {
             key = QStringLiteral("%1 %2 %3")
                       .arg(m_producer.get("mlt_service"))
@@ -254,7 +254,7 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const
             if (role == Qt::DisplayRole) {
                 // Prefer caption for display
                 if (info->producer && info->producer->is_valid()) {
-                    result = info->producer->get(kShotcutCaptionProperty);
+                    result = info->producer->get(kBossaCaptionProperty);
                     if (result.isEmpty()) {
                         result = Util::baseName(ProxyManager::resource(*info->producer));
                         if (!::qstrcmp(info->producer->get("mlt_service"), "timewarp")) {
@@ -272,7 +272,7 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const
             } else {
                 // Prefer detail or full path for tooltip
                 if (info->producer && info->producer->is_valid()) {
-                    result = info->producer->get(kShotcutDetailProperty);
+                    result = info->producer->get(kBossaDetailProperty);
                     if (result.isEmpty()) {
                         result = ProxyManager::resource(*info->producer);
                         if (!result.isEmpty() && QFileInfo(result).isRelative()) {
@@ -282,14 +282,14 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const
                         result = QDir::toNativeSeparators(result);
                     }
                     if ((result.isEmpty() || Util::baseName(result) == "<producer>")) {
-                        result = info->producer->get(kShotcutCaptionProperty);
+                        result = info->producer->get(kBossaCaptionProperty);
                     }
                     if (result.isEmpty()) {
                         result = QString::fromUtf8(info->producer->get("mlt_service"));
                     }
                 }
             }
-            if (!info->producer->get(kShotcutHashProperty)) {
+            if (!info->producer->get(kBossaHashProperty)) {
                 Util::getHash(*info->producer);
             }
             return result;
@@ -424,7 +424,7 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const
             break;
         case FIELD_BIN:
             if (info->producer && info->producer->is_valid())
-                return QString::fromUtf8(info->producer->get(kShotcutBinsProperty));
+                return QString::fromUtf8(info->producer->get(kBossaBinsProperty));
             break;
         }
     }
@@ -450,7 +450,7 @@ void PlaylistModel::setBin(int row, const QString &name)
 {
     auto producer = m_playlist->get_clip(row);
     if (producer && producer->is_valid()) {
-        producer->parent().set(kShotcutBinsProperty, name.toUtf8().constData());
+        producer->parent().set(kBossaBinsProperty, name.toUtf8().constData());
         emit dataChanged(createIndex(row, PlaylistModel::COLUMN_BIN),
                          createIndex(row, PlaylistModel::COLUMN_BIN));
         emit modified();
@@ -471,11 +471,11 @@ void PlaylistModel::renameBin(const QString &bin, const QString &newName)
     for (int row = 0; row < n; ++row) {
         auto clip = m_playlist->get_clip(row);
         if (clip && clip->is_valid()) {
-            if (bin == clip->parent().get(kShotcutBinsProperty)) {
+            if (bin == clip->parent().get(kBossaBinsProperty)) {
                 if (newName.isEmpty())
-                    clip->parent().Mlt::Properties::clear(kShotcutBinsProperty);
+                    clip->parent().Mlt::Properties::clear(kBossaBinsProperty);
                 else
-                    clip->parent().set(kShotcutBinsProperty, newName.toUtf8().constData());
+                    clip->parent().set(kBossaBinsProperty, newName.toUtf8().constData());
                 emit dataChanged(createIndex(row, PlaylistModel::COLUMN_BIN),
                                  createIndex(row, PlaylistModel::COLUMN_BIN));
                 modified = true;

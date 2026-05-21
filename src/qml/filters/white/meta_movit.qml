@@ -1,5 +1,5 @@
 import QtQuick
-import org.shotcut.qml
+import org.bossa.qml
 
 Metadata {
     type: Metadata.Filter
@@ -10,5 +10,5 @@ Metadata {
     qml: "ui.qml"
     icon: 'icon.webp'
     isFavorite: true
-    help: 'https://forum.shotcut.org/t/white-balance/12894/1'
+    help: 'https://forum.bossa.org/t/white-balance/12894/1'
 }

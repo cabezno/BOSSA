@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Meltytech, LLC
+ * Copyright (c) 2014-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property alias duration: timeSpinner.value
@@ -70,7 +70,7 @@ Item {
                 text: qsTr('Duration')
             }
 
-            Shotcut.TimeSpinner {
+            Bossa.TimeSpinner {
                 id: timeSpinner
 
                 minimumValue: 1

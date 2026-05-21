@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2025 Meltytech, LLC
+ * Copyright (c) 2013-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 #include "mltcontroller.h"
 #include "proxymanager.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <MltProducer.h>
@@ -444,10 +444,10 @@ void QmlFilter::analyze(bool isAudio, bool deferJob)
     if (!isAudio)
         mltFilter.set("analyze", 1);
 
-    // Tag the filter with a UUID stored in a shotcut property to uniquely find it later
+    // Tag the filter with a UUID stored in a bossa property to uniquely find it later
     auto uuid = QUuid::createUuid();
     auto ba = uuid.toByteArray();
-    mltFilter.set(kShotcutHashProperty, ba.constData());
+    mltFilter.set(kBossaHashProperty, ba.constData());
 
     // Fix in/out points of filters on clip-only project.
     if (MLT.isSeekableClip() && mlt_service_chain_type != MLT.producer()->type()) {
@@ -607,15 +607,15 @@ int QmlFilter::out()
 
 int QmlFilter::animateIn()
 {
-    return m_service.time_to_frames(m_service.get(kShotcutAnimInProperty));
+    return m_service.time_to_frames(m_service.get(kBossaAnimInProperty));
 }
 
 void QmlFilter::setAnimateIn(int value)
 {
     value = qBound(0, value, duration());
-    if (value != m_service.time_to_frames(m_service.get(kShotcutAnimInProperty))) {
-        m_service.set(kShotcutAnimInProperty, m_service.frames_to_time(value, mlt_time_clock));
-        if (value == 0 && m_service.time_to_frames(m_service.get(kShotcutAnimOutProperty)) == 0) {
+    if (value != m_service.time_to_frames(m_service.get(kBossaAnimInProperty))) {
+        m_service.set(kBossaAnimInProperty, m_service.frames_to_time(value, mlt_time_clock));
+        if (value == 0 && m_service.time_to_frames(m_service.get(kBossaAnimOutProperty)) == 0) {
             // Clear simple keyframes
             for (int i = 0; i < m_metadata->keyframes()->parameterCount(); i++) {
                 QString name = m_metadata->keyframes()->parameter(i)->property();
@@ -634,22 +634,22 @@ void QmlFilter::setAnimateIn(int value)
                 }
             }
         }
-        updateUndoCommand(kShotcutAnimInProperty);
+        updateUndoCommand(kBossaAnimInProperty);
         emit animateInChanged();
     }
 }
 
 int QmlFilter::animateOut()
 {
-    return m_service.time_to_frames(m_service.get(kShotcutAnimOutProperty));
+    return m_service.time_to_frames(m_service.get(kBossaAnimOutProperty));
 }
 
 void QmlFilter::setAnimateOut(int value)
 {
     value = qBound(0, value, duration());
-    if (value != m_service.time_to_frames(m_service.get(kShotcutAnimOutProperty))) {
-        m_service.set(kShotcutAnimOutProperty, m_service.frames_to_time(value, mlt_time_clock));
-        if (value == 0 && m_service.time_to_frames(m_service.get(kShotcutAnimInProperty)) == 0) {
+    if (value != m_service.time_to_frames(m_service.get(kBossaAnimOutProperty))) {
+        m_service.set(kBossaAnimOutProperty, m_service.frames_to_time(value, mlt_time_clock));
+        if (value == 0 && m_service.time_to_frames(m_service.get(kBossaAnimInProperty)) == 0) {
             // Clear simple keyframes
             for (int i = 0; i < m_metadata->keyframes()->parameterCount(); i++) {
                 QString name = m_metadata->keyframes()->parameter(i)->property();
@@ -663,7 +663,7 @@ void QmlFilter::setAnimateOut(int value)
                 }
             }
         }
-        updateUndoCommand(kShotcutAnimOutProperty);
+        updateUndoCommand(kBossaAnimOutProperty);
         emit animateOutChanged();
     }
 }
@@ -672,12 +672,12 @@ void QmlFilter::clearAnimateInOut()
 {
     bool inChanged = false;
     bool outChanged = false;
-    if (0 != m_service.time_to_frames(m_service.get(kShotcutAnimInProperty))) {
-        m_service.set(kShotcutAnimInProperty, m_service.frames_to_time(0, mlt_time_clock));
+    if (0 != m_service.time_to_frames(m_service.get(kBossaAnimInProperty))) {
+        m_service.set(kBossaAnimInProperty, m_service.frames_to_time(0, mlt_time_clock));
         inChanged = true;
     }
-    if (0 != m_service.time_to_frames(m_service.get(kShotcutAnimOutProperty))) {
-        m_service.set(kShotcutAnimOutProperty, m_service.frames_to_time(0, mlt_time_clock));
+    if (0 != m_service.time_to_frames(m_service.get(kBossaAnimOutProperty))) {
+        m_service.set(kBossaAnimOutProperty, m_service.frames_to_time(0, mlt_time_clock));
         outChanged = true;
     }
     if (inChanged)
@@ -803,11 +803,11 @@ void QmlFilter::startUndoTracking()
 {
     m_previousState = Mlt::Properties();
     m_previousState.inherit(m_service);
-    if (!m_previousState.property_exists(kShotcutAnimInProperty)) {
-        m_previousState.set(kShotcutAnimInProperty, 0);
+    if (!m_previousState.property_exists(kBossaAnimInProperty)) {
+        m_previousState.set(kBossaAnimInProperty, 0);
     }
-    if (!m_previousState.property_exists(kShotcutAnimOutProperty)) {
-        m_previousState.set(kShotcutAnimOutProperty, 0);
+    if (!m_previousState.property_exists(kBossaAnimOutProperty)) {
+        m_previousState.set(kBossaAnimOutProperty, 0);
     }
 }
 
@@ -1054,7 +1054,7 @@ void QmlFilter::crop(const QRectF &rect)
 
 AnalyzeDelegate::AnalyzeDelegate(Mlt::Filter &filter)
     : QObject(nullptr)
-    , m_uuid(filter.get(kShotcutHashProperty))
+    , m_uuid(filter.get(kBossaHashProperty))
 {}
 
 class FindFilterParser : public Mlt::Parser
@@ -1073,7 +1073,7 @@ public:
 
     int on_start_filter(Mlt::Filter *filter)
     {
-        QByteArray uuid = filter->get(kShotcutHashProperty);
+        QByteArray uuid = filter->get(kBossaHashProperty);
         if (uuid == m_uuid.toByteArray())
             m_filters << Mlt::Filter(*filter);
         return 0;
@@ -1120,7 +1120,7 @@ void AnalyzeDelegate::updateJob(EncodeJob *job, const QString &results)
         QDomNodeList properties = filterNode.toElement().elementsByTagName("property");
         for (int j = 0; j < properties.size(); j++) {
             QDomNode propertyNode = properties.at(j);
-            if (propertyNode.attributes().namedItem("name").toAttr().value() == kShotcutHashProperty
+            if (propertyNode.attributes().namedItem("name").toAttr().value() == kBossaHashProperty
                 && propertyNode.toElement().text() == m_uuid.toString()) {
                 // found a matching filter
                 found = true;
@@ -1224,7 +1224,7 @@ QString AnalyzeDelegate::resultsFromXml(const QString &fileName)
         QDomNodeList properties = filterNode.toElement().elementsByTagName("property");
         for (int j = 0; j < properties.size(); j++) {
             QDomNode propertyNode = properties.at(j);
-            if (propertyNode.attributes().namedItem("name").toAttr().value() == kShotcutHashProperty
+            if (propertyNode.attributes().namedItem("name").toAttr().value() == kBossaHashProperty
                 && propertyNode.toElement().text() == m_uuid.toString()) {
                 found = true;
                 break;
@@ -1247,7 +1247,7 @@ void AnalyzeDelegate::updateFilter(Mlt::Filter &filter, const QString &results)
 {
     filter.set("results", qUtf8Printable(results));
     filter.set("reload", 1);
-    filter.clear(kShotcutHashProperty);
+    filter.clear(kBossaHashProperty);
     LOG_INFO() << "updated filter" << filter.get("mlt_service") << "with results:" << results;
 
     if (QString::fromLatin1("opencv.tracker") == filter.get("mlt_service")) {

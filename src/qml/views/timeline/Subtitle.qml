@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024-2026 Meltytech, LLC
+ * Copyright (c) 2024-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Rectangle {
     id: root

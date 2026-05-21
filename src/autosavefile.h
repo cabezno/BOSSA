@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2015 Meltytech, LLC
+ * Copyright (c) 2011-2015 Bossa Project, LLC
  * Author: Dan Dennedy <dan@dennedy.org>
  * Loosely based on ideas from KAutoSaveFile by Jacob R Rideout <kde@jacobrideout.net>
  * and Kdenlive by Jean-Baptiste Mardelle.

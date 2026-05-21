@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2026 Meltytech, LLC
+ * Copyright (c) 2014-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
 Item {
     property string fillProperty
@@ -266,7 +266,7 @@ Item {
         const data = motionTrackerModel.trackingData(motionTrackerRow);
         let previous = null;
         let interval = motionTrackerModel.keyframeIntervalFrames(motionTrackerRow);
-        let interpolation = Shotcut.KeyframesModel.SmoothNaturalInterpolation;
+        let interpolation = Bossa.KeyframesModel.SmoothNaturalInterpolation;
         filter.blockSignals = true;
         data.forEach(i => {
             let current = filter.getRect(trackingProperty, frame);
@@ -288,14 +288,14 @@ Item {
             case 'absPos':
                 current.x = i.x + i.width / 2 - current.width / 2;
                 current.y = i.y + i.height / 2 - current.height / 2;
-                interpolation = Shotcut.KeyframesModel.LinearInterpolation;
+                interpolation = Bossa.KeyframesModel.LinearInterpolation;
                 break;
             case 'absSizePos':
                 current.x = i.x;
                 current.y = i.y;
                 current.width = i.width;
                 current.height = i.height;
-                interpolation = Shotcut.KeyframesModel.LinearInterpolation;
+                interpolation = Bossa.KeyframesModel.LinearInterpolation;
                 break;
             }
             previous = i;
@@ -488,7 +488,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: [fillProperty, distortProperty, rectProperty, halignProperty, valignProperty]
@@ -526,7 +526,7 @@ Item {
         RowLayout {
             Layout.columnSpan: 3
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectX
 
                 horizontalAlignment: Qt.AlignRight
@@ -551,7 +551,7 @@ Item {
                 horizontalAlignment: Qt.AlignHCenter
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectY
 
                 horizontalAlignment: Qt.AlignRight
@@ -571,7 +571,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.startUndoParameterCommand(positionLabel.text);
                 filterRect.x = rectX.value = defaultRect.x;
@@ -596,7 +596,7 @@ Item {
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             }
 
-            Shotcut.KeyframesButton {
+            Bossa.KeyframesButton {
                 id: positionKeyframesButton
 
                 onToggled: {
@@ -636,7 +636,7 @@ Item {
         RowLayout {
             Layout.columnSpan: 3
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectW
 
                 horizontalAlignment: Qt.AlignRight
@@ -665,7 +665,7 @@ Item {
                 horizontalAlignment: Qt.AlignHCenter
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectH
 
                 horizontalAlignment: Qt.AlignRight
@@ -689,7 +689,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: sizeUndoButton
 
             onClicked: {
@@ -708,7 +708,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: scaleSlider
 
             function update() {
@@ -745,7 +745,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             enabled: scaleSlider.enabled
             onClicked: scaleSlider.value = 100
         }
@@ -804,7 +804,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.startUndoParameterCommand(sizeModeLabel.text);
                 fitRadioButton.checked = true;
@@ -861,7 +861,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.startUndoParameterCommand(horizontalFitLabel.text);
                 leftRadioButton.checked = true;
@@ -916,7 +916,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.startUndoParameterCommand(verticalFitLabel.text);
                 topRadioButton.checked = true;
@@ -936,7 +936,7 @@ Item {
             visible: !!rotationProperty
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: rotationSlider
 
             Layout.columnSpan: 3
@@ -952,12 +952,12 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             visible: !!rotationProperty
             onClicked: rotationSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: rotationKeyframesButton
 
             visible: !!rotationProperty
@@ -976,7 +976,7 @@ Item {
             visible: bgColor.visible
         }
 
-        Shotcut.ColorPicker {
+        Bossa.ColorPicker {
             id: bgColor
 
             visible: !!backgroundProperty
@@ -990,7 +990,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             visible: bgColor.visible
             onClicked: bgColor.value = '#00000000'
         }
@@ -1005,7 +1005,7 @@ Item {
             visible: !!trackingProperty
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             visible: !!trackingProperty
             Layout.columnSpan: parent.columns - 1
             text: motionTrackerDialog.title
@@ -1017,7 +1017,7 @@ Item {
         }
     }
 
-    Shotcut.MotionTrackerDialog {
+    Bossa.MotionTrackerDialog {
         id: motionTrackerDialog
         onAccepted: (motionTrackerRow, operation, startFrame) => {
             filter.startUndoParameterCommand(title);

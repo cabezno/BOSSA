@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023 Meltytech, LLC
+ * Copyright (c) 2018-2023 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 ToolButton {
     id: checkbox
@@ -54,16 +54,16 @@ ToolButton {
         id: activePalette
     }
 
-    Shotcut.HoverTip {
+    Bossa.HoverTip {
         text: qsTr('Use Keyframes for this parameter')
     }
 
-    Shotcut.MessageDialog {
+    Bossa.MessageDialog {
         id: confirmRemoveAdvancedDialog
 
         title: qsTr("Confirm Removing Keyframes")
         text: qsTr('This will remove all keyframes for this parameter.<p>Do you still want to do this?')
-        buttons: Shotcut.MessageDialog.Yes | Shotcut.MessageDialog.No
+        buttons: Bossa.MessageDialog.Yes | Bossa.MessageDialog.No
         onAccepted: {
             checkbox.checked = false;
             checkbox.toggled();
@@ -74,12 +74,12 @@ ToolButton {
         }
     }
 
-    Shotcut.MessageDialog {
+    Bossa.MessageDialog {
         id: confirmRemoveSimpleDialog
 
         title: qsTr("Confirm Removing Simple Keyframes")
         text: qsTr('This will remove all simple keyframes for all parameters.<p>Simple keyframes will be converted to advanced keyframes.<p>Do you still want to do this?')
-        buttons: Shotcut.MessageDialog.Yes | Shotcut.MessageDialog.No
+        buttons: Bossa.MessageDialog.Yes | Bossa.MessageDialog.No
         onAccepted: {
             checkbox.checked = true;
             parameters.removeSimpleKeyframes();

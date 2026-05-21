@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Meltytech, LLC
+ * Copyright (c) 2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -215,8 +215,8 @@ bool AddOnQmlGenerator::generate(const AddOnFilterDescriptor &descriptor,
         << "import QtQuick\n"
            "import QtQuick.Controls\n"
            "import QtQuick.Layouts\n\n"
-           "import Shotcut.Controls as Shotcut\n\n"
-           "Shotcut.KeyframableFilter {\n"
+           "import Bossa.Controls as Bossa\n\n"
+           "Bossa.KeyframableFilter {\n"
            "    id: root\n"
            "    signal metadataHelpRequested(string service)\n"
            "    property var propertyNames: ["
@@ -439,7 +439,7 @@ bool AddOnQmlGenerator::generate(const AddOnFilterDescriptor &descriptor,
            "            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter\n"
            "        }\n"
            "\n"
-           "        Shotcut.Preset {\n"
+           "        Bossa.Preset {\n"
            "            id: preset\n"
            "            Layout.columnSpan: 3\n"
            "            Layout.fillWidth: true\n"
@@ -569,7 +569,7 @@ bool AddOnQmlGenerator::generate(const AddOnFilterDescriptor &descriptor,
                       "            }\n"
                       "        }\n";
         } else if (parameterType == QStringLiteral("color")) {
-            stream << "        Shotcut.ColorPicker {\n"
+            stream << "        Bossa.ColorPicker {\n"
                       "                id: "
                    << editorId
                    << "\n"
@@ -639,7 +639,7 @@ bool AddOnQmlGenerator::generate(const AddOnFilterDescriptor &descriptor,
                    "        }\n";
         } else if (parameterType == QStringLiteral("integer")
                    || parameterType == QStringLiteral("float")) {
-            stream << "        Shotcut.SliderSpinner {\n"
+            stream << "        Bossa.SliderSpinner {\n"
                       "            id: "
                    << editorId
                    << "\n"
@@ -708,7 +708,7 @@ bool AddOnQmlGenerator::generate(const AddOnFilterDescriptor &descriptor,
 
         if (!parameter.isReadOnly) {
             stream << "\n"
-                      "        Shotcut.UndoButton {\n"
+                      "        Bossa.UndoButton {\n"
                       "            readonly property string propertyName: "
                    << nameLiteral << "\n";
 
@@ -771,7 +771,7 @@ bool AddOnQmlGenerator::generate(const AddOnFilterDescriptor &descriptor,
 
             if (supportsGeneratedKeyframes) {
                 stream << "\n"
-                          "        Shotcut.KeyframesButton {\n"
+                          "        Bossa.KeyframesButton {\n"
                           "            id: "
                        << keyframesId
                        << "\n"

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Meltytech, LLC
+ * Copyright (c) 2014-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,8 +17,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
 Rectangle {
     id: filterWindow
@@ -39,23 +39,23 @@ Rectangle {
     visible: false
     onVisibleChanged: {
         switch (metadatamodel.filter) {
-        case Shotcut.MetadataModel.FavoritesFilter:
+        case Bossa.MetadataModel.FavoritesFilter:
             favButton.checked = true;
             break;
-        case Shotcut.MetadataModel.VideoFilter:
+        case Bossa.MetadataModel.VideoFilter:
             vidButton.checked = true;
             if (metadatamodel.search === '#color') {
                 vidButton.text = colorMenuItem.text;
                 vidButton.videoFilterType = 'color';
             }
             break;
-        case Shotcut.MetadataModel.AudioFilter:
+        case Bossa.MetadataModel.AudioFilter:
             audButton.checked = true;
             break;
-        case Shotcut.MetadataModel.LinkFilter:
+        case Bossa.MetadataModel.LinkFilter:
             lnkButton.checked = true;
             break;
-        case Shotcut.MetadataModel.FilterSetFilter:
+        case Bossa.MetadataModel.FilterSetFilter:
             setButton.checked = true;
             break;
         }
@@ -125,7 +125,7 @@ Rectangle {
                 hoverEnabled: true
                 onClicked: searchField.text = ''
 
-                Shotcut.HoverTip {
+                Bossa.HoverTip {
                     text: qsTr('Clear search')
                 }
             }
@@ -134,7 +134,7 @@ Rectangle {
                 width: 10
             }
 
-            Shotcut.Button {
+            Bossa.Button {
                 id: closeButton
 
                 icon.name: 'window-close'
@@ -144,7 +144,7 @@ Rectangle {
                 implicitHeight: 20
                 onClicked: filterWindow.close()
 
-                Shotcut.HoverTip {
+                Bossa.HoverTip {
                     text: qsTr('Close menu')
                 }
             }
@@ -163,7 +163,7 @@ Rectangle {
                 id: typeGroup
             }
 
-            Shotcut.Button {
+            Bossa.Button {
                 id: manageAddOnFiltersButton
 
                 visible: enableAddOns
@@ -173,12 +173,12 @@ Rectangle {
                 icon.source: 'qrc:///icons/oxygen/32x32/run-build.png'
                 onClicked: application.showAddOnFiltersDialog()
 
-                Shotcut.HoverTip {
+                Bossa.HoverTip {
                     text: qsTr('Manage Add-on Filters')
                 }
             }
 
-            Shotcut.ToggleButton {
+            Bossa.ToggleButton {
                 id: favButton
 
                 checked: true
@@ -190,14 +190,14 @@ Rectangle {
                 ButtonGroup.group: typeGroup
                 onClicked: {
                     if (checked) {
-                        metadatamodel.filter = Shotcut.MetadataModel.FavoritesFilter;
+                        metadatamodel.filter = Bossa.MetadataModel.FavoritesFilter;
                         metadatamodel.search = '';
                         searchField.text = '';
                         checked = true;
                     }
                 }
 
-                Shotcut.HoverTip {
+                Bossa.HoverTip {
                     text: qsTr('Show favorite filters')
                 }
             }
@@ -205,7 +205,7 @@ Rectangle {
             RowLayout {
                 spacing: 0
 
-                Shotcut.ToggleButton {
+                Bossa.ToggleButton {
                     id: vidButton
 
                     property string videoFilterType: 'video'
@@ -226,34 +226,34 @@ Rectangle {
                         if (checked) {
                             searchField.text = '';
                             if (videoFilterType === 'video') {
-                                metadatamodel.filter = Shotcut.MetadataModel.VideoFilter;
+                                metadatamodel.filter = Bossa.MetadataModel.VideoFilter;
                                 metadatamodel.search = '';
                             } else if (videoFilterType === 'gpu') {
-                                metadatamodel.filter = Shotcut.MetadataModel.GPUFilter;
+                                metadatamodel.filter = Bossa.MetadataModel.GPUFilter;
                                 metadatamodel.search = '';
                             } else if (videoFilterType === '10bit') {
-                                metadatamodel.filter = Shotcut.MetadataModel.VideoFilter;
+                                metadatamodel.filter = Bossa.MetadataModel.VideoFilter;
                                 metadatamodel.search = '#10bit';
                             } else if (videoFilterType === 'color') {
-                                metadatamodel.filter = Shotcut.MetadataModel.VideoFilter;
+                                metadatamodel.filter = Bossa.MetadataModel.VideoFilter;
                                 metadatamodel.search = '#color';
                             } else if (videoFilterType === 'rgba') {
-                                metadatamodel.filter = Shotcut.MetadataModel.VideoFilter;
+                                metadatamodel.filter = Bossa.MetadataModel.VideoFilter;
                                 metadatamodel.search = '#rgba';
                             } else if (videoFilterType === 'yuv') {
-                                metadatamodel.filter = Shotcut.MetadataModel.VideoFilter;
+                                metadatamodel.filter = Bossa.MetadataModel.VideoFilter;
                                 metadatamodel.search = '#yuv';
                             }
                             checked = true;
                         }
                     }
 
-                    Shotcut.HoverTip {
+                    Bossa.HoverTip {
                         text: qsTr('Show video filters')
                     }
                 }
 
-                Shotcut.ToolButton {
+                Bossa.ToolButton {
                     id: vidMenuButton
 
                     implicitWidth: 22
@@ -269,7 +269,7 @@ Rectangle {
                         border.width: vidButton.checked ? 0 : 1
                     }
 
-                    Shotcut.HoverTip {
+                    Bossa.HoverTip {
                         text: qsTr('Video filter options')
                     }
 
@@ -342,7 +342,7 @@ Rectangle {
                 }
             }
 
-            Shotcut.ToggleButton {
+            Bossa.ToggleButton {
                 id: audButton
 
                 implicitWidth: 80
@@ -352,19 +352,19 @@ Rectangle {
                 ButtonGroup.group: typeGroup
                 onClicked: {
                     if (checked) {
-                        metadatamodel.filter = Shotcut.MetadataModel.AudioFilter;
+                        metadatamodel.filter = Bossa.MetadataModel.AudioFilter;
                         metadatamodel.search = '';
                         searchField.text = '';
                         checked = true;
                     }
                 }
 
-                Shotcut.HoverTip {
+                Bossa.HoverTip {
                     text: qsTr('Show audio filters')
                 }
             }
 
-            Shotcut.ToggleButton {
+            Bossa.ToggleButton {
                 id: lnkButton
 
                 implicitWidth: 80
@@ -375,19 +375,19 @@ Rectangle {
                 ButtonGroup.group: typeGroup
                 onClicked: {
                     if (checked) {
-                        metadatamodel.filter = Shotcut.MetadataModel.LinkFilter;
+                        metadatamodel.filter = Bossa.MetadataModel.LinkFilter;
                         metadatamodel.search = '';
                         searchField.text = '';
                         checked = true;
                     }
                 }
 
-                Shotcut.HoverTip {
+                Bossa.HoverTip {
                     text: qsTr('Show time filters')
                 }
             }
 
-            Shotcut.ToggleButton {
+            Bossa.ToggleButton {
                 id: setButton
 
                 implicitWidth: 80
@@ -397,14 +397,14 @@ Rectangle {
                 ButtonGroup.group: typeGroup
                 onClicked: {
                     if (checked) {
-                        metadatamodel.filter = Shotcut.MetadataModel.FilterSetFilter;
+                        metadatamodel.filter = Bossa.MetadataModel.FilterSetFilter;
                         metadatamodel.search = '';
                         searchField.text = '';
                         checked = true;
                     }
                 }
 
-                Shotcut.HoverTip {
+                Bossa.HoverTip {
                     text: qsTr('Show filter sets')
                 }
             }
@@ -477,7 +477,7 @@ Rectangle {
 
                 property var current: metadatamodel.get(menuListView.currentIndex)
 
-                source: current ? (current.icon.toString().length ? current.icon : current.isAudio ? 'qrc:///icons/oxygen/32x32/actions/speaker.png' : current.type === Shotcut.Metadata.Link ? 'qrc:///icons/oxygen/32x32/actions/chronometer.png' : '') : ''
+                source: current ? (current.icon.toString().length ? current.icon : current.isAudio ? 'qrc:///icons/oxygen/32x32/actions/speaker.png' : current.type === Bossa.Metadata.Link ? 'qrc:///icons/oxygen/32x32/actions/chronometer.png' : '') : ''
                 asynchronous: true
                 Layout.preferredWidth: parent.Layout.preferredHeight * sourceSize.width / sourceSize.height
                 Layout.preferredHeight: parent.Layout.preferredHeight
@@ -491,7 +491,7 @@ Rectangle {
             Label {
                 id: keywordsLabel
 
-                text: icon.current ? (icon.current.type === Shotcut.Metadata.FilterSet && icon.current.mlt_service.length === 0) ? qsTr('Delete a custom filter set by right-clicking it.') : icon.current.keywords : ''
+                text: icon.current ? (icon.current.type === Bossa.Metadata.FilterSet && icon.current.mlt_service.length === 0) ? qsTr('Delete a custom filter set by right-clicking it.') : icon.current.keywords : ''
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft

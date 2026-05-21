@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Meltytech, LLC
+ * Copyright (c) 2014-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ import QtQml.Models
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import org.shotcut.qml as Shotcut
+import org.bossa.qml as Bossa
 
 Rectangle {
     id: attachedFilters
@@ -73,7 +73,7 @@ Rectangle {
 
                     Layout.topMargin: (parent.height - height) / 2
                     Layout.alignment: Qt.AlignTop
-                    enabled: model.pluginType !== Shotcut.Metadata.Link
+                    enabled: model.pluginType !== Bossa.Metadata.Link
                     opacity: enabled ? 1 : 0.5
                     checkState: model.checkState
 

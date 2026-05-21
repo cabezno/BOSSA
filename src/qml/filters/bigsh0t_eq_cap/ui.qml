@@ -2,9 +2,9 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Dialogs
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     width: 350
     height: 1000
     keyframableParameters: ["topStart", "topEnd", "topBlendIn", "topBlendOut", "topFadeIn", "topBlurWidthStart", "topBlurWidthEnd", "topBlurHeightStart", "topBlurHeightEnd", "bottomStart", "bottomEnd", "bottomBlendIn", "bottomBlendOut", "bottomFadeIn", "bottomBlurWidthStart", "bottomBlurWidthEnd", "bottomBlurHeightStart", "bottomBlurHeightEnd"]
@@ -376,7 +376,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Preset')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
             parameters: ["interpolation", "topStart", "topEnd", "topBlendIn", "topBlendOut", "topFadeIn", "topBlurWidthStart", "topBlurWidthEnd", "topBlurHeightStart", "topBlurHeightEnd", "bottomStart", "bottomEnd", "bottomBlendIn", "bottomBlendOut", "bottomFadeIn", "bottomBlurWidthStart", "bottomBlurWidthEnd", "bottomBlurHeightStart", "bottomBlurHeightEnd", "topEnabled", "bottomEnabled"]
             Layout.columnSpan: 3
@@ -398,7 +398,7 @@ Shotcut.KeyframableFilter {
             Layout.columnSpan: 2
             onCurrentIndexChanged: updateProperty_interpolation()
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: interpolationUndo
             onClicked: interpolationComboBox.currentIndex = 1
         }
@@ -417,7 +417,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Start')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: topStartSlider
             minimumValue: 0
             maximumValue: 90
@@ -427,7 +427,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_topStart()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: topStartKeyframesButton
             checked: isKeyframeButtonChecked("topStart")
             onToggled: {
@@ -435,7 +435,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "topStart", topStartSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: topStartUndo
             onClicked: topStartSlider.value = 45
         }
@@ -443,7 +443,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('End')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: topEndSlider
             minimumValue: 0
             maximumValue: 90
@@ -453,7 +453,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_topEnd()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: topEndKeyframesButton
             checked: isKeyframeButtonChecked("topEnd")
             onToggled: {
@@ -461,7 +461,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "topEnd", topEndSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: topEndUndo
             onClicked: topEndSlider.value = 80
         }
@@ -469,7 +469,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Fade')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: topFadeInSlider
             minimumValue: 0
             maximumValue: 90
@@ -479,7 +479,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_topFadeIn()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: topFadeInKeyframesButton
             checked: isKeyframeButtonChecked("topFadeIn")
             onToggled: {
@@ -487,7 +487,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "topFadeIn", topFadeInSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: topFadeInUndo
             onClicked: topFadeInSlider.value = 10
         }
@@ -504,7 +504,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('In')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: topBlendInSlider
             minimumValue: 0
             maximumValue: 90
@@ -514,7 +514,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_topBlendIn()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: topBlendInKeyframesButton
             checked: isKeyframeButtonChecked("topBlendIn")
             onToggled: {
@@ -522,7 +522,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "topBlendIn", topBlendInSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: topBlendInUndo
             onClicked: topBlendInSlider.value = 0
         }
@@ -530,7 +530,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Out')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: topBlendOutSlider
             minimumValue: 0
             maximumValue: 90
@@ -540,7 +540,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_topBlendOut()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: topBlendOutKeyframesButton
             checked: isKeyframeButtonChecked("topBlendOut")
             onToggled: {
@@ -548,7 +548,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "topBlendOut", topBlendOutSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: topBlendOutUndo
             onClicked: topBlendOutSlider.value = 10
         }
@@ -565,7 +565,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Width at start')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: topBlurWidthStartSlider
             minimumValue: 0
             maximumValue: 360
@@ -575,7 +575,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_topBlurWidthStart()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: topBlurWidthStartKeyframesButton
             checked: isKeyframeButtonChecked("topBlurWidthStart")
             onToggled: {
@@ -583,7 +583,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "topBlurWidthStart", topBlurWidthStartSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: topBlurWidthStartUndo
             onClicked: topBlurWidthStartSlider.value = 0
         }
@@ -591,7 +591,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Height at start')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: topBlurHeightStartSlider
             minimumValue: 0
             maximumValue: 90
@@ -601,7 +601,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_topBlurHeightStart()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: topBlurHeightStartKeyframesButton
             checked: isKeyframeButtonChecked("topBlurHeightStart")
             onToggled: {
@@ -609,7 +609,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "topBlurHeightStart", topBlurHeightStartSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: topBlurHeightStartUndo
             onClicked: topBlurHeightStartSlider.value = 0
         }
@@ -617,7 +617,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Width at end')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: topBlurWidthEndSlider
             minimumValue: 0
             maximumValue: 360
@@ -627,7 +627,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_topBlurWidthEnd()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: topBlurWidthEndKeyframesButton
             checked: isKeyframeButtonChecked("topBlurWidthEnd")
             onToggled: {
@@ -635,7 +635,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "topBlurWidthEnd", topBlurWidthEndSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: topBlurWidthEndUndo
             onClicked: topBlurWidthEndSlider.value = 360
         }
@@ -643,7 +643,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Height at end')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: topBlurHeightEndSlider
             minimumValue: 0
             maximumValue: 90
@@ -653,7 +653,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_topBlurHeightEnd()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: topBlurHeightEndKeyframesButton
             checked: isKeyframeButtonChecked("topBlurHeightEnd")
             onToggled: {
@@ -661,7 +661,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "topBlurHeightEnd", topBlurHeightEndSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: topBlurHeightEndUndo
             onClicked: topBlurHeightEndSlider.value = 2
         }
@@ -680,7 +680,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Start')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: bottomStartSlider
             minimumValue: 0
             maximumValue: 90
@@ -690,7 +690,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_bottomStart()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: bottomStartKeyframesButton
             checked: isKeyframeButtonChecked("bottomStart")
             onToggled: {
@@ -698,7 +698,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "bottomStart", bottomStartSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: bottomStartUndo
             onClicked: bottomStartSlider.value = 45
         }
@@ -706,7 +706,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('End')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: bottomEndSlider
             minimumValue: 0
             maximumValue: 90
@@ -716,7 +716,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_bottomEnd()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: bottomEndKeyframesButton
             checked: isKeyframeButtonChecked("bottomEnd")
             onToggled: {
@@ -724,7 +724,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "bottomEnd", bottomEndSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: bottomEndUndo
             onClicked: bottomEndSlider.value = 80
         }
@@ -732,7 +732,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Fade')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: bottomFadeInSlider
             minimumValue: 0
             maximumValue: 90
@@ -742,7 +742,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_bottomFadeIn()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: bottomFadeInKeyframesButton
             checked: isKeyframeButtonChecked("bottomFadeIn")
             onToggled: {
@@ -750,7 +750,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "bottomFadeIn", bottomFadeInSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: bottomFadeInUndo
             onClicked: bottomFadeInSlider.value = 0
         }
@@ -767,7 +767,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('In')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: bottomBlendInSlider
             minimumValue: 0
             maximumValue: 90
@@ -777,7 +777,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_bottomBlendIn()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: bottomBlendInKeyframesButton
             checked: isKeyframeButtonChecked("bottomBlendIn")
             onToggled: {
@@ -785,7 +785,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "bottomBlendIn", bottomBlendInSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: bottomBlendInUndo
             onClicked: bottomBlendInSlider.value = 10
         }
@@ -793,7 +793,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Out')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: bottomBlendOutSlider
             minimumValue: 0
             maximumValue: 90
@@ -803,7 +803,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_bottomBlendOut()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: bottomBlendOutKeyframesButton
             checked: isKeyframeButtonChecked("bottomBlendOut")
             onToggled: {
@@ -811,7 +811,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "bottomBlendOut", bottomBlendOutSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: bottomBlendOutUndo
             onClicked: bottomBlendOutSlider.value = 10
         }
@@ -828,7 +828,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Width at start')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: bottomBlurWidthStartSlider
             minimumValue: 0
             maximumValue: 360
@@ -838,7 +838,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_bottomBlurWidthStart()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: bottomBlurWidthStartKeyframesButton
             checked: isKeyframeButtonChecked("bottomBlurWidthStart")
             onToggled: {
@@ -846,7 +846,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "bottomBlurWidthStart", bottomBlurWidthStartSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: bottomBlurWidthStartUndo
             onClicked: bottomBlurWidthStartSlider.value = 0
         }
@@ -854,7 +854,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Height at start')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: bottomBlurHeightStartSlider
             minimumValue: 0
             maximumValue: 90
@@ -864,7 +864,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_bottomBlurHeightStart()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: bottomBlurHeightStartKeyframesButton
             checked: isKeyframeButtonChecked("bottomBlurHeightStart")
             onToggled: {
@@ -872,7 +872,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "bottomBlurHeightStart", bottomBlurHeightStartSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: bottomBlurHeightStartUndo
             onClicked: bottomBlurHeightStartSlider.value = 0
         }
@@ -880,7 +880,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Width at end')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: bottomBlurWidthEndSlider
             minimumValue: 0
             maximumValue: 360
@@ -890,7 +890,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_bottomBlurWidthEnd()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: bottomBlurWidthEndKeyframesButton
             checked: isKeyframeButtonChecked("bottomBlurWidthEnd")
             onToggled: {
@@ -898,7 +898,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "bottomBlurWidthEnd", bottomBlurWidthEndSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: bottomBlurWidthEndUndo
             onClicked: bottomBlurWidthEndSlider.value = 360
         }
@@ -906,7 +906,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Height at end')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: bottomBlurHeightEndSlider
             minimumValue: 0
             maximumValue: 90
@@ -916,7 +916,7 @@ Shotcut.KeyframableFilter {
             stepSize: 1
             onValueChanged: updateProperty_bottomBlurHeightEnd()
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: bottomBlurHeightEndKeyframesButton
             checked: isKeyframeButtonChecked("bottomBlurHeightEnd")
             onToggled: {
@@ -924,7 +924,7 @@ Shotcut.KeyframableFilter {
                 toggleKeyframes(checked, "bottomBlurHeightEnd", bottomBlurHeightEndSlider.value);
             }
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: bottomBlurHeightEndUndo
             onClicked: bottomBlurHeightEndSlider.value = 2
         }

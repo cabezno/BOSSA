@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Meltytech, LLC
+ * Copyright (c) 2022 Bossa Project, LLC
  *
  * Author: André Caldas de Souza <andrecaldas@unb.br>
  *

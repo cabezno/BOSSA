@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024-2026 Meltytech, LLC
+ * Copyright (c) 2024-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ AudioVectorScopeWidget::AudioVectorScopeWidget()
 {
     LOG_DEBUG() << "begin";
     setMinimumSize(100, 100);
-    setWhatsThis("https://forum.shotcut.org/t/audio-vector-scope/43817/1");
+    setWhatsThis("https://forum.bossa.org/t/audio-vector-scope/43817/1");
 
     QVBoxLayout *vlayout = new QVBoxLayout(this);
     vlayout->setContentsMargins(0, 0, 0, 0);
@@ -63,7 +63,7 @@ AudioVectorScopeWidget::AudioVectorScopeWidget()
 
     setLayout(vlayout);
 
-    connect(&Settings, &ShotcutSettings::playerAudioChannelsChanged, this, [&]() {
+    connect(&Settings, &BossaSettings::playerAudioChannelsChanged, this, [&]() {
         setComboBoxOptions();
         requestRefresh();
     });

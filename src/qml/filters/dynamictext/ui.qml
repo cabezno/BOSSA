@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Meltytech, LLC
+ * Copyright (c) 2014-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,10 +17,10 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     function setControls() {
         textArea.text = filter.get('argument');
         textFilterUi.setControls();
@@ -158,7 +158,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: textFilterUi.parameterList.concat(['argument'])
@@ -242,7 +242,7 @@ Shotcut.KeyframableFilter {
                         onClicked: contextMenu.popup()
                     }
 
-                    Shotcut.EditMenu {
+                    Bossa.EditMenu {
                         id: contextMenu
                     }
 
@@ -253,7 +253,7 @@ Shotcut.KeyframableFilter {
                     // workaround initialization problem
                 }
 
-                ScrollBar.horizontal: Shotcut.HorizontalScrollBar {
+                ScrollBar.horizontal: Bossa.HorizontalScrollBar {
                     policy: ScrollBar.AlwaysOn
                     visible: scrollview.contentWidth > scrollview.width
                     parent: scrollview.parent
@@ -262,7 +262,7 @@ Shotcut.KeyframableFilter {
                     anchors.right: scrollview.right
                 }
 
-                ScrollBar.vertical: Shotcut.VerticalScrollBar {
+                ScrollBar.vertical: Bossa.VerticalScrollBar {
                     policy: ScrollBar.AlwaysOn
                     visible: scrollview.contentHeight > scrollview.height
                     parent: scrollview.parent
@@ -278,7 +278,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: insertCombo
 
             implicitWidth: 180
@@ -342,7 +342,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.TextFilterUi {
+        Bossa.TextFilterUi {
             id: textFilterUi
             showOpacity: filter.isAtLeastVersion(2)
             Layout.columnSpan: 2

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2022 Meltytech, LLC
+ * Copyright (c) 2015-2022 Bossa Project, LLC
  * Author: Amy Dennedy
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     function setControls() {
@@ -60,7 +60,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: ['delta', 'every', 'brightnessdelta_up', 'brightnessdelta_down', 'brightnessdelta_every', 'unevendevelop_up', 'unevendevelop_duration']
@@ -73,7 +73,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: deltaSlider
 
             minimumValue: 0
@@ -82,7 +82,7 @@ Item {
             onValueChanged: filter.set('delta', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: deltaSlider.value = 14
         }
 
@@ -91,7 +91,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: amountSlider
 
             minimumValue: 0
@@ -101,7 +101,7 @@ Item {
             onValueChanged: filter.set('every', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: amountSlider.value = 20
         }
 
@@ -110,7 +110,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: brightDeltaSlider
 
             minimumValue: 0
@@ -119,7 +119,7 @@ Item {
             onValueChanged: filter.set('brightnessdelta_up', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: brightDeltaSlider.value = 20
         }
 
@@ -128,7 +128,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: darkDeltaSlider
 
             minimumValue: 0
@@ -137,7 +137,7 @@ Item {
             onValueChanged: filter.set('brightnessdelta_down', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: darkDeltaSlider.value = 30
         }
 
@@ -146,7 +146,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: valueSlider
 
             minimumValue: 0
@@ -156,7 +156,7 @@ Item {
             onValueChanged: filter.set('brightnessdelta_every', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: valueSlider.value = 70
         }
 
@@ -165,7 +165,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: highDevelopSlider
 
             minimumValue: 0
@@ -174,7 +174,7 @@ Item {
             onValueChanged: filter.set('unevendevelop_up', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: highDevelopSlider.value = 60
         }
 
@@ -183,7 +183,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: lowDevelopSlider
 
             minimumValue: 0
@@ -192,7 +192,7 @@ Item {
             onValueChanged: filter.set('unevendevelop_down', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: lowDevelopSlider.value = 20
         }
 
@@ -201,7 +201,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: durationSlider
 
             minimumValue: 0
@@ -210,7 +210,7 @@ Item {
             onValueChanged: filter.set('unevendevelop_duration', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: durationSlider.value = 70
         }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Meltytech, LLC
+ * Copyright (c) 2018-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
 #include "mltcontroller.h"
 #include "qmltypes/colordialog.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <QFileInfo>
@@ -87,8 +87,8 @@ void TextProducerWidget::on_colorButton_clicked()
         if (m_producer) {
             m_producer->set("resource",
                             colorStringToResource(ui->colorLabel->text()).toLatin1().constData());
-            m_producer->set(kShotcutCaptionProperty, ui->colorLabel->text().toLatin1().constData());
-            m_producer->set(kShotcutDetailProperty, ui->colorLabel->text().toLatin1().constData());
+            m_producer->set(kBossaCaptionProperty, ui->colorLabel->text().toLatin1().constData());
+            m_producer->set(kBossaDetailProperty, ui->colorLabel->text().toLatin1().constData());
             emit producerChanged(m_producer.data());
         }
     }
@@ -100,8 +100,8 @@ Mlt::Producer *TextProducerWidget::newProducer(Mlt::Profile &profile)
     p->set("resource", colorStringToResource(ui->colorLabel->text()).toLatin1().constData());
     p->set("mlt_image_format", "rgba");
     MLT.setDurationFromDefault(p);
-    p->set(kShotcutCaptionProperty, ui->colorLabel->text().toLatin1().constData());
-    p->set(kShotcutDetailProperty, ui->colorLabel->text().toLatin1().constData());
+    p->set(kBossaCaptionProperty, ui->colorLabel->text().toLatin1().constData());
+    p->set(kBossaDetailProperty, ui->colorLabel->text().toLatin1().constData());
     QScopedPointer<Mlt::Filter> filter(createFilter(profile, p));
     p->attach(*filter);
     return p;
@@ -136,8 +136,8 @@ void TextProducerWidget::loadPreset(Mlt::Properties &p)
     if (m_producer) {
         m_producer->set("resource",
                         colorStringToResource(ui->colorLabel->text()).toLatin1().constData());
-        m_producer->set(kShotcutCaptionProperty, ui->colorLabel->text().toLatin1().constData());
-        m_producer->set(kShotcutDetailProperty, ui->colorLabel->text().toLatin1().constData());
+        m_producer->set(kBossaCaptionProperty, ui->colorLabel->text().toLatin1().constData());
+        m_producer->set(kBossaDetailProperty, ui->colorLabel->text().toLatin1().constData());
         QScopedPointer<Mlt::Filter> filter;
         filter.reset(MLT.getFilter(kSimpleFilterName, m_producer.data()));
         if (filter && filter->is_valid())
@@ -169,7 +169,7 @@ Mlt::Filter *TextProducerWidget::createFilter(Mlt::Profile &profile, Mlt::Produc
     auto fgcolor = "#ff00e5ff"; // SODA Cyan default
     if (ui->richRadioButton->isChecked()) {
         filter = new Mlt::Filter(profile, "qtext");
-        filter->set(kShotcutFilterProperty, kRichFilterName);
+        filter->set(kBossaFilterProperty, kRichFilterName);
         QString text = ui->plainTextEdit->toPlainText();
         if (text.isEmpty())
             text = tr("Edit your text using the Filters panel.");
@@ -188,7 +188,7 @@ Mlt::Filter *TextProducerWidget::createFilter(Mlt::Profile &profile, Mlt::Produc
         filter->set("html", html.toUtf8().constData());
     } else if (ui->typeWriterRadioButton->isChecked()) {
         filter = new Mlt::Filter(profile, "qtext");
-        filter->set(kShotcutFilterProperty, kTypewriterFilterName);
+        filter->set(kBossaFilterProperty, kTypewriterFilterName);
         fgcolor = "#ffe040fb"; // SODA Magenta for typewriter
         if (!ui->plainTextEdit->toPlainText().isEmpty())
             filter->set("argument", ui->plainTextEdit->toPlainText().toUtf8().constData());
@@ -204,7 +204,7 @@ Mlt::Filter *TextProducerWidget::createFilter(Mlt::Profile &profile, Mlt::Produc
         filter->set("typewriter.cursor_char", "|");
     } else {
         filter = new Mlt::Filter(profile, "dynamictext");
-        filter->set(kShotcutFilterProperty, kSimpleFilterName);
+        filter->set(kBossaFilterProperty, kSimpleFilterName);
         if (!ui->plainTextEdit->toPlainText().isEmpty())
             filter->set("argument", ui->plainTextEdit->toPlainText().toUtf8().constData());
         else

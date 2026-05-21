@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2022 Meltytech, LLC
+ * Copyright (c) 2021-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ import QtQml.Models
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property string paramDisplay: '0'
@@ -50,7 +50,7 @@ Item {
                 text: qsTr('Display')
             }
 
-            Shotcut.ComboBox {
+            Bossa.ComboBox {
                 id: displayCombo
 
                 implicitWidth: 200

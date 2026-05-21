@@ -1,5 +1,5 @@
 import QtQuick
-import org.shotcut.qml
+import org.bossa.qml
 
 Metadata {
     type: Metadata.Filter

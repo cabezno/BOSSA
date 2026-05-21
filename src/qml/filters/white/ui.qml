@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2024 Meltytech, LLC
+ * Copyright (c) 2014-2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property var defaultParameters: []
@@ -65,7 +65,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: presetItem
 
             Layout.columnSpan: 2
@@ -82,7 +82,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ColorPicker {
+        Bossa.ColorPicker {
             id: colorPicker
 
             property bool isReady: false
@@ -101,7 +101,7 @@ Item {
             onPickCancelled: filter.set('disable', 0)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: colorPicker.value = defaultNeutral
         }
 
@@ -172,7 +172,7 @@ Item {
                 }
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: tempspinner
 
                 Layout.minimumWidth: 150
@@ -185,7 +185,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: tempslider.value = defaultTemp
         }
 

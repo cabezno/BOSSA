@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2020 Meltytech, LLC
+ * Copyright (c) 2015-2020 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 #include "toneproducerwidget.h"
 #include "ui_toneproducerwidget.h"
 
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <MltProfile.h>
@@ -43,8 +43,8 @@ Mlt::Producer *ToneProducerWidget::newProducer(Mlt::Profile &profile)
     Mlt::Producer *p = new Mlt::Producer(profile, "tone:");
     p->set("frequency", ui->frequencySpinBox->value());
     p->set("level", ui->levelSpinBox->value());
-    p->set(kShotcutCaptionProperty, ui->nameLabel->text().toUtf8().constData());
-    p->set(kShotcutDetailProperty, detail().toUtf8().constData());
+    p->set(kBossaCaptionProperty, ui->nameLabel->text().toUtf8().constData());
+    p->set(kBossaDetailProperty, detail().toUtf8().constData());
     return p;
 }
 
@@ -60,14 +60,14 @@ void ToneProducerWidget::loadPreset(Mlt::Properties &p)
 {
     ui->frequencySpinBox->setValue(p.get_int("frequency"));
     ui->levelSpinBox->setValue(p.get_int("level"));
-    p.set(kShotcutDetailProperty, detail().toUtf8().constData());
+    p.set(kBossaDetailProperty, detail().toUtf8().constData());
 }
 
 void ToneProducerWidget::on_frequencySpinBox_valueChanged(int value)
 {
     if (m_producer) {
         m_producer->set("frequency", value);
-        m_producer->set(kShotcutDetailProperty, detail().toUtf8().constData());
+        m_producer->set(kBossaDetailProperty, detail().toUtf8().constData());
         emit modified();
     }
 }
@@ -76,7 +76,7 @@ void ToneProducerWidget::on_levelSpinBox_valueChanged(int value)
 {
     if (m_producer) {
         m_producer->set("level", value);
-        m_producer->set(kShotcutDetailProperty, detail().toUtf8().constData());
+        m_producer->set(kBossaDetailProperty, detail().toUtf8().constData());
         emit modified();
     }
 }

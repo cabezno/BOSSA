@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2026 Meltytech, LLC
+ * Copyright (c) 2012-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@
 #include "models/markersmodel.h"
 #include "qmltypes/qmlfilter.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <QFileInfo>
@@ -64,7 +64,7 @@ static Mlt::Filter getReframeFilter(Mlt::Service *service)
         for (auto i = 0; i < service->filter_count(); ++i) {
             std::unique_ptr<Mlt::Filter> filter(service->filter(i));
             if (filter && filter->is_valid()
-                && !::qstrcmp("reframe", filter->get(kShotcutFilterProperty)))
+                && !::qstrcmp("reframe", filter->get(kBossaFilterProperty)))
                 return Mlt::Filter(filter->get_filter());
         }
     return Mlt::Filter();
@@ -327,7 +327,7 @@ void EncodeDock::loadPresetFromProperties(Mlt::Properties &preset)
             if (value.contains("p10le")) {
                 // Let 8-bit processing modes utilize full range RGB
                 const auto pm = Settings.processingMode();
-                if ((pm == ShotcutSettings::Native8Cpu) && !other.contains("mlt_image_format=rgb")) {
+                if ((pm == BossaSettings::Native8Cpu) && !other.contains("mlt_image_format=rgb")) {
                     other.append("mlt_image_format=rgb");
                 }
                 // Hardware encoder
@@ -1221,9 +1221,9 @@ void EncodeDock::collectProperties(QDomElement &node, int realtime)
         }
 
         const auto processingMode = Settings.processingMode();
-        if (processingMode == ShotcutSettings::Native10Cpu
-            || processingMode == ShotcutSettings::Linear10Cpu
-            || processingMode == ShotcutSettings::Linear10GpuCpu) {
+        if (processingMode == BossaSettings::Native10Cpu
+            || processingMode == BossaSettings::Linear10Cpu
+            || processingMode == BossaSettings::Linear10GpuCpu) {
             if (!p->property_exists("mlt_image_format")) {
                 if (::qstrcmp(p->get("color_trc"), "arib-std-b67"))
                     node.setAttribute("mlt_image_format", "rgba64");
@@ -1231,8 +1231,8 @@ void EncodeDock::collectProperties(QDomElement &node, int realtime)
                     node.setAttribute("mlt_image_format", "yuv444p10");
             }
         }
-        if ((processingMode == ShotcutSettings::Linear10Cpu
-             || processingMode == ShotcutSettings::Linear10GpuCpu)
+        if ((processingMode == BossaSettings::Linear10Cpu
+             || processingMode == BossaSettings::Linear10GpuCpu)
             && ::qstrcmp(p->get("color_trc"), "arib-std-b67")) {
             if (!p->property_exists("mlt_color_trc"))
                 node.setAttribute("mlt_color_trc", "linear");
@@ -1341,7 +1341,7 @@ MeltJob *EncodeDock::convertReframe(Mlt::Producer *service,
     // Look for the reframe filter
     for (auto i = 0; !job && i < service->filter_count(); ++i) {
         Mlt::Filter filter(service->filter(i));
-        if (!::qstrcmp("reframe", filter.get(kShotcutFilterProperty))
+        if (!::qstrcmp("reframe", filter.get(kBossaFilterProperty))
             && !filter.get_int("disable")) {
             // If it exists, make another XML with new profile based on reframe rect width and height
             auto rect = filter.anim_get_rect("rect", 0);
@@ -1607,7 +1607,7 @@ void EncodeDock::enqueueAnalysis()
             QMessageBox
                 dialog(QMessageBox::Question,
                        windowTitle(),
-                       tr("Shotcut found filters that require analysis jobs that have not run.\n"
+                       tr("Bossa found filters that require analysis jobs that have not run.\n"
                           "Do you want to run the analysis jobs now?"),
                        QMessageBox::No | QMessageBox::Yes,
                        this);
@@ -1738,7 +1738,7 @@ void EncodeDock::resetOptions()
     preset.set("f", "mp4");
     preset.set("movflags", "+faststart");
     preset.set("crf", "23");
-    if (Settings.processingMode() == ShotcutSettings::Native8Cpu) {
+    if (Settings.processingMode() == BossaSettings::Native8Cpu) {
         preset.set("vcodec", "libx264");
         preset.set("preset", "fast");
         preset.set("acodec", "aac");
@@ -2182,7 +2182,7 @@ void EncodeDock::on_streamButton_clicked()
             // Stream in background
             runMelt(url, 1);
         else if (MLT.producer()->get_int(kBackgroundCaptureProperty)) {
-            // Stream Shotcut screencast
+            // Stream Bossa screencast
             MLT.stop();
             runMelt(url, 1);
             ui->stopCaptureButton->show();
@@ -2988,7 +2988,7 @@ bool EncodeDock::checkForMissingFiles()
                            qApp->applicationName(),
                            tr("Your project is missing some files.\n\n"
                               "Save your project, close it, and reopen it.\n"
-                              "Shotcut will attempt to repair your project."),
+                              "Bossa will attempt to repair your project."),
                            QMessageBox::Ok | QMessageBox::Ignore,
                            this);
         dialog.setWindowModality(QmlApplication::dialogModality());
@@ -3013,7 +3013,7 @@ void EncodeDock::on_resolutionComboBox_activated(int arg1)
 void EncodeDock::on_reframeButton_clicked()
 {
     Mlt::Filter filter(MLT.profile(), "mask_start");
-    filter.set(kShotcutFilterProperty, "reframe");
+    filter.set(kBossaFilterProperty, "reframe");
     filter.set("filter", "0");
     filter.set("transition.valign", "middle");
     filter.set("transition.halign", "center");

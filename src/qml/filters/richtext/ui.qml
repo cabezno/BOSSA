@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2026 Meltytech, LLC
+ * Copyright (c) 2020-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,10 +17,10 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property string rectProperty: 'geometry'
     property rect filterRect
     property string startValue: '_shotcut:startValue'
@@ -141,7 +141,7 @@ Shotcut.KeyframableFilter {
         const data = motionTrackerModel.trackingData(motionTrackerRow);
         let previous = null;
         let interval = motionTrackerModel.keyframeIntervalFrames(motionTrackerRow);
-        let interpolation = Shotcut.KeyframesModel.SmoothNaturalInterpolation;
+        let interpolation = Bossa.KeyframesModel.SmoothNaturalInterpolation;
         filter.blockSignals = true;
         data.forEach(i => {
             let current = filter.getRect(rectProperty, frame);
@@ -163,14 +163,14 @@ Shotcut.KeyframableFilter {
             case 'absPos':
                 current.x = i.x + i.width / 2 - current.width / 2;
                 current.y = i.y + i.height / 2 - current.height / 2;
-                interpolation = Shotcut.KeyframesModel.LinearInterpolation;
+                interpolation = Bossa.KeyframesModel.LinearInterpolation;
                 break;
             case 'absSizePos':
                 current.x = i.x;
                 current.y = i.y;
                 current.width = i.width;
                 current.height = i.height;
-                interpolation = Shotcut.KeyframesModel.LinearInterpolation;
+                interpolation = Bossa.KeyframesModel.LinearInterpolation;
                 break;
             }
             previous = i;
@@ -276,7 +276,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: [rectProperty, 'bgcolour', 'overflow-y']
@@ -302,7 +302,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
             }
         }
 
-        Shotcut.TipBox {
+        Bossa.TipBox {
             Layout.columnSpan: parent.columns
             Layout.margins: 10
             Layout.fillWidth: true
@@ -318,7 +318,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
         RowLayout {
             Layout.columnSpan: 3
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectX
 
                 horizontalAlignment: Qt.AlignRight
@@ -343,7 +343,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
                 horizontalAlignment: Qt.AlignHCenter
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectY
 
                 horizontalAlignment: Qt.AlignRight
@@ -363,7 +363,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.startUndoParameterCommand(positionLabel.text);
                 filterRect.x = rectX.value = defaultRect.x;
@@ -373,7 +373,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
             }
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: positionKeyframesButton
 
             Layout.rowSpan: 2
@@ -405,7 +405,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
         RowLayout {
             Layout.columnSpan: 3
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectW
 
                 horizontalAlignment: Qt.AlignRight
@@ -430,7 +430,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
                 horizontalAlignment: Qt.AlignHCenter
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectH
 
                 horizontalAlignment: Qt.AlignRight
@@ -450,7 +450,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.startUndoParameterCommand(backgroundSizeLabel.text);
                 filterRect.width = rectW.value = defaultRect.width;
@@ -483,7 +483,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
                     onClicked: contextMenu.popup()
                 }
 
-                Shotcut.EditMenu {
+                Bossa.EditMenu {
                     id: contextMenu
 
                     readOnly: true
@@ -511,7 +511,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
                     onClicked: contextMenu2.popup()
                 }
 
-                Shotcut.EditMenu {
+                Bossa.EditMenu {
                     id: contextMenu2
 
                     readOnly: true
@@ -530,7 +530,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ColorPicker {
+        Bossa.ColorPicker {
             id: bgColor
 
             Layout.columnSpan: 3
@@ -543,11 +543,11 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: bgColor.value = Qt.rgba(0, 0, 0, 0)
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: bgcolorKeyframesButton
             onToggled: {
                 filter.startUndoParameterCommand(backgroundColorLabel.text);
@@ -612,7 +612,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.startUndoParameterCommand(overflowLabel.text);
                 filter.resetProperty('overflow-y');
@@ -629,7 +629,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
             width: 1
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             Layout.columnSpan: parent.columns - 1
             text: motionTrackerDialog.title
             onClicked: {
@@ -642,7 +642,7 @@ body { font-family:%1; font-size:72pt; font-weight:normal; font-style:normal; co
         }
     }
 
-    Shotcut.MotionTrackerDialog {
+    Bossa.MotionTrackerDialog {
         id: motionTrackerDialog
         onAccepted: (motionTrackerRow, operation, startFrame) => {
             filter.startUndoParameterCommand(title);

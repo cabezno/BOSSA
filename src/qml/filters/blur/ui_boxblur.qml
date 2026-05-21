@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2022 Meltytech, LLC
+ * Copyright (c) 2013-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property bool blockUpdate: true
@@ -139,7 +139,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             Layout.columnSpan: parent.columns - 1
@@ -170,7 +170,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: wslider
 
             minimumValue: 0
@@ -179,11 +179,11 @@ Item {
             onValueChanged: updateFilterWidth(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: wslider.value = 2
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: widthKeyframesButton
 
             onToggled: {
@@ -209,7 +209,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: hslider
 
             minimumValue: 0
@@ -218,11 +218,11 @@ Item {
             onValueChanged: updateFilterHeight(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: hslider.value = 2
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: heightKeyframesButton
 
             onToggled: {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Meltytech, LLC
+ * Copyright (c) 2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 #include "qmltypes/colordialog.h"
 #include "qmltypes/qmlapplication.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <QFileDialog>
@@ -255,8 +255,8 @@ Mlt::Producer *HtmlGeneratorWidget::newProducer(Mlt::Profile &profile)
     p->set("resource", colorStringToResource(ui->colorLabel->text()).toLatin1().constData());
     p->set("mlt_image_format", "rgba");
     MLT.setDurationFromDefault(p);
-    p->set(kShotcutCaptionProperty, ui->colorLabel->text().toLatin1().constData());
-    p->set(kShotcutDetailProperty, ui->colorLabel->text().toLatin1().constData());
+    p->set(kBossaCaptionProperty, ui->colorLabel->text().toLatin1().constData());
+    p->set(kBossaDetailProperty, ui->colorLabel->text().toLatin1().constData());
     return p;
 }
 

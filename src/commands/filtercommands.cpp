@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2025 Meltytech, LLC
+ * Copyright (c) 2021-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -328,7 +328,7 @@ void PasteCommand::undo()
     for (int i = 0; i < producer.filter_count(); i++) {
         Mlt::Filter *filter = producer.filter(i);
         if (filter && filter->is_valid() && !filter->get_int("_loader")
-            && !filter->get_int(kShotcutHiddenProperty)) {
+            && !filter->get_int(kBossaHiddenProperty)) {
             producer.detach(*filter);
             i--;
         }

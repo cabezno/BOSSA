@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024-2026 Meltytech, LLC
+ * Copyright (c) 2024-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -825,7 +825,7 @@ void FilesDock::setupActions()
     modeGroup->addAction(action);
     Actions.add("filesViewDetailsAction", action, m_mainMenu->title());
 
-    action = new QAction(tr("Open In Shotcut"), this);
+    action = new QAction(tr("Open In Bossa"), this);
     action->setToolTip(tr("Open the clip in the Source player"));
     action->setEnabled(false);
     connect(action, &QAction::triggered, this, &FilesDock::onOpenActionTriggered);

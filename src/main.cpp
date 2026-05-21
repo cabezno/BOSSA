@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2026 Meltytech, LLC
+ * Copyright (c) 2011-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "ConsoleAppender.h"
@@ -51,7 +51,7 @@ __declspec(dllexport) DWORD AmdPowerXpressRequestHighPerformance = 0x00000001;
 
 static constexpr int kMaxCacheCount = 5000;
 constexpr const auto kWatchdogTimeoutMs = 30000;
-constexpr const auto kWatchdogEnvVar = "SHOTCUT_WATCHDOG";
+constexpr const auto kWatchdogEnvVar = "BOSSA_WATCHDOG";
 
 static void mlt_log_handler(void *service, int mlt_level, const char *format, va_list args)
 {
@@ -112,7 +112,7 @@ public:
     MainWindow *mainWindow{nullptr};
     QTranslator qtTranslator;
     QTranslator qtBaseTranslator;
-    QTranslator shotcutTranslator;
+    QTranslator bossaTranslator;
     QStringList resourceArg;
     bool isFullScreen;
     QString appDirArg;
@@ -155,7 +155,7 @@ public:
 #ifndef Q_OS_WIN
         QCommandLineOption fullscreenOption(
             "fullscreen",
-            QCoreApplication::translate("main", "Fill the screen with the Shotcut window."));
+            QCoreApplication::translate("main", "Fill the screen with the Bossa window."));
         parser.addOption(fullscreenOption);
 #endif
         QCommandLineOption noupgradeOption(
@@ -164,7 +164,7 @@ public:
         QCommandLineOption
             glaxnimateOption("glaxnimate",
                              QCoreApplication::translate("main",
-                                                         "Run Glaxnimate instead of Shotcut."));
+                                                         "Run Glaxnimate instead of Bossa."));
         parser.addOption(glaxnimateOption);
         QCommandLineOption gpuOption("gpu",
                                      QCoreApplication::translate("main", "Use GPU processing."));
@@ -250,10 +250,10 @@ public:
 #endif
         if (!parser.value(appDataOption).isEmpty()) {
             appDirArg = parser.value(appDataOption);
-            ShotcutSettings::setAppDataForSession(appDirArg);
+            BossaSettings::setAppDataForSession(appDirArg);
         }
         if (parser.isSet(gpuOption))
-            Settings.setProcessingMode(ShotcutSettings::Linear10GpuCpu);
+            Settings.setProcessingMode(BossaSettings::Linear10GpuCpu);
         if (!parser.positionalArguments().isEmpty())
             resourceArg = parser.positionalArguments();
 
@@ -261,9 +261,9 @@ public:
         dir.setPath(Settings.appDataLocation());
         if (!dir.exists())
             dir.mkpath(dir.path());
-        const auto logFileName = dir.filePath("shotcut-log.txt");
+        const auto logFileName = dir.filePath("bossa-log.txt");
         if (QFile::exists(logFileName)) {
-            const auto previousLogName = dir.filePath("shotcut-log.bak");
+            const auto previousLogName = dir.filePath("bossa-log.bak");
             if (QFile::exists(previousLogName))
                 QFile::remove(previousLogName);
             if (!QFile::rename(logFileName, previousLogName))
@@ -298,7 +298,7 @@ public:
 #if defined(Q_OS_MAC)
         dir.cdUp();
         dir.cd("Resources");
-        dir.cd("shotcut");
+        dir.cd("bossa");
         dir.cd("translations");
 #elif defined(Q_OS_WIN)
         dir.cd("share");
@@ -306,7 +306,7 @@ public:
 #else
         dir.cdUp();
         dir.cd("share");
-        dir.cd("shotcut");
+        dir.cd("bossa");
         dir.cd("translations");
 #endif
         if (locale.startsWith("pt_"))
@@ -322,8 +322,8 @@ public:
             installTranslator(&qtBaseTranslator);
         else if (qtBaseTranslator.load("qtbase_" + locale, dir.absolutePath()))
             installTranslator(&qtBaseTranslator);
-        if (shotcutTranslator.load("shotcut_" + Settings.language(), dir.absolutePath()))
-            installTranslator(&shotcutTranslator);
+        if (bossaTranslator.load("bossa_" + Settings.language(), dir.absolutePath()))
+            installTranslator(&bossaTranslator);
     }
 
     ~Application()
@@ -424,10 +424,10 @@ int main(int argc, char **argv)
     Application a(argc, argv);
     int result = EXIT_SUCCESS;
     if (::qEnvironmentVariableIsSet(kWatchdogEnvVar)) {
-        QSplashScreen splash(QPixmap(":/icons/shotcut-logo-320x320.png"));
+        QSplashScreen splash(QPixmap(":/icons/bossa-logo-320x320.png"));
 
         // Log some basic info.
-        LOG_INFO() << "Starting Shotcut version" << SHOTCUT_VERSION;
+        LOG_INFO() << "Starting Bossa version" << SHOTCUT_VERSION;
 #if defined(Q_OS_WIN)
         LOG_INFO() << "Windows version" << QSysInfo::productVersion();
 #elif defined(Q_OS_MAC)

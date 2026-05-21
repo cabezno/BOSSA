@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2021 Meltytech, LLC
+ * Copyright (c) 2018-2021 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property double hueDegreeDefault: 0
     property double lightnessDefault: 0
     property double saturationDefault: 1
@@ -76,7 +76,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: presetItem
 
             Layout.columnSpan: 3
@@ -93,7 +93,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: hueDegreeSlider
 
             minimumValue: -360
@@ -102,11 +102,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('av.h', value, hueKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: hueDegreeSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: hueKeyframesButton
 
             onToggled: {
@@ -120,7 +120,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: lightnessSlider
 
             minimumValue: 0
@@ -129,11 +129,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('av.b', (value - 100) * 10 / 100, lightnessKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: lightnessSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: lightnessKeyframesButton
 
             onToggled: {
@@ -147,7 +147,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: saturationSlider
 
             minimumValue: 0
@@ -156,11 +156,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('av.s', value / 100, saturationKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: saturationSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: saturationKeyframesButton
 
             onToggled: {

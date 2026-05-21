@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Meltytech, LLC
+ * Copyright (c) 2014-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property alias duration: timeSpinner.value
@@ -73,7 +73,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.TimeSpinner {
+        Bossa.TimeSpinner {
             id: timeSpinner
 
             undoButtonVisible: false
@@ -90,11 +90,11 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: duration = Math.ceil(settings.audioOutDuration * profile.fps)
         }
 
-        Shotcut.SaveDefaultButton {
+        Bossa.SaveDefaultButton {
             onClicked: settings.audioOutDuration = duration / profile.fps
         }
 
@@ -109,7 +109,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.CurveComboBox {
+        Bossa.CurveComboBox {
             id: curveCombo
 
             implicitContentWidthPolicy: ComboBox.WidestText
@@ -122,13 +122,13 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: undoButton
 
             onClicked: curveCombo.setCurrentValue(settings.audioOutCurve)
         }
 
-        Shotcut.SaveDefaultButton {
+        Bossa.SaveDefaultButton {
             id: saveButton
 
             onClicked: settings.audioOutCurve = curveCombo.currentValue

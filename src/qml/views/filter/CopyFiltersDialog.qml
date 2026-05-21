@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2025 Meltytech, LLC
+ * Copyright (c) 2023-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Window {
     id: nameDialog
@@ -80,12 +80,12 @@ Window {
             Layout.alignment: Qt.AlignRight
             focus: true
 
-            Shotcut.Button {
+            Bossa.Button {
                 text: qsTr('OK')
                 onClicked: nameDialog.acceptName()
             }
 
-            Shotcut.Button {
+            Bossa.Button {
                 text: qsTr('Cancel')
                 onClicked: nameDialog.close()
             }

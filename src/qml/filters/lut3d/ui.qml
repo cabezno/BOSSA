@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2023 Meltytech, LLC
+ * Copyright (c) 2016-2023 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@ import QtQuick.Controls
 import QtQuick.Dialogs
 import QtQuick.Layouts
 import QtQuick.Window
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
 Item {
     id: lut3dRoot
@@ -52,11 +52,11 @@ Item {
         colorGroup: SystemPalette.Active
     }
 
-    Shotcut.File {
+    Bossa.File {
         id: lutFile
     }
 
-    Shotcut.FileDialog {
+    Bossa.FileDialog {
         id: fileDialog
 
         nameFilters: ['3D-LUT Files (*.3dl *.cube *.dat *.m3d)', 'AfterEffects (*.3dl)', 'Iridas (*.cube)', 'DaVinci (*.dat)', 'Pandora (*.m3d)', 'All Files (*)']
@@ -75,7 +75,7 @@ Item {
         anchors.fill: parent
         anchors.margins: 8
 
-        Shotcut.Button {
+        Bossa.Button {
             id: openButton
 
             text: qsTr('Open...')
@@ -92,7 +92,7 @@ Item {
             Layout.columnSpan: 2
             Layout.fillWidth: true
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 id: fileLabelTip
             }
         }
@@ -102,7 +102,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: interpolationCombo
 
             property var values: ['nearest', 'trilinear', 'tetrahedral']
@@ -123,7 +123,7 @@ Item {
             onActivated: filter.set('av.interp', values[currentIndex])
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 interpolationCombo.currentIndex = 1;
                 filter.set('av.interp', interpolationCombo.values[1]);

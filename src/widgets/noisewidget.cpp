@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2017 Meltytech, LLC
+ * Copyright (c) 2012-2017 Bossa Project, LLC
  * Author: Dan Dennedy <dan@dennedy.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 #include "noisewidget.h"
 #include "ui_noisewidget.h"
 
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 NoiseWidget::NoiseWidget(QWidget *parent)
@@ -38,7 +38,7 @@ NoiseWidget::~NoiseWidget()
 Mlt::Producer *NoiseWidget::newProducer(Mlt::Profile &profile)
 {
     Mlt::Producer *p = new Mlt::Producer(profile, "noise:");
-    p->set(kShotcutCaptionProperty, ui->nameLabel->text().toUtf8().constData());
-    p->set(kShotcutDetailProperty, ui->nameLabel->text().toUtf8().constData());
+    p->set(kBossaCaptionProperty, ui->nameLabel->text().toUtf8().constData());
+    p->set(kBossaDetailProperty, ui->nameLabel->text().toUtf8().constData());
     return p;
 }

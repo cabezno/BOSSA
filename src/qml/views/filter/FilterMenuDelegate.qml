@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Meltytech, LLC
+ * Copyright (c) 2014-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ import "FilterMenu.js" as Logic
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
 Rectangle {
     id: wrapper
@@ -68,8 +68,8 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
                 enabled: false
-                icon.name: needsGpu ? 'cpu' : isAudio ? 'speaker' : pluginType === Shotcut.Metadata.Link ? 'chronometer' : pluginType === Shotcut.Metadata.FilterSet ? 'server-database' : 'video-television'
-                icon.source: needsGpu ? 'qrc:///icons/oxygen/32x32/devices/cpu.png' : isAudio ? 'qrc:///icons/oxygen/32x32/actions/speaker.png' : pluginType === Shotcut.Metadata.Link ? 'qrc:///icons/oxygen/32x32/actions/chronometer.png' : pluginType === Shotcut.Metadata.FilterSet ? 'qrc:///icons/oxygen/32x32/places/server-database.png' : 'qrc:///icons/oxygen/32x32/devices/video-television.png'
+                icon.name: needsGpu ? 'cpu' : isAudio ? 'speaker' : pluginType === Bossa.Metadata.Link ? 'chronometer' : pluginType === Bossa.Metadata.FilterSet ? 'server-database' : 'video-television'
+                icon.source: needsGpu ? 'qrc:///icons/oxygen/32x32/devices/cpu.png' : isAudio ? 'qrc:///icons/oxygen/32x32/actions/speaker.png' : pluginType === Bossa.Metadata.Link ? 'qrc:///icons/oxygen/32x32/actions/chronometer.png' : pluginType === Bossa.Metadata.FilterSet ? 'qrc:///icons/oxygen/32x32/places/server-database.png' : 'qrc:///icons/oxygen/32x32/devices/video-television.png'
             }
 
             Label {
@@ -93,7 +93,7 @@ Rectangle {
                 onClicked: mouse => {
                     if (mouse.button === Qt.LeftButton)
                         wrapper.ListView.view.itemSelected(index);
-                    else if (pluginType === Shotcut.Metadata.FilterSet && service.length === 0)
+                    else if (pluginType === Bossa.Metadata.FilterSet && service.length === 0)
                         confirmDialog.show();
                 }
                 onEntered: {
@@ -133,7 +133,7 @@ Rectangle {
             RowLayout {
                 Layout.alignment: Qt.AlignRight
 
-                Shotcut.Button {
+                Bossa.Button {
                     id: confirmDialogOk
 
                     text: qsTr('OK')
@@ -145,7 +145,7 @@ Rectangle {
                     Keys.onEscapePressed: confirmDialog.close()
                 }
 
-                Shotcut.Button {
+                Bossa.Button {
                     text: qsTr('Cancel')
                     onClicked: confirmDialog.close()
                     Keys.onEscapePressed: confirmDialog.close()

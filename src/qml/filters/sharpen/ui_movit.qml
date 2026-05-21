@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2023 Meltytech, LLC
+ * Copyright (c) 2014-2023 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property var defaultParameters: ['circle_radius', 'gaussian_radius', 'correlation', 'noise']
@@ -137,7 +137,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             Layout.columnSpan: 3
             parameters: defaultParameters
             onBeforePresetLoaded: {
@@ -156,7 +156,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: circleSlider
 
             minimumValue: 0
@@ -166,11 +166,11 @@ Item {
             onValueChanged: updateFilter('circle_radius', value, getPosition(), circleKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: circleSlider.value = 2
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: circleKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, 'circle_radius', circleSlider.value)
@@ -182,7 +182,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: gaussianSlider
 
             minimumValue: 0
@@ -192,11 +192,11 @@ Item {
             onValueChanged: updateFilter('gaussian_radius', value, getPosition(), gaussianKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: gaussianSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: gaussianKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, 'gaussian_radius', gaussianSlider.value)
@@ -208,7 +208,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: correlationSlider
 
             minimumValue: 0
@@ -217,11 +217,11 @@ Item {
             onValueChanged: updateFilter('correlation', value, getPosition(), correlationKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: correlationSlider.value = 0.95
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: correlationKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, 'correlation', correlationSlider.value)
@@ -233,7 +233,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: noiseSlider
 
             minimumValue: 0.01
@@ -242,11 +242,11 @@ Item {
             onValueChanged: updateFilter('noise', value, getPosition(), noiseKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: noiseSlider.value = 0.01
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: noiseKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, 'noise', noiseSlider.value)

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Meltytech, LLC
+ * Copyright (c) 2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property bool blockUpdate: true
@@ -255,7 +255,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: ["yaw", "pitch", "roll", "zoom"]
@@ -338,7 +338,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             Layout.columnSpan: 2
             visible: modeLabel.visible
             onClicked: {
@@ -355,7 +355,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: yawSlider
 
             enabled: !binauralRadioButton.checked
@@ -368,13 +368,13 @@ Item {
             onValueChanged: updateProperty_yaw(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: yawUndo
 
             onClicked: yawSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: yawKeyframesButton
 
             enabled: !binauralRadioButton.checked
@@ -401,7 +401,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: pitchSlider
 
             enabled: !binauralRadioButton.checked
@@ -414,13 +414,13 @@ Item {
             onValueChanged: updateProperty_pitch(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: pitchUndo
 
             onClicked: pitchSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: pitchKeyframesButton
 
             enabled: !binauralRadioButton.checked
@@ -447,7 +447,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: rollSlider
 
             enabled: !binauralRadioButton.checked
@@ -460,13 +460,13 @@ Item {
             onValueChanged: updateProperty_roll(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: rollUndo
 
             onClicked: rollSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: rollKeyframesButton
 
             enabled: !binauralRadioButton.checked
@@ -493,7 +493,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: zoomSlider
 
             enabled: !binauralRadioButton.checked
@@ -506,13 +506,13 @@ Item {
             onValueChanged: updateProperty_zoom(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: zoomUndo
 
             onClicked: zoomSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: zoomKeyframesButton
 
             enabled: !binauralRadioButton.checked
@@ -535,7 +535,7 @@ Item {
         }
 
         Label {}
-        Shotcut.Button {
+        Bossa.Button {
             enabled: !binauralRadioButton.checked
             Layout.columnSpan: 3
             text: qsTr('Paste Parameters')

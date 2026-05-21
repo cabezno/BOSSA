@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2025 Meltytech, LLC
+ * Copyright (c) 2015-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property string keyColorParam: '0'
@@ -106,7 +106,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: presetItem
 
             Layout.columnSpan: 2
@@ -119,7 +119,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ColorPicker {
+        Bossa.ColorPicker {
             id: keyColorPicker
 
             property bool isReady: false
@@ -136,7 +136,7 @@ Item {
             onPickCancelled: filter.set('disable', 0)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: keyColorPicker.value = keyColorDefault
         }
 
@@ -173,7 +173,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: rgbRadioButton.checked = true
         }
 
@@ -182,7 +182,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: deltaRSlider
 
             minimumValue: 0
@@ -193,7 +193,7 @@ Item {
             onValueChanged: filter.set(deltaRParam, value / 100)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: deltaRSlider.value = deltaRDefault * 100
         }
 
@@ -202,7 +202,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: deltaGSlider
 
             minimumValue: 0
@@ -213,7 +213,7 @@ Item {
             onValueChanged: filter.set(deltaGParam, value / 100)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: deltaGSlider.value = deltaGDefault * 100
         }
 
@@ -222,7 +222,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: deltaBSlider
 
             minimumValue: 0
@@ -233,7 +233,7 @@ Item {
             onValueChanged: filter.set(deltaBParam, value / 100)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: deltaBSlider.value = deltaBDefault * 100
         }
 
@@ -242,7 +242,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: shapeCombo
 
             implicitWidth: 180
@@ -269,7 +269,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.set(shapeParam, shapeModel.get(1).value);
                 shapeCombo.currentIndex = 1;
@@ -281,7 +281,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: edgeCombo
 
             implicitWidth: 180
@@ -318,7 +318,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.set(edgeParam, edgeModel.get(4).value);
                 edgeCombo.currentIndex = 4;
@@ -330,7 +330,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: slopeSlider
 
             minimumValue: 0
@@ -341,7 +341,7 @@ Item {
             onValueChanged: filter.set(slopeParam, value / 100)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: slopeSlider.value = slopeDefault * 100
         }
 
@@ -350,7 +350,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: operationCombo
 
             implicitWidth: 180
@@ -387,7 +387,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.set(operationParam, operationDefault);
                 operationCombo.currentIndex = 2;
@@ -406,7 +406,7 @@ Item {
             onCheckedChanged: filter.set(invertParam, !checked)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: invertCheckbox.checked = !invertDefault
         }
 

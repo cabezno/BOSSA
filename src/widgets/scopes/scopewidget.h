@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2023 Meltytech, LLC
+ * Copyright (c) 2015-2023 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@
 
 /*!
   \class ScopeWidget
-  \brief The ScopeWidget provides a common interface for all scopes in Shotcut.
+  \brief The ScopeWidget provides a common interface for all scopes in Bossa.
 
   ScopeWidget is a QWidget that provides some additional functionality that is
   common to all scopes. One common function is a queue that can receive and

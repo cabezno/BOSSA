@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2026 Meltytech, LLC
+ * Copyright (c) 2014-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 #include "mltcontroller.h"
 #include "proxymanager.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <QCoreApplication>
@@ -75,7 +75,7 @@ QXmlStreamReader::Error MltXmlChecker::check(const QString &fileName)
     LOG_DEBUG() << "begin";
 
     QFile file(fileName);
-    m_tempFile.reset(new QTemporaryFile(QFileInfo(fileName).dir().filePath("shotcut-XXXXXX.mlt")));
+    m_tempFile.reset(new QTemporaryFile(QFileInfo(fileName).dir().filePath("bossa-XXXXXX.mlt")));
     if (file.open(QIODevice::ReadOnly | QIODevice::Text) && m_tempFile->open()) {
         m_tempFile->resize(0);
         m_fileInfo = QFileInfo(fileName);
@@ -98,11 +98,11 @@ QXmlStreamReader::Error MltXmlChecker::check(const QString &fileName)
                         m_mltVersion = QVersionNumber::fromString(a.value());
                     } else if (a.name().toString().toLower() == "title") {
                         m_newXml.writeAttribute(a.name().toString(),
-                                                "Shotcut version " SHOTCUT_VERSION);
+                                                "Bossa version " SHOTCUT_VERSION);
                         auto parts = a.value().split(' ');
                         LOG_DEBUG() << parts;
                         if (parts.size() > 2 && parts[1].toString() == "version") {
-                            m_shotcutVersion = parts[2].toString();
+                            m_bossaVersion = parts[2].toString();
                         }
                     } else {
                         m_newXml.writeAttribute(a);
@@ -196,13 +196,13 @@ void MltXmlChecker::readMlt()
                 if (!m_isTractorTransition && element == "tractor") {
                     if (m_isConverted) {
                         m_newXml.writeStartElement("property");
-                        m_newXml.writeAttribute("name", kShotcutProjectProcessingMode);
+                        m_newXml.writeAttribute("name", kBossaProjectProcessingMode);
                         m_newXml.writeCharacters(m_needsGPU ? "Native8Cpu" : "Linear10GpuCpu");
                         m_newXml.writeEndElement();
 
                     } else if (!m_processingMode.isEmpty()) {
                         m_newXml.writeStartElement("property");
-                        m_newXml.writeAttribute("name", kShotcutProjectProcessingMode);
+                        m_newXml.writeAttribute("name", kBossaProjectProcessingMode);
                         m_newXml.writeCharacters(m_processingMode);
                         m_newXml.writeEndElement();
                     }
@@ -230,15 +230,15 @@ void MltXmlChecker::processProperties()
         // Get the name of the MLT service.
         if (p.first == "mlt_service") {
             mlt_service = p.second;
-        } else if (p.first == kShotcutHashProperty) {
+        } else if (p.first == kBossaHashProperty) {
             m_resource.hash = p.second;
         } else if (p.first.startsWith(kIsProxyProperty)) {
             m_resource.isProxy = true;
-        } else if (p.first == kShotcutProjectProcessingMode) {
+        } else if (p.first == kBossaProjectProcessingMode) {
             m_processingMode = p.second;
             // Exclude it & rewrite at the end of the last tractor
             continue;
-        } else if (p.first == kShotcutTransitionProperty) {
+        } else if (p.first == kBossaTransitionProperty) {
             m_isTractorTransition = true;
         } else if (isNumericProperty(p.first)) {
             checkNumericString(p.second);
@@ -281,13 +281,13 @@ void MltXmlChecker::processProperties()
         newProperties.clear();
         foreach (MltProperty p, m_properties) {
             // Fix some properties if re-linked file.
-            if (p.first == kShotcutHashProperty) {
+            if (p.first == kBossaHashProperty) {
                 if (!m_resource.newHash.isEmpty())
                     p.second = m_resource.newHash;
-            } else if (p.first == kShotcutCaptionProperty) {
+            } else if (p.first == kBossaCaptionProperty) {
                 if (!m_resource.newDetail.isEmpty())
                     p.second = Util::baseName(m_resource.newDetail);
-            } else if (p.first == kShotcutDetailProperty) {
+            } else if (p.first == kBossaDetailProperty) {
                 // We no longer save this (leaks absolute paths).
                 p.second.clear();
             } else if (relinkMismatch && p.first == "audio_index") {
@@ -356,7 +356,7 @@ bool MltXmlChecker::checkNumericString(QString &value)
 
 bool MltXmlChecker::fixWebVfxPath(QString &resource)
 {
-    // The path, if absolute, should start with the Shotcut executable path.
+    // The path, if absolute, should start with the Bossa executable path.
     QFileInfo fi(resource);
     if (fi.isAbsolute() || Util::hasDriveLetter(resource)) {
         QDir appPath(QCoreApplication::applicationDirPath());
@@ -369,11 +369,11 @@ bool MltXmlChecker::fixWebVfxPath(QString &resource)
         appPath.cdUp();
 #endif
         if (!resource.startsWith(appPath.path())) {
-            // Locate "share/shotcut" and replace the front of it with appPath.
-            int i = resource.indexOf("/share/shotcut/");
+            // Locate "share/bossa" and replace the front of it with appPath.
+            int i = resource.indexOf("/share/bossa/");
 #if defined(Q_OS_MAC)
             if (i == -1)
-                i = resource.indexOf("/Resources/shotcut/");
+                i = resource.indexOf("/Resources/bossa/");
 #endif
             if (i >= 0) {
                 resource.replace(0, i, appPath.path());
@@ -501,7 +501,7 @@ void MltXmlChecker::checkUnlinkedFile(const QString &mlt_service)
                                                 ":/icons/oxygen/32x32/status/task-reject.png");
                                             QStandardItem *item = new QStandardItem(icon, filePath);
                                             item->setToolTip(item->text());
-                                            item->setData(m_resource.hash, ShotcutHashRole);
+                                            item->setData(m_resource.hash, BossaHashRole);
                                             m_unlinkedFilesModel.appendRow(item);
                                         }
 }
@@ -516,7 +516,7 @@ bool MltXmlChecker::fixUnlinkedFile(QString &value)
                    == QDir::toNativeSeparators(m_resource.info.filePath())) {
             m_resource.info.setFile(replacement->text());
             m_resource.newDetail = replacement->text();
-            m_resource.newHash = replacement->data(ShotcutHashRole).toString();
+            m_resource.newHash = replacement->data(BossaHashRole).toString();
             value = QDir::fromNativeSeparators(replacement->text());
             // Convert to relative path if possible.
             if (value.startsWith(m_fileInfo.canonicalPath() + "/"))
@@ -557,7 +557,7 @@ void MltXmlChecker::checkIncludesSelf(QVector<MltProperty> &properties)
             else if (p.first == "resource")
                 p.second = "+INVALID.txt";
         }
-        properties << MltProperty(kShotcutCaptionProperty, "INVALID");
+        properties << MltProperty(kBossaCaptionProperty, "INVALID");
         m_isCorrected = true;
     }
 }
@@ -580,12 +580,12 @@ void MltXmlChecker::checkAudioGain(const QString &mlt_service, QVector<MltProper
     if (mlt_service == "volume") {
         bool found = false;
         for (auto &p : properties) {
-            if (p.first == kShotcutFilterProperty) {
+            if (p.first == kBossaFilterProperty) {
                 found = true;
             }
         }
         if (!found) {
-            properties << MltProperty(kShotcutFilterProperty, "audioGain");
+            properties << MltProperty(kBossaFilterProperty, "audioGain");
             m_isUpdated = true;
         }
     }
@@ -614,11 +614,11 @@ void MltXmlChecker::replaceMovitServices(QString &mlt_service, QVector<MltProper
                     break;
                 }
             }
-            properties << MltProperty(kShotcutFilterProperty, newFilterName);
+            properties << MltProperty(kBossaFilterProperty, newFilterName);
         } else if (mlt_service == "crop") {
             new_mlt_service = "crop";
             for (auto &p : properties) {
-                if (p.first == kShotcutFilterProperty) {
+                if (p.first == kBossaFilterProperty) {
                     properties.removeOne(p);
                     break;
                 }
@@ -653,7 +653,7 @@ void MltXmlChecker::replaceMovitServices(QString &mlt_service, QVector<MltProper
         } else if (mlt_service == "movit.lift_gamma_gain") {
             new_mlt_service = "lift_gamma_gain";
             for (auto &p : properties) {
-                if (p.first == kShotcutFilterProperty && p.second == "movitContrast") {
+                if (p.first == kBossaFilterProperty && p.second == "movitContrast") {
                     newFilterName = "contrast";
                     break;
                 }
@@ -666,7 +666,7 @@ void MltXmlChecker::replaceMovitServices(QString &mlt_service, QVector<MltProper
             new_mlt_service = "brightness";
             QString alpha;
             for (auto &p : properties) {
-                if (p.first == kShotcutFilterProperty) {
+                if (p.first == kBossaFilterProperty) {
                     if (p.second == "fadeInMovit" || p.second == "fadeOutMovit") {
                         newFilterName = p.second;
                         newFilterName.replace("Movit", "Brightness");
@@ -767,7 +767,7 @@ void MltXmlChecker::replaceMovitServices(QString &mlt_service, QVector<MltProper
             if (p.first == "mlt_service") {
                 p.second = new_mlt_service;
                 m_isConverted = true;
-            } else if (p.first == kShotcutFilterProperty) {
+            } else if (p.first == kBossaFilterProperty) {
                 p.second = newFilterName;
             }
         }
@@ -797,13 +797,13 @@ void MltXmlChecker::replaceWebVfxCropFilters(QString &mlt_service,
     if (mlt_service == "webvfx") {
         auto isCrop = false;
         for (auto &p : properties) {
-            if (p.first == kShotcutFilterProperty && p.second == "webvfxCircularFrame") {
+            if (p.first == kBossaFilterProperty && p.second == "webvfxCircularFrame") {
                 p.second = "cropCircle";
                 properties << MltProperty("circle", "1");
                 m_isUpdated = isCrop = true;
                 break;
             }
-            if (p.first == kShotcutFilterProperty && p.second == "webvfxClip") {
+            if (p.first == kBossaFilterProperty && p.second == "webvfxClip") {
                 p.second = "cropRectangle";
                 m_isUpdated = isCrop = true;
                 break;
@@ -832,10 +832,10 @@ void MltXmlChecker::replaceWebVfxChoppyFilter(QString &mlt_service,
 {
     if (mlt_service == "webvfx") {
         auto isChoppy = false;
-        QString shotcutFilter;
+        QString bossaFilter;
         for (auto &p : properties) {
-            if (p.first == kShotcutFilterProperty) {
-                shotcutFilter = p.second;
+            if (p.first == kBossaFilterProperty) {
+                bossaFilter = p.second;
                 if (p.second == "webvfxChoppy") {
                     properties.removeOne(p);
                     m_isUpdated = isChoppy = true;
@@ -857,7 +857,7 @@ void MltXmlChecker::replaceWebVfxChoppyFilter(QString &mlt_service,
                     break;
                 }
             }
-        } else if (shotcutFilter.isEmpty()) {
+        } else if (bossaFilter.isEmpty()) {
             mlt_service = "qtext";
             m_isUpdated = true;
             for (auto &p : properties) {
@@ -885,7 +885,7 @@ void MltXmlChecker::replaceWebVfxChoppyFilter(QString &mlt_service,
                     break;
                 }
             }
-            properties << MltProperty(kShotcutFilterProperty, "richText");
+            properties << MltProperty(kBossaFilterProperty, "richText");
         }
     }
 }
@@ -904,7 +904,7 @@ void MltXmlChecker::checkForProxy(const QString &mlt_service,
                 if (info.isRelative())
                     info.setFile(m_fileInfo.canonicalPath(), p.second);
                 resource = info.filePath();
-            } else if (p.first == kShotcutHashProperty) {
+            } else if (p.first == kBossaHashProperty) {
                 hash = p.second;
             } else if (p.first == "warp_speed") {
                 speed = p.second;
@@ -976,7 +976,7 @@ void MltXmlChecker::checkForProxy(const QString &mlt_service,
             m_isUpdated = true;
         }
     } else if ((mlt_service == "qimage" || mlt_service == "pixbuf")
-               && !properties.contains(MltProperty(kShotcutSequenceProperty, "1"))) {
+               && !properties.contains(MltProperty(kBossaSequenceProperty, "1"))) {
         QString resource;
         QString hash;
         for (auto &p : properties) {
@@ -985,7 +985,7 @@ void MltXmlChecker::checkForProxy(const QString &mlt_service,
                 if (info.isRelative())
                     info.setFile(m_fileInfo.canonicalPath(), p.second);
                 resource = info.filePath();
-            } else if (p.first == kShotcutHashProperty) {
+            } else if (p.first == kBossaHashProperty) {
                 hash = p.second;
             } else if (p.first == kDisableProxyProperty && p.second == "1") {
                 return;

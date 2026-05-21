@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Meltytech, LLC
+ * Copyright (c) 2023 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     function setControls() {
@@ -76,7 +76,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: ['discontinuity_threshold']
@@ -88,12 +88,12 @@ Item {
             text: qsTr('Discontinuity threshold')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The threshold to apply a seam to splices')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: thresholdSlider
 
             minimumValue: 0
@@ -105,7 +105,7 @@ Item {
             onValueChanged: filter.set('discontinuity_threshold', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: thresholdSlider.value = -2
         }
 
@@ -128,7 +128,7 @@ Item {
             text: qsTr('Seam applied')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Status indicator showing when a splice has been seamed.')
             }
         }

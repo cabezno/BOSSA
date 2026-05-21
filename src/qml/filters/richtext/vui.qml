@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2026 Meltytech, LLC
+ * Copyright (c) 2020-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,10 +18,10 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml
+import Bossa.Controls as Bossa
+import org.bossa.qml
 
-Shotcut.VuiBase {
+Bossa.VuiBase {
     id: vui
 
     property string rectProperty: 'geometry'
@@ -261,7 +261,7 @@ Shotcut.VuiBase {
                         visible: toolbar.expanded
                         focusPolicy: Qt.NoFocus
 
-                        Shotcut.HoverTip {
+                        Bossa.HoverTip {
                             text: qsTr('Menu')
                         }
 
@@ -279,7 +279,7 @@ Shotcut.VuiBase {
                         visible: toolbar.expanded
                         focusPolicy: Qt.NoFocus
 
-                        Shotcut.HoverTip {
+                        Bossa.HoverTip {
                             text: parent.action.text
                         }
                     }
@@ -291,7 +291,7 @@ Shotcut.VuiBase {
                         visible: toolbar.expanded
                         focusPolicy: Qt.NoFocus
 
-                        Shotcut.HoverTip {
+                        Bossa.HoverTip {
                             text: parent.action.text
                         }
                     }
@@ -303,7 +303,7 @@ Shotcut.VuiBase {
                         visible: toolbar.expanded
                         focusPolicy: Qt.NoFocus
 
-                        Shotcut.HoverTip {
+                        Bossa.HoverTip {
                             text: parent.action.text
                         }
                     }
@@ -322,7 +322,7 @@ Shotcut.VuiBase {
                         visible: toolbar.expanded
                         focusPolicy: Qt.NoFocus
 
-                        Shotcut.HoverTip {
+                        Bossa.HoverTip {
                             text: qsTr('Font')
                         }
 
@@ -340,7 +340,7 @@ Shotcut.VuiBase {
                         }
                     }
 
-                    Shotcut.DoubleSpinBox {
+                    Bossa.DoubleSpinBox {
                         id: fontSizeSpinBox
 
                         property bool blockValue: false
@@ -360,7 +360,7 @@ Shotcut.VuiBase {
                             }
                         }
 
-                        Shotcut.HoverTip {
+                        Bossa.HoverTip {
                             text: qsTr('Text size')
                         }
                     }
@@ -379,7 +379,7 @@ Shotcut.VuiBase {
                             colorDialog.open();
                         }
 
-                        Shotcut.HoverTip {
+                        Bossa.HoverTip {
                             text: qsTr('Text color')
                         }
 
@@ -409,7 +409,7 @@ Shotcut.VuiBase {
                         visible: toolbar.expanded
                         focusPolicy: Qt.NoFocus
 
-                        Shotcut.HoverTip {
+                        Bossa.HoverTip {
                             text: parent.action.text
                         }
                     }
@@ -421,7 +421,7 @@ Shotcut.VuiBase {
                         visible: toolbar.expanded
                         focusPolicy: Qt.NoFocus
 
-                        Shotcut.HoverTip {
+                        Bossa.HoverTip {
                             text: parent.action.text
                         }
                     }
@@ -433,7 +433,7 @@ Shotcut.VuiBase {
                         visible: toolbar.expanded
                         focusPolicy: Qt.NoFocus
 
-                        Shotcut.HoverTip {
+                        Bossa.HoverTip {
                             text: parent.action.text
                         }
                     }
@@ -445,7 +445,7 @@ Shotcut.VuiBase {
                         visible: toolbar.expanded
                         focusPolicy: Qt.NoFocus
 
-                        Shotcut.HoverTip {
+                        Bossa.HoverTip {
                             text: parent.action.text
                         }
                     }
@@ -457,7 +457,7 @@ Shotcut.VuiBase {
                         visible: toolbar.expanded
                         focusPolicy: Qt.NoFocus
 
-                        Shotcut.HoverTip {
+                        Bossa.HoverTip {
                             text: parent.action.text
                         }
                     }
@@ -469,7 +469,7 @@ Shotcut.VuiBase {
                         visible: toolbar.expanded
                         focusPolicy: Qt.NoFocus
 
-                        Shotcut.HoverTip {
+                        Bossa.HoverTip {
                             text: parent.action.text
                         }
                     }
@@ -481,7 +481,7 @@ Shotcut.VuiBase {
                         implicitHeight: implicitWidth
                         focusPolicy: Qt.NoFocus
 
-                        Shotcut.HoverTip {
+                        Bossa.HoverTip {
                             text: toolbar.expanded ? qsTr('Collapse Toolbar') : qsTr('Expand Toolbar')
                         }
 
@@ -503,7 +503,7 @@ Shotcut.VuiBase {
                 }
             }
 
-            Shotcut.RectangleControl {
+            Bossa.RectangleControl {
                 id: rectangle
 
                 widthScale: video.rect.width / profile.width
@@ -517,7 +517,7 @@ Shotcut.VuiBase {
         }
     }
 
-    Shotcut.EditContextMenu {
+    Bossa.EditContextMenu {
         id: contextMenu
 
         showPastePlain: true
@@ -551,15 +551,15 @@ Shotcut.VuiBase {
         }
     }
 
-    Shotcut.RichTextMenu {
+    Bossa.RichTextMenu {
         id: menu
 
         onOpenTriggered: {
-            fileDialog.fileMode = Shotcut.FileDialog.OpenFile;
+            fileDialog.fileMode = Bossa.FileDialog.OpenFile;
             fileDialog.open();
         }
         onSaveAsTriggered: {
-            fileDialog.fileMode = Shotcut.FileDialog.SaveFile;
+            fileDialog.fileMode = Bossa.FileDialog.SaveFile;
             fileDialog.open();
         }
         onUndoTriggered: {
@@ -699,19 +699,19 @@ Shotcut.VuiBase {
         onTriggered: document.indentMore()
     }
 
-    Shotcut.FileDialog {
+    Bossa.FileDialog {
         id: fileDialog
 
         nameFilters: ["HTML files (*.html *.htm)", "Text files (*.txt)", "All files (*)"]
         onAccepted: {
-            if (fileMode === Shotcut.FileDialog.OpenFile)
+            if (fileMode === Bossa.FileDialog.OpenFile)
                 document.fileUrl = 'file:///' + selectedFile;
             else
                 document.saveAs('file:///' + selectedFile);
         }
     }
 
-    Shotcut.FontDialog {
+    Bossa.FontDialog {
         id: fontDialog
 
         onAccepted: {
@@ -723,12 +723,12 @@ Shotcut.VuiBase {
         }
     }
 
-    Shotcut.ColorDialog {
+    Bossa.ColorDialog {
         id: colorDialog
         selectedColor: 'black'
     }
 
-    Shotcut.MessageDialog {
+    Bossa.MessageDialog {
         id: errorDialog
     }
 
@@ -763,7 +763,7 @@ Shotcut.VuiBase {
                 Layout.alignment: Qt.AlignRight
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rowsSpinner
 
                 implicitWidth: 75
@@ -780,7 +780,7 @@ Shotcut.VuiBase {
                 Layout.alignment: Qt.AlignRight
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: columnsSpinner
 
                 implicitWidth: 75
@@ -796,7 +796,7 @@ Shotcut.VuiBase {
                 Layout.alignment: Qt.AlignRight
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: borderSpinner
 
                 implicitWidth: 75
@@ -812,7 +812,7 @@ Shotcut.VuiBase {
                 Layout.columnSpan: 2
                 focus: true
 
-                Shotcut.Button {
+                Bossa.Button {
                     text: qsTr('OK')
                     onClicked: {
                         tableDialog.accept();
@@ -820,7 +820,7 @@ Shotcut.VuiBase {
                     }
                 }
 
-                Shotcut.Button {
+                Bossa.Button {
                     text: qsTr('Cancel')
                     onClicked: tableDialog.close()
                 }

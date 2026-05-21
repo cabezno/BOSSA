@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Meltytech, LLC
+ * Copyright (c) 2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ public:
     ~ScreenCaptureToolbar();
 
 signals:
-    void captureModeSelected(int mode, bool minimizeShotcut, bool recordAudio);
+    void captureModeSelected(int mode, bool minimizeBossa, bool recordAudio);
 
 protected:
     void paintEvent(QPaintEvent *event) override;

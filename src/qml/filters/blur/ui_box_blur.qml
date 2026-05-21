@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2023 Meltytech, LLC
+ * Copyright (c) 2022-2023 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     function getPosition() {
         return Math.max(producer.position - (filter.in - producer.in), 0);
     }
@@ -71,7 +71,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             Layout.columnSpan: parent.columns - 1
@@ -91,7 +91,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: wslider
 
             minimumValue: 0
@@ -102,11 +102,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('hradius', wslider.value, widthKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: wslider.value = 5
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: widthKeyframesButton
 
             onToggled: {
@@ -120,7 +120,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: hslider
 
             minimumValue: 0
@@ -131,11 +131,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('vradius', hslider.value, heightKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: hslider.value = 5
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: heightKeyframesButton
 
             onToggled: {
@@ -156,7 +156,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
 
             visible: alphaCheckBox.visible
             onClicked: {

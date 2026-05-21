@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Meltytech, LLC
+ * Copyright (c) 2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
 
     function setControls() {
         var position = getPosition();
@@ -141,7 +141,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: ['overlap', 'h_shift_red', 's_scale_red', 'l_scale_red', 'h_shift_yellow', 's_scale_yellow', 'l_scale_yellow', 'h_shift_green', 's_scale_green', 'l_scale_green', 'h_shift_cyan', 's_scale_cyan', 'l_scale_cyan', 'h_shift_blue', 's_scale_blue', 'l_scale_blue', 'h_shift_magenta', 's_scale_magenta', 'l_scale_magenta']
@@ -159,7 +159,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Overlap')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: overlapSlider
 
             minimumValue: 0
@@ -168,11 +168,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('overlap', value, overlapKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: overlapSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: overlapKeyframesButton
 
             onToggled: {
@@ -192,7 +192,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Reds')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: hRedSlider
 
             minimumValue: -180
@@ -201,11 +201,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('h_shift_red', value, hRedKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: hRedSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: hRedKeyframesButton
 
             onToggled: {
@@ -218,7 +218,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Yellows')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: hYellowSlider
 
             minimumValue: -180
@@ -227,11 +227,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('h_shift_yellow', value, hYellowKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: hYellowSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: hYellowKeyframesButton
 
             onToggled: {
@@ -244,7 +244,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Greens')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: hGreenSlider
 
             minimumValue: -180
@@ -253,11 +253,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('h_shift_green', value, hGreenKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: hGreenSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: hGreenKeyframesButton
 
             onToggled: {
@@ -270,7 +270,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Cyans')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: hCyanSlider
 
             minimumValue: -180
@@ -279,11 +279,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('h_shift_cyan', value, hCyanKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: hCyanSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: hCyanKeyframesButton
 
             onToggled: {
@@ -296,7 +296,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Blues')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: hBlueSlider
 
             minimumValue: -180
@@ -305,11 +305,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('h_shift_blue', value, hBlueKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: hBlueSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: hBlueKeyframesButton
 
             onToggled: {
@@ -322,7 +322,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Magentas')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: hMagentaSlider
 
             minimumValue: -180
@@ -331,11 +331,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('h_shift_magenta', value, hMagentaKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: hMagentaSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: hMagentaKeyframesButton
 
             onToggled: {
@@ -355,7 +355,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Reds')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sRedSlider
 
             minimumValue: 0
@@ -364,11 +364,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('s_scale_red', value, sRedKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sRedSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: sRedKeyframesButton
 
             onToggled: {
@@ -381,7 +381,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Yellows')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sYellowSlider
 
             minimumValue: 0
@@ -390,11 +390,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('s_scale_yellow', value, sYellowKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sYellowSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: sYellowKeyframesButton
 
             onToggled: {
@@ -407,7 +407,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Greens')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sGreenSlider
 
             minimumValue: 0
@@ -416,11 +416,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('s_scale_green', value, sGreenKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sGreenSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: sGreenKeyframesButton
 
             onToggled: {
@@ -433,7 +433,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Cyans')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sCyanSlider
 
             minimumValue: 0
@@ -442,11 +442,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('s_scale_cyan', value, sCyanKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sCyanSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: sCyanKeyframesButton
 
             onToggled: {
@@ -459,7 +459,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Blues')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sBlueSlider
 
             minimumValue: 0
@@ -468,11 +468,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('s_scale_blue', value, sBlueKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sBlueSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: sBlueKeyframesButton
 
             onToggled: {
@@ -485,7 +485,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Magentas')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sMagentaSlider
 
             minimumValue: 0
@@ -494,11 +494,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('s_scale_magenta', value, sMagentaKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sMagentaSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: sMagentaKeyframesButton
 
             onToggled: {
@@ -518,7 +518,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Reds')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: lRedSlider
 
             minimumValue: 0
@@ -527,11 +527,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('l_scale_red', value, lRedKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: lRedSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: lRedKeyframesButton
 
             onToggled: {
@@ -544,7 +544,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Yellows')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: lYellowSlider
 
             minimumValue: 0
@@ -553,11 +553,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('l_scale_yellow', value, lYellowKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: lYellowSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: lYellowKeyframesButton
 
             onToggled: {
@@ -570,7 +570,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Greens')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: lGreenSlider
 
             minimumValue: 0
@@ -579,11 +579,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('l_scale_green', value, lGreenKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: lGreenSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: lGreenKeyframesButton
 
             onToggled: {
@@ -596,7 +596,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Cyans')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: lCyanSlider
 
             minimumValue: 0
@@ -605,11 +605,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('l_scale_cyan', value, lCyanKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: lCyanSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: lCyanKeyframesButton
 
             onToggled: {
@@ -622,7 +622,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Blues')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: lBlueSlider
 
             minimumValue: 0
@@ -631,11 +631,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('l_scale_blue', value, lBlueKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: lBlueSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: lBlueKeyframesButton
 
             onToggled: {
@@ -648,7 +648,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Magentas')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: lMagentaSlider
 
             minimumValue: 0
@@ -657,11 +657,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('l_scale_magenta', value, lMagentaKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: lMagentaSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: lMagentaKeyframesButton
 
             onToggled: {

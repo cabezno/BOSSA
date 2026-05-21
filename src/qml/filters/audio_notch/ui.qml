@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2025 Meltytech, LLC
+ * Copyright (c) 2015-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property string centerProperty: '0'
     property string bandwidthProperty: '1'
     property string stagesProperty: '2'
@@ -80,7 +80,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: [centerProperty, bandwidthProperty, stagesProperty, wetnessProperty, channelMask.channelMaskProperty]
@@ -100,7 +100,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderCenter
 
             minimumValue: 5
@@ -109,11 +109,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(centerProperty, value, centerKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderCenter.value = 322
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: centerKeyframesButton
 
             onToggled: {
@@ -127,7 +127,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderBandwidth
 
             minimumValue: 5
@@ -136,11 +136,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(bandwidthProperty, value, bandwidthKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderBandwidth.value = 322
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: bandwidthKeyframesButton
 
             onToggled: {
@@ -154,7 +154,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderStages
 
             minimumValue: 1
@@ -162,11 +162,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(stagesProperty, value, stagesKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderStages.value = 1
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: stagesKeyframesButton
 
             onToggled: {
@@ -180,7 +180,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderWetness
 
             minimumValue: 0
@@ -191,11 +191,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(wetnessProperty, value / maximumValue, wetnessKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderWetness.value = sliderWetness.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: wetnessKeyframesButton
 
             onToggled: {
@@ -209,7 +209,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ChannelMask {
+        Bossa.ChannelMask {
             id: channelMask
 
             Layout.columnSpan: 2

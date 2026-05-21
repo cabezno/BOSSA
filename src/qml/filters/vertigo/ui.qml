@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2021 Meltytech, LLC
+ * Copyright (c) 2019-2021 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property string phaseincrement: '0'
     property string zoomrate: '1'
     property double phaseincrementDefault: 0.02
@@ -71,7 +71,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: [phaseincrement, zoomrate]
@@ -90,7 +90,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: phaseincrementSlider
 
             minimumValue: 0
@@ -101,11 +101,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(phaseincrement, phaseincrementSlider.value / phaseincrementSlider.maximumValue, phaseKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: phaseincrementSlider.value = phaseincrementDefault * phaseincrementSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: phaseKeyframesButton
 
             onToggled: {
@@ -119,7 +119,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: zoomrateSlider
 
             minimumValue: 0
@@ -130,11 +130,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(zoomrate, zoomrateSlider.value / zoomrateSlider.maximumValue, zoomKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: zoomrateSlider.value = zoomrateDefault * zoomrateSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: zoomKeyframesButton
 
             onToggled: {

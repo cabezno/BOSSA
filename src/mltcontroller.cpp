@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2026 Meltytech, LLC
+ * Copyright (c) 2011-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 #include "proxymanager.h"
 #include "qmltypes/qmlmetadata.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 #if defined(Q_OS_WIN)
 #include "widgets/d3dvideowidget.h"
@@ -68,7 +68,7 @@ Controller::Controller()
         const bool experimental = qApp && qApp->property("experimental").toBool();
         if (Settings.safeMode()) {
             ::qputenv("MLT_REPOSITORY_DENY", "libmltqt:libmltglaxnimate:libmltopenfx");
-            ::qputenv("VST_PATH", "C:/__shotcut_safe_mode_no_vst__");
+            ::qputenv("VST_PATH", "C:/__bossa_safe_mode_no_vst__");
         } else {
             ::qputenv("MLT_REPOSITORY_DENY", "libmltqt:libmltglaxnimate");
         }
@@ -162,12 +162,12 @@ int Controller::open(const QString &url, const QString &urlToSave, bool skipConv
         setPreviewScale(Settings.playerPreviewScale());
         if (url.endsWith(".mlt")) {
             // Load the number of audio channels being used when this project was created.
-            int channels = newProducer->get_int(kShotcutProjectAudioChannels);
+            int channels = newProducer->get_int(kBossaProjectAudioChannels);
             if (!channels)
                 channels = 2;
             m_audioChannels = channels;
             // Load the processing mode
-            QString mode = newProducer->get(kShotcutProjectProcessingMode);
+            QString mode = newProducer->get(kBossaProjectProcessingMode);
             if (!mode.isEmpty()) {
                 m_processingMode = Settings.processingModeId(mode);
             }
@@ -182,7 +182,7 @@ int Controller::open(const QString &url, const QString &urlToSave, bool skipConv
             m_url = urlToSave;
         }
         Producer *producer = setupNewProducer(newProducer);
-        producer->set(kShotcutSkipConvertProperty, skipConvert);
+        producer->set(kBossaSkipConvertProperty, skipConvert);
         delete newProducer;
         newProducer = producer;
     } else {
@@ -265,11 +265,11 @@ void Controller::pause(int position)
             m_consumer->purge();
             m_consumer->start();
             // The following fixes a bug with frame-dropping. It is possible a video frame rendering
-            // was just dropped. Then, Shotcut does not know the latest position. Next, a filter modifies
+            // was just dropped. Then, Bossa does not know the latest position. Next, a filter modifies
             // a value, which refreshes the consumer, and the position advances. If that value change
             // creates a keyframe, then a subsequent value change creates an additional keyframe one
             // (or more?) frames after the previous one.
-            // https://forum.shotcut.org/t/2-keyframes-created-instead-of-one/11252
+            // https://forum.bossa.org/t/2-keyframes-created-instead-of-one/11252
             if (m_consumer->get_int("real_time") > 0)
                 refreshConsumer();
         }
@@ -346,7 +346,7 @@ void Controller::initFiltersClipboard()
 {
     m_filtersClipboard.reset(new Mlt::Producer(profile(), "color", "black"));
     if (m_filtersClipboard->is_valid()) {
-        m_filtersClipboard->set(kShotcutFiltersClipboard, 1);
+        m_filtersClipboard->set(kBossaFiltersClipboard, 1);
     }
 }
 
@@ -355,7 +355,7 @@ bool Controller::enableJack(bool enable)
     if (!m_consumer)
         return true;
     if (enable && !m_jackFilter) {
-        m_jackFilter.reset(new Mlt::Filter(profile(), "jack", "Shotcut player"));
+        m_jackFilter.reset(new Mlt::Filter(profile(), "jack", "Bossa player"));
         if (m_jackFilter->is_valid()) {
             m_jackFilter->set("channels", Settings.playerAudioChannels());
             switch (Settings.playerAudioChannels()) {
@@ -493,26 +493,26 @@ bool Controller::saveXML(const QString &filename,
     Consumer c(profile(), "xml", proxy ? filename.toUtf8().constData() : kMltXmlPropertyName);
     Service s(service ? service->get_service() : m_producer->get_service());
     if (s.is_valid()) {
-        // The Shotcut rule for paths in MLT XML is forward slashes as created by QFileDialog and QmlFile.
+        // The Bossa rule for paths in MLT XML is forward slashes as created by QFileDialog and QmlFile.
         QString root = withRelativePaths ? QDir::fromNativeSeparators(fi.absolutePath()) : "";
-        s.set(kShotcutProjectAudioChannels, m_audioChannels);
-        s.set(kShotcutProjectFolder, m_projectFolder.isEmpty() ? 0 : 1);
-        s.set(kShotcutProjectProcessingMode,
+        s.set(kBossaProjectAudioChannels, m_audioChannels);
+        s.set(kBossaProjectFolder, m_projectFolder.isEmpty() ? 0 : 1);
+        s.set(kBossaProjectProcessingMode,
               Settings.processingModeStr(Settings.processingMode()).toUtf8().constData());
         if (!projectNote.isEmpty()) {
-            s.set(kShotcutProjectNote, projectNote.toUtf8().constData());
+            s.set(kBossaProjectNote, projectNote.toUtf8().constData());
         } else {
-            s.clear(kShotcutProjectNote);
+            s.clear(kBossaProjectNote);
         }
         int ignore = s.get_int("ignore_points");
         if (ignore)
             s.set("ignore_points", 0);
         c.set("time_format", "clock");
-        c.set("store", "shotcut");
+        c.set("store", "bossa");
         c.set("root", root.toUtf8().constData());
         c.set("no_root", 1);
         c.set("title",
-              QStringLiteral("Shotcut version ").append(SHOTCUT_VERSION).toUtf8().constData());
+              QStringLiteral("Bossa version ").append(SHOTCUT_VERSION).toUtf8().constData());
 
         // Save the consumer of this service so it can be restored.
         auto saveConsumer = mlt_service_consumer(s.consumer()->get_service());
@@ -574,7 +574,7 @@ QString Controller::XML(Service *service, bool withProfile, bool withMetadata)
     if (!withMetadata)
         c.set("no_meta", 1);
     c.set("no_profile", !withProfile);
-    c.set("store", "shotcut");
+    c.set("store", "bossa");
     c.set("root", "");
     c.connect(s);
     c.start();
@@ -646,7 +646,7 @@ void Controller::setAudioChannels(int audioChannels)
     }
 }
 
-void Controller::setProcessingMode(ShotcutSettings::ProcessingMode mode)
+void Controller::setProcessingMode(BossaSettings::ProcessingMode mode)
 {
     if (m_processingMode != mode) {
         m_processingMode = mode;
@@ -724,17 +724,17 @@ bool Controller::isSeekableClip()
 
 bool Controller::isPlaylist() const
 {
-    return m_producer && m_producer->is_valid() && !m_producer->get_int(kShotcutVirtualClip)
+    return m_producer && m_producer->is_valid() && !m_producer->get_int(kBossaVirtualClip)
            && (m_producer->get_int("_original_type") == mlt_service_playlist_type
                || resource() == "<playlist>");
 }
 
 bool Controller::isMultitrack() const
 {
-    return m_producer && m_producer->is_valid() && !m_producer->get_int(kShotcutVirtualClip)
+    return m_producer && m_producer->is_valid() && !m_producer->get_int(kBossaVirtualClip)
            && (m_producer->get_int("_original_type") == mlt_service_tractor_type
                || resource() == "<tractor>")
-           && (m_producer->get(kShotcutXmlProperty));
+           && (m_producer->get(kBossaXmlProperty));
 }
 
 bool Controller::isImageProducer(Service *service) const
@@ -760,7 +760,7 @@ bool Controller::isProjectProducer(Service *service)
 {
     return service && service->is_valid() && QString(service->get("xml")) == "was here"
            && (service->get_int("_original_type") != mlt_service_tractor_type
-               || service->get(kShotcutXmlProperty));
+               || service->get(kBossaXmlProperty));
 }
 
 void Controller::rewind(bool forceChangeDirection)
@@ -1008,7 +1008,7 @@ int Controller::realTime() const
 void Controller::setImageDurationFromDefault(Service *service) const
 {
     if (service && service->is_valid()) {
-        if (isImageProducer(service) && !service->get_int("shotcut_sequence")) {
+        if (isImageProducer(service) && !service->get_int("bossa_sequence")) {
             service->set("ttl", 1);
             service->set("length",
                          service->frames_to_time(qRound(m_profile.fps() * kMaxImageDurationSecs),
@@ -1045,7 +1045,7 @@ void Controller::lockCreationTime(Producer *producer) const
 
 Producer *Controller::setupNewProducer(Producer *newProducer) const
 {
-    // Call this function before adding a new producer to Shotcut so that
+    // Call this function before adding a new producer to Bossa so that
     // It will be configured correctly. The returned producer must be deleted.
     QString serviceName = newProducer->get("mlt_service");
     if (serviceName == "avformat") {
@@ -1069,7 +1069,7 @@ Producer *Controller::setupNewProducer(Producer *newProducer) const
             int i = 0;
             QScopedPointer<Mlt::Filter> filter(newProducer->filter(i));
             while (filter && filter->is_valid()) {
-                if (!filter->get_int("_loader") && !filter->get_int(kShotcutHiddenProperty)) {
+                if (!filter->get_int("_loader") && !filter->get_int(kBossaHiddenProperty)) {
                     newProducer->detach(*filter);
                     chain->Service::attach(*filter);
                 } else {
@@ -1108,7 +1108,7 @@ static int indexOfFirstNonGpu(Producer &toProducer)
     for (int i = 0; i < toProducer.filter_count(); i++) {
         QScopedPointer<Mlt::Filter> filter(toProducer.filter(i));
         if (filter && filter->is_valid() && !filter->get_int("_loader")
-            && !filter->get_int(kShotcutHiddenProperty) && filter->get("mlt_service")) {
+            && !filter->get_int(kBossaHiddenProperty) && filter->get("mlt_service")) {
             if (!QString::fromLatin1(filter->get("mlt_service")).startsWith("movit."))
                 return i;
         }
@@ -1117,7 +1117,7 @@ static int indexOfFirstNonGpu(Producer &toProducer)
     for (int i = 0; i < toChain.link_count(); i++) {
         QScopedPointer<Mlt::Link> link(toChain.link(i));
         if (link && link->is_valid() && !link->get_int("_loader")
-            && !link->get_int(kShotcutHiddenProperty) && link->get("mlt_service")) {
+            && !link->get_int(kBossaHiddenProperty) && link->get("mlt_service")) {
             if (!QString::fromLatin1(link->get("mlt_service")).startsWith("movit."))
                 return i;
         }
@@ -1143,7 +1143,7 @@ void Controller::copyFilters(Producer &fromProducer,
     for (int i = 0; i < count; i++) {
         QScopedPointer<Mlt::Filter> fromFilter(fromProducer.filter(i));
         if (fromFilter && fromFilter->is_valid() && !fromFilter->get_int("_loader")
-            && !fromFilter->get_int(kShotcutHiddenProperty) && fromFilter->get("mlt_service")) {
+            && !fromFilter->get_int(kBossaHiddenProperty) && fromFilter->get("mlt_service")) {
             filterCount++;
             if (filterIndex >= 0 && filterIndex != (filterCount - 1)) {
                 continue;
@@ -1260,15 +1260,15 @@ void Controller::adjustFilters(Producer &producer, int index)
         QScopedPointer<Mlt::Filter> filter(producer.filter(index));
 
         if (filter && filter->is_valid()) {
-            QString filterName = filter->get(kShotcutFilterProperty);
-            if (filterName.startsWith("fadeIn") && !filter->get(kShotcutAnimInProperty)) {
+            QString filterName = filter->get(kBossaFilterProperty);
+            if (filterName.startsWith("fadeIn") && !filter->get(kBossaAnimInProperty)) {
                 // Convert legacy fadeIn filters.
-                filter->set(kShotcutAnimInProperty, filter->get_length());
-            } else if (filterName.startsWith("fadeOut") && !filter->get(kShotcutAnimOutProperty)) {
+                filter->set(kBossaAnimInProperty, filter->get_length());
+            } else if (filterName.startsWith("fadeOut") && !filter->get(kBossaAnimOutProperty)) {
                 // Convert legacy fadeIn filters.
-                filter->set(kShotcutAnimOutProperty, filter->get_length());
+                filter->set(kBossaAnimOutProperty, filter->get_length());
             }
-            if (!filter->get_int("_loader") && !filter->get_int(kShotcutHiddenProperty)) {
+            if (!filter->get_int("_loader") && !filter->get_int(kBossaHiddenProperty)) {
                 int filterIn = in;
                 int filterOut = out;
                 if (filter->get(kFilterInProperty))
@@ -1284,14 +1284,14 @@ void Controller::adjustFilters(Producer &producer, int index)
                     filter->anim_set(key,
                                      1,
                                      filter->get_length()
-                                         - std::max(filter->get_int(kShotcutAnimOutProperty), 2));
+                                         - std::max(filter->get_int(kBossaAnimOutProperty), 2));
                     filter->anim_set(key, 0, filter->get_length() - 1);
                 } else if (filterName == "fadeOutMovit") {
                     filter->clear("opacity");
                     filter->anim_set("opacity",
                                      1,
                                      filter->get_length()
-                                         - std::max(filter->get_int(kShotcutAnimOutProperty), 2),
+                                         - std::max(filter->get_int(kBossaAnimOutProperty), 2),
                                      0,
                                      mlt_keyframe_smooth);
                     filter->anim_set("opacity", 0, filter->get_length() - 1);
@@ -1300,9 +1300,9 @@ void Controller::adjustFilters(Producer &producer, int index)
                     filter->anim_set("level",
                                      0,
                                      filter->get_length()
-                                         - std::max(filter->get_int(kShotcutAnimOutProperty), 2));
+                                         - std::max(filter->get_int(kBossaAnimOutProperty), 2));
                     filter->anim_set("level", -60, filter->get_length() - 1);
-                } else if (filter->get_int(kShotcutAnimOutProperty) > 0) {
+                } else if (filter->get_int(kBossaAnimOutProperty) > 0) {
                     // Update simple keyframes.
                     QmlMetadata *meta = MAIN.filterController()->metadataForService(filter.data());
                     if (meta && meta->keyframes()) {
@@ -1327,7 +1327,7 @@ void Controller::adjustFilters(Producer &producer, int index)
                                     animation.key_set_frame(n - 2,
                                                             filter->get_length()
                                                                 - filter->get_int(
-                                                                    kShotcutAnimOutProperty));
+                                                                    kBossaAnimOutProperty));
                                     animation.key_set_frame(n - 1, filter->get_length() - 1);
                                 }
                             }
@@ -1420,7 +1420,7 @@ void Controller::adjustFilter(
         return;
     }
 
-    QString filterName = filter->get(kShotcutFilterProperty);
+    QString filterName = filter->get(kBossaFilterProperty);
     QmlMetadata *meta = MAIN.filterController()->metadataForService(filter);
 
     if ((inDelta || outDelta) && meta && meta->mlt_service().startsWith("vidstab")) {
@@ -1432,21 +1432,21 @@ void Controller::adjustFilter(
             inDelta = -in;
         }
         if (keyframeDelta
-            && filter->get_int(kShotcutAnimInProperty) == filter->get_int(kShotcutAnimOutProperty)) {
+            && filter->get_int(kBossaAnimInProperty) == filter->get_int(kBossaAnimOutProperty)) {
             // Shift all keyframes proportional to the in delta if they are not simple keyframes
             shiftKeyframes(filter, meta, keyframeDelta);
         }
         if (filterName.startsWith("fadeIn")) {
-            if (!filter->get(kShotcutAnimInProperty)) {
+            if (!filter->get(kBossaAnimInProperty)) {
                 // Convert legacy fadeIn filters.
-                filter->set(kShotcutAnimInProperty, filter->get_length());
+                filter->set(kBossaAnimInProperty, filter->get_length());
             }
             filter->set_in_and_out(in + inDelta, filter->get_out());
             emit MAIN.serviceInChanged(inDelta, filter);
         } else if (filterName.startsWith("fadeOut")) {
-            if (!filter->get(kShotcutAnimOutProperty)) {
+            if (!filter->get(kBossaAnimOutProperty)) {
                 // Convert legacy fadeOut filters.
-                filter->set(kShotcutAnimOutProperty, filter->get_length());
+                filter->set(kBossaAnimOutProperty, filter->get_length());
             }
             filter->set_in_and_out(in + inDelta, filter->get_out());
             if (filterName == "fadeOutBrightness") {
@@ -1455,14 +1455,14 @@ void Controller::adjustFilter(
                 filter->anim_set(key,
                                  1,
                                  filter->get_length()
-                                     - std::max(filter->get_int(kShotcutAnimOutProperty), 2));
+                                     - std::max(filter->get_int(kBossaAnimOutProperty), 2));
                 filter->anim_set(key, 0, filter->get_length() - 1);
             } else if (filterName == "fadeOutMovit") {
                 filter->clear("opacity");
                 filter->anim_set("opacity",
                                  1,
                                  filter->get_length()
-                                     - std::max(filter->get_int(kShotcutAnimOutProperty), 2),
+                                     - std::max(filter->get_int(kBossaAnimOutProperty), 2),
                                  0,
                                  mlt_keyframe_smooth);
                 filter->anim_set("opacity", 0, filter->get_length() - 1);
@@ -1471,11 +1471,11 @@ void Controller::adjustFilter(
                 filter->anim_set("level",
                                  0,
                                  filter->get_length()
-                                     - std::max(filter->get_int(kShotcutAnimOutProperty), 2));
+                                     - std::max(filter->get_int(kBossaAnimOutProperty), 2));
                 filter->anim_set("level", -60, filter->get_length() - 1);
             }
             emit MAIN.serviceInChanged(inDelta, filter);
-        } else if (!filter->get_int("_loader") && !filter->get_int(kShotcutHiddenProperty)
+        } else if (!filter->get_int("_loader") && !filter->get_int(kBossaHiddenProperty)
                    && filter->get_in() <= in) {
             filter->set_in_and_out(in + inDelta, filter->get_out());
             emit MAIN.serviceInChanged(inDelta, filter);
@@ -1484,9 +1484,9 @@ void Controller::adjustFilter(
 
     if (outDelta) {
         if (filterName.startsWith("fadeOut")) {
-            if (!filter->get(kShotcutAnimOutProperty)) {
+            if (!filter->get(kBossaAnimOutProperty)) {
                 // Convert legacy fadeOut filters.
-                filter->set(kShotcutAnimOutProperty, filter->get_length());
+                filter->set(kBossaAnimOutProperty, filter->get_length());
             }
             filter->set_in_and_out(filter->get_in(), out - outDelta);
             if (filterName == "fadeOutBrightness") {
@@ -1495,14 +1495,14 @@ void Controller::adjustFilter(
                 filter->anim_set(key,
                                  1,
                                  filter->get_length()
-                                     - std::max(filter->get_int(kShotcutAnimOutProperty), 2));
+                                     - std::max(filter->get_int(kBossaAnimOutProperty), 2));
                 filter->anim_set(key, 0, filter->get_length() - 1);
             } else if (filterName == "fadeOutMovit") {
                 filter->clear("opacity");
                 filter->anim_set("opacity",
                                  1,
                                  filter->get_length()
-                                     - std::max(filter->get_int(kShotcutAnimOutProperty), 2),
+                                     - std::max(filter->get_int(kBossaAnimOutProperty), 2),
                                  0,
                                  mlt_keyframe_smooth);
                 filter->anim_set("opacity", 0, filter->get_length() - 1);
@@ -1511,17 +1511,17 @@ void Controller::adjustFilter(
                 filter->anim_set("level",
                                  0,
                                  filter->get_length()
-                                     - std::max(filter->get_int(kShotcutAnimOutProperty), 2));
+                                     - std::max(filter->get_int(kBossaAnimOutProperty), 2));
                 filter->anim_set("level", -60, filter->get_length() - 1);
             }
             emit MAIN.serviceOutChanged(outDelta, filter);
-        } else if (!filter->get_int("_loader") && !filter->get_int(kShotcutHiddenProperty)
+        } else if (!filter->get_int("_loader") && !filter->get_int(kBossaHiddenProperty)
                    && filter->get_out() >= out) {
             filter->set_in_and_out(filter->get_in(), out - outDelta);
             emit MAIN.serviceOutChanged(outDelta, filter);
 
             // Update simple keyframes
-            if ((filter->get_int(kShotcutAnimInProperty) || filter->get_int(kShotcutAnimOutProperty))
+            if ((filter->get_int(kBossaAnimInProperty) || filter->get_int(kBossaAnimOutProperty))
                 && meta && meta->keyframes()) {
                 for (const QString &name : meta->keyframes()->simpleProperties()) {
                     if (!filter->get_animation(name.toUtf8().constData())) {
@@ -1540,13 +1540,13 @@ void Controller::adjustFilter(
                         int n = animation.key_count();
                         if (n > 1) {
                             animation.set_length(filter->get_length());
-                            if (filter->get_int(kShotcutAnimInProperty) > filter->get_length() - 1) {
+                            if (filter->get_int(kBossaAnimInProperty) > filter->get_length() - 1) {
                                 animation.key_set_frame(n - 1, filter->get_length() - 1);
-                            } else if (filter->get_int(kShotcutAnimOutProperty)) {
+                            } else if (filter->get_int(kBossaAnimOutProperty)) {
                                 animation.key_set_frame(n - 2,
                                                         filter->get_length()
                                                             - filter->get_int(
-                                                                kShotcutAnimOutProperty));
+                                                                kBossaAnimOutProperty));
                                 animation.key_set_frame(n - 1, filter->get_length() - 1);
                             }
                         }
@@ -1602,7 +1602,7 @@ Link *Controller::getLink(const QString &name, Service *service)
         for (int j = 0; j < link_count; j++) {
             Link *link = chain.link(j);
             if (link && link->is_valid()) {
-                if (name == QString::fromUtf8(link->get(kShotcutFilterProperty))
+                if (name == QString::fromUtf8(link->get(kBossaFilterProperty))
                     || name == QString::fromUtf8(link->get("mlt_service")))
                     return link;
                 delete link;
@@ -1617,7 +1617,7 @@ Filter *Controller::getFilter(const QString &name, Service *service)
     for (int i = 0; i < service->filter_count(); i++) {
         Mlt::Filter *filter = service->filter(i);
         if (filter) {
-            auto filterName = QString::fromUtf8(filter->get(kShotcutFilterProperty));
+            auto filterName = QString::fromUtf8(filter->get(kBossaFilterProperty));
             if (filterName.isEmpty()) {
                 filterName = QString::fromUtf8(filter->get("mlt_service"));
             }
@@ -1663,7 +1663,7 @@ int Controller::filterIn(Playlist &playlist, int clipIndex)
     if (info) {
         QScopedPointer<Mlt::ClipInfo> info2(playlist.clip_info(clipIndex - 1));
         if (info2 && info2->producer && info2->producer->is_valid()
-            && info2->producer->get(kShotcutTransitionProperty)) {
+            && info2->producer->get(kBossaTransitionProperty)) {
             // Factor in a transition left of the clip.
             result = info->frame_in - info2->frame_count;
         } else {
@@ -1680,7 +1680,7 @@ int Controller::filterOut(Playlist &playlist, int clipIndex)
     if (info) {
         QScopedPointer<Mlt::ClipInfo> info2(playlist.clip_info(clipIndex + 1));
         if (info2 && info2->producer && info2->producer->is_valid()
-            && info2->producer->get(kShotcutTransitionProperty)) {
+            && info2->producer->get(kBossaTransitionProperty)) {
             // Factor in a transition right of the clip.
             result = info->frame_out + info2->frame_count;
         } else {
@@ -1754,7 +1754,7 @@ bool Controller::isTrackProducer(Producer &producer)
 {
     mlt_service_type service_type = producer.type();
     return service_type == mlt_service_playlist_type
-           || (service_type == mlt_service_tractor_type && producer.get_int(kShotcutXmlProperty));
+           || (service_type == mlt_service_tractor_type && producer.get_int(kBossaXmlProperty));
 }
 
 int Controller::checkFile(const QString &path)
@@ -1763,11 +1763,11 @@ int Controller::checkFile(const QString &path)
     if (path.endsWith(".json") || path.endsWith(".rawr") || path.endsWith(".lottie")
         || path.endsWith(".riv") || path.endsWith(".tgs") || path.endsWith(".avd")
         || path.endsWith(".aep")) {
-        QString shotcutPath = qApp->applicationDirPath();
+        QString bossaPath = qApp->applicationDirPath();
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
-        QFileInfo meltPath(shotcutPath, "melt-7");
+        QFileInfo meltPath(bossaPath, "melt-7");
 #else
-        QFileInfo meltPath(shotcutPath, "melt");
+        QFileInfo meltPath(bossaPath, "melt");
 #endif
         QStringList args;
         args << "-quiet"

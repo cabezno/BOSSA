@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2025 Meltytech, LLC
+ * Copyright (c) 2015-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     function setControls() {
@@ -62,7 +62,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: ['0', '1', '2', channelMask.channelMaskProperty]
@@ -74,12 +74,12 @@ Item {
             text: qsTr('Input gain')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Gain that is applied to the input stage. Can be used to trim gain to bring it roughly under the limit or to push the signal against the limit.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderInput
 
             minimumValue: -20
@@ -92,7 +92,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderInput.value = 0
         }
 
@@ -100,12 +100,12 @@ Item {
             text: qsTr('Limit')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The maximum output amplitude. Peaks over this level will be attenuated as smoothly as possible to bring them as close as possible to this level.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderLimit
 
             minimumValue: -20
@@ -118,7 +118,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderLimit.value = 0
         }
 
@@ -126,12 +126,12 @@ Item {
             text: qsTr('Release')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The time taken for the limiter\'s attenuation to return to 0 dB\'s.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderRelease
 
             minimumValue: 0.01
@@ -144,7 +144,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderRelease.value = 0.51
         }
 
@@ -153,7 +153,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ChannelMask {
+        Bossa.ChannelMask {
             id: channelMask
 
             Layout.columnSpan: 2
@@ -178,12 +178,12 @@ Item {
             text: qsTr('Gain Reduction')
             Layout.alignment: Qt.AlignRight | Qt.AlignTop
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Status indicator showing the gain reduction applied by the compressor.')
             }
         }
 
-        Shotcut.Gauge {
+        Bossa.Gauge {
             id: grGauge
 
             Layout.columnSpan: 2

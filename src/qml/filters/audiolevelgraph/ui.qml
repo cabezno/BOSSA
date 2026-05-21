@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2022 Meltytech, LLC
+ * Copyright (c) 2021-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property string rectProperty: "rect"
@@ -93,7 +93,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: defaultParameters
@@ -110,7 +110,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: typeCombo
 
             property var values: ['bar', 'segment']
@@ -139,7 +139,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.GradientControl {
+        Bossa.GradientControl {
             id: fgGradient
 
             Layout.columnSpan: 4
@@ -155,7 +155,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ColorPicker {
+        Bossa.ColorPicker {
             id: bgColor
 
             Layout.columnSpan: 4
@@ -169,7 +169,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: thicknessSlider
 
             Layout.columnSpan: 3
@@ -179,12 +179,12 @@ Item {
             suffix: ' px'
             onValueChanged: filter.set("thickness", value)
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: 'Set the thickness of the bars (in pixels)'
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: thicknessSlider.value = 15
         }
 
@@ -196,7 +196,7 @@ Item {
         RowLayout {
             Layout.columnSpan: 4
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectX
 
                 value: filterRect.x
@@ -218,7 +218,7 @@ Item {
                 horizontalAlignment: Qt.AlignHCenter
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectY
 
                 value: filterRect.y
@@ -243,7 +243,7 @@ Item {
         RowLayout {
             Layout.columnSpan: 4
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectW
 
                 value: filterRect.width
@@ -265,7 +265,7 @@ Item {
                 horizontalAlignment: Qt.AlignHCenter
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectH
 
                 value: filterRect.height
@@ -305,7 +305,7 @@ Item {
             text: qsTr('Reverse the levels.')
             onClicked: filter.set('reverse', checked ? 1 : 0)
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: 'Reverse the order of channels.'
             }
         }
@@ -315,7 +315,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: channelsSlider
 
             Layout.columnSpan: 3
@@ -324,12 +324,12 @@ Item {
             decimals: 0
             onValueChanged: filter.set("channels", value)
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: 'The number of audio channels to show.'
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: channelsSlider.value = 2
         }
 
@@ -338,7 +338,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: segmentsSlider
 
             Layout.columnSpan: 3
@@ -347,12 +347,12 @@ Item {
             decimals: 0
             onValueChanged: filter.set("segments", value)
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: 'The number of segments in the segment graph'
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: segmentGapSlider.value = 8
         }
 
@@ -361,7 +361,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: segmentGapSlider
 
             Layout.columnSpan: 3
@@ -370,12 +370,12 @@ Item {
             decimals: 0
             onValueChanged: filter.set("segment_gap", value)
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: 'Space between segments in the segment graph (in pixels)'
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: segmentGapSlider.value = 8
         }
 

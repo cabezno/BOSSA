@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2022 Meltytech, LLC
+ * Copyright (c) 2014-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property string paramRed: '0'
@@ -43,7 +43,7 @@ Item {
         anchors.fill: parent
         anchors.margins: 8
 
-        Shotcut.Preset {
+        Bossa.Preset {
             parameters: defaultParameters
             onPresetSelected: {
                 modeCombo.currentIndex = Math.round(filter.getDouble(paramAction) * 2);
@@ -56,7 +56,7 @@ Item {
                 text: qsTr('Mode')
             }
 
-            Shotcut.ComboBox {
+            Bossa.ComboBox {
                 id: modeCombo
 
                 Layout.minimumWidth: 200
@@ -65,7 +65,7 @@ Item {
             }
         }
 
-        Shotcut.ColorWheelItem {
+        Bossa.ColorWheelItem {
             id: wheel
 
             Layout.columnSpan: 2

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2026 Meltytech, LLC
+ * Copyright (c) 2012-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -106,7 +106,7 @@ RecentDock::~RecentDock()
 void RecentDock::add(const QString &s)
 {
     // Block anything big that can cause a performance problem
-    if (s.size() > ShotcutSettings::MaxPath)
+    if (s.size() > BossaSettings::MaxPath)
         return;
 
     QString filePath = QDir::fromNativeSeparators(s);

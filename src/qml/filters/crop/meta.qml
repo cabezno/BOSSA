@@ -1,5 +1,5 @@
 import QtQuick
-import org.shotcut.qml
+import org.bossa.qml
 
 Metadata {
     type: Metadata.Filter
@@ -11,5 +11,5 @@ Metadata {
     gpuAlt: "movit.crop"
     allowMultiple: false
     isClipOnly: true
-    help: 'https://forum.shotcut.org/t/crop-source-video-filter/12840/1'
+    help: 'https://forum.bossa.org/t/crop-source-video-filter/12840/1'
 }

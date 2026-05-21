@@ -1,5 +1,5 @@
 import QtQuick
-import org.shotcut.qml
+import org.bossa.qml
 
 Metadata {
     type: Metadata.Filter
@@ -9,7 +9,7 @@ Metadata {
     mlt_service: "frei0r.rgbnoise"
     qml: "ui.qml"
     icon: 'icon.webp'
-    help: 'https://forum.shotcut.org/t/noise-keyframes/12865/1'
+    help: 'https://forum.bossa.org/t/noise-keyframes/12865/1'
 
     keyframes {
         allowAnimateIn: true

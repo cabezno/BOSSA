@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2026 Meltytech, LLC
+ * Copyright (c) 2018-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
 Item {
     id: shapeRoot
@@ -176,11 +176,11 @@ Item {
         setControls();
     }
 
-    Shotcut.File {
+    Bossa.File {
         id: shapeFile
     }
 
-    Shotcut.FileDialog {
+    Bossa.FileDialog {
         id: fileDialog
 
         onAccepted: {
@@ -205,7 +205,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             Layout.columnSpan: 3
@@ -224,11 +224,11 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.File {
+        Bossa.File {
             id: wipeFile
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: resourceCombo
 
             function updateResource(index) {
@@ -258,7 +258,7 @@ Item {
                 enabled = true;
             }
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Set a mask from another file\'s brightness or alpha.')
                 visible: !resourceCombo.pressed
             }
@@ -393,7 +393,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 resourceCombo.currentIndex = 0;
                 resourceCombo.updateResource(resourceCombo.currentIndex);
@@ -404,7 +404,7 @@ Item {
             width: 1
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             id: favoriteButton
 
             visible: fileLabel.text.length > 0
@@ -427,7 +427,7 @@ Item {
 
             Layout.columnSpan: 3
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 id: fileLabelTip
             }
         }
@@ -446,7 +446,7 @@ Item {
                 onClicked: filter.set('filter.invert', checked)
             }
 
-            Shotcut.UndoButton {
+            Bossa.UndoButton {
                 onClicked: {
                     invertCheckBox.checked = false;
                     filter.set('filter.invert', 0);
@@ -470,7 +470,7 @@ Item {
                 }
             }
 
-            Shotcut.UndoButton {
+            Bossa.UndoButton {
 
                 // reset the old reverse
                 visible: reverseCheckBox.visible
@@ -513,7 +513,7 @@ Item {
                 onClicked: filter.set('filter.use_luminance', 0)
             }
 
-            Shotcut.ComboBox {
+            Bossa.ComboBox {
                 id: operationCombo
 
                 implicitWidth: 180
@@ -552,7 +552,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 brightnessRadioButton.checked = true;
                 operationCombo.currentIndex = 0;
@@ -572,7 +572,7 @@ Item {
             onClicked: filter.set('filter.use_mix', checked)
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: thresholdSlider
 
             minimumValue: 0
@@ -582,11 +582,11 @@ Item {
             onValueChanged: updateFilter('filter.mix', value, getPosition(), thresholdKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: thresholdSlider.value = 50
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: thresholdKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, 'filter.mix', thresholdSlider.value)
@@ -597,7 +597,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: softnessSlider
 
             minimumValue: 0
@@ -607,7 +607,7 @@ Item {
             onValueChanged: filter.set('filter.softness', value / 100)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: softnessSlider.value = 0
         }
 
@@ -615,7 +615,7 @@ Item {
             width: 1
         }
 
-        Shotcut.TipBox {
+        Bossa.TipBox {
             Layout.columnSpan: parent.columns
             Layout.fillWidth: true
             Layout.margins: 10

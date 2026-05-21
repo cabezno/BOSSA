@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2022 Meltytech, LLC
+ * Copyright (c) 2021-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #include "mainwindow.h"
 #include "proxymanager.h"
 #include "qmltypes/qmlapplication.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <MltPlaylist.h>
@@ -160,7 +160,7 @@ QString MultiFileExportDialog::appendField(QString text, QComboBox *combo, int c
     case NAME_FIELD_NAME: {
         QScopedPointer<Mlt::ClipInfo> info(MAIN.playlist()->clip_info(clipIndex));
         if (info && info->producer && info->producer->is_valid()) {
-            field = info->producer->get(kShotcutCaptionProperty);
+            field = info->producer->get(kBossaCaptionProperty);
             if (field.isEmpty()) {
                 field = ProxyManager::resource(*info->producer);
                 field = QFileInfo(field).completeBaseName();

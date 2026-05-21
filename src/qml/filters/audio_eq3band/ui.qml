@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2025 Meltytech, LLC
+ * Copyright (c) 2022-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
 
     // The three band EQ is implemented by using a 3 band parametric
     // EQ with shelves. Many of the parametric EQ parameters are fixed
@@ -113,7 +113,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: keyframableParameters.concat('.dummy', channelMask.channelMaskProperty)
@@ -133,7 +133,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: lowSlider
 
             minimumValue: -20
@@ -148,7 +148,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: lowSlider.value = 0
         }
 
@@ -167,7 +167,7 @@ Shotcut.KeyframableFilter {
                 Layout.alignment: Qt.AlignHCenter
             }
 
-            Shotcut.KeyframesButton {
+            Bossa.KeyframesButton {
                 id: keyframesButton
 
                 onToggled: {
@@ -191,7 +191,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: midSlider
 
             minimumValue: -20
@@ -206,7 +206,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: midSlider.value = 0
         }
 
@@ -215,7 +215,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: highSlider
 
             minimumValue: -20
@@ -230,7 +230,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: highSlider.value = 0
         }
 
@@ -239,7 +239,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ChannelMask {
+        Bossa.ChannelMask {
             id: channelMask
 
             Layout.columnSpan: 2

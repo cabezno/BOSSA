@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Meltytech, LLC
+ * Copyright (c) 2016 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,8 +37,8 @@ FfprobeJob::~FfprobeJob() {}
 
 void FfprobeJob::start()
 {
-    QString shotcutPath = qApp->applicationDirPath();
-    QFileInfo ffprobePath(shotcutPath, "ffprobe");
+    QString bossaPath = qApp->applicationDirPath();
+    QFileInfo ffprobePath(bossaPath, "ffprobe");
     setReadChannel(QProcess::StandardOutput);
     LOG_DEBUG() << ffprobePath.absoluteFilePath() + " " + m_args.join(' ');
     AbstractJob::start(ffprobePath.absoluteFilePath(), m_args);

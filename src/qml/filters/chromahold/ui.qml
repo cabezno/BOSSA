@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2024 Meltytech, LLC
+ * Copyright (c) 2019-2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property string colorParam: 'av.color'
     property string colorDefault: '0x000000'
     property string distanceParam: 'av.similarity'
@@ -70,7 +70,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: presetItem
 
             Layout.columnSpan: 3
@@ -87,7 +87,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ColorPicker {
+        Bossa.ColorPicker {
             id: colorPicker
 
             onValueChanged: {
@@ -97,7 +97,7 @@ Shotcut.KeyframableFilter {
             onPickCancelled: filter.set('disable', 0)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: colorPicker.value = colorDefault
         }
 
@@ -111,7 +111,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: distanceSlider
 
             minimumValue: 0
@@ -121,11 +121,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(distanceParam, value / 100, distanceKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: distanceSlider.value = distanceDefault
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: distanceKeyframesButton
 
             onToggled: {

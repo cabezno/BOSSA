@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Meltytech, LLC
+ * Copyright (c) 2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property string colorParam: 'color'
     property string colorDefault: Qt.rgba(0, 0, 0, 1)
     property string thicknessParam: 'thickness'
@@ -74,7 +74,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: presetItem
 
             Layout.columnSpan: 3
@@ -93,7 +93,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ColorPicker {
+        Bossa.ColorPicker {
             id: colorPicker
 
             property bool isReady: false
@@ -107,11 +107,11 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: colorPicker.value = colorDefault
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: colorKeyframesButton
 
             onToggled: {
@@ -126,7 +126,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: thicknessSlider
 
             minimumValue: 0
@@ -137,11 +137,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(thicknessParam, value, thicknessKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: thicknessSlider.value = thicknessDefault
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: thicknessKeyframesButton
 
             onToggled: {

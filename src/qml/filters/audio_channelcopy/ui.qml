@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2025 Meltytech, LLC
+ * Copyright (c) 2013-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property string fromParameter: 'from'
@@ -62,7 +62,7 @@ Item {
                 text: qsTr('Copy from')
             }
 
-            Shotcut.ComboBox {
+            Bossa.ComboBox {
                 id: fromCombo
 
                 model: [qsTr('Left'), qsTr('Right')]
@@ -73,7 +73,7 @@ Item {
                 text: qsTr('to')
             }
 
-            Shotcut.ComboBox {
+            Bossa.ComboBox {
                 id: toCombo
 
                 model: fromCombo.model

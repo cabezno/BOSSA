@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2025 Meltytech, LLC
+ * Copyright (c) 2013-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 #include "qmltypes/qmlapplication.h"
 #include "qmltypes/qmlmetadata.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <MltChain.h>
@@ -61,7 +61,7 @@ static int normalFilterCount(Mlt::Producer *producer)
         for (int i = 0; i < producer->filter_count(); i++) {
             Mlt::Filter *filter = producer->filter(i);
             if (filter->is_valid()
-                && (filter->get_int("_loader") || filter->get_int(kShotcutHiddenProperty))) {
+                && (filter->get_int("_loader") || filter->get_int(kBossaHiddenProperty))) {
                 count++;
             } else {
                 i = producer->filter_count();
@@ -467,7 +467,7 @@ int AttachedFiltersModel::add(QmlMetadata *meta)
             insertRow = findInsertRow(meta);
             filter.set(kNewFilterProperty, 1);
             if (!meta->objectName().isEmpty())
-                filter.set(kShotcutFilterProperty, meta->objectName().toUtf8().constData());
+                filter.set(kBossaFilterProperty, meta->objectName().toUtf8().constData());
             filter.set_in_and_out(m_producer->get(kFilterInProperty)
                                       ? m_producer->get_int(kFilterInProperty)
                                       : m_producer->get_in(),
@@ -499,7 +499,7 @@ int AttachedFiltersModel::add(QmlMetadata *meta)
             insertRow = findInsertRow(meta);
             link.set(kNewFilterProperty, 1);
             if (!meta->objectName().isEmpty())
-                link.set(kShotcutFilterProperty, meta->objectName().toUtf8().constData());
+                link.set(kBossaFilterProperty, meta->objectName().toUtf8().constData());
             link.set_in_and_out(m_producer->get(kFilterInProperty)
                                     ? m_producer->get_int(kFilterInProperty)
                                     : m_producer->get_in(),
@@ -523,11 +523,11 @@ int AttachedFiltersModel::add(QmlMetadata *meta)
         for (int i = 0; i < filterSetProducer.filter_count(); i++) {
             Mlt::Filter *filter = filterSetProducer.filter(i);
             if (filter->is_valid() && !filter->get_int("_loader")
-                && !filter->get_int(kShotcutHiddenProperty)) {
+                && !filter->get_int(kBossaHiddenProperty)) {
                 QmlMetadata *tmpMeta = MAIN.filterController()->metadataForService(filter);
                 insertRow = findInsertRow(tmpMeta);
                 if (!meta->objectName().isEmpty())
-                    filter->set(kShotcutFilterProperty, meta->objectName().toUtf8().constData());
+                    filter->set(kBossaFilterProperty, meta->objectName().toUtf8().constData());
                 filter->set_in_and_out(m_producer->get(kFilterInProperty)
                                            ? m_producer->get_int(kFilterInProperty)
                                            : m_producer->get_in(),
@@ -579,7 +579,7 @@ int AttachedFiltersModel::addService(Mlt::Service *service)
     if (filter.is_valid()) {
         insertRow = findInsertRow(meta);
         if (!meta->objectName().isEmpty())
-            filter.set(kShotcutFilterProperty, meta->objectName().toUtf8().constData());
+            filter.set(kBossaFilterProperty, meta->objectName().toUtf8().constData());
         filter.set_in_and_out(m_producer->get(kFilterInProperty)
                                   ? m_producer->get_int(kFilterInProperty)
                                   : m_producer->get_in(),
@@ -785,7 +785,7 @@ void AttachedFiltersModel::reset(Mlt::Producer *producer)
         for (int i = 0; i < count; i++) {
             Mlt::Filter *filter = m_producer->filter(i);
             if (filter && filter->is_valid() && !filter->get_int("_loader")
-                && !filter->get_int(kShotcutHiddenProperty)) {
+                && !filter->get_int(kBossaHiddenProperty)) {
                 QmlMetadata *newMeta = MAIN.filterController()->metadataForService(filter);
                 m_metaList.append(newMeta);
             }
@@ -804,7 +804,7 @@ Mlt::Producer AttachedFiltersModel::getFilterSetProducer(QmlMetadata *meta)
     Mlt::Producer filterSetProducer;
     auto name = meta->name();
     auto dir = QmlApplication::dataDir();
-    dir.cd("shotcut");
+    dir.cd("bossa");
     dir.cd("filter-sets");
     if (!QFileInfo::exists(dir.filePath(name))) {
         dir = Settings.appDataLocation();

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2024 Meltytech, LLC
+ * Copyright (c) 2012-2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ VideoQualityJob::VideoQualityJob(const QString &name,
 {
     QAction *action = new QAction(tr("Open"), this);
     action->setData("Open");
-    action->setToolTip(tr("Open original and encoded side-by-side in the Shotcut player"));
+    action->setToolTip(tr("Open original and encoded side-by-side in the Bossa player"));
     connect(action, SIGNAL(triggered()), this, SLOT(onOpenTiggered()));
     m_successActions << action;
 

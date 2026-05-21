@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2023 Meltytech, LLC
+ * Copyright (c) 2017-2023 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,8 +17,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
 Item {
     property string paramShape: 'filter.0'
@@ -207,7 +207,7 @@ Item {
         const data = motionTrackerModel.trackingData(motionTrackerRow);
         let previous = null;
         let interval = motionTrackerModel.keyframeIntervalFrames(motionTrackerRow);
-        let interpolation = Shotcut.KeyframesModel.SmoothNaturalInterpolation;
+        let interpolation = Bossa.KeyframesModel.SmoothNaturalInterpolation;
         filter.blockSignals = true;
 
         // reset
@@ -258,7 +258,7 @@ Item {
             case 'absPos':
                 current.x = (i.x + i.width / 2) / profile.width;
                 current.y = (i.y + i.height / 2) / profile.height;
-                interpolation = Shotcut.KeyframesModel.LinearInterpolation;
+                interpolation = Bossa.KeyframesModel.LinearInterpolation;
                 filter.set(paramHorizontal, current.x, frame, interpolation);
                 filter.set(paramVertical, current.y, frame, interpolation);
                 filterRect.x = i.x + i.width / 2 - filterRect.width / 2;
@@ -270,7 +270,7 @@ Item {
                 current.y = (i.y + i.height / 2) / profile.height;
                 current.width = i.width / profile.width / 2;
                 current.height = i.height / profile.height / 2;
-                interpolation = Shotcut.KeyframesModel.LinearInterpolation;
+                interpolation = Bossa.KeyframesModel.LinearInterpolation;
                 filter.set(paramHorizontal, current.x, frame, interpolation);
                 filter.set(paramVertical, current.y, frame, interpolation);
                 filter.set(paramWidth, current.width, frame, interpolation);
@@ -327,7 +327,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             Layout.columnSpan: 3
             parameters: defaultParameters
             onBeforePresetLoaded: {
@@ -349,7 +349,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: operationCombo
 
             implicitWidth: 180
@@ -357,7 +357,7 @@ Item {
             onActivated: filter.set(paramOperation, currentIndex / 4)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             Layout.columnSpan: 2
             onClicked: {
                 filter.set(paramOperation, 0);
@@ -370,7 +370,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: shapeCombo
 
             implicitWidth: 180
@@ -378,7 +378,7 @@ Item {
             onActivated: filter.set(paramShape, currentIndex / 3)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             Layout.columnSpan: 2
             onClicked: {
                 filter.set(paramShape, 0);
@@ -392,7 +392,7 @@ Item {
         }
 
         RowLayout {
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectX
 
                 Layout.minimumWidth: 100
@@ -416,7 +416,7 @@ Item {
                 horizontalAlignment: Qt.AlignHCenter
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectY
 
                 Layout.minimumWidth: 100
@@ -435,7 +435,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 rectX.value = 0.4 * profile.width;
                 rectY.value = 0.4 * profile.height;
@@ -445,7 +445,7 @@ Item {
             }
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: positionKeyframesButton
 
             Layout.rowSpan: 2
@@ -473,7 +473,7 @@ Item {
         }
 
         RowLayout {
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectW
 
                 Layout.minimumWidth: 100
@@ -497,7 +497,7 @@ Item {
                 horizontalAlignment: Qt.AlignHCenter
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectH
 
                 Layout.minimumWidth: 100
@@ -516,7 +516,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 rectW.value = 0.2 * profile.width;
                 rectH.value = 0.2 * profile.height;
@@ -531,7 +531,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: rotationSlider
 
             function updateFromFilter() {
@@ -550,11 +550,11 @@ Item {
             onValueChanged: updateFilterParam(paramRotation, filterValue(), getPosition(), rotationKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: rotationSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: rotationKeyframesButton
 
             onToggled: onRotationKeyframesButtonClicked(checked, paramRotation, rotationSlider.filterValue())
@@ -567,7 +567,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: softnessSlider
 
             minimumValue: 0
@@ -577,7 +577,7 @@ Item {
             onValueChanged: filter.set(paramSoftness, value / 100)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             Layout.columnSpan: 2
             onClicked: softnessSlider.value = 20
         }
@@ -586,13 +586,13 @@ Item {
             width: 1
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             Layout.columnSpan: parent.columns - 1
             text: motionTrackerDialog.title
             onClicked: motionTrackerDialog.show()
         }
 
-        Shotcut.TipBox {
+        Bossa.TipBox {
             Layout.columnSpan: parent.columns
             Layout.fillWidth: true
             Layout.margins: 10
@@ -604,7 +604,7 @@ Item {
         }
     }
 
-    Shotcut.MotionTrackerDialog {
+    Bossa.MotionTrackerDialog {
         id: motionTrackerDialog
         onAccepted: (motionTrackerRow, operation, startFrame) => applyTracking(motionTrackerRow, operation, startFrame)
         onReset: if (filter.keyframeCount(rectProperty) > 0 && filter.animateIn <= 0 && filter.animateOut <= 0) {

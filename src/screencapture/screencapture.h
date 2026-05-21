@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Meltytech, LLC
+ * Copyright (c) 2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,10 +47,10 @@ signals:
     void finished(bool success);
     void beginRecording(const QRect &captureRect, bool recordAudio);
     void onSelectionCanceled();
-    void minimizeShotcut();
+    void minimizeBossa();
 
 private slots:
-    void onCaptureModeSelected(CaptureMode mode, bool minimizeShotcut, bool recordAudio);
+    void onCaptureModeSelected(CaptureMode mode, bool minimizeBossa, bool recordAudio);
     void onRectangleSelected(const QRect &rect);
     void onWindowSelected(const QRect &rect);
     void onImageRectangleSelected(const QRect &rect);
@@ -81,7 +81,7 @@ private:
     QString m_outputFile;
     CaptureMode m_mode;
     bool m_isImageMode;
-    bool m_minimizeShotcut;
+    bool m_minimizeBossa;
     bool m_recordAudio;
 
     std::unique_ptr<ScreenCaptureToolbar> m_toolbar;

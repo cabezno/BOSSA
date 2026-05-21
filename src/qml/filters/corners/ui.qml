@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2023 Meltytech, LLC
+ * Copyright (c) 2019-2023 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,10 +17,10 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property string corner1xProperty: '0'
     property string corner1yProperty: '1'
     property string corner2xProperty: '2'
@@ -175,7 +175,7 @@ Shotcut.KeyframableFilter {
         const data = motionTrackerModel.trackingData(motionTrackerRow);
         let previous = null;
         let interval = motionTrackerModel.keyframeIntervalFrames(motionTrackerRow);
-        let interpolation = Shotcut.KeyframesModel.SmoothNaturalInterpolation;
+        let interpolation = Bossa.KeyframesModel.SmoothNaturalInterpolation;
         filter.blockSignals = true;
 
         // reset
@@ -305,7 +305,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: [corner1xProperty, corner1yProperty, corner2xProperty, corner2yProperty, corner3xProperty, corner3yProperty, corner4xProperty, corner4yProperty, stretchxProperty, stretchyProperty, interpolatorProperty, transparentProperty, featherProperty, alphaOpProperty, cornerProperties[0], cornerProperties[1], cornerProperties[2], cornerProperties[3]]
@@ -337,7 +337,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: corner1xSlider
 
             minimumValue: -100
@@ -354,7 +354,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: setSliderValue(corner1xSlider, corner1xDefault)
         }
 
@@ -373,7 +373,7 @@ Shotcut.KeyframableFilter {
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             }
 
-            Shotcut.KeyframesButton {
+            Bossa.KeyframesButton {
                 id: corner1KeyframesButton
 
                 onToggled: {
@@ -406,7 +406,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: corner1ySlider
 
             minimumValue: -100
@@ -423,7 +423,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: setSliderValue(corner1ySlider, corner1yDefault)
         }
 
@@ -432,7 +432,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: corner2xSlider
 
             minimumValue: -100
@@ -449,7 +449,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: setSliderValue(corner2xSlider, corner2xDefault)
         }
 
@@ -458,7 +458,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: corner2ySlider
 
             minimumValue: -100
@@ -475,7 +475,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: setSliderValue(corner2ySlider, corner2yDefault)
         }
 
@@ -484,7 +484,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: corner3xSlider
 
             minimumValue: -100
@@ -501,7 +501,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: setSliderValue(corner3xSlider, corner3xDefault)
         }
 
@@ -510,7 +510,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: corner3ySlider
 
             minimumValue: -100
@@ -527,7 +527,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: setSliderValue(corner3ySlider, corner3yDefault)
         }
 
@@ -536,7 +536,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: corner4xSlider
 
             minimumValue: -100
@@ -553,7 +553,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: setSliderValue(corner4xSlider, corner4xDefault)
         }
 
@@ -562,7 +562,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: corner4ySlider
 
             minimumValue: -100
@@ -579,7 +579,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: setSliderValue(corner4ySlider, corner4yDefault)
         }
 
@@ -588,7 +588,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: stretchxSlider
 
             minimumValue: 0
@@ -599,11 +599,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(stretchxProperty, 1 - stretchxSlider.value / stretchxSlider.maximumValue, stretchxKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: stretchxSlider.value = stretchxDefault * stretchxSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: stretchxKeyframesButton
 
             onToggled: {
@@ -617,7 +617,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: stretchySlider
 
             minimumValue: 0
@@ -628,11 +628,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(stretchyProperty, 1 - stretchySlider.value / stretchySlider.maximumValue, stretchyKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: stretchySlider.value = stretchyDefault * stretchySlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: stretchyKeyframesButton
 
             onToggled: {
@@ -646,7 +646,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: interpolatorCombo
 
             implicitWidth: 180
@@ -658,7 +658,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: filter.set(interpolatorProperty, interpolatorDefault)
             Layout.columnSpan: 2
         }
@@ -668,7 +668,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: alphaoperationCombo
 
             implicitWidth: 180
@@ -681,7 +681,7 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             Layout.columnSpan: 2
             onClicked: {
                 alphaoperationCombo.currentIndex = filter.get(transparentProperty) === '1' ? Math.round(alphaoperationDefault * 4) + 1 : 0;
@@ -695,7 +695,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: featheralphaSlider
 
             enabled: alphaoperationCombo.currentIndex > 0
@@ -707,11 +707,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(featherProperty, featheralphaSlider.value / featheralphaSlider.maximumValue, featheralphaKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: featheralphaSlider.value = featheralphaDefault * featheralphaSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: featheralphaKeyframesButton
 
             onToggled: {
@@ -724,7 +724,7 @@ Shotcut.KeyframableFilter {
             width: 1
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             Layout.columnSpan: parent.columns - 1
             text: motionTrackerDialog.title
             onClicked: motionTrackerDialog.show()
@@ -735,7 +735,7 @@ Shotcut.KeyframableFilter {
         }
     }
 
-    Shotcut.MotionTrackerDialog {
+    Bossa.MotionTrackerDialog {
         id: motionTrackerDialog
         operationVisible: false
         onAccepted: (motionTrackerRow, operation, startFrame) => applyTracking(motionTrackerRow, startFrame)

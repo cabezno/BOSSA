@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Meltytech, LLC
+ * Copyright (c) 2023 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
 Item {
     property string rectProperty: 'rect'
@@ -95,7 +95,7 @@ Item {
         target: filter
     }
 
-    Shotcut.File {
+    Bossa.File {
         id: dasiamFile
         url: settings.appDataLocation + '/opencvmodels/dasiamrpn_model.onnx'
     }
@@ -110,7 +110,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: [rectProperty, 'algo']
@@ -143,7 +143,7 @@ Item {
         Label {
             text: qsTr('Position')
             Layout.alignment: Qt.AlignRight
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 id: positionTip
                 text: qsTr('Set the region of interest to track.')
             }
@@ -151,7 +151,7 @@ Item {
 
         RowLayout {
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectX
 
                 Layout.minimumWidth: 100
@@ -174,7 +174,7 @@ Item {
                 horizontalAlignment: Qt.AlignHCenter
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectY
 
                 Layout.minimumWidth: 100
@@ -192,7 +192,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 rectX.value = rectY.value = 0;
                 filterRect.x = filterRect.y = 0;
@@ -204,14 +204,14 @@ Item {
             text: qsTr('Size')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: positionTip.text
             }
         }
 
         RowLayout {
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectW
 
                 Layout.minimumWidth: 100
@@ -234,7 +234,7 @@ Item {
                 horizontalAlignment: Qt.AlignHCenter
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectH
 
                 Layout.minimumWidth: 100
@@ -252,7 +252,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 rectW.value = profile.width / 10;
                 rectH.value = profile.height / 10;
@@ -266,12 +266,12 @@ Item {
             Layout.alignment: Qt.AlignRight
             text: qsTr('Algorithm')
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Chooses the way (rules) the tracking is calculated.')
             }
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: algorithmCombo
 
             function updateFilter(index) {
@@ -330,7 +330,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 algorithmCombo.currentIndex = 0;
                 algorithmCombo.updateFilter(0);
@@ -349,7 +349,7 @@ Item {
                 onClicked: filter.set('shape_width', checked ? visibleShapeWidth() : 0)
             }
 
-            Shotcut.ColorPicker {
+            Bossa.ColorPicker {
                 id: colorPicker
 
                 property bool isReady: false
@@ -370,7 +370,7 @@ Item {
         RowLayout {
             Layout.columnSpan: 2
 
-            Shotcut.Button {
+            Bossa.Button {
                 id: button
 
                 text: qsTr('Analyze')

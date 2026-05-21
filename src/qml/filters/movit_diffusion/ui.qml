@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2022 Meltytech, LLC
+ * Copyright (c) 2014-2022 Bossa Project, LLC
  * Author: Dan Dennedy <dan@dennedy.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     width: 350
@@ -34,7 +34,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: radiusSlider
 
             minimumValue: 0
@@ -46,7 +46,7 @@ Item {
             onValueChanged: filter.set('radius', value / 100)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: radiusSlider.value = 300
         }
 
@@ -55,7 +55,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: mixSlider
 
             minimumValue: 0
@@ -65,7 +65,7 @@ Item {
             onValueChanged: filter.set('mix', value / 100)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: mixSlider.value = 30
         }
 

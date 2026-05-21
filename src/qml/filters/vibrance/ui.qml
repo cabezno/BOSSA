@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Meltytech, LLC
+ * Copyright (c) 2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property double intensityDefault: 0
     property double redBalanceDefault: 1
     property double greenBalanceDefault: 1
@@ -82,7 +82,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: presetItem
 
             Layout.columnSpan: 3
@@ -99,7 +99,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: intensitySlider
 
             minimumValue: -100
@@ -108,11 +108,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('av.intensity', value / 50, intensityKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: intensitySlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: intensityKeyframesButton
 
             onToggled: {
@@ -126,7 +126,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: redBalanceSlider
 
             minimumValue: -100
@@ -135,11 +135,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('av.rbal', value / 10, redBalanceKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: redBalanceSlider.value = 10
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: redBalanceKeyframesButton
 
             onToggled: {
@@ -153,7 +153,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: greenBalanceSlider
 
             minimumValue: -100
@@ -162,11 +162,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('av.gbal', value / 10, greenBalanceKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: greenBalanceSlider.value = 10
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: greenBalanceKeyframesButton
 
             onToggled: {
@@ -180,7 +180,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: blueBalanceSlider
 
             minimumValue: -100
@@ -189,11 +189,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('av.bbal', value / 10, blueBalanceKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: blueBalanceSlider.value = 10
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: blueBalanceKeyframesButton
 
             onToggled: {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Meltytech, LLC
+ * Copyright (c) 2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -187,8 +187,8 @@ void ScreenCaptureJob::start()
     args << "-colorspace"
          << "bt709";
     args << "-y" << m_filename;
-    QString shotcutPath = qApp->applicationDirPath();
-    QFileInfo ffmpegPath(shotcutPath, "ffmpeg");
+    QString bossaPath = qApp->applicationDirPath();
+    QFileInfo ffmpegPath(bossaPath, "ffmpeg");
     setReadChannel(QProcess::StandardError);
     LOG_DEBUG() << ffmpegPath.absoluteFilePath() + " " + args.join(' ');
     AbstractJob::start(ffmpegPath.absoluteFilePath(), args);

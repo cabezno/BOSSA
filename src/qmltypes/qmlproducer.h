@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2026 Meltytech, LLC
+ * Copyright (c) 2016-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 #ifndef QMLPRODUCER_H
 #define QMLPRODUCER_H
 
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 
 #include <MltProducer.h>
 #include <QByteArray>
@@ -60,7 +60,7 @@ public:
     }
     QString hash()
     {
-        return m_producer.is_valid() ? m_producer.get(kShotcutHashProperty) : QString();
+        return m_producer.is_valid() ? m_producer.get(kBossaHashProperty) : QString();
     }
     QString name();
     const QByteArray *audioLevels();

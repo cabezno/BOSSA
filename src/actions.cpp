@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2026 Meltytech, LLC
+ * Copyright (c) 2013-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,23 +23,23 @@
 #include <QAction>
 #include <QMenu>
 
-const char *ShotcutActions::hardKeyProperty = "_hardkey";
-const char *ShotcutActions::displayProperty = "_display";
-const char *ShotcutActions::defaultKey1Property = "_defaultKey1";
-const char *ShotcutActions::defaultKey2Property = "_defaultKey2";
-const char *ShotcutActions::defaultToolTipProperty = "_defaultToolTip";
+const char *BossaActions::hardKeyProperty = "_hardkey";
+const char *BossaActions::displayProperty = "_display";
+const char *BossaActions::defaultKey1Property = "_defaultKey1";
+const char *BossaActions::defaultKey2Property = "_defaultKey2";
+const char *BossaActions::defaultToolTipProperty = "_defaultToolTip";
 
-static QScopedPointer<ShotcutActions> instance;
+static QScopedPointer<BossaActions> instance;
 
-ShotcutActions &ShotcutActions::singleton()
+BossaActions &BossaActions::singleton()
 {
     if (!instance) {
-        instance.reset(new ShotcutActions());
+        instance.reset(new BossaActions());
     }
     return *instance;
 }
 
-void ShotcutActions::add(const QString &key, QAction *action, QString group)
+void BossaActions::add(const QString &key, QAction *action, QString group)
 {
     auto iterator = m_actions.find(key);
     if (iterator != m_actions.end() && iterator.value() != action) {
@@ -64,7 +64,7 @@ void ShotcutActions::add(const QString &key, QAction *action, QString group)
     m_actions[key] = action;
 }
 
-void ShotcutActions::loadFromMenu(QMenu *menu, QString group)
+void BossaActions::loadFromMenu(QMenu *menu, QString group)
 {
     if (!menu->title().isEmpty()) {
         if (!group.isEmpty())
@@ -93,7 +93,7 @@ void ShotcutActions::loadFromMenu(QMenu *menu, QString group)
     }
 }
 
-QAction *ShotcutActions::operator[](const QString &key)
+QAction *BossaActions::operator[](const QString &key)
 {
     auto iterator = m_actions.find(key);
     if (iterator != m_actions.end()) {
@@ -102,12 +102,12 @@ QAction *ShotcutActions::operator[](const QString &key)
     return nullptr;
 }
 
-QList<QString> ShotcutActions::keys()
+QList<QString> BossaActions::keys()
 {
     return m_actions.keys();
 }
 
-void ShotcutActions::overrideShortcuts(const QString &key, QList<QKeySequence> shortcuts)
+void BossaActions::overrideShortcuts(const QString &key, QList<QKeySequence> shortcuts)
 {
     QAction *action = m_actions[key];
     if (!action) {
@@ -141,10 +141,10 @@ void ShotcutActions::overrideShortcuts(const QString &key, QList<QKeySequence> s
     emit shortcutsChanged(action);
 }
 
-void ShotcutActions::initializeShortcuts()
+void BossaActions::initializeShortcuts()
 {
     // Call this function exactly once after all the actions have been
-    // added to the ShotcutActions object.
+    // added to the BossaActions object.
     for (auto action : m_actions) {
         QList<QKeySequence> shortcutSettings = Settings.shortcuts(action->objectName());
         if (!shortcutSettings.isEmpty())
@@ -153,7 +153,7 @@ void ShotcutActions::initializeShortcuts()
     }
 }
 
-void ShotcutActions::addShortcutToToolTip(QAction *action)
+void BossaActions::addShortcutToToolTip(QAction *action)
 {
     QString tooltip = action->property(defaultToolTipProperty).toString();
     QString shortcut = action->shortcut().toString(QKeySequence::NativeText);

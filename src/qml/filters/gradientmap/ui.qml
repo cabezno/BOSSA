@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Meltytech, LLC
+ * Copyright (c) 2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property var defaultParameters: ['stop.1', 'stop.2', 'stop.3', 'stop.4', 'stop.5', 'stop.6', 'stop.7', 'stop.8', 'stop.9', 'stop.10', 'stop.11']
@@ -199,7 +199,7 @@ Item {
                 }
             }
 
-            Shotcut.ColorDialog {
+            Bossa.ColorDialog {
                 id: colorDialog
 
                 title: qsTr("Color #%1").arg(stopIndex + 1)
@@ -207,7 +207,7 @@ Item {
                 onAccepted: _setStopColor(handleRect.stopIndex, String(selectedColor), getPosition())
             }
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Color: %1\nClick to select, drag to change position').arg(color)
             }
 
@@ -246,7 +246,7 @@ Item {
             text: qsTr('Preset')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
             parameters: defaultParameters
             Layout.columnSpan: 2
@@ -348,7 +348,7 @@ Item {
         RowLayout {
             Layout.columnSpan: 2
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: stopSpinner
 
                 Layout.minimumWidth: 50
@@ -367,7 +367,7 @@ Item {
                 text: qsTr('Position')
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: stopPosition
 
                 Layout.minimumWidth: 80

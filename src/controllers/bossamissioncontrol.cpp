@@ -6,7 +6,7 @@
 #include "jobs/ffmpegjob.h"
 #include "jobs/whisperjob.h"
 #include "models/multitrackmodel.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "jobqueue.h"
 #include "actions.h"
 #include <QVariantMap>

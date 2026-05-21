@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Meltytech, LLC
+ * Copyright (c) 2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ ScreenCaptureToolbar::ScreenCaptureToolbar(bool isRecordingMode, QWidget *parent
     m_windowButton->setStyleSheet(buttonStyle);
 
     // Create checkboxes
-    m_minimizeCheckbox = new QCheckBox(tr("Minimize Shotcut"), this);
+    m_minimizeCheckbox = new QCheckBox(tr("Minimize Bossa"), this);
     m_audioCheckbox = new QCheckBox(tr("Record Audio"), this);
 
     // Style checkboxes

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2026 Meltytech, LLC
+ * Copyright (c) 2012-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ MeltJob::MeltJob(const QString &name,
         action->setToolTip(tr("View the MLT XML for this job"));
         connect(action, SIGNAL(triggered()), this, SLOT(onViewXmlTriggered()));
         m_standardActions << action;
-        m_xml.reset(Util::writableTemporaryFile(name, "shotcut-XXXXXX.mlt"));
+        m_xml.reset(Util::writableTemporaryFile(name, "bossa-XXXXXX.mlt"));
         if (m_xml->open()) {
             m_xml->write(xml.toUtf8());
             m_xml->close();
@@ -58,7 +58,7 @@ MeltJob::MeltJob(const QString &name,
         // Not an EncodeJob
         QAction *action = new QAction(tr("Open"), this);
         action->setData("Open");
-        action->setToolTip(tr("Open the output file in the Shotcut player"));
+        action->setToolTip(tr("Open the output file in the Bossa player"));
         connect(action, SIGNAL(triggered()), this, SLOT(onOpenTiggered()));
         m_successActions << action;
 
@@ -121,11 +121,11 @@ void MeltJob::start()
         QTimer::singleShot(0, this, [=]() { emit finished(this, false); });
         return;
     }
-    QString shotcutPath = qApp->applicationDirPath();
+    QString bossaPath = qApp->applicationDirPath();
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
-    QFileInfo meltPath(shotcutPath, "melt-7");
+    QFileInfo meltPath(bossaPath, "melt-7");
 #else
-    QFileInfo meltPath(shotcutPath, "melt");
+    QFileInfo meltPath(bossaPath, "melt");
 #endif
     setReadChannel(QProcess::StandardError);
     QStringList args;

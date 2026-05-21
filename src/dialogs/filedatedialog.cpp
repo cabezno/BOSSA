@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 Meltytech, LLC
+ * Copyright (c) 2019-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #include "Logger.h"
 #include "mltcontroller.h"
 #include "proxymanager.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 
 #include <MltProducer.h>
 #include <QComboBox>

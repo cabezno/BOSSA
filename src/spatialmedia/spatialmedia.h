@@ -1,7 +1,7 @@
 /*****************************************************************************
  *
  * Copyright 2016 Varol Okan. All rights reserved.
- * Copyright (c) 2020 Meltytech, LLC
+ * Copyright (c) 2020 Bossa Project, LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

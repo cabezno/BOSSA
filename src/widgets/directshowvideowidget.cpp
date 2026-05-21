@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2022 Meltytech, LLC
+ * Copyright (c) 2014-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 #include "Logger.h"
 #include "mltcontroller.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <QDir>
@@ -163,7 +163,7 @@ Mlt::Producer *DirectShowVideoWidget::newProducer(Mlt::Profile &profile)
     }
     p->set("force_seekable", 0);
     p->set(kBackgroundCaptureProperty, 1);
-    p->set(kShotcutCaptionProperty, tr("Audio/Video Device").toUtf8().constData());
+    p->set(kBossaCaptionProperty, tr("Audio/Video Device").toUtf8().constData());
     if (ui->audioCombo->currentIndex() > 0) {
         Settings.setAudioInput(ui->audioCombo->currentData().toString());
     }

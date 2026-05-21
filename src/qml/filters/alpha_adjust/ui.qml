@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2023 Meltytech, LLC
+ * Copyright (c) 2015-2023 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ import QtQml.Models
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property string paramOperation: '2'
@@ -59,7 +59,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: modeCombo
 
             implicitWidth: 180
@@ -125,7 +125,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.set(paramOperation, operationModel.get(0).value);
                 modeCombo.currentIndex = 0;
@@ -137,7 +137,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderAmount
 
             enabled: operationModel.get(modeCombo.currentIndex).value !== -1
@@ -152,7 +152,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderAmount.value = 50
         }
 
@@ -165,7 +165,7 @@ Item {
             onCheckedChanged: filter.set(paramInvert, checked)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: invertCheckbox.checked = false
         }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2026 Meltytech, LLC
+ * Copyright (c) 2011-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -170,13 +170,13 @@ private:
     bool saveConvertedXmlFile(MltXmlChecker &checker, QString &fileName);
     bool saveRepairedXmlFile(MltXmlChecker &checker, QString &fileName);
     void setAudioChannels(int channels);
-    void setProcessingMode(ShotcutSettings::ProcessingMode mode);
+    void setProcessingMode(BossaSettings::ProcessingMode mode);
     void showSaveError();
     void setPreviewScale(int scale);
     void setVideoModeMenu();
     void resetVideoModeMenu();
     void resetDockCorners();
-    void showIncompatibleProjectMessage(const QString &shotcutVersion);
+    void showIncompatibleProjectMessage(const QString &bossaVersion);
     void restartAfterChangeTheme();
     void backup();
     void backupPeriodically();
@@ -266,7 +266,7 @@ public slots:
 
 private slots:
     void showUpgradePrompt();
-    void on_actionAbout_Shotcut_triggered();
+    void on_actionAbout_Bossa_triggered();
     void on_actionOpenOther_triggered();
     void onProducerChanged();
     bool on_actionSave_As_triggered();

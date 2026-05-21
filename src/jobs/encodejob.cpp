@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2025 Meltytech, LLC
+ * Copyright (c) 2012-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ EncodeJob::EncodeJob(const QString &name,
 {
     QAction *action = new QAction(tr("Open"), this);
     action->setData("Open");
-    action->setToolTip(tr("Open the output file in the Shotcut player"));
+    action->setToolTip(tr("Open the output file in the Bossa player"));
     connect(action, SIGNAL(triggered()), this, SLOT(onOpenTiggered()));
     m_successActions << action;
 
@@ -261,7 +261,7 @@ void EncodeJob::onEmbedChapters()
                 result = result.call(args);
                 if (!result.isError()) {
                     // Save the result with the export file name.
-                    auto tempFile = Util::writableTemporaryFile(filePath, "shotcut-XXXXXX.txt");
+                    auto tempFile = Util::writableTemporaryFile(filePath, "bossa-XXXXXX.txt");
                     tempFile->write(result.toString().toUtf8());
                     tempFile->close();
 

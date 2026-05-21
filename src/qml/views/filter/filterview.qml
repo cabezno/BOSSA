@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2026 Meltytech, LLC
+ * Copyright (c) 2014-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,13 +17,13 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
 Rectangle {
     id: root
 
-    property int selectedIndex: Shotcut.Filter.NoCurrentFilter
+    property int selectedIndex: Bossa.Filter.NoCurrentFilter
 
     signal currentFilterRequested(int attachedIndex)
     signal copyFilterRequested
@@ -177,7 +177,7 @@ Rectangle {
             }
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             id: addButton
 
             implicitWidth: height
@@ -190,51 +190,51 @@ Rectangle {
                     filterMenu.open();
             }
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Add a filter') + application.actionFirstShortcut('filtersAddFilterAction')
             }
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             id: removeButton
 
             implicitWidth: height
             icon.name: 'list-remove'
             icon.source: 'qrc:///icons/oxygen/32x32/actions/list-remove.png'
-            enabled: selectedIndex > Shotcut.Filter.NoCurrentFilter
+            enabled: selectedIndex > Bossa.Filter.NoCurrentFilter
             opacity: enabled ? 1 : 0.5
             onClicked: {
                 attachedfiltersmodel.remove(selectedIndex);
             }
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Remove selected filter') + application.actionFirstShortcut('filtersRemoveFilterAction')
             }
         }
 
         // separator
-        Shotcut.Button {
+        Bossa.Button {
             enabled: false
             implicitWidth: 1
             implicitHeight: 20
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             id: copyButton
 
             implicitWidth: height
             icon.name: 'edit-copy'
             icon.source: 'qrc:///icons/oxygen/32x32/actions/edit-copy.png'
-            enabled: selectedIndex > Shotcut.Filter.NoCurrentFilter
+            enabled: selectedIndex > Bossa.Filter.NoCurrentFilter
             opacity: enabled ? 1 : 0.5
             onClicked: root.copyFilterRequested()
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Copy filters') + application.actionFirstShortcut('filtersCopyFiltersAction')
             }
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             id: pasteButton
 
             implicitWidth: height
@@ -244,34 +244,34 @@ Rectangle {
             icon.source: 'qrc:///icons/oxygen/32x32/actions/edit-paste.png'
             onClicked: attachedfiltersmodel.pasteFilters()
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Paste filters') + application.actionFirstShortcut('filtersPasteFiltersAction')
             }
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             id: filterSetButton
 
             implicitWidth: height
             icon.name: 'server-database'
             icon.source: 'qrc:///icons/oxygen/32x32/places/server-database.png'
-            enabled: selectedIndex > Shotcut.Filter.NoCurrentFilter
+            enabled: selectedIndex > Bossa.Filter.NoCurrentFilter
             opacity: enabled ? 1 : 0.5
             onClicked: copyFiltersDialog.show()
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Save a filter set')
             }
         }
 
         // separator
-        Shotcut.Button {
+        Bossa.Button {
             enabled: false
             implicitWidth: 1
             implicitHeight: 20
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             id: moveUpButton
 
             implicitWidth: height
@@ -281,12 +281,12 @@ Rectangle {
             icon.source: 'qrc:///icons/oxygen/32x32/actions/lift.png'
             onClicked: attachedfiltersmodel.move(selectedIndex, --selectedIndex)
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Move filter up')
             }
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             id: moveDownButton
 
             implicitWidth: height
@@ -296,34 +296,34 @@ Rectangle {
             icon.source: 'qrc:///icons/oxygen/32x32/actions/overwrite.png'
             onClicked: attachedfiltersmodel.move(selectedIndex, ++selectedIndex)
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Move filter down')
             }
         }
 
         // separator
-        Shotcut.Button {
+        Bossa.Button {
             enabled: false
             implicitWidth: 1
             implicitHeight: 20
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             id: deselectButton
 
             implicitWidth: height
             icon.name: 'window-close'
             icon.source: 'qrc:///icons/oxygen/32x32/actions/window-close.png'
-            enabled: selectedIndex > Shotcut.Filter.NoCurrentFilter
+            enabled: selectedIndex > Bossa.Filter.NoCurrentFilter
             opacity: enabled ? 1 : 0.5
             onClicked: {
                 clearCurrentFilter();
-                attachedFilters.setCurrentFilter(Shotcut.Filter.DeselectCurrentFilter);
-                selectedIndex = Shotcut.Filter.NoCurrentFilter;
+                attachedFilters.setCurrentFilter(Bossa.Filter.DeselectCurrentFilter);
+                selectedIndex = Bossa.Filter.NoCurrentFilter;
                 filter.deselect();
             }
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Deselect the filter')
             }
         }
@@ -362,7 +362,7 @@ Rectangle {
             }
         }
 
-        ScrollBar.horizontal: Shotcut.HorizontalScrollBar {
+        ScrollBar.horizontal: Bossa.HorizontalScrollBar {
             policy: ScrollBar.AlwaysOn
             visible: filterConfigScrollView.contentWidth > filterConfigScrollView.width
             parent: filterConfigScrollView.parent
@@ -371,7 +371,7 @@ Rectangle {
             anchors.right: filterConfigScrollView.right
         }
 
-        ScrollBar.vertical: Shotcut.VerticalScrollBar {
+        ScrollBar.vertical: Bossa.VerticalScrollBar {
             policy: ScrollBar.AlwaysOn
             visible: filterConfigScrollView.contentHeight > filterConfigScrollView.height
             parent: filterConfigScrollView.parent

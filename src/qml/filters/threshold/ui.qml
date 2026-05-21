@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 Meltytech, LLC
+ * Copyright (c) 2019-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property string threshold: 'midpoint'
     property double thresholdDefault: 128
 
@@ -71,7 +71,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: [threshold, 'invert', 'use_alpha']
@@ -90,7 +90,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: thresholdSlider
 
             minimumValue: 0
@@ -101,11 +101,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(threshold, thresholdSlider.value / thresholdSlider.maximumValue * 255, thresholdKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: thresholdSlider.value = thresholdDefault / 255 * thresholdSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: thresholdKeyframesButton
 
             onToggled: {
@@ -125,7 +125,7 @@ Shotcut.KeyframableFilter {
             onCheckedChanged: filter.set('invert', checked)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: invertCheckbox.checked = false
         }
 
@@ -142,7 +142,7 @@ Shotcut.KeyframableFilter {
             onCheckedChanged: filter.set('use_alpha', checked)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: useAlphaCheckbox.checked = false
         }
 

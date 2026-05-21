@@ -1,5 +1,5 @@
 import QtQuick
-import org.shotcut.qml
+import org.bossa.qml
 
 Metadata {
     type: Metadata.Filter
@@ -10,7 +10,7 @@ Metadata {
     needsGPU: true
     qml: "ui.qml"
     icon: 'icon.webp'
-    help: 'https://forum.shotcut.org/t/opacity/12871/1'
+    help: 'https://forum.bossa.org/t/opacity/12871/1'
 
     keyframes {
         allowAnimateIn: true

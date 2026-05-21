@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Meltytech, LLC
+ * Copyright (c) 2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 #include <QDBusMessage>
 #include <QVariantMap>
 
-static const QLatin1String kDesktopFile("application://org.shotcut.Shotcut.desktop");
+static const QLatin1String kDesktopFile("application://org.bossa.Bossa.desktop");
 static const QLatin1String kDbusPath("/com/canonical/unity/launcherentry/1");
 static const QLatin1String kDbusInterface("com.canonical.Unity.LauncherEntry");
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2024 Meltytech, LLC
+ * Copyright (c) 2023-2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 #include "resourcemodel.h"
 
 #include "Logger.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <Mlt.h>

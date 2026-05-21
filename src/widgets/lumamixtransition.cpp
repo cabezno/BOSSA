@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2026 Meltytech, LLC
+ * Copyright (c) 2014-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -107,7 +107,7 @@ LumaMixTransition::LumaMixTransition(Mlt::Producer &producer, QWidget *parent)
     ui->horizontalLayout->addWidget(m_preview, 0, Qt::AlignCenter);
     connect(this, SIGNAL(modified()), this, SLOT(startPreview()), Qt::QueuedConnection);
     ui->getCustomLabel->setText(
-        QString::fromLatin1("<a href=\"https://shotcut.org/resources/#transitions\">%1</a>")
+        QString::fromLatin1("<a href=\"https://bossa.org/resources/#transitions\">%1</a>")
             .arg(ui->getCustomLabel->text()));
     updateDuration();
 }

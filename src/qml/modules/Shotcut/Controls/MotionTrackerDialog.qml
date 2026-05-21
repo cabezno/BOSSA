@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Meltytech, LLC
+ * Copyright (c) 2023 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
 Window {
     id: motionTrackerDialog
@@ -56,7 +56,7 @@ Window {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: motionTrackerCombo
 
             implicitContentWidthPolicy: ComboBox.WidestTextWhenCompleted
@@ -77,7 +77,7 @@ Window {
             visible: trackingOperationCombo.visible
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: trackingOperationCombo
 
             implicitContentWidthPolicy: ComboBox.WidestTextWhenCompleted
@@ -138,7 +138,7 @@ Window {
             Layout.alignment: Qt.AlignRight
             focus: true
 
-            Shotcut.Button {
+            Bossa.Button {
                 text: qsTr('Apply')
                 onClicked: {
                     motionTrackerDialog.hide();
@@ -150,7 +150,7 @@ Window {
                 }
             }
 
-            Shotcut.Button {
+            Bossa.Button {
                 text: qsTr('Reset')
                 onClicked: {
                     motionTrackerDialog.hide();
@@ -161,7 +161,7 @@ Window {
                 }
             }
 
-            Shotcut.Button {
+            Bossa.Button {
                 text: qsTr('Cancel')
                 onClicked: motionTrackerDialog.hide()
             }

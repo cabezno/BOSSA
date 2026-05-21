@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2018 Meltytech, LLC
+ * Copyright (c) 2012-2018 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 #include "isingwidget.h"
 #include "ui_isingwidget.h"
 
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 static const char *kParamTemperature = "0";
@@ -88,8 +88,8 @@ Mlt::Producer *IsingWidget::newProducer(Mlt::Profile &profile)
     p->set(kParamTemperature, ui->tempSpinner->text().toLatin1().constData());
     p->set(kParamBorderGrowth, ui->borderGrowthSpinner->text().toLatin1().constData());
     p->set(kParamSpontaneous, ui->spontGrowthSpinner->text().toLatin1().constData());
-    p->set(kShotcutCaptionProperty, ui->nameLabel->text().toUtf8().constData());
-    p->set(kShotcutDetailProperty, ui->nameLabel->text().toUtf8().constData());
+    p->set(kBossaCaptionProperty, ui->nameLabel->text().toUtf8().constData());
+    p->set(kBossaDetailProperty, ui->nameLabel->text().toUtf8().constData());
     return p;
 }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2026 Meltytech, LLC
+ * Copyright (c) 2011-2026 Bossa Project, LLC
  *
  * Some GL shader based on BSD licensed code from Peter Bengtsson:
  * http://www.fourcc.org/source/YUV420P-OpenGL-GLSLang.c

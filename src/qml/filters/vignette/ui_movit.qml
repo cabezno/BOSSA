@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2022 Meltytech, LLC
+ * Copyright (c) 2014-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property var defaultParameters: ['radius', 'inner_radius']
@@ -128,7 +128,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             Layout.columnSpan: 3
@@ -148,7 +148,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: radiusSlider
 
             minimumValue: 0
@@ -157,11 +157,11 @@ Item {
             onValueChanged: updateFilter('radius', value / 100, getPosition(), radiusKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: radiusSlider.value = 50
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: radiusKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, 'radius', radiusSlider.value / 100)
@@ -172,7 +172,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: innerSlider
 
             minimumValue: 0
@@ -181,11 +181,11 @@ Item {
             onValueChanged: updateFilter('inner_radius', value / 100, getPosition(), innerKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: innerSlider.value = 50
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: innerKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, 'inner_radius', innerSlider.value / 100)

@@ -6748,7 +6748,7 @@ function base64DetectIncompleteChar(buffer) {
 
 },{"buffer":7}]},{},[1]);
 /*
- * MltXmlParser class Copyright (c) 2016-2021 Meltytech, LLC
+ * MltXmlParser class Copyright (c) 2016-2021 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

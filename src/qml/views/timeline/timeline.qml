@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2026 Meltytech, LLC
+ * Copyright (c) 2013-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,8 @@ import QtQuick.Controls
 import QtQuick.Dialogs
 import QtQuick.Layouts
 import QtQuick.Window
-import org.shotcut.qml as Shotcut
-import Shotcut.Controls as Shotcut
+import org.bossa.qml as Bossa
+import Bossa.Controls as Bossa
 import "Timeline.js" as Logic
 
 Rectangle {
@@ -29,7 +29,7 @@ Rectangle {
     property color selectedTrackColor: "#e040fb33" // Magenta transparente
     property alias trackCount: tracksRepeater.count
     property bool stopScrolling: false
-    property color shotcutBlue: "#00e5ff" // Bossa/Soda Cyan
+    property color bossaBlue: "#00e5ff" // Bossa/Soda Cyan
     property var dragDelta
 
     signal clipClicked
@@ -53,7 +53,7 @@ Rectangle {
         let playheadVisualX = timeline.position * before - tracksFlickable.contentX;
         let playheadWasVisible = playheadVisualX >= 0 && playheadVisualX <= tracksFlickable.width;
         multitrack.scaleFactor = Math.pow(Math.max(value, 0), 3) + 0.01;
-        if (settings.timelineScrolling !== Shotcut.Settings.CenterPlayhead) {
+        if (settings.timelineScrolling !== Bossa.Settings.CenterPlayhead) {
             if (settings.timelineScrollZoom) {
                 if (playheadWasVisible)
                     tracksFlickable.contentX = Math.max(timeline.position * multitrack.scaleFactor - playheadVisualX, 0);
@@ -183,7 +183,7 @@ Rectangle {
 
                 width: headerWidth
                 height: rulerFlickable.height
-                color: selected ? shotcutBlue : activePalette.window
+                color: selected ? bossaBlue : activePalette.window
                 border.color: selected ? 'red' : 'transparent'
                 border.width: selected ? 1 : 0
                 visible: trackHeaderRepeater.count
@@ -219,7 +219,7 @@ Rectangle {
                         timeline.filteredClicked();
                     }
 
-                    Shotcut.HoverTip {
+                    Bossa.HoverTip {
                         text: qsTr('Filters')
                     }
 
@@ -522,7 +522,7 @@ Rectangle {
                     width: root.width - headerWidth
                     height: ruler.height + subtitleBar.height
                     interactive: false
-                    // workaround to fix https://github.com/mltframework/shotcut/issues/777
+                    // workaround to fix https://github.com/mltframework/bossa/issues/777
                     onContentXChanged: {
                         if (contentX === 0)
                             contentX = tracksFlickable.contentX;
@@ -556,7 +556,7 @@ Rectangle {
                     width: root.width - headerWidth - 16
                     height: root.height - rulerFlickable.height - 16
                     clip: true
-                    // workaround to fix https://github.com/mltframework/shotcut/issues/777
+                    // workaround to fix https://github.com/mltframework/bossa/issues/777
                     onContentXChanged: rulerFlickable.contentX = contentX
                     interactive: false
                     contentWidth: tracksContainer.width + headerWidth
@@ -636,7 +636,7 @@ Rectangle {
                         y: 0
                     }
 
-                    ScrollBar.horizontal: Shotcut.HorizontalScrollBar {
+                    ScrollBar.horizontal: Bossa.HorizontalScrollBar {
                         id: horizontalScrollBar
 
                         policy: ScrollBar.AlwaysOn
@@ -647,7 +647,7 @@ Rectangle {
                         anchors.right: tracksFlickable.right
                     }
 
-                    ScrollBar.vertical: Shotcut.VerticalScrollBar {
+                    ScrollBar.vertical: Bossa.VerticalScrollBar {
                         policy: ScrollBar.AlwaysOn
                         visible: tracksFlickable.contentHeight > tracksFlickable.height
                         parent: tracksFlickable.parent
@@ -696,7 +696,7 @@ Rectangle {
                 y: 0
             }
 
-            Shotcut.TimelinePlayhead {
+            Bossa.TimelinePlayhead {
                 id: playhead
 
                 visible: timeline.position > -1
@@ -901,9 +901,9 @@ Rectangle {
 
     Connections {
         function onPositionChanged() {
-            if (!stopScrolling && settings.timelineScrolling !== Shotcut.Settings.NoScrolling) {
-                let smooth = settings.timelineScrolling === Shotcut.Settings.SmoothScrolling || scrubMouseArea.containsPress || scrubMouseArea.skim;
-                Logic.scrollIfNeeded(settings.timelineScrolling === Shotcut.Settings.CenterPlayhead, smooth);
+            if (!stopScrolling && settings.timelineScrolling !== Bossa.Settings.NoScrolling) {
+                let smooth = settings.timelineScrolling === Bossa.Settings.SmoothScrolling || scrubMouseArea.containsPress || scrubMouseArea.skim;
+                Logic.scrollIfNeeded(settings.timelineScrolling === Bossa.Settings.CenterPlayhead, smooth);
             }
         }
 
@@ -998,7 +998,7 @@ Rectangle {
 
     Connections {
         function onScaleFactorChanged() {
-            if (settings.timelineScrolling === Shotcut.Settings.CenterPlayhead)
+            if (settings.timelineScrolling === Bossa.Settings.CenterPlayhead)
                 Logic.scrollIfNeeded(true);
         }
 

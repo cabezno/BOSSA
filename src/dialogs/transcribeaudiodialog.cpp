@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024-2025 Meltytech, LLC
+ * Copyright (c) 2024-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 #include "mainwindow.h"
 #include "models/extensionmodel.h"
 #include "qmltypes/qmlapplication.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <MltProducer.h>
@@ -44,7 +44,7 @@
 #include <QTreeView>
 
 static const QString WHISPER_MODEL_EXTENSION_URL = QStringLiteral(
-    "https://check.shotcut.org/whispermodel.qml");
+    "https://check.bossa.org/whispermodel.qml");
 
 // List of supported languages from whispercpp
 static const std::vector<const char *> whisperLanguages = {

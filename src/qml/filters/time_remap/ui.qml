@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2024 Meltytech, LLC
+ * Copyright (c) 2020-2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property bool blockUpdate: true
@@ -211,7 +211,7 @@ Item {
             anchors.fill: parent
             anchors.margins: 8
 
-            Shotcut.SliderSpinner {
+            Bossa.SliderSpinner {
                 id: speedSlider
 
                 Layout.bottomMargin: 8
@@ -224,7 +224,7 @@ Item {
                 suffix: "x"
             }
 
-            Shotcut.ComboBox {
+            Bossa.ComboBox {
                 id: lockCombo
 
                 function getLock() {
@@ -261,7 +261,7 @@ Item {
                 Layout.alignment: Qt.AlignRight
                 focus: true
 
-                Shotcut.Button {
+                Bossa.Button {
                     text: qsTr('OK')
                     onClicked: {
                         speedDialog.close();
@@ -269,7 +269,7 @@ Item {
                     }
                 }
 
-                Shotcut.Button {
+                Bossa.Button {
                     text: qsTr('Cancel')
                     onClicked: speedDialog.close()
                 }
@@ -291,7 +291,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             Layout.columnSpan: parent.columns - 1
@@ -309,13 +309,13 @@ Item {
             text: qsTr('Time')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Map the specified input time to the current time. Use keyframes to vary the time mappings over time.')
             }
         }
 
         Row {
-            Shotcut.TimeSpinner {
+            Bossa.TimeSpinner {
                 id: mapSpinner
 
                 minimumValue: 0
@@ -330,7 +330,7 @@ Item {
                 }
             }
 
-            Shotcut.Button {
+            Bossa.Button {
                 anchors.verticalCenter: parent.verticalCenter
                 icon.name: 'format-indent-less'
                 icon.source: 'qrc:///icons/oxygen/32x32/actions/format-indent-less.png'
@@ -341,12 +341,12 @@ Item {
                     speedDialog.show();
                 }
 
-                Shotcut.HoverTip {
+                Bossa.HoverTip {
                     text: qsTr('Set the input time to achieve a desired speed before the current frame.')
                 }
             }
 
-            Shotcut.Button {
+            Bossa.Button {
                 anchors.verticalCenter: parent.verticalCenter
                 icon.name: 'format-indent-more'
                 icon.source: 'qrc:///icons/oxygen/32x32/actions/format-indent-more.png'
@@ -357,13 +357,13 @@ Item {
                     speedDialog.show();
                 }
 
-                Shotcut.HoverTip {
+                Bossa.HoverTip {
                     text: qsTr('Set the input time to achieve a desired speed after the current frame.')
                 }
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.blockSignals = true;
                 filter.resetProperty('map');
@@ -379,12 +379,12 @@ Item {
             text: qsTr('Image mode')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Use the specified image selection mode. Nearest will output the image that is nearest to the mapped time. Blend will blend all images that occur during the mapped time.')
             }
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: modeCombo
 
             Layout.columnSpan: parent.columns - 2
@@ -411,7 +411,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: modeCombo.currentIndex = 0
         }
 
@@ -429,7 +429,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: pitchCheckbox.checked = false
         }
 
@@ -452,7 +452,7 @@ Item {
             text: qsTr('Speed:')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The instantaneous speed of the last frame that was processed.')
             }
         }
@@ -467,7 +467,7 @@ Item {
             text: qsTr('Direction:')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The instantaneous direction of the last frame that was processed.')
             }
         }
@@ -482,7 +482,7 @@ Item {
             text: qsTr('Input Time:')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The original clip time of the frame.')
             }
         }
@@ -497,7 +497,7 @@ Item {
             text: qsTr('Output Time:')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The mapped output time for the input frame.')
             }
         }

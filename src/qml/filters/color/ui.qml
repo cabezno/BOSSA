@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2025 Meltytech, LLC
+ * Copyright (c) 2014-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property var defaultParameters: ['lift_r', 'lift_g', 'lift_b', 'gamma_r', 'gamma_g', 'gamma_b', 'gain_r', 'gain_g', 'gain_b']
@@ -178,7 +178,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             Layout.columnSpan: 8
             parameters: defaultParameters
             onBeforePresetLoaded: {
@@ -203,7 +203,7 @@ Item {
             text: qsTr('Shadows (Lift)')
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             Layout.alignment: Qt.AlignRight
             onClicked: {
                 // Force a color change to make sure the color wheel is updated.
@@ -214,7 +214,7 @@ Item {
             }
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: liftKeyframesButton
 
             Layout.alignment: Qt.AlignLeft
@@ -241,7 +241,7 @@ Item {
             text: qsTr('Midtones (Gamma)')
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             Layout.alignment: Qt.AlignRight
             onClicked: {
                 // Force a color change to make sure the color wheel is updated.
@@ -252,7 +252,7 @@ Item {
             }
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: gammaKeyframesButton
 
             Layout.alignment: Qt.AlignLeft
@@ -279,7 +279,7 @@ Item {
             text: qsTr('Highlights (Gain)')
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             Layout.alignment: Qt.AlignRight
             onClicked: {
                 // Force a color change to make sure the color wheel is updated.
@@ -290,7 +290,7 @@ Item {
             }
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: gainKeyframesButton
 
             Layout.alignment: Qt.AlignLeft
@@ -313,7 +313,7 @@ Item {
         }
 
         // Row 3
-        Shotcut.ColorWheelItem {
+        Bossa.ColorWheelItem {
             id: liftwheel
 
             Layout.columnSpan: 3
@@ -350,7 +350,7 @@ Item {
             }
         }
 
-        Shotcut.ColorWheelItem {
+        Bossa.ColorWheelItem {
             id: gammawheel
 
             Layout.columnSpan: 3
@@ -387,7 +387,7 @@ Item {
             }
         }
 
-        Shotcut.ColorWheelItem {
+        Bossa.ColorWheelItem {
             id: gainwheel
 
             Layout.columnSpan: 3
@@ -433,7 +433,7 @@ Item {
                 text: 'R'
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: liftRedSpinner
 
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -458,7 +458,7 @@ Item {
                 text: 'R'
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: gammaRedSpinner
 
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -483,7 +483,7 @@ Item {
                 text: 'R'
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: gainRedSpinner
 
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -509,7 +509,7 @@ Item {
                 text: 'G'
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: liftGreenSpinner
 
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -534,7 +534,7 @@ Item {
                 text: 'G'
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: gammaGreenSpinner
 
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -559,7 +559,7 @@ Item {
                 text: 'G'
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: gainGreenSpinner
 
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -585,7 +585,7 @@ Item {
                 text: 'B'
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: liftBlueSpinner
 
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -610,7 +610,7 @@ Item {
                 text: 'B'
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: gammaBlueSpinner
 
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -635,7 +635,7 @@ Item {
                 text: 'B'
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: gainBlueSpinner
 
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter

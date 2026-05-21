@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2024 Meltytech, LLC
+ * Copyright (c) 2013-2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 RowLayout {
     property var parameters: []
@@ -31,7 +31,7 @@ RowLayout {
         filter.loadPresets();
     }
 
-    Shotcut.ComboBox {
+    Bossa.ComboBox {
         id: presetCombo
 
         Layout.fillWidth: true
@@ -60,7 +60,7 @@ RowLayout {
         }
     }
 
-    Shotcut.Button {
+    Bossa.Button {
         id: saveButton
 
         icon.name: 'list-add'
@@ -69,12 +69,12 @@ RowLayout {
         implicitHeight: 20
         onClicked: nameDialog.show()
 
-        Shotcut.HoverTip {
+        Bossa.HoverTip {
             text: qsTr('Save')
         }
     }
 
-    Shotcut.Button {
+    Bossa.Button {
         id: deleteButton
 
         icon.name: 'list-remove'
@@ -83,7 +83,7 @@ RowLayout {
         implicitHeight: 20
         onClicked: confirmDialog.show()
 
-        Shotcut.HoverTip {
+        Bossa.HoverTip {
             text: qsTr('Delete')
         }
     }
@@ -143,12 +143,12 @@ RowLayout {
                 Layout.alignment: Qt.AlignRight
                 focus: true
 
-                Shotcut.Button {
+                Bossa.Button {
                     text: qsTr('OK')
                     onClicked: nameDialog.acceptName()
                 }
 
-                Shotcut.Button {
+                Bossa.Button {
                     text: qsTr('Cancel')
                     onClicked: nameDialog.close()
                 }
@@ -179,7 +179,7 @@ RowLayout {
             RowLayout {
                 Layout.alignment: Qt.AlignRight
 
-                Shotcut.Button {
+                Bossa.Button {
                     id: confirmDialogOk
 
                     text: qsTr('OK')
@@ -193,7 +193,7 @@ RowLayout {
                     }
                 }
 
-                Shotcut.Button {
+                Bossa.Button {
                     text: qsTr('Cancel')
                     onClicked: confirmDialog.close()
                 }

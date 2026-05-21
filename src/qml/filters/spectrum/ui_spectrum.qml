@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017-2022 Meltytech, LLC
+ * Copyright (c) 2017-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property string rectProperty: "rect"
@@ -104,7 +104,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: defaultParameters
@@ -121,7 +121,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: typeCombo
 
             property var values: ['line', 'bar', 'segment']
@@ -150,7 +150,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.GradientControl {
+        Bossa.GradientControl {
             id: fgGradient
 
             Layout.columnSpan: 4
@@ -166,7 +166,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ColorPicker {
+        Bossa.ColorPicker {
             id: bgColor
 
             Layout.columnSpan: 4
@@ -180,7 +180,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: thicknessSlider
 
             Layout.columnSpan: 3
@@ -191,7 +191,7 @@ Item {
             onValueChanged: filter.set("thickness", value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: thicknessSlider.value = 1
         }
 
@@ -203,7 +203,7 @@ Item {
         RowLayout {
             Layout.columnSpan: 4
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectX
 
                 value: filterRect.x
@@ -225,7 +225,7 @@ Item {
                 horizontalAlignment: Qt.AlignHCenter
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectY
 
                 value: filterRect.y
@@ -250,7 +250,7 @@ Item {
         RowLayout {
             Layout.columnSpan: 4
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectW
 
                 value: filterRect.width
@@ -272,7 +272,7 @@ Item {
                 horizontalAlignment: Qt.AlignHCenter
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectH
 
                 value: filterRect.height
@@ -330,7 +330,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: tensionSlider
 
             Layout.columnSpan: 3
@@ -340,7 +340,7 @@ Item {
             onValueChanged: filter.set("tension", value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: tensionSlider.value = 0.4
         }
 
@@ -349,7 +349,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: segmentsSlider
 
             Layout.columnSpan: 3
@@ -358,12 +358,12 @@ Item {
             decimals: 0
             onValueChanged: filter.set("segments", value)
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: 'The number of segments in the segment graph'
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: segmentGapSlider.value = 8
         }
 
@@ -372,7 +372,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: segmentGapSlider
 
             Layout.columnSpan: 3
@@ -381,12 +381,12 @@ Item {
             decimals: 0
             onValueChanged: filter.set("segment_gap", value)
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: 'Space between segments in the segment graph (in pixels)'
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: segmentGapSlider.value = 8
         }
 
@@ -395,7 +395,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: bandsSlider
 
             Layout.columnSpan: 3
@@ -405,7 +405,7 @@ Item {
             onValueChanged: filter.set("bands", value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: bandsSlider.value = 31
         }
 
@@ -413,12 +413,12 @@ Item {
             text: qsTr('Low Frequency')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The low end of the frequency range of the spectrum.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: freqLowSlider
 
             Layout.columnSpan: 3
@@ -433,7 +433,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: freqLowSlider.value = 20
         }
 
@@ -441,12 +441,12 @@ Item {
             text: qsTr('High Frequency')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The high end of the frequency range of the spectrum.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: freqHighSlider
 
             Layout.columnSpan: 3
@@ -461,7 +461,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: freqHighSlider.value = 20000
         }
 
@@ -470,7 +470,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: thresholdSlider
 
             Layout.columnSpan: 3
@@ -481,7 +481,7 @@ Item {
             onValueChanged: filter.set("threshold", value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: thresholdSlider.value = -60
         }
 

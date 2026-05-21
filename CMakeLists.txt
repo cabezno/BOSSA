@@ -6,8 +6,8 @@ endif()
 
 if(NOT DEFINED SHOTCUT_VERSION)
   string(TIMESTAMP SHOTCUT_VERSION "%y.%m.%d")
-  # Remove leading zeros from each digit group
-  string(REGEX REPLACE "0*([0-9]+)" "\\1" SHOTCUT_VERSION "${SHOTCUT_VERSION}")
+  # Remove leading zero from month and day.
+  string(REGEX REPLACE "\\.0([0-9])" ".\\1" SHOTCUT_VERSION ${SHOTCUT_VERSION})
 endif()
 
 project(bossa
@@ -17,81 +17,33 @@ project(bossa
   LANGUAGES CXX
 )
 
-if(WIN32)
-  option(WINDOWS_DEPLOY "Install exes/libs directly to prefix (no subdir /bin)" ON)
-endif()
-option(CLANG_FORMAT "Enable Clang Format" ON)
-option(EXTERNAL_LAUNCHERS "Whether include features to launch external programs; for example, this should be off for Flatpak due to sandbox." ON)
-option(USE_VULKAN "Whether to use Vulkan for hardware video decoding" OFF)
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(FeatureSummary)
 
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-find_package(Qt6 6.4 REQUIRED
-  COMPONENTS
-  Charts
-  Multimedia
-  Network
-  OpenGL
-  OpenGLWidgets
-  QuickControls2
-  QuickWidgets
-  Sql
-  WebSockets
-  Widgets
-  Xml
-)
-if(UNIX AND NOT APPLE)
-  find_package(Qt6 6.4 REQUIRED COMPONENTS DBus)
-  # X11 for WindowPicker (Linux/X11)
-  find_package(X11 REQUIRED)
-endif()
-
+find_package(Qt6 REQUIRED COMPONENTS Widgets Quick QuickWidgets Xml Sql Network Multimedia OpenGL OpenGLWidgets Charts WebSockets Lsecs)
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(mlt++ REQUIRED IMPORTED_TARGET mlt++-7>=7.36.0)
-pkg_check_modules(FFTW IMPORTED_TARGET fftw3)
-if(NOT FFTW_FOUND)
-  pkg_check_modules(FFTW REQUIRED IMPORTED_TARGET fftw)
-endif()
+pkg_check_modules(mlt++ REQUIRED mlt++)
+pkg_check_modules(FFTW REQUIRED fftw3)
 
 add_subdirectory(CuteLogger)
 add_subdirectory(src)
 add_subdirectory(translations)
 
-feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
-
-add_custom_target(codespell COMMAND
-  cd "${CMAKE_SOURCE_DIR}" &&
-  codespell -w -q 3
-  -L shotcut,uint,seeked,really,prevent
-  -S export-chapters.js,export-edl.js,CuteLogger,drmingw,node_modules,moc_*,index.theme,*.ts,three.min.js,three.js,jquery.js,rangy-*.js,Makefile,shotcut.pro,*.desktop
-)
-
+# Formatting
+find_program(CLANG_FORMAT "clang-format")
 if(CLANG_FORMAT)
-  # Formatting may change with different versions of clang-format.
-  # Test new versions before changing the allowed version here to avoid
-  # accidental broad changes to formatting.
-  find_package(ClangFormat 14 EXACT)
-  if(CLANGFORMAT_FOUND)
-    file(GLOB_RECURSE FORMAT_FILES "src/*.h" "src/*.c" "src/*.cpp")
-    # exclude 3rd party & generated source from format checking
-    list(FILTER FORMAT_FILES EXCLUDE REGEX "/.*/spatialmedia/")
-    list(FILTER FORMAT_FILES EXCLUDE REGEX "/.*/defaultlayouts.h")
-    list(FILTER FORMAT_FILES EXCLUDE REGEX "/.*/*_autogen/")
-    add_custom_target(clang-format COMMAND
-      ${CLANGFORMAT_EXECUTABLE} -style=file -i ${FORMAT_FILES}
+  file(GLOB_RECURSE FORMAT_FILES
+    "src/*.cpp" "src/*.h"
+    "CuteLogger/src/*.cpp" "CuteLogger/include/*.h"
+  )
+  if(FORMAT_FILES)
+    add_custom_target(format
+      COMMAND ${CLANG_FORMAT} -style=file -i ${FORMAT_FILES}
     )
-    add_custom_target(clang-format-check COMMAND
-      ${CLANGFORMAT_EXECUTABLE} --dry-run --Werror -style=file -i ${FORMAT_FILES}
+    add_custom_target(format-check
+      COMMAND ${CLANG_FORMAT} --Werror -style=file -i ${FORMAT_FILES}
     )
   else()
     set(CLANG_FORMAT OFF)

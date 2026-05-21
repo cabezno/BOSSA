@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2025 Meltytech, LLC
+ * Copyright (c) 2013-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,8 @@
 #ifndef SHOTCUT_MLT_PROPERTIES_H
 #define SHOTCUT_MLT_PROPERTIES_H
 
-/* This file contains all of the Shotcut-specific MLT properties.
- * See also https://www.shotcut.org/notes/mltxml-annotations/
+/* This file contains all of the Bossa-specific MLT properties.
+ * See also https://www.bossa.org/notes/mltxml-annotations/
  *
  * A property should be prefaced with an underscore if it will not be saved
  * in the XML even if it never has a chance of getting into there. This makes
@@ -28,32 +28,32 @@
 
 /* MLT XML annotations */
 
-#define kShotcutXmlProperty "shotcut"
+#define kBossaXmlProperty "bossa"
 #define kAudioTrackProperty "shotcut:audio"
 #define kCommentProperty "shotcut:comment"
-#define kShotcutFilterProperty "shotcut:filter"
-#define kShotcutPlaylistProperty "shotcut:playlist"
-#define kShotcutTransitionProperty "shotcut:transition"
-#define kShotcutProducerProperty "shotcut:producer"
-#define kShotcutVirtualClip "shotcut:virtual"
+#define kBossaFilterProperty "shotcut:filter"
+#define kBossaPlaylistProperty "shotcut:playlist"
+#define kBossaTransitionProperty "shotcut:transition"
+#define kBossaProducerProperty "shotcut:producer"
+#define kBossaVirtualClip "shotcut:virtual"
 #define kTimelineScaleProperty "shotcut:scaleFactor"
 #define kTrackHeightProperty "shotcut:trackHeight"
 #define kTrackHeaderWidthProperty "shotcut:trackHeaderWidth"
 #define kTrackNameProperty "shotcut:name"
 #define kTrackLockProperty "shotcut:lock"
 #define kVideoTrackProperty "shotcut:video"
-#define kShotcutCaptionProperty "shotcut:caption"
-#define kShotcutDetailProperty "shotcut:detail"
-#define kShotcutHashProperty "shotcut:hash"
-#define kShotcutHiddenProperty "shotcut:hidden"
-#define kShotcutSkipConvertProperty "shotcut:skipConvert"
-#define kShotcutAnimInProperty "shotcut:animIn"
-#define kShotcutAnimOutProperty "shotcut:animOut"
-#define kShotcutMarkersProperty "shotcut:markers"
-#define kShotcutGroupProperty "shotcut:group"
-// Shotcut's VUI (video user interface) components set this so that glwidget can
+#define kBossaCaptionProperty "shotcut:caption"
+#define kBossaDetailProperty "shotcut:detail"
+#define kBossaHashProperty "shotcut:hash"
+#define kBossaHiddenProperty "shotcut:hidden"
+#define kBossaSkipConvertProperty "shotcut:skipConvert"
+#define kBossaAnimInProperty "shotcut:animIn"
+#define kBossaAnimOutProperty "shotcut:animOut"
+#define kBossaMarkersProperty "shotcut:markers"
+#define kBossaGroupProperty "shotcut:group"
+// Bossa's VUI (video user interface) components set this so that glwidget can
 // hide the VUI when the play head is not over the clip with the current filter.
-#define kShotcutVuiMetaProperty "meta.shotcut.vui"
+#define kBossaVuiMetaProperty "meta.shotcut.vui"
 #define kDefaultAudioIndexProperty "shotcut:defaultAudioIndex"
 #define kOriginalResourceProperty "shotcut:resource"
 #define kOriginalInProperty "shotcut:originalIn"
@@ -63,22 +63,22 @@
 // "shotcut:proxy" is internal only because older versions do not know to hide it.
 // "shotcut:metaProxy" indicates whether the "meta." properties reflect source or proxy.
 #define kMetaProxyProperty "shotcut:proxy.meta"
-#define kShotcutBinsProperty "shotcut:bins"
+#define kBossaBinsProperty "shotcut:bins"
 
 /* Project specific properties */
-#define kShotcutProjectAudioChannels "shotcut:projectAudioChannels"
-#define kShotcutProjectFolder "shotcut:projectFolder"
-#define kShotcutProjectNote "shotcut:projectNote"
-#define kShotcutProjectProcessingMode "shotcut:processingMode"
+#define kBossaProjectAudioChannels "shotcut:projectAudioChannels"
+#define kBossaProjectFolder "shotcut:projectFolder"
+#define kBossaProjectNote "shotcut:projectNote"
+#define kBossaProjectProcessingMode "shotcut:processingMode"
 
 /* Ideally all shotcut properties should begin with "shotcut:", but these
  * do not and kept for legacy reasons? */
 
 #define kAspectRatioNumerator "shotcut_aspect_num"
 #define kAspectRatioDenominator "shotcut_aspect_den"
-#define kShotcutSequenceProperty "shotcut_sequence"
+#define kBossaSequenceProperty "shotcut_sequence"
 
-/* Special object Ids expected by Shotcut and used in XML */
+/* Special object Ids expected by Bossa and used in XML */
 
 #define kBackgroundTrackId "background"
 #define kLegacyPlaylistTrackId "main bin"
@@ -100,7 +100,7 @@
 #define kTrackIndexProperty "_shotcut:trackIndex"
 #define kFilterIndexProperty "_shotcut:filterIndex"
 #define kNewFilterProperty "_shotcut:newFilter"
-#define kShotcutFiltersClipboard "shotcut:filtersClipboard"
+#define kBossaFiltersClipboard "shotcut:filtersClipboard"
 #define kIsProxyProperty "shotcut:proxy"
 #define kPrivateProducerProperty "_shotcut:producer"
 #define kNewFrameOutProperty "_shotcut:newFrameOut"

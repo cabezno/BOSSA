@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Meltytech, LLC
+ * Copyright (c) 2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 RowLayout {
     property string channelMaskProperty: 'channel_mask'
@@ -41,31 +41,31 @@ RowLayout {
 
     spacing: 10
 
-    Shotcut.ToggleButton {
+    Bossa.ToggleButton {
         id: leftToggle
 
         text: qsTr('L', 'Left audio channel')
         implicitWidth: 22
         onClicked: updateChannelMask(0)
 
-        Shotcut.HoverTip {
+        Bossa.HoverTip {
             text: qsTr('Left')
         }
     }
 
-    Shotcut.ToggleButton {
+    Bossa.ToggleButton {
         id: rightToggle
 
         text: qsTr('R', 'Right audio channel')
         implicitWidth: 22
         onClicked: updateChannelMask(1)
 
-        Shotcut.HoverTip {
+        Bossa.HoverTip {
             text: qsTr('Right')
         }
     }
 
-    Shotcut.ToggleButton {
+    Bossa.ToggleButton {
         id: centerToggle
 
         text: qsTr('C', 'Center audio channel')
@@ -73,12 +73,12 @@ RowLayout {
         implicitWidth: 22
         onClicked: updateChannelMask(2)
 
-        Shotcut.HoverTip {
+        Bossa.HoverTip {
             text: qsTr('Center')
         }
     }
 
-    Shotcut.ToggleButton {
+    Bossa.ToggleButton {
         id: lfToggle
 
         text: qsTr('LF', 'Low Frequency audio channel')
@@ -86,12 +86,12 @@ RowLayout {
         implicitWidth: 22
         onClicked: updateChannelMask(3)
 
-        Shotcut.HoverTip {
+        Bossa.HoverTip {
             text: qsTr('Low Frequency')
         }
     }
 
-    Shotcut.ToggleButton {
+    Bossa.ToggleButton {
         id: leftSurroundToggle
 
         text: qsTr('Ls', 'Left surround audio channel')
@@ -99,12 +99,12 @@ RowLayout {
         implicitWidth: 22
         onClicked: updateChannelMask(application.audioChannels() > 4 ? 4 : 2)
 
-        Shotcut.HoverTip {
+        Bossa.HoverTip {
             text: qsTr('Left Surround')
         }
     }
 
-    Shotcut.ToggleButton {
+    Bossa.ToggleButton {
         id: rightSurroundToggle
 
         text: qsTr('Rs', 'Right surround audio channel')
@@ -112,7 +112,7 @@ RowLayout {
         implicitWidth: 22
         onClicked: updateChannelMask(application.audioChannels() > 4 ? 5 : 3)
 
-        Shotcut.HoverTip {
+        Bossa.HoverTip {
             text: qsTr('Right Surround')
         }
     }
@@ -121,7 +121,7 @@ RowLayout {
         Layout.fillWidth: true
     }
 
-    Shotcut.UndoButton {
+    Bossa.UndoButton {
         onClicked: {
             filter.set(channelMaskProperty, -1);
             setChannelsControls();

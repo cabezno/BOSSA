@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2026 Meltytech, LLC
+ * Copyright (c) 2016-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Rectangle {
     id: clipRoot
@@ -50,7 +50,7 @@ Rectangle {
     signal rightClicked
 
     function getColor() {
-        return isAudio ? 'darkseagreen' : root.shotcutBlue;
+        return isAudio ? 'darkseagreen' : root.bossaBlue;
     }
 
     function generateWaveform() {
@@ -161,7 +161,7 @@ Rectangle {
 
             model: Math.ceil(waveform.innerWidth / waveform.maxWidth)
 
-            Shotcut.TimelineWaveform {
+            Bossa.TimelineWaveform {
                 property int channels: 2
 
                 width: Math.min(waveform.innerWidth, waveform.maxWidth)
@@ -224,7 +224,7 @@ Rectangle {
         onClicked: clipRoot.rightClicked()
     }
 
-    Shotcut.TimelineTriangle {
+    Bossa.TimelineTriangle {
         id: animateInTriangle
 
         visible: !isBlank
@@ -236,7 +236,7 @@ Rectangle {
         opacity: 0.5
     }
 
-    Shotcut.MessageDialog {
+    Bossa.MessageDialog {
         id: confirmRemoveAdvancedDialog
 
         title: qsTr("Confirm Removing Advanced Keyframes")
@@ -336,7 +336,7 @@ Rectangle {
         }
     }
 
-    Shotcut.TimelineTriangle {
+    Bossa.TimelineTriangle {
         id: animateOutTriangle
 
         visible: !isBlank

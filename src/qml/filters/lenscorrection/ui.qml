@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 Meltytech, LLC
+ * Copyright (c) 2019-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property string xcenter: '0'
     property string ycenter: '1'
     property string correctionnearcenter: '2'
@@ -83,7 +83,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: [xcenter, ycenter, correctionnearcenter, correctionnearedges]
@@ -102,7 +102,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: xcenterSlider
 
             minimumValue: 0
@@ -113,11 +113,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(xcenter, xcenterSlider.value / xcenterSlider.maximumValue, xcenterKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: xcenterSlider.value = xcenterDefault * xcenterSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: xcenterKeyframesButton
 
             onToggled: {
@@ -131,7 +131,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: ycenterSlider
 
             minimumValue: 0
@@ -142,11 +142,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(ycenter, ycenterSlider.value / ycenterSlider.maximumValue, ycenterKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: ycenterSlider.value = ycenterDefault * ycenterSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: ycenterKeyframesButton
 
             onToggled: {
@@ -160,7 +160,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: correctionnearcenterSlider
 
             minimumValue: 0
@@ -171,11 +171,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(correctionnearcenter, correctionnearcenterSlider.value / correctionnearcenterSlider.maximumValue, cncenKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: correctionnearcenterSlider.value = correctionnearcenterDefault * correctionnearcenterSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: cncenKeyframesButton
 
             onToggled: {
@@ -189,7 +189,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: correctionnearedgesSlider
 
             minimumValue: 0
@@ -200,11 +200,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(correctionnearedges, correctionnearedgesSlider.value / correctionnearedgesSlider.maximumValue, cnedgeKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: correctionnearedgesSlider.value = correctionnearedgesDefault * correctionnearedgesSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: cnedgeKeyframesButton
 
             onToggled: {

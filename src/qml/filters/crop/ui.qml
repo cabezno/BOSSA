@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2022 Meltytech, LLC
+ * Copyright (c) 2014-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property int producerWidth: (producer.get('meta.media.width') === null) ? profile.width : producer.get('meta.media.width')
@@ -100,7 +100,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             Layout.columnSpan: 2
             parameters: defaultParameters
             onPresetSelected: {
@@ -128,7 +128,7 @@ Item {
             width: 1
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 centerCheckBox.checked = false;
                 filter.set('center', false);
@@ -141,7 +141,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: biasslider
 
             minimumValue: Math.round(-Math.max(profile.width, profile.height) / 2)
@@ -150,7 +150,7 @@ Item {
             onValueChanged: filter.set('center_bias', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: biasundo
 
             onClicked: biasslider.value = 0
@@ -161,7 +161,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: topslider
 
             minimumValue: 0
@@ -170,7 +170,7 @@ Item {
             onValueChanged: filter.set('top', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: topundo
 
             onClicked: topslider.value = 0
@@ -181,7 +181,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: bottomslider
 
             minimumValue: 0
@@ -190,7 +190,7 @@ Item {
             onValueChanged: filter.set('bottom', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: bottomundo
 
             onClicked: bottomslider.value = 0
@@ -201,7 +201,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: leftslider
 
             minimumValue: 0
@@ -210,7 +210,7 @@ Item {
             onValueChanged: filter.set('left', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: leftundo
 
             onClicked: leftslider.value = 0
@@ -221,7 +221,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: rightslider
 
             minimumValue: 0
@@ -230,7 +230,7 @@ Item {
             onValueChanged: filter.set('right', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: rightundo
 
             onClicked: rightslider.value = 0

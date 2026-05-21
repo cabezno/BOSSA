@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2026 Meltytech, LLC
+ * Copyright (c) 2012-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -79,7 +79,7 @@ Player::Player(QWidget *parent)
     setupActions();
 
     // Set WhatsThis help URL for the Player
-    setWhatsThis("https://forum.shotcut.org/t/source-vs-project-player/12576/1");
+    setWhatsThis("https://forum.bossa.org/t/source-vs-project-player/12576/1");
 
     // Create a layout.
     QVBoxLayout *vlayout = new QVBoxLayout(this);
@@ -440,7 +440,7 @@ Player::Player(QWidget *parent)
             SLOT(onOffsetChanged(const QPoint &)));
     connect(MLT.videoWidget(), SIGNAL(stepZoom(float, float)), SLOT(stepZoom(float, float)));
 
-    connect(&Settings, &ShotcutSettings::timeFormatChanged, this, [&]() {
+    connect(&Settings, &BossaSettings::timeFormatChanged, this, [&]() {
         updateSelection();
         if (MLT.isSeekable()) {
             onDurationChanged();

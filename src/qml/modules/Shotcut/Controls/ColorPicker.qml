@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2024 Meltytech, LLC
+ * Copyright (c) 2014-2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 RowLayout {
     property color value: "white"
@@ -33,7 +33,7 @@ RowLayout {
         colorGroup: SystemPalette.Active
     }
 
-    Shotcut.ColorPickerItem {
+    Bossa.ColorPickerItem {
         id: pickerItem
 
         onColorPicked: color => {
@@ -47,14 +47,14 @@ RowLayout {
         }
     }
 
-    Shotcut.Button {
+    Bossa.Button {
         id: colorButton
 
         implicitWidth: 20
         implicitHeight: 20
         onClicked: colorDialog.open()
 
-        Shotcut.HoverTip {
+        Bossa.HoverTip {
             text: qsTr('Click to open color dialog')
         }
 
@@ -66,13 +66,13 @@ RowLayout {
         }
     }
 
-    Shotcut.ColorDialog {
+    Bossa.ColorDialog {
         id: colorDialog
         selectedColor: value
         onAccepted: value = selectedColor
     }
 
-    Shotcut.Button {
+    Bossa.Button {
         id: pickerButton
 
         icon.name: 'color-picker'
@@ -85,7 +85,7 @@ RowLayout {
             pickerItem.pickColor();
         }
 
-        Shotcut.HoverTip {
+        Bossa.HoverTip {
             text: '<p>' + qsTr("Pick a color on the screen. By pressing the mouse button and then moving your mouse you can select a section of the screen from which to get an average color.") + '</p>'
         }
     }

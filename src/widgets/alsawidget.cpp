@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2022 Meltytech, LLC
+ * Copyright (c) 2012-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
 #include "mltcontroller.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 AlsaWidget::AlsaWidget(QWidget *parent)
@@ -51,7 +51,7 @@ Mlt::Producer *AlsaWidget::newProducer(Mlt::Profile &profile)
         s += QStringLiteral("?channels=%1").arg(ui->alsaChannelsSpinBox->value());
     Mlt::Producer *p = new Mlt::Producer(profile, s.toUtf8().constData());
     p->set(kBackgroundCaptureProperty, 1);
-    p->set(kShotcutCaptionProperty, "ALSA");
+    p->set(kBossaCaptionProperty, "ALSA");
     Settings.setAudioInput(ui->lineEdit->text());
     return p;
 }

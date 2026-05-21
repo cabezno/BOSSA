@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2026 Meltytech, LLC
+ * Copyright (c) 2014-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 #include "proxymanager.h"
 #include "qmltypes/qmlapplication.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "transcoder.h"
 #include <MltChain.h>
 #include <MltProducer.h>
@@ -159,14 +159,14 @@ QString Util::producerTitle(const Mlt::Producer &producer)
     Mlt::Producer &p = const_cast<Mlt::Producer &>(producer);
     if (!p.is_valid() || p.is_blank())
         return result;
-    if (p.get(kShotcutTransitionProperty))
+    if (p.get(kBossaTransitionProperty))
         return QObject::tr("Transition");
     if (p.get(kTrackNameProperty))
         return QObject::tr("Track: %1").arg(QString::fromUtf8(p.get(kTrackNameProperty)));
     if (mlt_service_tractor_type == p.type())
         return QObject::tr("Output");
-    if (p.get(kShotcutCaptionProperty))
-        return QString::fromUtf8(p.get(kShotcutCaptionProperty));
+    if (p.get(kBossaCaptionProperty))
+        return QString::fromUtf8(p.get(kBossaCaptionProperty));
     return Util::baseName(ProxyManager::resource(p));
 }
 
@@ -378,7 +378,7 @@ void Util::applyCustomProperties(Mlt::Producer &destination, Mlt::Producer &sour
     p.clear(kAspectRatioNumerator);
     p.clear(kAspectRatioDenominator);
     p.clear(kCommentProperty);
-    p.clear(kShotcutProducerProperty);
+    p.clear(kBossaProducerProperty);
     p.clear(kDefaultAudioIndexProperty);
     p.clear(kOriginalInProperty);
     p.clear(kOriginalOutProperty);
@@ -389,9 +389,9 @@ void Util::applyCustomProperties(Mlt::Producer &destination, Mlt::Producer &sour
         "mlt_service, audio_index, video_index, astream, vstream, force_progressive, force_tff,"
         "force_aspect_ratio, video_delay, color_range, warp_speed, warp_pitch, "
         "rotate," kAspectRatioNumerator "," kAspectRatioDenominator "," kCommentProperty
-        "," kShotcutProducerProperty "," kDefaultAudioIndexProperty "," kOriginalInProperty
+        "," kBossaProducerProperty "," kDefaultAudioIndexProperty "," kOriginalInProperty
         "," kOriginalOutProperty "," kOriginalResourceProperty "," kDisableProxyProperty
-        "," kShotcutBinsProperty);
+        "," kBossaBinsProperty);
     if (!destination.get("_shotcut:resource")) {
         destination.set("_shotcut:resource", destination.get("resource"));
         destination.set("_shotcut:length", destination.get("length"));
@@ -400,7 +400,7 @@ void Util::applyCustomProperties(Mlt::Producer &destination, Mlt::Producer &sour
     if (!qstrcmp("timewarp", source.get("mlt_service"))) {
         auto speed = qAbs(source.get_double("warp_speed"));
         auto caption = QStringLiteral("%1 (%2x)").arg(Util::baseName(resource, true)).arg(speed);
-        destination.set(kShotcutCaptionProperty, caption.toUtf8().constData());
+        destination.set(kBossaCaptionProperty, caption.toUtf8().constData());
 
         resource = destination.get("_shotcut:resource");
         destination.set("warp_resource", resource.toUtf8().constData());
@@ -411,7 +411,7 @@ void Util::applyCustomProperties(Mlt::Producer &destination, Mlt::Producer &sour
         destination.set("length", destination.frames_to_time(length, mlt_time_clock));
     } else {
         auto caption = Util::baseName(resource, true);
-        destination.set(kShotcutCaptionProperty, caption.toUtf8().constData());
+        destination.set(kBossaCaptionProperty, caption.toUtf8().constData());
 
         p.clear("warp_resource");
         destination.set("resource", destination.get("_shotcut:resource"));
@@ -443,7 +443,7 @@ QString Util::getFileHash(const QString &path)
 
 QString Util::getHash(Mlt::Properties &properties)
 {
-    QString hash = properties.get(kShotcutHashProperty);
+    QString hash = properties.get(kBossaHashProperty);
     if (hash.isEmpty()) {
         QString service = properties.get("mlt_service");
         QString resource = QString::fromUtf8(properties.get("resource"));
@@ -456,7 +456,7 @@ QString Util::getHash(Mlt::Properties &properties)
             resource = QString::fromUtf8(properties.get("filename"));
         hash = getFileHash(resource);
         if (!hash.isEmpty())
-            properties.set(kShotcutHashProperty, hash.toLatin1().constData());
+            properties.set(kBossaHashProperty, hash.toLatin1().constData());
     }
     return hash;
 }
@@ -688,14 +688,14 @@ QString Util::updateCaption(Mlt::Producer *producer)
     double warpSpeed = GetSpeedFromProducer(producer);
     QString resource = GetFilenameFromProducer(producer);
     QString name = Util::baseName(resource, true);
-    QString caption = producer->get(kShotcutCaptionProperty);
+    QString caption = producer->get(kBossaCaptionProperty);
     if (caption.isEmpty() || caption.startsWith(name)) {
         // compute the caption
         if (warpSpeed != 1.0)
             caption = QStringLiteral("%1 (%2x)").arg(name).arg(warpSpeed);
         else
             caption = name;
-        producer->set(kShotcutCaptionProperty, caption.toUtf8().constData());
+        producer->set(kBossaCaptionProperty, caption.toUtf8().constData());
     }
     return caption;
 }
@@ -706,15 +706,15 @@ void Util::passProducerProperties(Mlt::Producer *src, Mlt::Producer *dst)
                    "audio_index, video_index, astream, vstream, force_aspect_ratio,"
                    "video_delay, force_progressive, force_tff, force_full_range, color_range, "
                    "warp_pitch, rotate, lut," kAspectRatioNumerator "," kAspectRatioDenominator
-                   "," kShotcutHashProperty "," kPlaylistIndexProperty
-                   "," kShotcutSkipConvertProperty "," kCommentProperty
-                   "," kDefaultAudioIndexProperty "," kShotcutCaptionProperty
+                   "," kBossaHashProperty "," kPlaylistIndexProperty
+                   "," kBossaSkipConvertProperty "," kCommentProperty
+                   "," kDefaultAudioIndexProperty "," kBossaCaptionProperty
                    "," kOriginalResourceProperty "," kDisableProxyProperty "," kIsProxyProperty
-                   "," kShotcutProducerProperty);
-    QString shotcutProducer(src->get(kShotcutProducerProperty));
+                   "," kBossaProducerProperty);
+    QString shotcutProducer(src->get(kBossaProducerProperty));
     QString service(src->get("mlt_service"));
     if (service.startsWith("avformat") || shotcutProducer == "avformat")
-        dst->set(kShotcutProducerProperty, "avformat");
+        dst->set(kBossaProducerProperty, "avformat");
 }
 
 bool Util::warnIfLowDiskSpace(const QString &path)
@@ -825,7 +825,7 @@ QString Util::getConversionAdvice(Mlt::Producer *producer)
         QString trcString = Util::trcString(trc);
         LOG_INFO() << resource << "Probable HDR" << trcString;
         advice = QObject::tr("This file uses color transfer characteristics %1, which may result "
-                             "in incorrect colors or brightness in Shotcut.")
+                             "in incorrect colors or brightness in Bossa.")
                      .arg(trcString);
     } else if (producer->get_int("meta.media.variable_frame_rate")) {
         LOG_INFO() << resource << "is variable frame rate";
@@ -915,7 +915,7 @@ Mlt::Producer Util::openMltVirtualClip(const QString &path)
         chain.set_source(xmlProducer);
         chain.attach_normalizers();
         chain.get_length_time(mlt_time_clock);
-        chain.set(kShotcutVirtualClip, 1);
+        chain.set(kBossaVirtualClip, 1);
         chain.set("resource", path.toUtf8().constData());
         return chain;
     }

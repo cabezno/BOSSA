@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2025 Meltytech, LLC
+ * Copyright (c) 2011-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -102,7 +102,7 @@ public:
     int consumerChanged();
     void setProfile(const QString &profile_name);
     void setAudioChannels(int audioChannels);
-    void setProcessingMode(ShotcutSettings::ProcessingMode mode);
+    void setProcessingMode(BossaSettings::ProcessingMode mode);
     QString resource() const;
     bool isSeekable(Mlt::Producer *p = nullptr) const;
     int maxFrameCount() const;
@@ -154,7 +154,7 @@ public:
     QString filtersClipboardXML() { return XML(m_filtersClipboard.get()); }
 
     int audioChannels() const { return m_audioChannels; }
-    ShotcutSettings::ProcessingMode processingMode() const { return m_processingMode; }
+    BossaSettings::ProcessingMode processingMode() const { return m_processingMode; }
     Mlt::Repository *repository() const { return m_repo; }
     Mlt::Profile &profile() { return m_profile; }
     Mlt::Profile &previewProfile() { return m_previewProfile; }
@@ -198,7 +198,7 @@ private:
     Mlt::Profile m_profile;
     Mlt::Profile m_previewProfile;
     int m_audioChannels{2};
-    ShotcutSettings::ProcessingMode m_processingMode{ShotcutSettings::Native8Cpu};
+    BossaSettings::ProcessingMode m_processingMode{BossaSettings::Native8Cpu};
     QScopedPointer<Mlt::Filter> m_jackFilter;
     QString m_url;
     double m_volume{1.0};

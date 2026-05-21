@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2022 Meltytech, LLC
+ * Copyright (c) 2013-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property bool isAtLeastVersion4: filter.isAtLeastVersion('4')
 
     function setControls() {
@@ -137,7 +137,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: ['transition.fix_rotate_x', 'transition.scale_x', 'transition.ox', 'transition.oy', 'background']
@@ -159,7 +159,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: rotationSlider
 
             minimumValue: -360
@@ -170,11 +170,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('transition.fix_rotate_x', value, rotationKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: rotationSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: rotationKeyframesButton
 
             onToggled: {
@@ -188,7 +188,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: scaleSlider
 
             minimumValue: 0.1
@@ -199,11 +199,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilterScale(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: scaleSlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: scaleKeyframesButton
 
             onToggled: {
@@ -235,7 +235,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: xOffsetSlider
 
             minimumValue: -5000
@@ -251,11 +251,11 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: xOffsetSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: xOffsetKeyframesButton
 
             onToggled: {
@@ -273,7 +273,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: yOffsetSlider
 
             minimumValue: -5000
@@ -289,11 +289,11 @@ Shotcut.KeyframableFilter {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: yOffsetSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: yOffsetKeyframesButton
 
             onToggled: {
@@ -311,7 +311,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ColorPicker {
+        Bossa.ColorPicker {
             id: bgColor
 
             eyedropper: true
@@ -319,7 +319,7 @@ Shotcut.KeyframableFilter {
             onValueChanged: filter.set('background', 'color:' + value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             visible: bgColor.visible
             onClicked: bgColor.value = '#00000000'
         }

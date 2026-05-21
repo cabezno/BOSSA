@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2026 Meltytech, LLC
+ * Copyright (c) 2013-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@
 #include "qmltypes/qmlview.h"
 #include "qmltypes/thumbnailprovider.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 #include "widgets/blipproducerwidget.h"
 #include "widgets/colorbarswidget.h"
@@ -86,7 +86,7 @@ TimelineDock::TimelineDock(QWidget *parent)
     setAcceptDrops(true);
     QIcon icon = QIcon::fromTheme("view-time-schedule",
                                   QIcon(":/icons/oxygen/32x32/actions/view-time-schedule.png"));
-    setWhatsThis("https://forum.shotcut.org/t/about-the-timeline/12952/1");
+    setWhatsThis("https://forum.bossa.org/t/about-the-timeline/12952/1");
 
     toggleViewAction()->setIcon(icon);
     setupActions();
@@ -250,8 +250,8 @@ TimelineDock::TimelineDock(QWidget *parent)
     toolbar->addAction(Actions["timelineRecordAudioAction"]);
     vboxLayout->setMenuBar(toolbar);
 
-    qmlRegisterType<MultitrackModel>("Shotcut.Models", 1, 0, "MultitrackModel");
-    qmlRegisterType<MarkersModel>("Shotcut.Models", 1, 0, "MarkersModel");
+    qmlRegisterType<MultitrackModel>("Bossa.Models", 1, 0, "MultitrackModel");
+    qmlRegisterType<MarkersModel>("Bossa.Models", 1, 0, "MarkersModel");
 
     QDir importPath = QmlUtilities::qmlDir();
     importPath.cd("modules");
@@ -694,7 +694,7 @@ void TimelineDock::setupActions()
 
     action = new QAction(tr("Cu&t"), this);
     action->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_X));
-    action->setWhatsThis("https://forum.shotcut.org/t/cut-copy-and-paste-editing/12981/1");
+    action->setWhatsThis("https://forum.bossa.org/t/cut-copy-and-paste-editing/12981/1");
     icon = QIcon::fromTheme("edit-cut", QIcon(":/icons/oxygen/32x32/actions/edit-cut.png"));
     action->setIcon(icon);
     action->setEnabled(false);
@@ -719,7 +719,7 @@ void TimelineDock::setupActions()
     copyShortcuts << QKeySequence(Qt::CTRL | Qt::Key_C);
     copyShortcuts << QKeySequence(Qt::Key_C);
     action->setShortcuts(copyShortcuts);
-    action->setWhatsThis("https://forum.shotcut.org/t/cut-copy-and-paste-editing/12981/1");
+    action->setWhatsThis("https://forum.bossa.org/t/cut-copy-and-paste-editing/12981/1");
     icon = QIcon::fromTheme("edit-copy", QIcon(":/icons/oxygen/32x32/actions/edit-copy.png"));
     action->setIcon(icon);
     action->setEnabled(false);
@@ -749,7 +749,7 @@ void TimelineDock::setupActions()
     pasteShortcuts << QKeySequence(Qt::CTRL | Qt::Key_V);
     pasteShortcuts << QKeySequence(Qt::Key_V);
     action->setShortcuts(pasteShortcuts);
-    action->setWhatsThis("https://forum.shotcut.org/t/cut-copy-and-paste-editing/12981/1");
+    action->setWhatsThis("https://forum.bossa.org/t/cut-copy-and-paste-editing/12981/1");
     icon = QIcon::fromTheme("edit-paste", QIcon(":/icons/oxygen/32x32/actions/edit-paste.png"));
     action->setIcon(icon);
     connect(action, &QAction::triggered, this, [&]() {
@@ -762,7 +762,7 @@ void TimelineDock::setupActions()
     action = new QAction(tr("Nudge Forward"), this);
     action->setShortcut(QKeySequence(Qt::Key_Period));
     action->setEnabled(false);
-    action->setWhatsThis("https://forum.shotcut.org/t/nudge-tool/43158/1");
+    action->setWhatsThis("https://forum.bossa.org/t/nudge-tool/43158/1");
     connect(action, &QAction::triggered, this, [&]() {
         auto selectedClips = selection();
         if (selectedClips.size() == 1) {
@@ -800,7 +800,7 @@ void TimelineDock::setupActions()
     action = new QAction(tr("Nudge Backward"), this);
     action->setShortcut(QKeySequence(Qt::Key_Comma));
     action->setEnabled(false);
-    action->setWhatsThis("https://forum.shotcut.org/t/nudge-tool/43158/1");
+    action->setWhatsThis("https://forum.bossa.org/t/nudge-tool/43158/1");
     connect(action, &QAction::triggered, this, [&]() {
         auto selectedClips = selection();
         if (selectedClips.size() == 1) {
@@ -1008,7 +1008,7 @@ void TimelineDock::setupActions()
 
     action = new QAction(tr("Create/Edit Marker"), this);
     action->setShortcut(QKeySequence(Qt::Key_M));
-    action->setWhatsThis("https://forum.shotcut.org/t/timeline-markers/30535/1");
+    action->setWhatsThis("https://forum.bossa.org/t/timeline-markers/30535/1");
     icon = QIcon::fromTheme("marker", QIcon(":/icons/oxygen/32x32/actions/marker.png"));
     action->setIcon(icon);
     connect(action, &QAction::triggered, this, [&]() {
@@ -1022,7 +1022,7 @@ void TimelineDock::setupActions()
 
     action = new QAction(tr("Previous Marker"), this);
     action->setShortcut(QKeySequence(Qt::Key_Less));
-    action->setWhatsThis("https://forum.shotcut.org/t/timeline-markers/30535/1");
+    action->setWhatsThis("https://forum.bossa.org/t/timeline-markers/30535/1");
     icon = QIcon::fromTheme("format-indent-less",
                             QIcon(":/icons/oxygen/32x32/actions/format-indent-less.png"));
     action->setIcon(icon);
@@ -1037,7 +1037,7 @@ void TimelineDock::setupActions()
 
     action = new QAction(tr("Next Marker"), this);
     action->setShortcut(QKeySequence(Qt::Key_Greater));
-    action->setWhatsThis("https://forum.shotcut.org/t/timeline-markers/30535/1");
+    action->setWhatsThis("https://forum.bossa.org/t/timeline-markers/30535/1");
     icon = QIcon::fromTheme("format-indent-more",
                             QIcon(":/icons/oxygen/32x32/actions/format-indent-more.png"));
     action->setIcon(icon);
@@ -1091,11 +1091,11 @@ void TimelineDock::setupActions()
     action = new QAction(tr("Rectangle Selection"), this);
     action->setCheckable(true);
     action->setChecked(Settings.timelineRectangleSelect());
-    action->setWhatsThis("https://forum.shotcut.org/t/rectangle-selection/42202/1");
+    action->setWhatsThis("https://forum.bossa.org/t/rectangle-selection/42202/1");
     connect(action, &QAction::triggered, this, [&](bool checked) {
         Settings.setTimelineRectangleSelect(checked);
     });
-    connect(&Settings, &ShotcutSettings::timelineRectangleSelectChanged, action, [=]() {
+    connect(&Settings, &BossaSettings::timelineRectangleSelectChanged, action, [=]() {
         action->setChecked(Settings.timelineRectangleSelect());
     });
     Actions.add("timelineRectangleSelectAction", action);
@@ -1106,7 +1106,7 @@ void TimelineDock::setupActions()
     connect(action, &QAction::triggered, this, [&](bool checked) {
         Settings.setTimelineAdjustGain(checked);
     });
-    connect(&Settings, &ShotcutSettings::timelineAdjustGainChanged, action, [=]() {
+    connect(&Settings, &BossaSettings::timelineAdjustGainChanged, action, [=]() {
         action->setChecked(Settings.timelineAdjustGain());
     });
     Actions.add("timelineAdjustGainAction", action);
@@ -1117,7 +1117,7 @@ void TimelineDock::setupActions()
     connect(action, &QAction::triggered, this, [&](bool checked) {
         Settings.setTimelineAutoAddTracks(checked);
     });
-    connect(&Settings, &ShotcutSettings::timelineAutoAddTracksChanged, action, [=]() {
+    connect(&Settings, &BossaSettings::timelineAutoAddTracksChanged, action, [=]() {
         action->setChecked(Settings.timelineAutoAddTracks());
     });
     Actions.add("timelineAutoAddTracksAction", action);
@@ -1131,7 +1131,7 @@ void TimelineDock::setupActions()
     connect(action, &QAction::triggered, this, [&](bool checked) {
         Settings.setTimelineSnap(checked);
     });
-    connect(&Settings, &ShotcutSettings::timelineSnapChanged, action, [=]() {
+    connect(&Settings, &BossaSettings::timelineSnapChanged, action, [=]() {
         action->setChecked(Settings.timelineSnap());
     });
     Actions.add("timelineSnapAction", action);
@@ -1144,7 +1144,7 @@ void TimelineDock::setupActions()
     connect(action, &QAction::triggered, this, [&](bool checked) {
         Settings.setTimelineDragScrub(checked);
     });
-    connect(&Settings, &ShotcutSettings::timelineDragScrubChanged, action, [=]() {
+    connect(&Settings, &BossaSettings::timelineDragScrubChanged, action, [=]() {
         action->setChecked(Settings.timelineDragScrub());
     });
     Actions.add("timelineScrubDragAction", action);
@@ -1158,14 +1158,14 @@ void TimelineDock::setupActions()
     connect(action, &QAction::triggered, this, [&](bool checked) {
         Settings.setTimelineRipple(checked);
     });
-    connect(&Settings, &ShotcutSettings::timelineRippleChanged, action, [=]() {
+    connect(&Settings, &BossaSettings::timelineRippleChanged, action, [=]() {
         action->setChecked(Settings.timelineRipple());
     });
     Actions.add("timelineRippleAction", action);
 
     action = new QAction(tr("Ripple All Tracks"), this);
     action->setShortcut(QKeySequence(Qt::CTRL | Qt::ALT | Qt::Key_R));
-    action->setWhatsThis("https://forum.shotcut.org/t/timeline-ripple-all-tracks/23701/1");
+    action->setWhatsThis("https://forum.bossa.org/t/timeline-ripple-all-tracks/23701/1");
     icon = QIcon::fromTheme("ripple-all", QIcon(":/icons/oxygen/32x32/actions/ripple-all.png"));
     action->setIcon(icon);
     action->setCheckable(true);
@@ -1173,14 +1173,14 @@ void TimelineDock::setupActions()
     connect(action, &QAction::triggered, this, [&](bool checked) {
         Settings.setTimelineRippleAllTracks(checked);
     });
-    connect(&Settings, &ShotcutSettings::timelineRippleAllTracksChanged, action, [=]() {
+    connect(&Settings, &BossaSettings::timelineRippleAllTracksChanged, action, [=]() {
         action->setChecked(Settings.timelineRippleAllTracks());
     });
     Actions.add("timelineRippleAllTracksAction", action);
 
     action = new QAction(tr("Ripple Markers"), this);
     action->setShortcut(QKeySequence(Qt::ALT | Qt::Key_R));
-    action->setWhatsThis("https://forum.shotcut.org/t/timeline-markers/30535/1");
+    action->setWhatsThis("https://forum.bossa.org/t/timeline-markers/30535/1");
     icon = QIcon::fromTheme("ripple-marker",
                             QIcon(":/icons/oxygen/32x32/actions/ripple-marker.png"));
     action->setIcon(icon);
@@ -1189,7 +1189,7 @@ void TimelineDock::setupActions()
     connect(action, &QAction::triggered, this, [&](bool checked) {
         Settings.setTimelineRippleMarkers(checked);
     });
-    connect(&Settings, &ShotcutSettings::timelineRippleMarkersChanged, action, [=]() {
+    connect(&Settings, &BossaSettings::timelineRippleMarkersChanged, action, [=]() {
         action->setChecked(Settings.timelineRippleMarkers());
     });
     Actions.add("timelineRippleMarkersAction", action);
@@ -1220,7 +1220,7 @@ void TimelineDock::setupActions()
             return;
         emit refreshWaveforms();
     });
-    connect(&Settings, &ShotcutSettings::timelineShowWaveformsChanged, action, [=]() {
+    connect(&Settings, &BossaSettings::timelineShowWaveformsChanged, action, [=]() {
         action->setChecked(Settings.timelineShowWaveforms());
     });
     Actions.add("timelineShowWaveformsAction", action);
@@ -1236,7 +1236,7 @@ void TimelineDock::setupActions()
             m_model.reload();
         }
     });
-    connect(&Settings, &ShotcutSettings::timelineFramebufferWaveformChanged, action, [=]() {
+    connect(&Settings, &BossaSettings::timelineFramebufferWaveformChanged, action, [=]() {
         action->setChecked(Settings.timelineFramebufferWaveform());
     });
     Actions.add("timelinePerformanceWaveformsAction", action);
@@ -1247,46 +1247,46 @@ void TimelineDock::setupActions()
     connect(action, &QAction::triggered, this, [&](bool checked) {
         Settings.setTimelineShowThumbnails(checked);
     });
-    connect(&Settings, &ShotcutSettings::timelineShowThumbnailsChanged, action, [=]() {
+    connect(&Settings, &BossaSettings::timelineShowThumbnailsChanged, action, [=]() {
         action->setChecked(Settings.timelineShowThumbnails());
     });
     Actions.add("timelineShowThumbnailsAction", action);
 
     action = new QAction(tr("No"), this);
     action->setCheckable(true);
-    action->setChecked(ShotcutSettings::TimelineScrolling::NoScrolling
+    action->setChecked(BossaSettings::TimelineScrolling::NoScrolling
                        == Settings.timelineScrolling());
     connect(action, &QAction::triggered, this, [&]() {
-        Settings.setTimelineScrolling(ShotcutSettings::TimelineScrolling::NoScrolling);
+        Settings.setTimelineScrolling(BossaSettings::TimelineScrolling::NoScrolling);
     });
-    connect(&Settings, &ShotcutSettings::timelineScrollingChanged, action, [=]() {
-        if (ShotcutSettings::TimelineScrolling::NoScrolling == Settings.timelineScrolling())
+    connect(&Settings, &BossaSettings::timelineScrollingChanged, action, [=]() {
+        if (BossaSettings::TimelineScrolling::NoScrolling == Settings.timelineScrolling())
             action->setChecked(true);
     });
     Actions.add("timelineScrollingNo", action);
 
     action = new QAction(tr("Page"), this);
     action->setCheckable(true);
-    action->setChecked(ShotcutSettings::TimelineScrolling::PageScrolling
+    action->setChecked(BossaSettings::TimelineScrolling::PageScrolling
                        == Settings.timelineScrolling());
     connect(action, &QAction::triggered, this, [&]() {
-        Settings.setTimelineScrolling(ShotcutSettings::TimelineScrolling::PageScrolling);
+        Settings.setTimelineScrolling(BossaSettings::TimelineScrolling::PageScrolling);
     });
-    connect(&Settings, &ShotcutSettings::timelineScrollingChanged, action, [=]() {
-        if (ShotcutSettings::TimelineScrolling::PageScrolling == Settings.timelineScrolling())
+    connect(&Settings, &BossaSettings::timelineScrollingChanged, action, [=]() {
+        if (BossaSettings::TimelineScrolling::PageScrolling == Settings.timelineScrolling())
             action->setChecked(true);
     });
     Actions.add("timelineScrollingPage", action);
 
     action = new QAction(tr("Smooth"), this);
     action->setCheckable(true);
-    action->setChecked(ShotcutSettings::TimelineScrolling::SmoothScrolling
+    action->setChecked(BossaSettings::TimelineScrolling::SmoothScrolling
                        == Settings.timelineScrolling());
     connect(action, &QAction::triggered, this, [&]() {
-        Settings.setTimelineScrolling(ShotcutSettings::TimelineScrolling::SmoothScrolling);
+        Settings.setTimelineScrolling(BossaSettings::TimelineScrolling::SmoothScrolling);
     });
-    connect(&Settings, &ShotcutSettings::timelineScrollingChanged, action, [=]() {
-        if (ShotcutSettings::TimelineScrolling::SmoothScrolling == Settings.timelineScrolling())
+    connect(&Settings, &BossaSettings::timelineScrollingChanged, action, [=]() {
+        if (BossaSettings::TimelineScrolling::SmoothScrolling == Settings.timelineScrolling())
             action->setChecked(true);
     });
     Actions.add("timelineScrollingSmooth", action);
@@ -1294,13 +1294,13 @@ void TimelineDock::setupActions()
     action = new QAction(tr("Center the Playhead"), this);
     action->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_P));
     action->setCheckable(true);
-    action->setChecked(ShotcutSettings::TimelineScrolling::CenterPlayhead
+    action->setChecked(BossaSettings::TimelineScrolling::CenterPlayhead
                        == Settings.timelineScrolling());
     connect(action, &QAction::triggered, this, [&]() {
-        Settings.setTimelineScrolling(ShotcutSettings::TimelineScrolling::CenterPlayhead);
+        Settings.setTimelineScrolling(BossaSettings::TimelineScrolling::CenterPlayhead);
     });
-    connect(&Settings, &ShotcutSettings::timelineScrollingChanged, action, [=]() {
-        if (ShotcutSettings::TimelineScrolling::CenterPlayhead == Settings.timelineScrolling())
+    connect(&Settings, &BossaSettings::timelineScrollingChanged, action, [=]() {
+        if (BossaSettings::TimelineScrolling::CenterPlayhead == Settings.timelineScrolling())
             action->setChecked(true);
     });
     Actions.add("timelineScrollingCenterPlayhead", action);
@@ -1312,7 +1312,7 @@ void TimelineDock::setupActions()
     connect(action, &QAction::triggered, this, [&](bool checked) {
         Settings.setTimelineScrollZoom(checked);
     });
-    connect(&Settings, &ShotcutSettings::timelineScrollZoomChanged, action, [=]() {
+    connect(&Settings, &BossaSettings::timelineScrollZoomChanged, action, [=]() {
         action->setChecked(Settings.timelineScrollZoom());
     });
     Actions.add("timelineScrollZoomAction", action);
@@ -1353,7 +1353,7 @@ void TimelineDock::setupActions()
 
     action = new QAction(tr("Generate"), this);
     action->setWhatsThis(
-        "https://forum.shotcut.org/t/user-guide-table-of-contents/43285#p-145073-properties-14");
+        "https://forum.bossa.org/t/user-guide-table-of-contents/43285#p-145073-properties-14");
     icon = QIcon::fromTheme("document-new", QIcon(":/icons/oxygen/32x32/actions/document-new.png"));
     action->setIcon(icon);
     {
@@ -1391,7 +1391,7 @@ void TimelineDock::setupActions()
     Actions.add("timelineNewGenerator", action, windowTitle());
 
     action = new QAction(tr("Record Audio"), this);
-    action->setWhatsThis("https://forum.shotcut.org/t/record-audio-voice-over/33111/1");
+    action->setWhatsThis("https://forum.bossa.org/t/record-audio-voice-over/33111/1");
     icon = QIcon::fromTheme("audio-input-microphone",
                             QIcon(":/icons/oxygen/32x32/devices/audio-input-microphone.png"));
     action->setIcon(icon);
@@ -1527,7 +1527,7 @@ void TimelineDock::setupActions()
         }
         if (enabled) {
             auto s = QGuiApplication::clipboard()->text();
-            enabled = s.contains(kShotcutFiltersClipboard);
+            enabled = s.contains(kBossaFiltersClipboard);
         }
         action->setEnabled(enabled);
     });
@@ -1605,7 +1605,7 @@ void TimelineDock::setupActions()
             return;
         }
         auto firstClip = m_model.getClipInfo(selectedClips[0].y(), selectedClips[0].x());
-        if (firstClip->cut->property_exists(kShotcutGroupProperty)) {
+        if (firstClip->cut->property_exists(kBossaGroupProperty)) {
             // First clip is in a group. Need to ungroup
             Timeline::UngroupCommand *ungroupCommand = new Timeline::UngroupCommand(m_model);
             foreach (auto point, selectedClips) {
@@ -1979,10 +1979,10 @@ QVariantList TimelineDock::getGroupForClip(int trackIndex, int clipIndex)
     if (!info || !info->cut) {
         return result;
     }
-    if (!info->cut->property_exists(kShotcutGroupProperty)) {
+    if (!info->cut->property_exists(kBossaGroupProperty)) {
         result << QPoint(clipIndex, trackIndex);
     } else {
-        int group = info->cut->get_int(kShotcutGroupProperty);
+        int group = info->cut->get_int(kBossaGroupProperty);
         for (int trackIndex = 0; trackIndex < m_model.trackList().size(); trackIndex++) {
             int i = m_model.trackList().at(trackIndex).mlt_index;
             QScopedPointer<Mlt::Producer> track(m_model.tractor()->track(i));
@@ -1990,8 +1990,8 @@ QVariantList TimelineDock::getGroupForClip(int trackIndex, int clipIndex)
                 Mlt::Playlist playlist(*track);
                 for (int clipIndex = 0; clipIndex < playlist.count(); clipIndex++) {
                     QScopedPointer<Mlt::ClipInfo> info(playlist.clip_info(clipIndex));
-                    if (info && info->cut && info->cut->property_exists(kShotcutGroupProperty)
-                        && info->cut->get_int(kShotcutGroupProperty) == group) {
+                    if (info && info->cut && info->cut->property_exists(kBossaGroupProperty)
+                        && info->cut->get_int(kBossaGroupProperty) == group) {
                         result << QPoint(clipIndex, trackIndex);
                     }
                 }
@@ -2368,7 +2368,7 @@ void TimelineDock::alignSelectedClips()
 void TimelineDock::applyCopiedFiltersToSelectdClips()
 {
     QString xmlToUse = QGuiApplication::clipboard()->text();
-    if (MLT.isMltXml(xmlToUse) && xmlToUse.contains(kShotcutFiltersClipboard)) {
+    if (MLT.isMltXml(xmlToUse) && xmlToUse.contains(kBossaFiltersClipboard)) {
         if (!Settings.proxyEnabled()) {
             ProxyManager::filterXML(xmlToUse, "");
         }
@@ -2405,7 +2405,7 @@ void TimelineDock::onSeeked(int position)
 
 static bool isSystemClipboardValid(const QString &xml)
 {
-    return MLT.isMltXml(xml) && MAIN.isClipboardNewer() && !xml.contains(kShotcutFiltersClipboard);
+    return MLT.isMltXml(xml) && MAIN.isClipboardNewer() && !xml.contains(kBossaFiltersClipboard);
 }
 
 void TimelineDock::append(int trackIndex)
@@ -2453,11 +2453,11 @@ void TimelineDock::append(int trackIndex)
             return;
         }
 
-        // Insert multiple if the XML is a <tractor> with child <property name="shotcut">1</property>
+        // Insert multiple if the XML is a <tractor> with child <property name="bossa">1</property>
         // No need to create a track in an empty timeline.
         // This can be a macro of QUndoCommands.
         if (producer.is_valid() && producer.type() == mlt_service_tractor_type
-            && producer.get_int(kShotcutXmlProperty)) {
+            && producer.get_int(kBossaXmlProperty)) {
             Mlt::Tractor tractor(producer);
             Mlt::ClipInfo info;
             MAIN.undoStack()->beginMacro(tr("Append multiple to timeline"));
@@ -2487,8 +2487,8 @@ void TimelineDock::append(int trackIndex)
                                                                                false,
                                                                                lastClip));
                             // AppendCommand executed immediately; record group membership
-                            if (info.cut && info.cut->property_exists(kShotcutGroupProperty)) {
-                                int group = info.cut->get_int(kShotcutGroupProperty);
+                            if (info.cut && info.cut->property_exists(kBossaGroupProperty)) {
+                                int group = info.cut->get_int(kBossaGroupProperty);
                                 int clipIndex = clipCount(trackIndex) - 1;
                                 if (clipIndex >= 0 && !isBlank(trackIndex, clipIndex)) {
                                     if (!groupCommands.contains(group))
@@ -2767,13 +2767,13 @@ void TimelineDock::copy(int trackIndex, int clipIndex)
         QMap<int, int> groupCounts;
         for (auto &a : selected) {
             auto clipInfo = m_model.getClipInfo(a.y(), a.x());
-            if (clipInfo && clipInfo->cut && clipInfo->cut->property_exists(kShotcutGroupProperty)) {
-                groupCounts[clipInfo->cut->get_int(kShotcutGroupProperty)]++;
+            if (clipInfo && clipInfo->cut && clipInfo->cut->property_exists(kBossaGroupProperty)) {
+                groupCounts[clipInfo->cut->get_int(kBossaGroupProperty)]++;
             }
         }
         // Create the tracks
         Mlt::Tractor tractor(MLT.profile());
-        tractor.set(kShotcutXmlProperty, 1);
+        tractor.set(kBossaXmlProperty, 1);
         for (int trackIndex = minY, i = 0; trackIndex <= maxY; trackIndex++, i++) {
             Mlt::Playlist playlist(MLT.profile());
             if (m_model.trackList()[trackIndex].type == AudioTrackType) {
@@ -2809,13 +2809,13 @@ void TimelineDock::copy(int trackIndex, int clipIndex)
                         playlist.append(*info.producer, info.frame_in, info.frame_out);
                         // Carry the group property onto the new playlist entry's cut
                         // so it is serialised into the clipboard XML.
-                        if (info.cut && info.cut->property_exists(kShotcutGroupProperty)) {
-                            int group = info.cut->get_int(kShotcutGroupProperty);
+                        if (info.cut && info.cut->property_exists(kBossaGroupProperty)) {
+                            int group = info.cut->get_int(kBossaGroupProperty);
                             if (groupCounts.value(group) >= 2) {
                                 QScopedPointer<Mlt::Producer> newCut(
                                     playlist.get_clip(playlist.count() - 1));
                                 if (newCut)
-                                    newCut->set(kShotcutGroupProperty, group);
+                                    newCut->set(kBossaGroupProperty, group);
                             }
                         }
                         prevEnd = info.start + info.frame_count;
@@ -2849,7 +2849,7 @@ void TimelineDock::emitSelectedFromSelection()
             continue;
         auto info2 = m_model.getClipInfo(trackIndex, clipIndex - 1);
         if (info2 && info2->producer && info2->producer->is_valid()
-            && info2->producer->get(kShotcutTransitionProperty)) {
+            && info2->producer->get(kBossaTransitionProperty)) {
             // Factor in a transition left of the clip.
             info->producer->set(kFilterInProperty, info->frame_in - info2->frame_count);
             info->producer->set(kPlaylistStartProperty, info2->start);
@@ -2859,7 +2859,7 @@ void TimelineDock::emitSelectedFromSelection()
         }
         info2 = m_model.getClipInfo(trackIndex, clipIndex + 1);
         if (info2 && info2->producer && info2->producer->is_valid()
-            && info2->producer->get(kShotcutTransitionProperty)) {
+            && info2->producer->get(kBossaTransitionProperty)) {
             // Factor in a transition right of the clip.
             info->producer->set(kFilterOutProperty, info->frame_out + info2->frame_count);
         } else {
@@ -3245,7 +3245,7 @@ void TimelineDock::handleDrop(int trackIndex, int position, QString xmlOrUrls)
             if (!MLT.producer() || !MLT.producer()->is_valid()) {
                 QUrl url = xml.split(kFilesUrlDelimiter).first();
                 Mlt::Properties properties;
-                properties.set(kShotcutSkipConvertProperty, 1);
+                properties.set(kBossaSkipConvertProperty, 1);
                 if (!MAIN.open(Util::removeFileScheme(url), &properties, false /* play */))
                     MAIN.open(Util::removeFileScheme(url, false), &properties, false /* play */);
             }
@@ -3278,7 +3278,7 @@ void TimelineDock::handleDrop(int trackIndex, int position, QString xmlOrUrls)
                         continue;
                     }
                     Mlt::Producer *producer = MLT.setupNewProducer(&p);
-                    producer->set(kShotcutSkipConvertProperty, 1);
+                    producer->set(kBossaSkipConvertProperty, 1);
                     if (MLT.isLiveProducer(producer)) {
                         LongUiTask::cancel();
                         DurationDialog durationDialog(this);
@@ -3385,7 +3385,7 @@ void TimelineDock::freezeFrame()
 
         Mlt::Link link("timeremap");
         link.set_profile(MLT.profile());
-        link.set(kShotcutFilterProperty, "speedForward");
+        link.set(kBossaFilterProperty, "speedForward");
         link.set_in_and_out(info->frame_in, info->frame_out);
         link.anim_set("speed_map", 0, 0, 0, mlt_keyframe_discrete);
 
@@ -3658,7 +3658,7 @@ bool TimelineDock::trimClipIn(
 
     // Update duration in properties
     auto info = m_model.getClipInfo(trackIndex, clipIndex);
-    if (info && !info->producer->get_int(kShotcutSequenceProperty))
+    if (info && !info->producer->get_int(kBossaSequenceProperty))
         emit durationChanged();
 
     return true;
@@ -3748,7 +3748,7 @@ bool TimelineDock::trimClipOut(int trackIndex, int clipIndex, int delta, bool ri
 
     // Update duration in properties
     auto info = m_model.getClipInfo(trackIndex, clipIndex);
-    if (info && !info->producer->get_int(kShotcutSequenceProperty))
+    if (info && !info->producer->get_int(kBossaSequenceProperty))
         emit durationChanged();
 
     return true;
@@ -3822,11 +3822,11 @@ void TimelineDock::insert(int trackIndex, int position, const QString &xml, bool
             position = qMax(m_position, 0);
         }
 
-        // Insert multiple if the XML is a <tractor> with child <property name="shotcut">1</property>
+        // Insert multiple if the XML is a <tractor> with child <property name="bossa">1</property>
         // No need to create a track in an empty timeline.
         // This can be a macro of QUndoCommands.
         if (producer.is_valid() && producer.type() == mlt_service_tractor_type
-            && producer.get_int(kShotcutXmlProperty)) {
+            && producer.get_int(kBossaXmlProperty)) {
             Mlt::Tractor tractor(producer);
             Mlt::ClipInfo info;
             MAIN.undoStack()->beginMacro(tr("Insert multiple into timeline"));
@@ -3871,8 +3871,8 @@ void TimelineDock::insert(int trackIndex, int position, const QString &xml, bool
                         if (!srcPlaylist.is_blank(mltClipIndex)) {
                             srcPlaylist.clip_info(mltClipIndex, &clipInfo);
                             if (clipInfo.cut
-                                && clipInfo.cut->property_exists(kShotcutGroupProperty)) {
-                                int group = clipInfo.cut->get_int(kShotcutGroupProperty);
+                                && clipInfo.cut->property_exists(kBossaGroupProperty)) {
+                                int group = clipInfo.cut->get_int(kBossaGroupProperty);
                                 int destClipIndex = clipIndexAtPosition(destTrackIndex,
                                                                         position + clipInfo.start);
                                 if (destClipIndex >= 0 && !isBlank(destTrackIndex, destClipIndex)) {
@@ -4000,11 +4000,11 @@ void TimelineDock::overwrite(int trackIndex, int position, const QString &xml, b
             position = qMax(m_position, 0);
         }
 
-        // Overwrite multiple if the XML is a <tractor> with child <property name="shotcut">1</property>
+        // Overwrite multiple if the XML is a <tractor> with child <property name="bossa">1</property>
         // No need to create a track in an empty timeline.
         // This can be a macro of QUndoCommands.
         if (producer.is_valid() && producer.type() == mlt_service_tractor_type
-            && producer.get_int(kShotcutXmlProperty)) {
+            && producer.get_int(kBossaXmlProperty)) {
             Mlt::Tractor tractor(producer);
             Mlt::ClipInfo info;
             MAIN.undoStack()->beginMacro(tr("Overwrite multiple onto timeline"));
@@ -4047,8 +4047,8 @@ void TimelineDock::overwrite(int trackIndex, int position, const QString &xml, b
                         if (!srcPlaylist.is_blank(mltClipIndex)) {
                             srcPlaylist.clip_info(mltClipIndex, &clipInfo);
                             if (clipInfo.cut
-                                && clipInfo.cut->property_exists(kShotcutGroupProperty)) {
-                                int group = clipInfo.cut->get_int(kShotcutGroupProperty);
+                                && clipInfo.cut->property_exists(kBossaGroupProperty)) {
+                                int group = clipInfo.cut->get_int(kBossaGroupProperty);
                                 int destClipIndex = clipIndexAtPosition(destTrackIndex,
                                                                         position + clipInfo.start);
                                 if (destClipIndex >= 0 && !isBlank(destTrackIndex, destClipIndex)) {
@@ -4510,7 +4510,7 @@ void TimelineDock::replaceClipsWithHash(const QString &hash, Mlt::Producer &prod
                     caption
                         = QStringLiteral("%1 (%2x)").arg(caption, info->producer->get("warp_speed"));
                 }
-                info->producer->set(kShotcutCaptionProperty, caption.toUtf8().constData());
+                info->producer->set(kBossaCaptionProperty, caption.toUtf8().constData());
             } else {
                 int in = clip.get_in();
                 int out = clip.get_out();
@@ -4518,13 +4518,13 @@ void TimelineDock::replaceClipsWithHash(const QString &hash, Mlt::Producer &prod
                 // Factor in a transition left of the clip.
                 auto info2 = m_model.getClipInfo(trackIndex, clipIndex - 1);
                 if (info2 && info2->producer && info2->producer->is_valid()
-                    && info2->producer->get(kShotcutTransitionProperty)) {
+                    && info2->producer->get(kBossaTransitionProperty)) {
                     in -= info2->frame_count;
                 }
                 // Factor in a transition right of the clip.
                 info2 = m_model.getClipInfo(trackIndex, clipIndex + 1);
                 if (info2 && info2->producer && info2->producer->is_valid()
-                    && info2->producer->get(kShotcutTransitionProperty)) {
+                    && info2->producer->get(kBossaTransitionProperty)) {
                     out += info2->frame_count;
                 }
                 Util::applyCustomProperties(producer, *info->producer, in, out);
@@ -4566,8 +4566,8 @@ void TimelineDock::recordAudio()
     // Add renamed color clip to audio track.
     auto trackIndex = addTrackIfNeeded(AudioTrackType);
     auto clip = Mlt::Producer(MLT.profile(), "color:");
-    clip.set(kShotcutCaptionProperty, info.fileName().toUtf8().constData());
-    clip.set(kShotcutDetailProperty, filename.toUtf8().constData());
+    clip.set(kBossaCaptionProperty, info.fileName().toUtf8().constData());
+    clip.set(kBossaDetailProperty, filename.toUtf8().constData());
     clip.set(kBackgroundCaptureProperty, 1);
     clip.set("length", std::numeric_limits<int>::max());
     clip.set_in_and_out(0, 0);
@@ -4587,7 +4587,7 @@ void TimelineDock::recordAudio()
 #if defined(Q_OS_WIN)
     QStringList args{"-f", "dshow", "-i", "audio=" + Settings.audioInput()};
 #else
-    QStringList args{"-f", "pulse", "-name", "Shotcut", "-i", Settings.audioInput()};
+    QStringList args{"-f", "pulse", "-name", "Bossa", "-i", Settings.audioInput()};
 #endif
     args << "-flush_packets"
          << "1"
@@ -4675,7 +4675,7 @@ void TimelineDock::stopRecording()
         // Replace color clip.
         auto info = m_model.getClipInfo(m_recordingTrackIndex, m_recordingClipIndex);
         if (info && info->producer && info->producer->is_valid()) {
-            Mlt::Producer clip(MLT.profile(), info->producer->get(kShotcutDetailProperty));
+            Mlt::Producer clip(MLT.profile(), info->producer->get(kBossaDetailProperty));
             lift(m_recordingTrackIndex, m_recordingClipIndex, true);
             if (clip.is_valid()) {
                 overwrite(m_recordingTrackIndex, info->start, MLT.XML(&clip), false);

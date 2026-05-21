@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Meltytech, LLC
+ * Copyright (c) 2018-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property string channelParam: '0'
@@ -155,7 +155,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             Layout.columnSpan: parent.columns - 1
@@ -176,14 +176,14 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: channelCombo
 
             model: [qsTr('Red'), qsTr('Green'), qsTr('Blue'), qsTr('Value')]
             onActivated: filter.set(channelParam, currentIndex / 10)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.set(channelParam, 3 / 10);
                 channelCombo.currentIndex = 3;
@@ -199,7 +199,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: histogramCombo
 
             model: [qsTr('Top Left'), qsTr('Top Right'), qsTr('Bottom Left'), qsTr('Bottom Right'), qsTr('None')]
@@ -211,7 +211,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.set(showHistogramParam, 0);
                 filter.set('threads', 0);
@@ -228,7 +228,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: inputBlackSlider
 
             minimumValue: 0
@@ -237,11 +237,11 @@ Item {
             onValueChanged: updateFilter(inputBlackParam, value / maximumValue, getPosition(), inputBlackKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: inputBlackSlider.value = 0
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: inputBlackKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, inputBlackParam, inputBlackSlider.value / inputBlackSlider.maximumValue)
@@ -252,7 +252,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: inputWhiteSlider
 
             minimumValue: 0
@@ -261,11 +261,11 @@ Item {
             onValueChanged: updateFilter(inputWhiteParam, value / maximumValue, getPosition(), inputWhiteKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: inputWhiteSlider.value = 255
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: inputWhiteKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, inputWhiteParam, inputWhiteSlider.value / inputWhiteSlider.maximumValue)
@@ -276,7 +276,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: gammaSlider
 
             minimumValue: 0.01
@@ -285,11 +285,11 @@ Item {
             onValueChanged: updateFilter(gammaParam, value / maximumValue, getPosition(), gammaKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: gammaSlider.value = 1
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: gammaKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, gammaParam, gammaSlider.value / gammaSlider.maximumValue)
@@ -300,7 +300,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: outputBlackSlider
 
             minimumValue: 0
@@ -308,7 +308,7 @@ Item {
             onValueChanged: filter.set(outputBlackParam, value / maximumValue)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: outputBlackSlider.value = 0
         }
 
@@ -321,7 +321,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: outputWhiteSlider
 
             minimumValue: 0
@@ -329,7 +329,7 @@ Item {
             onValueChanged: filter.set(outputWhiteParam, value / maximumValue)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: outputWhiteSlider.value = 255
         }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2022 Meltytech, LLC
+ * Copyright (c) 2021-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ import QtQml.Models
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     width: 200
@@ -46,7 +46,7 @@ Item {
                 text: qsTr('Mode')
             }
 
-            Shotcut.ComboBox {
+            Bossa.ComboBox {
                 id: modeCombo
 
                 implicitWidth: 200
@@ -81,7 +81,7 @@ Item {
                 }
             }
 
-            Shotcut.UndoButton {
+            Bossa.UndoButton {
                 onClicked: {
                     filter.set('mirror', modeModel.get(0).value);
                     filter.set('reverse', 0);

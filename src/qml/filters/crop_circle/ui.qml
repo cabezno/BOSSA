@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2024 Meltytech, LLC
+ * Copyright (c) 2020-2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,10 +17,10 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml as Shotcut
+import Bossa.Controls as Bossa
+import org.bossa.qml as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
 
     function setControls() {
         var position = getPosition();
@@ -64,7 +64,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: slider
 
             minimumValue: 0
@@ -74,11 +74,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter('radius', value / maximumValue, radiusKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: slider.value = 50
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: radiusKeyframesButton
 
             onToggled: {
@@ -93,7 +93,7 @@ Shotcut.KeyframableFilter {
         }
 
         RowLayout {
-            Shotcut.ColorPicker {
+            Bossa.ColorPicker {
                 id: colorSwatch
 
                 property bool isReady: false
@@ -109,17 +109,17 @@ Shotcut.KeyframableFilter {
                 onPickCancelled: filter.set('disable', 0)
             }
 
-            Shotcut.Button {
+            Bossa.Button {
                 text: qsTr('Transparent')
                 onClicked: colorSwatch.value = Qt.rgba(0, 0, 0, 0)
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: colorSwatch.value = Qt.rgba(0, 0, 0, 1)
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: colorKeyframesButton
             onToggled: toggleKeyframes(checked, 'color', Qt.color(colorSwatch.value))
         }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2022 Meltytech, LLC
+ * Copyright (c) 2013-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     function setStatus(inProgress) {
@@ -67,7 +67,7 @@ Item {
             text: qsTr('Target Loudness')
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: programSlider
 
             minimumValue: -50
@@ -84,13 +84,13 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: programSlider.value = -23
         }
 
         Label {}
 
-        Shotcut.Button {
+        Bossa.Button {
             id: button
 
             Layout.columnSpan: 2
@@ -128,7 +128,7 @@ Item {
             text: qsTr('Detected Loudness:')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The loudness calculated by the analysis.')
             }
         }
@@ -143,7 +143,7 @@ Item {
             text: qsTr('Normalization Gain:')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The gain applied to normalize to the Target Loudness.')
             }
         }

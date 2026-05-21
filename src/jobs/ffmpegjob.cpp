@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2026 Meltytech, LLC
+ * Copyright (c) 2016-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,8 +57,8 @@ FfmpegJob::~FfmpegJob()
 
 void FfmpegJob::start()
 {
-    QString shotcutPath = qApp->applicationDirPath();
-    QFileInfo ffmpegPath(shotcutPath, "ffmpeg");
+    QString bossaPath = qApp->applicationDirPath();
+    QFileInfo ffmpegPath(bossaPath, "ffmpeg");
     setReadChannel(QProcess::StandardError);
     LOG_DEBUG() << ffmpegPath.absoluteFilePath() + " " + m_args.join(' ');
     AbstractJob::start(ffmpegPath.absoluteFilePath(), m_args);

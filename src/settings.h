@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2026 Meltytech, LLC
+ * Copyright (c) 2013-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 #include <QStringList>
 #include <QThread>
 
-class ShotcutSettings : public QObject
+class BossaSettings : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool timelineDragScrub READ timelineDragScrub WRITE setTimelineDragScrub NOTIFY
@@ -83,7 +83,7 @@ public:
     enum TimelineScrolling { NoScrolling, CenterPlayhead, PageScrolling, SmoothScrolling };
     enum ProcessingMode { Native8Cpu, Linear8Cpu, Native10Cpu, Linear10Cpu, Linear10GpuCpu };
 
-    static ShotcutSettings &singleton();
+    static BossaSettings &singleton();
     void log();
 
     // general
@@ -445,8 +445,8 @@ signals:
     void timelineAdjustGainChanged();
 
 private:
-    explicit ShotcutSettings();
-    explicit ShotcutSettings(const QString &appDataLocation);
+    explicit BossaSettings();
+    explicit BossaSettings(const QString &appDataLocation);
     void migrateRecent();
     void migrateLayout();
 
@@ -455,6 +455,6 @@ private:
     QSettings m_recent;
 };
 
-#define Settings ShotcutSettings::singleton()
+#define Settings BossaSettings::singleton()
 
 #endif // SETTINGS_H

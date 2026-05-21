@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2022 Meltytech, LLC
+ * Copyright (c) 2014-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property var defaultParameters: ['radius', 'smooth', 'opacity', 'mode']
@@ -138,7 +138,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             Layout.columnSpan: 3
@@ -159,7 +159,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: radiusSlider
 
             minimumValue: 0
@@ -168,11 +168,11 @@ Item {
             onValueChanged: updateFilter('radius', value / 100, getPosition(), radiusKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: radiusSlider.value = 50
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: radiusKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, 'radius', radiusSlider.value / 100)
@@ -183,7 +183,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: smoothSlider
 
             minimumValue: 0
@@ -192,11 +192,11 @@ Item {
             onValueChanged: updateFilter('smooth', value / 100, getPosition(), smoothKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: smoothSlider.value = 200
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: smoothKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, 'smooth', smoothSlider.value / 100)
@@ -223,7 +223,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: opacitySlider
 
             minimumValue: 0
@@ -232,11 +232,11 @@ Item {
             onValueChanged: updateFilter('opacity', 1 - value / 100, getPosition(), opacityKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: opacitySlider.value = 100
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: opacityKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, 'opacity', 1 - opacitySlider.value / 100)

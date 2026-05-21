@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2026 Meltytech, LLC
+ * Copyright (c) 2021-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property string colorParam: 'filter.0'
@@ -53,7 +53,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: presetItem
 
             Layout.columnSpan: 2
@@ -69,7 +69,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ColorPicker {
+        Bossa.ColorPicker {
             id: colorPicker
 
             onValueChanged: {
@@ -79,7 +79,7 @@ Item {
             onPickCancelled: filter.set('disable', 0)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: colorPicker.value = colorDefault
         }
 
@@ -89,7 +89,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: distanceSlider
 
             minimumValue: 0
@@ -100,11 +100,11 @@ Item {
             onValueChanged: filter.set(distanceParam, value / 100)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: distanceSlider.value = distanceDefault
         }
 
-        Shotcut.TipBox {
+        Bossa.TipBox {
             Layout.columnSpan: parent.columns
             Layout.fillWidth: true
             Layout.margins: 10

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 Meltytech, LLC
+ * Copyright (c) 2019-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property var defaultParameters: ['osc', 'initial_zoom', 'zoom', 'up', 'down', 'left', 'right', 'clockwise', 'counterclockwise', 'frequency_low', 'frequency_high', 'threshold']
@@ -72,7 +72,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: defaultParameters
@@ -84,12 +84,12 @@ Item {
             text: qsTr('Initial Zoom')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The amount to zoom the image before any motion occurs.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: initialZoomSlider
 
             Layout.columnSpan: 3
@@ -100,7 +100,7 @@ Item {
             onValueChanged: filter.set("initial_zoom", value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: initialZoomSlider.value = 100
         }
 
@@ -108,12 +108,12 @@ Item {
             text: qsTr('Oscillation')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Oscillation can be useful to make the image move back and forth during long periods of sound.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: oscSlider
 
             Layout.columnSpan: 3
@@ -124,7 +124,7 @@ Item {
             onValueChanged: filter.set("osc", value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: oscSlider.value = 5
         }
 
@@ -132,12 +132,12 @@ Item {
             text: qsTr('Zoom')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The amount that the audio affects the zoom of the image.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: zoomSlider
 
             Layout.columnSpan: 3
@@ -148,7 +148,7 @@ Item {
             onValueChanged: filter.set("zoom", value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: zoomSlider.value = 10
         }
 
@@ -156,12 +156,12 @@ Item {
             text: qsTr('Up')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The amount that the audio affects the upward offset of the image.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: upSlider
 
             Layout.columnSpan: 3
@@ -172,7 +172,7 @@ Item {
             onValueChanged: filter.set("up", value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: upSlider.value = 0
         }
 
@@ -180,12 +180,12 @@ Item {
             text: qsTr('Down')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The amount that the audio affects the downward offset of the image.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: downSlider
 
             Layout.columnSpan: 3
@@ -196,7 +196,7 @@ Item {
             onValueChanged: filter.set("down", value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: downSlider.value = 0
         }
 
@@ -204,12 +204,12 @@ Item {
             text: qsTr('Left')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The amount that the audio affects the left offset of the image.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: leftSlider
 
             Layout.columnSpan: 3
@@ -220,7 +220,7 @@ Item {
             onValueChanged: filter.set("left", value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: leftSlider.value = 0
         }
 
@@ -228,12 +228,12 @@ Item {
             text: qsTr('Right')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The amount that the audio affects the right offset of the image.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: rightSlider
 
             Layout.columnSpan: 3
@@ -244,7 +244,7 @@ Item {
             onValueChanged: filter.set("right", value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: rightSlider.value = 0
         }
 
@@ -252,12 +252,12 @@ Item {
             text: qsTr('Clockwise')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The amount that the audio affects the clockwise rotation of the image.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: clockwiseSlider
 
             Layout.columnSpan: 3
@@ -268,7 +268,7 @@ Item {
             onValueChanged: filter.set("clockwise", value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: clockwiseSlider.value = 0
         }
 
@@ -276,12 +276,12 @@ Item {
             text: qsTr('Counterclockwise')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The amount that the audio affects the counterclockwise rotation of the image.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: counterclockwiseSlider
 
             Layout.columnSpan: 3
@@ -292,7 +292,7 @@ Item {
             onValueChanged: filter.set("counterclockwise", value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: counterclockwiseSlider.value = 0
         }
 
@@ -300,12 +300,12 @@ Item {
             text: qsTr('Low Frequency')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The low end of the frequency range to be used to influence the image motion.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: freqLowSlider
 
             Layout.columnSpan: 3
@@ -320,7 +320,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: freqLowSlider.value = 20
         }
 
@@ -328,12 +328,12 @@ Item {
             text: qsTr('High Frequency')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The high end of the frequency range to be used to influence the image motion.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: freqHighSlider
 
             Layout.columnSpan: 3
@@ -348,7 +348,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: freqHighSlider.value = 20000
         }
 
@@ -356,12 +356,12 @@ Item {
             text: qsTr('Threshold')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The minimum amplitude of sound that must occur within the frequency range to cause the image to move.')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: thresholdSlider
 
             Layout.columnSpan: 3
@@ -372,7 +372,7 @@ Item {
             onValueChanged: filter.set("threshold", value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: thresholdSlider.value = -30
         }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Meltytech, LLC
+ * Copyright (c) 2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,8 +36,8 @@ GoPro2GpxJob::GoPro2GpxJob(const QString &name, const QStringList &args)
 
 void GoPro2GpxJob::start()
 {
-    QString shotcutPath = qApp->applicationDirPath();
-    QFileInfo gopro2gpxPath(shotcutPath, "gopro2gpx");
+    QString bossaPath = qApp->applicationDirPath();
+    QFileInfo gopro2gpxPath(bossaPath, "gopro2gpx");
     setReadChannel(QProcess::StandardOutput);
     LOG_DEBUG() << gopro2gpxPath.absoluteFilePath() + " " + m_args.join(' ');
     AbstractJob::start(gopro2gpxPath.absoluteFilePath(), m_args);

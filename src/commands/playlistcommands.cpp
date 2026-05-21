@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2024 Meltytech, LLC
+ * Copyright (c) 2013-2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #include "docks/playlistdock.h"
 #include "mainwindow.h"
 #include "mltcontroller.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 
 #include <QTreeWidget>
 
@@ -379,7 +379,7 @@ NewBinCommand::NewBinCommand(PlaylistModel &model,
     , m_bin(bin)
 {
     setText(QObject::tr("Add new bin: %1").arg(bin));
-    auto props = m_model.playlist()->get_props(kShotcutBinsProperty);
+    auto props = m_model.playlist()->get_props(kBossaBinsProperty);
     if (props && props->is_valid()) {
         m_oldBins.copy(*props, "");
     }
@@ -394,10 +394,10 @@ void NewBinCommand::redo()
     PlaylistDock::sortBins(m_binTree);
     emit m_binTree->itemSelectionChanged();
 
-    std::unique_ptr<Mlt::Properties> props(m_model.playlist()->get_props(kShotcutBinsProperty));
+    std::unique_ptr<Mlt::Properties> props(m_model.playlist()->get_props(kBossaBinsProperty));
     if (!props || !props->is_valid()) {
         props.reset(new Mlt::Properties);
-        m_model.playlist()->set(kShotcutBinsProperty, *props);
+        m_model.playlist()->set(kBossaBinsProperty, *props);
     }
     for (int i = PlaylistDock::SmartBinCount; i < m_binTree->topLevelItemCount(); ++i) {
         auto name = m_binTree->topLevelItem(i)->text(0);
@@ -407,7 +407,7 @@ void NewBinCommand::redo()
 
 void NewBinCommand::undo()
 {
-    m_model.playlist()->set(kShotcutBinsProperty, m_oldBins);
+    m_model.playlist()->set(kBossaBinsProperty, m_oldBins);
     auto items = m_binTree->findItems(m_bin, Qt::MatchExactly);
     if (!items.isEmpty())
         delete items.first();
@@ -428,7 +428,7 @@ MoveToBinCommand::MoveToBinCommand(PlaylistModel &model,
     for (const auto row : rows) {
         auto clip = m_model.playlist()->get_clip(row);
         if (clip && clip->is_valid() && clip->parent().is_valid()) {
-            m_oldData.append({row, clip->parent().get(kShotcutBinsProperty)});
+            m_oldData.append({row, clip->parent().get(kBossaBinsProperty)});
         }
     }
 }
@@ -479,8 +479,8 @@ void RenameBinCommand::redo()
             // Remove bin property from playlist items
             for (int i = 0; i < m_model.playlist()->count(); ++i) {
                 auto clip = m_model.playlist()->get_clip(i);
-                if (clip && clip->is_valid() && m_bin == clip->parent().get(kShotcutBinsProperty)) {
-                    clip->parent().Mlt::Properties::clear(kShotcutBinsProperty);
+                if (clip && clip->is_valid() && m_bin == clip->parent().get(kBossaBinsProperty)) {
+                    clip->parent().Mlt::Properties::clear(kBossaBinsProperty);
                     m_removedRows << i;
                 }
             }
@@ -516,7 +516,7 @@ void RenameBinCommand::undo()
 
         // Restore bin property on playlist items
         for (auto row : m_removedRows) {
-            m_model.playlist()->get_clip(row)->parent().set(kShotcutBinsProperty,
+            m_model.playlist()->get_clip(row)->parent().set(kBossaBinsProperty,
                                                             m_bin.toUtf8().constData());
         }
         m_model.renameBin(m_bin);
@@ -540,7 +540,7 @@ void RenameBinCommand::undo()
 void RenameBinCommand::rebuildBinList(PlaylistModel &model, QTreeWidget *binTree)
 {
     // Rebuild list of bins
-    std::unique_ptr<Mlt::Properties> props(model.playlist()->get_props(kShotcutBinsProperty));
+    std::unique_ptr<Mlt::Properties> props(model.playlist()->get_props(kBossaBinsProperty));
     for (int i = 0; i < props->count(); ++i) {
         const auto name = QString::fromLatin1(props->get_name(i));
         if (!name.startsWith('_') && !name.startsWith('.'))

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 Meltytech, LLC
+ * Copyright (c) 2019-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick
-import org.shotcut.qml
+import org.bossa.qml
 
 Metadata {
     type: Metadata.Filter
@@ -24,7 +24,7 @@ Metadata {
     mlt_service: "frei0r.hqdn3d"
     qml: "ui.qml"
     icon: 'icon.webp'
-    help: 'https://forum.shotcut.org/t/reduce-noise-hqdn3d/12873/1'
+    help: 'https://forum.bossa.org/t/reduce-noise-hqdn3d/12873/1'
 
     keyframes {
         allowAnimateIn: true

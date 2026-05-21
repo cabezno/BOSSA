@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022 Meltytech, LLC
+ * Copyright (c) 2018-2022 Bossa Project, LLC
 
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     function setControls() {
@@ -53,7 +53,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: ['x_scatter', 'y_scatter', 'scale', 'mix']
@@ -66,7 +66,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: xScatter
 
             minimumValue: 1
@@ -77,7 +77,7 @@ Item {
             onValueChanged: filter.set('x_scatter', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: xScatter.value = 2
         }
 
@@ -86,7 +86,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: yScatter
 
             minimumValue: 1
@@ -97,7 +97,7 @@ Item {
             onValueChanged: filter.set('y_scatter', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: yScatter.value = 2
         }
 
@@ -106,7 +106,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: scale
 
             minimumValue: 0
@@ -118,7 +118,7 @@ Item {
             onValueChanged: filter.set('scale', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: scale.value = 1.5
         }
 
@@ -127,7 +127,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: mix
 
             minimumValue: 0
@@ -139,7 +139,7 @@ Item {
             onValueChanged: filter.set('mix', value)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: mix.value = 0
         }
 

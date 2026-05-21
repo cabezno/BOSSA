@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2022 Meltytech, LLC
+ * Copyright (c) 2021-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     id: root
@@ -56,14 +56,14 @@ Item {
         id: activePalette
     }
 
-    Shotcut.MarkerMenu {
+    Bossa.MarkerMenu {
         id: menu
 
         target: timeline
         index: root.index
     }
 
-    Shotcut.MarkerStart {
+    Bossa.MarkerStart {
         id: markerStart
 
         width: 7
@@ -134,7 +134,7 @@ Item {
         }
     }
 
-    Shotcut.MarkerEnd {
+    Bossa.MarkerEnd {
         id: markerEnd
 
         width: 7

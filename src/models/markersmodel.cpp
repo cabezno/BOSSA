@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2026 Meltytech, LLC
+ * Copyright (c) 2021-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 #include "commands/markercommands.h"
 #include "mainwindow.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 
 enum Columns {
     COLUMN_COLOR = 0,
@@ -72,7 +72,7 @@ void MarkersModel::load(Mlt::Producer *producer)
     m_producer = producer;
     m_keys.clear();
     if (m_producer && m_producer->is_valid()) {
-        Mlt::Properties *markerList = m_producer->get_props(kShotcutMarkersProperty);
+        Mlt::Properties *markerList = m_producer->get_props(kBossaMarkersProperty);
         if (markerList && markerList->is_valid()) {
             int count = markerList->count();
             for (int i = 0; i < count; i++) {
@@ -136,7 +136,7 @@ void MarkersModel::doRemove(int markerIndex)
         LOG_ERROR() << "Index out of bounds: " << modelIndex.row() << m_keys.count();
         return;
     }
-    Mlt::Properties *markersListProperties = m_producer->get_props(kShotcutMarkersProperty);
+    Mlt::Properties *markersListProperties = m_producer->get_props(kBossaMarkersProperty);
     if (!markersListProperties || !markersListProperties->is_valid()) {
         LOG_ERROR() << "No Markers";
         delete markersListProperties;
@@ -172,11 +172,11 @@ void MarkersModel::doInsert(int markerIndex, const Markers::Marker &marker)
         return;
     }
 
-    Mlt::Properties *markersListProperties = m_producer->get_props(kShotcutMarkersProperty);
+    Mlt::Properties *markersListProperties = m_producer->get_props(kBossaMarkersProperty);
     if (!markersListProperties || !markersListProperties->is_valid()) {
         delete markersListProperties;
         markersListProperties = new Mlt::Properties;
-        m_producer->set(kShotcutMarkersProperty, *markersListProperties);
+        m_producer->set(kBossaMarkersProperty, *markersListProperties);
     }
 
     Mlt::Properties markerProperties;
@@ -212,11 +212,11 @@ void MarkersModel::doAppend(const Markers::Marker &marker)
         return;
     }
 
-    Mlt::Properties *markersListProperties = m_producer->get_props(kShotcutMarkersProperty);
+    Mlt::Properties *markersListProperties = m_producer->get_props(kBossaMarkersProperty);
     if (!markersListProperties || !markersListProperties->is_valid()) {
         delete markersListProperties;
         markersListProperties = new Mlt::Properties;
-        m_producer->set(kShotcutMarkersProperty, *markersListProperties);
+        m_producer->set(kBossaMarkersProperty, *markersListProperties);
     }
 
     Mlt::Properties markerProperties;
@@ -295,7 +295,7 @@ void MarkersModel::doClear()
 
     beginResetModel();
     m_keys.clear();
-    static_cast<Mlt::Properties *>(m_producer)->clear(kShotcutMarkersProperty);
+    static_cast<Mlt::Properties *>(m_producer)->clear(kBossaMarkersProperty);
     endResetModel();
     emit modified();
     emit rangesChanged();
@@ -311,7 +311,7 @@ void MarkersModel::doReplace(QList<Markers::Marker> &markers)
     beginResetModel();
     m_keys.clear();
     Mlt::Properties *markersListProperties = new Mlt::Properties;
-    m_producer->set(kShotcutMarkersProperty, *markersListProperties);
+    m_producer->set(kBossaMarkersProperty, *markersListProperties);
     for (int i = 0; i < markers.size(); i++) {
         Mlt::Properties markerProperties;
         markerToProperties(markers[i], &markerProperties, m_producer);
@@ -334,7 +334,7 @@ void MarkersModel::doShift(int shiftPosition, int shiftAmount)
     }
     int minIndex = -1;
     int maxIndex = -1;
-    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kShotcutMarkersProperty));
+    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kBossaMarkersProperty));
     if (markerList && markerList->is_valid()) {
         for (const auto i : std::as_const(m_keys)) {
             QScopedPointer<Mlt::Properties> markerProperties(
@@ -411,7 +411,7 @@ void MarkersModel::clear()
         return;
     }
 
-    Mlt::Properties *markersListProperties = m_producer->get_props(kShotcutMarkersProperty);
+    Mlt::Properties *markersListProperties = m_producer->get_props(kBossaMarkersProperty);
     if (!markersListProperties || !markersListProperties->is_valid()) {
         delete markersListProperties;
         return;
@@ -469,7 +469,7 @@ int MarkersModel::markerIndexForPosition(int position)
         return -1;
     }
 
-    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kShotcutMarkersProperty));
+    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kBossaMarkersProperty));
     if (markerList && markerList->is_valid()) {
         for (const auto i : std::as_const(m_keys)) {
             QScopedPointer<Mlt::Properties> marker(
@@ -491,7 +491,7 @@ int MarkersModel::markerIndexForRange(int start, int end)
         return -1;
     }
 
-    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kShotcutMarkersProperty));
+    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kBossaMarkersProperty));
     if (markerList && markerList->is_valid()) {
         for (const auto i : std::as_const(m_keys)) {
             QScopedPointer<Mlt::Properties> marker(
@@ -513,7 +513,7 @@ int MarkersModel::rangeMarkerIndexForPosition(int position)
         return -1;
     }
 
-    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kShotcutMarkersProperty));
+    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kBossaMarkersProperty));
     if (markerList && markerList->is_valid()) {
         for (const auto i : std::as_const(m_keys)) {
             QScopedPointer<Mlt::Properties> marker(
@@ -536,7 +536,7 @@ int MarkersModel::nextMarkerPosition(int position)
         LOG_ERROR() << "No producer";
         return nextPosition;
     }
-    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kShotcutMarkersProperty));
+    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kBossaMarkersProperty));
     if (markerList && markerList->is_valid()) {
         for (const auto i : std::as_const(m_keys)) {
             QScopedPointer<Mlt::Properties> marker(
@@ -565,7 +565,7 @@ int MarkersModel::prevMarkerPosition(int position)
         LOG_ERROR() << "No producer";
         return prevPosition;
     }
-    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kShotcutMarkersProperty));
+    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kBossaMarkersProperty));
     if (markerList && markerList->is_valid()) {
         for (const auto i : std::as_const(m_keys)) {
             QScopedPointer<Mlt::Properties> marker(
@@ -597,7 +597,7 @@ QMap<int, QString> MarkersModel::ranges()
     QMap<int, QString> result;
     if (!m_producer || !m_producer->is_valid())
         return result;
-    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kShotcutMarkersProperty));
+    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kBossaMarkersProperty));
     if (markerList && markerList->is_valid()) {
         for (const auto i : std::as_const(m_keys)) {
             QScopedPointer<Mlt::Properties> marker(
@@ -624,7 +624,7 @@ QList<Markers::Marker> MarkersModel::getMarkers() const
     QList<Markers::Marker> markers;
     if (!m_producer || !m_producer->is_valid())
         return markers;
-    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kShotcutMarkersProperty));
+    QScopedPointer<Mlt::Properties> markerList(m_producer->get_props(kBossaMarkersProperty));
     if (markerList && markerList->is_valid()) {
         for (const auto i : std::as_const(m_keys)) {
             QScopedPointer<Mlt::Properties> marker(
@@ -662,7 +662,7 @@ Mlt::Properties *MarkersModel::getMarkerProperties(int markerIndex)
         LOG_ERROR() << "Invalid Index: " << markerIndex;
         return markerProperties;
     }
-    Mlt::Properties *markersListProperties = m_producer->get_props(kShotcutMarkersProperty);
+    Mlt::Properties *markersListProperties = m_producer->get_props(kBossaMarkersProperty);
     if (!markersListProperties || !markersListProperties->is_valid()) {
         LOG_ERROR() << "No Markers";
     } else {
@@ -721,7 +721,7 @@ QVariant MarkersModel::data(const QModelIndex &index, int role) const
         LOG_ERROR() << "Invalid Index: " << index.row() << index.column() << role;
         return result;
     }
-    Mlt::Properties *markersListProperties = m_producer->get_props(kShotcutMarkersProperty);
+    Mlt::Properties *markersListProperties = m_producer->get_props(kBossaMarkersProperty);
     if (!markersListProperties || !markersListProperties->is_valid()) {
         LOG_DEBUG() << "No Markers: " << index.row() << index.column() << role;
         delete markersListProperties;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2026 Meltytech, LLC
+ * Copyright (c) 2013-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 #include "database.h"
 #include "mainwindow.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <QByteArray>
@@ -154,8 +154,8 @@ QString AudioLevelsTask::cacheKey()
 {
     QString key = QStringLiteral("%1 audiolevels");
     Mlt::Producer *producer = m_producers.first().first;
-    if (producer->get(kShotcutHashProperty)) {
-        key = key.arg(producer->get(kShotcutHashProperty));
+    if (producer->get(kBossaHashProperty)) {
+        key = key.arg(producer->get(kBossaHashProperty));
     } else {
         key = key.arg(producer->get("resource"));
         QCryptographicHash hash(QCryptographicHash::Sha1);

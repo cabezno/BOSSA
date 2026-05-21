@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2022 Meltytech, LLC
+ * Copyright (c) 2014-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property string paramAmount: '0'
@@ -131,7 +131,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             Layout.columnSpan: 3
             parameters: defaultParameters
             onBeforePresetLoaded: {
@@ -149,7 +149,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: amountSlider
 
             minimumValue: 0
@@ -159,11 +159,11 @@ Item {
             onValueChanged: updateFilter(paramAmount, value / 100, getPosition(), amountKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: amountSlider.value = 50
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: amountKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, paramAmount, amountSlider.value / 100)
@@ -174,7 +174,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sizeSlider
 
             minimumValue: 0
@@ -184,11 +184,11 @@ Item {
             onValueChanged: updateFilter(paramSize, value / 100, getPosition(), sizeKeyframesButton)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sizeSlider.value = 50
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: sizeKeyframesButton
 
             onToggled: onKeyframesButtonClicked(checked, paramSize, sizeSlider.value / 100)

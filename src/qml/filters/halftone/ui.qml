@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 Meltytech, LLC
+ * Copyright (c) 2019-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property string dotradius: '0'
     property string cyanangle: '1'
     property string magentaangle: '2'
@@ -83,7 +83,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: [dotradius, cyanangle, magentaangle, yellowangle]
@@ -105,7 +105,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: dotradiusSlider
 
             minimumValue: 0
@@ -116,11 +116,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(dotradius, dotradiusSlider.value / dotradiusSlider.maximumValue, dotKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: dotradiusSlider.value = dotradiusDefault * dotradiusSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: dotKeyframesButton
 
             onToggled: {
@@ -134,7 +134,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: cyanangleSlider
 
             minimumValue: 0
@@ -145,11 +145,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(cyanangle, cyanangleSlider.value / cyanangleSlider.maximumValue, cyanKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: cyanangleSlider.value = cyanangleDefault * cyanangleSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: cyanKeyframesButton
 
             onToggled: {
@@ -163,7 +163,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: magentaangleSlider
 
             minimumValue: 0
@@ -174,11 +174,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(magentaangle, magentaangleSlider.value / magentaangleSlider.maximumValue, magentaKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: magentaangleSlider.value = magentaangleDefault * magentaangleSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: magentaKeyframesButton
 
             onToggled: {
@@ -192,7 +192,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: yellowangleSlider
 
             minimumValue: 0
@@ -203,11 +203,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(yellowangle, yellowangleSlider.value / yellowangleSlider.maximumValue, yellowKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: yellowangleSlider.value = yellowangleDefault * yellowangleSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: yellowKeyframesButton
 
             onToggled: {

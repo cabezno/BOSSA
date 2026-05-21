@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2026 Meltytech, LLC
+ * Copyright (c) 2018-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ VideoHistogramScopeWidget::VideoHistogramScopeWidget()
 {
     LOG_DEBUG() << "begin";
     setMouseTracking(true);
-    setWhatsThis("https://forum.shotcut.org/t/video-histogram-scope/12921/1");
+    setWhatsThis("https://forum.bossa.org/t/video-histogram-scope/12921/1");
     LOG_DEBUG() << "end";
 }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Meltytech, LLC
+ * Copyright (c) 2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property bool blockControls: false
@@ -73,7 +73,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: ['av.level_in', 'av.level_out', 'av.side_gain', 'av.middle_source', 'av.middle_phase', 'av.left_delay', 'av.left_balance', 'av.left_gain', 'av.left_phase', 'av.right_delay', 'av.right_balance', 'av.right_gain', 'av.right_phase']
@@ -88,7 +88,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: sourceCombo
 
             property var values: ['left', 'right', 'mid', 'side']
@@ -118,7 +118,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderLeftDelay
 
             minimumValue: 0
@@ -135,7 +135,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderLeftDelay.value = 0
         }
 
@@ -144,7 +144,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderLeftLevel
 
             minimumValue: -16
@@ -161,7 +161,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderLeftLevel.value = 0
         }
 
@@ -170,7 +170,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderRightDelay
 
             minimumValue: 0
@@ -187,7 +187,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderRightDelay.value = 10
         }
 
@@ -196,7 +196,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderRightLevel
 
             minimumValue: -16
@@ -213,7 +213,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderRightLevel.value = 0
         }
 
@@ -222,7 +222,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: sliderOutputLevel
 
             minimumValue: -16
@@ -239,7 +239,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: sliderOutputLevel.value = -3
         }
 

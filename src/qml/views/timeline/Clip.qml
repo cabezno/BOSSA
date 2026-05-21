@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2026 Meltytech, LLC
+ * Copyright (c) 2013-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  */
 import QtQuick
 import QtQuick.Controls
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Rectangle {
     id: clipRoot
@@ -48,7 +48,7 @@ Rectangle {
     property int group: -1
     property bool isTrackMute: false
     property bool elided: (width < 15) || (x + width < tracksFlickable.contentX) || (x > tracksFlickable.contentX + tracksFlickable.width) || (y + height < 0) || (y > tracksFlickable.contentY + tracksFlickable.contentHeight)
-    property color clipColor: isBlank ? 'transparent' : isTransition ? '#e040fb' : isAudio ? '#1a1a1a' : root.shotcutBlue
+    property color clipColor: isBlank ? 'transparent' : isTransition ? '#e040fb' : isAudio ? '#1a1a1a' : root.bossaBlue
 
     // ... (rest of property declarations)
 
@@ -255,8 +255,8 @@ Rectangle {
         source: imagePath(inPoint)
     }
 
-    Shotcut.TimelineTransition {
-        property var color: isAudio ? 'darkseagreen' : root.shotcutBlue
+    Bossa.TimelineTransition {
+        property var color: isAudio ? 'darkseagreen' : root.bossaBlue
 
         visible: !elided && isTransition
         anchors.fill: parent
@@ -282,7 +282,7 @@ Rectangle {
 
             model: Math.ceil(clipRoot.width / waveform.maxWidth)
 
-            Shotcut.TimelineWaveform {
+            Bossa.TimelineWaveform {
                 property int channels: 2
 
                 trackIndex: clipRoot.trackIndex
@@ -428,7 +428,7 @@ Rectangle {
         }
     }
 
-    Shotcut.TimelineTriangle {
+    Bossa.TimelineTriangle {
         id: fadeInTriangle
 
         visible: !elided && !isBlank && !isTransition
@@ -519,7 +519,7 @@ Rectangle {
         }
     }
 
-    Shotcut.TimelineTriangle {
+    Bossa.TimelineTriangle {
         id: fadeOutTriangle
 
         visible: !elided && !isBlank && !isTransition

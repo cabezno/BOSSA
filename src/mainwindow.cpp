@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2026 Meltytech, LLC
+ * Copyright (c) 2011-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@
 #include "controllers/bossamissioncontrol.h"
 #include "controllers/bossaremotebridge.h"
 #include "docks/aidock.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 #include "videowidget.h"
 #include "widgets/alsawidget.h"
@@ -2976,7 +2976,7 @@ void MainWindow::on_actionAbout_Bossa_triggered()
         this,
         tr("About %1").arg(qApp->applicationName()),
         QStringLiteral(
-            "<h1>Bossa version 1.0</h1>"
+            "<h1>Bossa PRO 1.0</h1>"
             "<p><a href=\"%3\">%1</a> is a free, open source, cross platform video editor.</p>"
             "<small><p>%4</p>"
             "<p>Licensed under the %5</p>"

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025 Meltytech, LLC
+ * Copyright (c) 2018-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import "Keyframes.js" as Logic
 import QtQuick
 import QtQuick.Controls
-import org.shotcut.qml
+import org.bossa.qml
 
 Rectangle {
     id: keyframeRoot

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 Meltytech, LLC
+ * Copyright (c) 2019-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property string amplitude: '0'
     property string frequency: '1'
     property string useVelocity: '2'
@@ -78,7 +78,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: [amplitude, frequency, useVelocity, velocity]
@@ -97,7 +97,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: amplitudeSlider
 
             minimumValue: 0
@@ -108,11 +108,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(amplitude, value / maximumValue, amplitudeKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: amplitudeSlider.value = amplitudeDefault * amplitudeSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: amplitudeKeyframesButton
 
             onToggled: {
@@ -126,7 +126,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: frequencySlider
 
             minimumValue: 0
@@ -137,11 +137,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(frequency, value / maximumValue, frequencyKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: frequencySlider.value = frequencyDefault * frequencySlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: frequencyKeyframesButton
 
             onToggled: {
@@ -155,7 +155,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: velocitySlider
 
             minimumValue: 0
@@ -166,11 +166,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(velocity, value / maximumValue, velocityKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: velocitySlider.value = velocityDefault * velocitySlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: velocityKeyframesButton
 
             onToggled: {

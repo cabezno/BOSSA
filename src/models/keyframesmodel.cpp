@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2024 Meltytech, LLC
+ * Copyright (c) 2018-2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -644,7 +644,7 @@ void KeyframesModel::addKeyframe(int parameterIndex, int position)
                 // such that changing the parameter value causes the addition of a
                 // keyframe just after this one. MLT.refreshConsumer() with
                 // frame-dropping enabled may have dropped video of the most recent
-                // frame from the producer, but Shotcut does not know about it
+                // frame from the producer, but Bossa does not know about it
                 // because it did not receive a "consumer-frame-show" event for it.
                 m_filter->blockSignals(true);
                 m_filter->set(name, value, position, keyframeType);

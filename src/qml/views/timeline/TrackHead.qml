@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2026 Meltytech, LLC
+ * Copyright (c) 2013-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Rectangle {
     id: trackHeadRoot
@@ -54,7 +54,7 @@ Rectangle {
 
             PropertyChanges {
                 target: trackHeadRoot
-                color: isVideo ? root.shotcutBlue : 'darkseagreen'
+                color: isVideo ? root.bossaBlue : 'darkseagreen'
             }
         },
         State {
@@ -135,7 +135,7 @@ Rectangle {
             }
 
             Control {
-                Shotcut.HoverTip {
+                Bossa.HoverTip {
                     text: trackName
                 }
 
@@ -179,7 +179,7 @@ Rectangle {
                 onClicked: timeline.setTrackLock(index, !isLocked)
                 transformOrigin: Item.Center
 
-                Shotcut.HoverTip {
+                Bossa.HoverTip {
                     text: (isLocked ? qsTr('Unlock track') : qsTr('Lock track')) + application.actionFirstShortcut('timelineToggleTrackLockedAction')
                 }
 
@@ -225,7 +225,7 @@ Rectangle {
                     }
                 }
 
-                Shotcut.HoverTip {
+                Bossa.HoverTip {
                     text: qsTr('Mute/Unmute - Alt+Click to toggle mute of other tracks') + application.actionFirstShortcut('timelineToggleTrackMuteAction')
                 }
             }
@@ -252,7 +252,7 @@ Rectangle {
                     }
                 }
 
-                Shotcut.HoverTip {
+                Bossa.HoverTip {
                     text: qsTr('Show/Hide - Alt+Click to toggle visibility of other tracks') + application.actionFirstShortcut('timelineToggleTrackHiddenAction')
                 }
             }
@@ -271,7 +271,7 @@ Rectangle {
                     timeline.filteredClicked();
                 }
 
-                Shotcut.HoverTip {
+                Bossa.HoverTip {
                     text: qsTr('Filters')
                 }
             }

@@ -1,5 +1,5 @@
 import QtQuick
-import org.shotcut.qml
+import org.bossa.qml
 
 Metadata {
     type: Metadata.Filter
@@ -8,7 +8,7 @@ Metadata {
     mlt_service: "frei0r.cairoimagegrid"
     qml: "ui.qml"
     icon: 'icon.webp'
-    help: 'https://forum.shotcut.org/t/grid-video-filter/12850/1'
+    help: 'https://forum.bossa.org/t/grid-video-filter/12850/1'
 
     keyframes {
         allowAnimateIn: true

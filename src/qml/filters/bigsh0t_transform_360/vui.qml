@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2022 Meltytech, LLC
+ * Copyright (c) 2020-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.VuiBase {
+Bossa.VuiBase {
     property var keyframableParameters: ['yaw', 'pitch', 'roll']
     property var startValues: []
     property var middleValues: []

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2025 Meltytech, LLC
+ * Copyright (c) 2019-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property string propertyName: 'mode'
@@ -50,7 +50,7 @@ Item {
             text: qsTr('Blend mode')
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: combo
 
             textRole: 'text'
@@ -153,7 +153,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.set(propertyName, comboItems.get(0).value);
                 combo.currentIndex = 0;

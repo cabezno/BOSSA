@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Meltytech, LLC
+ * Copyright (c) 2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property string delaySyncParam: '1'
     property string delayNoteParam: '2'
     property string delayMsParam: '3'
@@ -158,7 +158,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Preset')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
             parameters: [delaySyncParam, delayNoteParam, delayMsParam, delayWarpParam, clearParam, feedbackParam, densityParam, widthParam, lowCutParam, highCutParam, modRateParam, modDepthParam, modeParam, wetnessParam, channelMask.channelMaskProperty]
             Layout.columnSpan: 3
@@ -169,7 +169,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Delay sync')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: delaySyncSlider
             minimumValue: 0
             maximumValue: 100
@@ -177,10 +177,10 @@ Shotcut.KeyframableFilter {
             suffix: ' %'
             onValueChanged: updateFilter(delaySyncParam, value / maximumValue, delaySyncKeyframesButton, getPosition())
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: delaySyncSlider.value = delaySyncDefault * delaySyncSlider.maximumValue
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: delaySyncKeyframesButton
             onToggled: {
                 enableControls(true);
@@ -192,7 +192,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Delay note')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: delayNoteSlider
             minimumValue: 0
             maximumValue: 100
@@ -200,10 +200,10 @@ Shotcut.KeyframableFilter {
             suffix: ' %'
             onValueChanged: updateFilter(delayNoteParam, value / maximumValue, delayNoteKeyframesButton, getPosition())
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: delayNoteSlider.value = delayNoteDefault * delayNoteSlider.maximumValue
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: delayNoteKeyframesButton
             onToggled: {
                 enableControls(true);
@@ -215,7 +215,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Delay (ms)')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: delayMsSlider
             minimumValue: 0
             maximumValue: 100
@@ -223,10 +223,10 @@ Shotcut.KeyframableFilter {
             suffix: ' %'
             onValueChanged: updateFilter(delayMsParam, value / maximumValue, delayMsKeyframesButton, getPosition())
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: delayMsSlider.value = delayMsDefault * delayMsSlider.maximumValue
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: delayMsKeyframesButton
             onToggled: {
                 enableControls(true);
@@ -238,7 +238,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Delay warp')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: delayWarpSlider
             minimumValue: 0
             maximumValue: 100
@@ -246,10 +246,10 @@ Shotcut.KeyframableFilter {
             suffix: ' %'
             onValueChanged: updateFilter(delayWarpParam, value / maximumValue, delayWarpKeyframesButton, getPosition())
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: delayWarpSlider.value = delayWarpDefault * delayWarpSlider.maximumValue
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: delayWarpKeyframesButton
             onToggled: {
                 enableControls(true);
@@ -261,7 +261,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Clear')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: clearSlider
             minimumValue: 0
             maximumValue: 100
@@ -269,10 +269,10 @@ Shotcut.KeyframableFilter {
             suffix: ' %'
             onValueChanged: updateFilter(clearParam, value / maximumValue, clearKeyframesButton, getPosition())
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: clearSlider.value = clearDefault * clearSlider.maximumValue
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: clearKeyframesButton
             onToggled: {
                 enableControls(true);
@@ -284,7 +284,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Feedback')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: feedbackSlider
             minimumValue: 0
             maximumValue: 100
@@ -292,10 +292,10 @@ Shotcut.KeyframableFilter {
             suffix: ' %'
             onValueChanged: updateFilter(feedbackParam, value / maximumValue, feedbackKeyframesButton, getPosition())
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: feedbackSlider.value = feedbackDefault * feedbackSlider.maximumValue
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: feedbackKeyframesButton
             onToggled: {
                 enableControls(true);
@@ -307,7 +307,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Density')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: densitySlider
             minimumValue: 0
             maximumValue: 100
@@ -315,10 +315,10 @@ Shotcut.KeyframableFilter {
             suffix: ' %'
             onValueChanged: updateFilter(densityParam, value / maximumValue, densityKeyframesButton, getPosition())
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: densitySlider.value = densityDefault * densitySlider.maximumValue
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: densityKeyframesButton
             onToggled: {
                 enableControls(true);
@@ -330,7 +330,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Width')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: widthSlider
             minimumValue: 0
             maximumValue: 100
@@ -338,10 +338,10 @@ Shotcut.KeyframableFilter {
             suffix: ' %'
             onValueChanged: updateFilter(widthParam, value / maximumValue, widthKeyframesButton, getPosition())
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: widthSlider.value = widthDefault * widthSlider.maximumValue
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: widthKeyframesButton
             onToggled: {
                 enableControls(true);
@@ -353,7 +353,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Low cut')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: lowCutSlider
             minimumValue: 0
             maximumValue: 100
@@ -361,10 +361,10 @@ Shotcut.KeyframableFilter {
             suffix: ' %'
             onValueChanged: updateFilter(lowCutParam, value / maximumValue, lowCutKeyframesButton, getPosition())
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: lowCutSlider.value = lowCutDefault * lowCutSlider.maximumValue
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: lowCutKeyframesButton
             onToggled: {
                 enableControls(true);
@@ -376,7 +376,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('High cut')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: highCutSlider
             minimumValue: 0
             maximumValue: 100
@@ -384,10 +384,10 @@ Shotcut.KeyframableFilter {
             suffix: ' %'
             onValueChanged: updateFilter(highCutParam, value / maximumValue, highCutKeyframesButton, getPosition())
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: highCutSlider.value = highCutDefault * highCutSlider.maximumValue
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: highCutKeyframesButton
             onToggled: {
                 enableControls(true);
@@ -399,7 +399,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Mod rate')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: modRateSlider
             minimumValue: 0
             maximumValue: 100
@@ -407,10 +407,10 @@ Shotcut.KeyframableFilter {
             suffix: ' %'
             onValueChanged: updateFilter(modRateParam, value / maximumValue, modRateKeyframesButton, getPosition())
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: modRateSlider.value = modRateDefault * modRateSlider.maximumValue
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: modRateKeyframesButton
             onToggled: {
                 enableControls(true);
@@ -422,7 +422,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Mod depth')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: modDepthSlider
             minimumValue: 0
             maximumValue: 100
@@ -430,10 +430,10 @@ Shotcut.KeyframableFilter {
             suffix: ' %'
             onValueChanged: updateFilter(modDepthParam, value / maximumValue, modDepthKeyframesButton, getPosition())
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: modDepthSlider.value = modDepthDefault * modDepthSlider.maximumValue
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: modDepthKeyframesButton
             onToggled: {
                 enableControls(true);
@@ -445,7 +445,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Mode')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: modeSlider
             minimumValue: 0
             maximumValue: 100
@@ -453,10 +453,10 @@ Shotcut.KeyframableFilter {
             suffix: ' %'
             onValueChanged: updateFilter(modeParam, value / maximumValue, modeKeyframesButton, getPosition())
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: modeSlider.value = modeDefault * modeSlider.maximumValue
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: modeKeyframesButton
             onToggled: {
                 enableControls(true);
@@ -468,7 +468,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Wet/Dry')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: wetnessSlider
             minimumValue: 0
             maximumValue: 100
@@ -476,10 +476,10 @@ Shotcut.KeyframableFilter {
             suffix: ' %'
             onValueChanged: updateFilter(wetnessParam, value / maximumValue, wetnessKeyframesButton, getPosition())
         }
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: wetnessSlider.value = wetnessDefault * wetnessSlider.maximumValue
         }
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: wetnessKeyframesButton
             onToggled: {
                 enableControls(true);
@@ -491,7 +491,7 @@ Shotcut.KeyframableFilter {
             text: qsTr('Channels')
             Layout.alignment: Qt.AlignRight
         }
-        Shotcut.ChannelMask {
+        Bossa.ChannelMask {
             id: channelMask
             Layout.columnSpan: 3
         }

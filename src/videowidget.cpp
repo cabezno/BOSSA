@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2025 Meltytech, LLC
+ * Copyright (c) 2011-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -399,11 +399,11 @@ int VideoWidget::reconfigure(bool isMulti)
         const bool isDeckLinkHLG = serviceName.startsWith("decklink")
                                    && property("decklinkGamma").toInt() == 1;
         switch (processingMode) {
-        case ShotcutSettings::Native10Cpu:
-        case ShotcutSettings::Linear10Cpu:
+        case BossaSettings::Native10Cpu:
+        case BossaSettings::Linear10Cpu:
             m_consumer->set("mlt_image_format", "rgba64");
             break;
-        case ShotcutSettings::Linear10GpuCpu:
+        case BossaSettings::Linear10GpuCpu:
             m_consumer->set("mlt_image_format", isDeckLinkHLG ? "yuv444p10" : "rgba64");
             break;
         default: // Native8Cpu
@@ -439,8 +439,8 @@ int VideoWidget::reconfigure(bool isMulti)
             m_consumer->set("color_trc", "bt709");
             break;
         }
-        if (processingMode == ShotcutSettings::Linear10Cpu
-            || (processingMode == ShotcutSettings::Linear10GpuCpu
+        if (processingMode == BossaSettings::Linear10Cpu
+            || (processingMode == BossaSettings::Linear10GpuCpu
                 && property("decklinkGamma").toInt() != 1)) {
             m_consumer->set("mlt_color_trc", "linear");
         } else {
@@ -563,7 +563,7 @@ void VideoWidget::onFrameDisplayed(const SharedFrame &frame)
     m_mutex.lock();
     m_sharedFrame = frame;
     m_mutex.unlock();
-    bool isVui = frame.get_int(kShotcutVuiMetaProperty) && !m_hideVui;
+    bool isVui = frame.get_int(kBossaVuiMetaProperty) && !m_hideVui;
     if (!isVui && source() != QmlUtilities::blankVui()) {
         m_savedQmlSource = source();
         setSource(QmlUtilities::blankVui());
@@ -608,7 +608,7 @@ void VideoWidget::setCurrentFilter(QmlFilter *filter, QmlMetadata *meta)
     m_hideVui = false;
     if (meta && meta->type() == QmlMetadata::Filter
         && QFile::exists(meta->vuiFilePath().toLocalFile())) {
-        filter->producer().set(kShotcutVuiMetaProperty, 1);
+        filter->producer().set(kBossaVuiMetaProperty, 1);
         rootContext()->setContextProperty("filter", filter);
         setSource(meta->vuiFilePath());
         refreshConsumer();

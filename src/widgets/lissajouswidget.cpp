@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2018 Meltytech, LLC
+ * Copyright (c) 2012-2018 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 #include "lissajouswidget.h"
 #include "ui_lissajouswidget.h"
 
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 static const char *kParamRatioX = "0";
@@ -72,8 +72,8 @@ Mlt::Producer *LissajousWidget::newProducer(Mlt::Profile &profile)
     Mlt::Producer *p = new Mlt::Producer(profile, "frei0r.lissajous0r");
     p->set(kParamRatioX, ui->xratioSpinner->text().toLatin1().constData());
     p->set(kParamRatioY, ui->yratioSpinner->text().toLatin1().constData());
-    p->set(kShotcutCaptionProperty, ui->nameLabel->text().toUtf8().constData());
-    p->set(kShotcutDetailProperty, ui->nameLabel->text().toUtf8().constData());
+    p->set(kBossaCaptionProperty, ui->nameLabel->text().toUtf8().constData());
+    p->set(kBossaDetailProperty, ui->nameLabel->text().toUtf8().constData());
     return p;
 }
 

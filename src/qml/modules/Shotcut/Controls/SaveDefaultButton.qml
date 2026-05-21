@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2022 Meltytech, LLC
+ * Copyright (c) 2015-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,15 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick.Controls
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.Button {
+Bossa.Button {
     icon.name: 'document-save'
     icon.source: 'qrc:///icons/oxygen/32x32/actions/document-save.png'
     implicitWidth: 20
     implicitHeight: 20
 
-    Shotcut.HoverTip {
+    Bossa.HoverTip {
         text: qsTr('Set as default')
     }
 }

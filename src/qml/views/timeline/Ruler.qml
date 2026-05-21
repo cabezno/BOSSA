@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2026 Meltytech, LLC
+ * Copyright (c) 2013-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  */
 import QtQuick
 import QtQuick.Controls
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Rectangle {
     id: rulerTop
@@ -73,7 +73,7 @@ Rectangle {
         }
     }
 
-    Shotcut.MarkerBar {
+    Bossa.MarkerBar {
         anchors.top: rulerTop.top
         anchors.left: parent.left
         anchors.right: parent.right

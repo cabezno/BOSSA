@@ -1,5 +1,5 @@
 /*
- * MltXmlParser class Copyright (c) 2021-2025 Meltytech, LLC
+ * MltXmlParser class Copyright (c) 2021-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

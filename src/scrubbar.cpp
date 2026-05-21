@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2026 Meltytech, LLC
+ * Copyright (c) 2011-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ ScrubBar::ScrubBar(QWidget *parent)
 {
     setMouseTracking(true);
     setMinimumHeight(fontMetrics().height() + selectionSize);
-    setWhatsThis("https://forum.shotcut.org/t/trimming-clips/49216/1");
+    setWhatsThis("https://forum.bossa.org/t/trimming-clips/49216/1");
 }
 
 void ScrubBar::setScale(int maximum)

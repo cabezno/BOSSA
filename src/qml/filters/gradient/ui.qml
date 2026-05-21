@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 Meltytech, LLC
+ * Copyright (c) 2019-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property string rectProperty: 'shotcut:rect'
@@ -197,7 +197,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: [patternProperty, rectProperty, startColorProperty, startOpacityProperty, endColorProperty, endOpacityProperty, blendProperty]
@@ -247,7 +247,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 linearRadioButton.checked = true;
                 filter.set(patternProperty, 'gradient_linear');
@@ -259,7 +259,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: offsetSlider
 
             minimumValue: 0
@@ -269,7 +269,7 @@ Item {
             onValueChanged: filter.set(offsetProperty, value / 100)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: offsetSlider.value = 0
         }
 
@@ -278,7 +278,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.GradientControl {
+        Bossa.GradientControl {
             id: gradient
 
             function cssColor(color) {
@@ -302,7 +302,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 gradient.colors = ['#ff000000', '#ffffffff'];
                 gradient.gradientChanged();
@@ -317,7 +317,7 @@ Item {
         }
 
         RowLayout {
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectX
 
                 Layout.minimumWidth: 100
@@ -340,7 +340,7 @@ Item {
                 horizontalAlignment: Qt.AlignHCente
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectY
 
                 Layout.minimumWidth: 100
@@ -358,7 +358,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filterRect.x = rectX.value = profile.width / 2;
                 filterRect.y = rectY.value = 0;
@@ -374,7 +374,7 @@ Item {
         }
 
         RowLayout {
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectW
 
                 Layout.minimumWidth: 100
@@ -397,7 +397,7 @@ Item {
                 horizontalAlignment: Qt.AlignHCente
             }
 
-            Shotcut.DoubleSpinBox {
+            Bossa.DoubleSpinBox {
                 id: rectH
 
                 Layout.minimumWidth: 100
@@ -415,7 +415,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filterRect.width = rectW.value = profile.width * 0.01;
                 filterRect.height = rectH.value = profile.height;
@@ -427,7 +427,7 @@ Item {
             text: qsTr('Blend mode')
         }
 
-        Shotcut.ComboBox {
+        Bossa.ComboBox {
             id: blendCombo
 
             textRole: 'text'
@@ -530,7 +530,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: {
                 filter.set(blendProperty, comboItems.get(0).value);
                 blendCombo.currentIndex = 0;

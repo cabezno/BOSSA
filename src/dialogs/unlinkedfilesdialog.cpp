@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2023 Meltytech, LLC
+ * Copyright (c) 2016-2023 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ void UnlinkedFilesDialog::on_tableView_doubleClicked(const QModelIndex &index)
         QModelIndex firstColIndex = model->index(index.row(), MltXmlChecker::MissingColumn);
         QModelIndex secondColIndex = model->index(index.row(), MltXmlChecker::ReplacementColumn);
         QString hash = Util::getFileHash(filenames[0]);
-        if (hash == model->data(firstColIndex, MltXmlChecker::ShotcutHashRole)) {
+        if (hash == model->data(firstColIndex, MltXmlChecker::BossaHashRole)) {
             // If the hashes match set icon to OK.
             QIcon icon(":/icons/oxygen/32x32/status/task-complete.png");
             model->setData(firstColIndex, icon, Qt::DecorationRole);
@@ -80,7 +80,7 @@ void UnlinkedFilesDialog::on_tableView_doubleClicked(const QModelIndex &index)
         QString filePath = QDir::toNativeSeparators(filenames[0]);
         model->setData(secondColIndex, filePath);
         model->setData(secondColIndex, filePath, Qt::ToolTipRole);
-        model->setData(secondColIndex, hash, MltXmlChecker::ShotcutHashRole);
+        model->setData(secondColIndex, hash, MltXmlChecker::BossaHashRole);
 
         QFileInfo fi(QFileInfo(filenames.first()));
         Settings.setOpenPath(fi.path());
@@ -96,7 +96,7 @@ bool UnlinkedFilesDialog::lookInDir(const QDir &dir, bool recurse)
     QAbstractItemModel *model = ui->tableView->model();
     for (int row = 0; row < model->rowCount(); row++) {
         QModelIndex replacementIndex = model->index(row, MltXmlChecker::ReplacementColumn);
-        if (model->data(replacementIndex, MltXmlChecker::ShotcutHashRole).isNull())
+        if (model->data(replacementIndex, MltXmlChecker::BossaHashRole).isNull())
             ++outstanding;
     }
     if (outstanding) {
@@ -105,11 +105,11 @@ bool UnlinkedFilesDialog::lookInDir(const QDir &dir, bool recurse)
             QString hash = Util::getFileHash(dir.absoluteFilePath(fileName));
             for (int row = 0; row < model->rowCount(); row++) {
                 QModelIndex replacementIndex = model->index(row, MltXmlChecker::ReplacementColumn);
-                if (model->data(replacementIndex, MltXmlChecker::ShotcutHashRole).isNull()) {
+                if (model->data(replacementIndex, MltXmlChecker::BossaHashRole).isNull()) {
                     QModelIndex missingIndex = model->index(row, MltXmlChecker::MissingColumn);
                     QFileInfo missingInfo(model->data(missingIndex).toString());
                     QString missingHash
-                        = model->data(missingIndex, MltXmlChecker::ShotcutHashRole).toString();
+                        = model->data(missingIndex, MltXmlChecker::BossaHashRole).toString();
                     if (hash == missingHash || fileName == missingInfo.fileName()) {
                         if (hash == missingHash) {
                             QIcon icon(":/icons/oxygen/32x32/status/task-complete.png");
@@ -121,7 +121,7 @@ bool UnlinkedFilesDialog::lookInDir(const QDir &dir, bool recurse)
                         QString filePath = QDir::toNativeSeparators(dir.absoluteFilePath(fileName));
                         model->setData(replacementIndex, filePath);
                         model->setData(replacementIndex, filePath, Qt::ToolTipRole);
-                        model->setData(replacementIndex, hash, MltXmlChecker::ShotcutHashRole);
+                        model->setData(replacementIndex, hash, MltXmlChecker::BossaHashRole);
                         QCoreApplication::processEvents();
                         if (--outstanding)
                             break;

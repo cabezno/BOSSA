@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Meltytech, LLC
+ * Copyright (c) 2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 #include "mainwindow.h"
 #include "mltcontroller.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "widgets/htmlgeneratorwidget.h"
 
 #include <QAction>
@@ -54,7 +54,7 @@ HtmlGeneratorJob::HtmlGeneratorJob(const QString &name,
 
     // Create temporary directory for animation frames
     const auto outDir = QFileInfo(m_outputPath).dir();
-    m_tempDir.reset(new QTemporaryDir(outDir.filePath("shotcut-htmlgen-XXXXXX")));
+    m_tempDir.reset(new QTemporaryDir(outDir.filePath("bossa-htmlgen-XXXXXX")));
     if (!m_tempDir->isValid()) {
         LOG_ERROR() << "Failed to create temp directory for HTML animation frames:"
                     << m_tempDir->path();
@@ -124,8 +124,8 @@ void HtmlGeneratorJob::onAnimationFramesReady()
     }
 
     // Now start FFmpeg process
-    const auto shotcutPath = qApp->applicationDirPath();
-    const QFileInfo ffmpegPath(shotcutPath, "ffmpeg");
+    const auto bossaPath = qApp->applicationDirPath();
+    const QFileInfo ffmpegPath(bossaPath, "ffmpeg");
 
     QStringList args;
     args << "-r" << QString::number(fps()) << "-i" << m_tempDir->path() + "/frame_%04d.png"

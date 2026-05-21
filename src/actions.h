@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022-2026 Meltytech, LLC
+ * Copyright (c) 2022-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 class QAction;
 class QMenu;
 
-class ShotcutActions : public QObject
+class BossaActions : public QObject
 {
     Q_OBJECT
 
@@ -35,8 +35,8 @@ public:
     static const char *defaultKey2Property;
     static const char *defaultToolTipProperty;
 
-    static ShotcutActions &singleton();
-    explicit ShotcutActions()
+    static BossaActions &singleton();
+    explicit BossaActions()
         : QObject()
     {}
 
@@ -55,6 +55,6 @@ private:
     QHash<QString, QAction *> m_actions;
 };
 
-#define Actions ShotcutActions::singleton()
+#define Actions BossaActions::singleton()
 
 #endif // ACTIONS_H

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Meltytech, LLC
+ * Copyright (c) 2015 Bossa Project, LLC
  * Author: Dan Dennedy <dan@dennedy.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick
-import org.shotcut.qml
+import org.bossa.qml
 
 Metadata {
     type: Metadata.Filter
@@ -26,5 +26,5 @@ Metadata {
     qml: 'ui.qml'
     allowMultiple: false
     icon: 'icon.webp'
-    help: 'https://forum.shotcut.org/t/chroma-key-simple/12835/1'
+    help: 'https://forum.bossa.org/t/chroma-key-simple/12835/1'
 }

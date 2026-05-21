@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2018 Meltytech, LLC
+ * Copyright (c) 2012-2018 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 #include "ui_decklinkproducerwidget.h"
 
 #include "mltcontroller.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 DecklinkProducerWidget::DecklinkProducerWidget(QWidget *parent)
@@ -82,7 +82,7 @@ Mlt::Producer *DecklinkProducerWidget::newProducer(Mlt::Profile &profile)
                    .toLatin1()
                    .constData());
         p->set(kBackgroundCaptureProperty, 2);
-        p->set(kShotcutCaptionProperty, tr("SDI/HDMI").toUtf8().constData());
+        p->set(kBossaCaptionProperty, tr("SDI/HDMI").toUtf8().constData());
     }
     return p;
 }

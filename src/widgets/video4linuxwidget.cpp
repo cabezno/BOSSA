@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2025 Meltytech, LLC
+ * Copyright (c) 2012-2025 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 #include "mltcontroller.h"
 #include "pulseaudiowidget.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <QtWidgets>
@@ -121,7 +121,7 @@ Mlt::Producer *Video4LinuxWidget::newProducer(Mlt::Profile &profile)
     p->set("audio_ix", ui->v4lAudioComboBox->currentIndex());
     p->set("force_seekable", 0);
     p->set(kBackgroundCaptureProperty, 1);
-    p->set(kShotcutCaptionProperty, "Video4Linux");
+    p->set(kBossaCaptionProperty, "Video4Linux");
     Settings.setVideoInput(ui->v4lLineEdit->text());
     return p;
 }

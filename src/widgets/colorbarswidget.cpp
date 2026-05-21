@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2019 Meltytech, LLC
+ * Copyright (c) 2012-2019 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 #include "ui_colorbarswidget.h"
 
 #include "mltcontroller.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 #include "util.h"
 
 #include <MltProfile.h>
@@ -63,8 +63,8 @@ Mlt::Producer *ColorBarsWidget::newProducer(Mlt::Profile &profile)
     else if (profile.sample_aspect_num() == 4 && profile.sample_aspect_den() == 3)
         p->set(kParamAspect, map_value_backward(ASPECT_HDV, 0, 6.9999));
     MLT.setDurationFromDefault(p);
-    p->set(kShotcutCaptionProperty, ui->comboBox->currentText().toUtf8().constData());
-    p->set(kShotcutDetailProperty, ui->comboBox->currentText().toUtf8().constData());
+    p->set(kBossaCaptionProperty, ui->comboBox->currentText().toUtf8().constData());
+    p->set(kBossaDetailProperty, ui->comboBox->currentText().toUtf8().constData());
     return p;
 }
 
@@ -84,8 +84,8 @@ void ColorBarsWidget::on_comboBox_activated(int index)
 {
     if (m_producer) {
         m_producer->set(kParamType, index);
-        m_producer->set(kShotcutCaptionProperty, ui->comboBox->currentText().toUtf8().constData());
-        m_producer->set(kShotcutDetailProperty, ui->comboBox->currentText().toUtf8().constData());
+        m_producer->set(kBossaCaptionProperty, ui->comboBox->currentText().toUtf8().constData());
+        m_producer->set(kBossaDetailProperty, ui->comboBox->currentText().toUtf8().constData());
         emit producerChanged(producer());
     }
 }

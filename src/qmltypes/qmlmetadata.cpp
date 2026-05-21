@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2024 Meltytech, LLC
+ * Copyright (c) 2013-2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -178,7 +178,7 @@ void QmlMetadata::setIsOutputOnly(bool isOutputOnly)
 bool QmlMetadata::isMltVersion(const QString &version)
 {
     if (!m_minimumVersion.isEmpty()) {
-        LOG_DEBUG() << "MLT version:" << version << "Shotcut minimumVersion:" << m_minimumVersion;
+        LOG_DEBUG() << "MLT version:" << version << "Bossa minimumVersion:" << m_minimumVersion;
         if (QVersionNumber::fromString(version) < QVersionNumber::fromString(m_minimumVersion))
             return false;
     }
@@ -206,7 +206,7 @@ QmlKeyframesParameter *QmlKeyframesMetadata::parameter(const QString &propertyNa
 void QmlKeyframesMetadata::checkVersion(const QString &version)
 {
     if (!m_minimumVersion.isEmpty()) {
-        LOG_DEBUG() << "MLT version:" << version << "Shotcut minimumVersion:" << m_minimumVersion;
+        LOG_DEBUG() << "MLT version:" << version << "Bossa minimumVersion:" << m_minimumVersion;
         if (QVersionNumber::fromString(version) < QVersionNumber::fromString(m_minimumVersion))
             setDisabled();
     }

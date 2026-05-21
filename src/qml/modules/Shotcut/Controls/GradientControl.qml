@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2022 Meltytech, LLC
+ * Copyright (c) 2019-2022 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 RowLayout {
     property var colors: []
@@ -116,7 +116,7 @@ RowLayout {
             radius: 2
             visible: colorList.length > 1
 
-            Shotcut.ColorDialog {
+            Bossa.ColorDialog {
                 id: colorDialog
 
                 title: qsTr("Color #%1").arg(stopIndex + 1)
@@ -124,7 +124,7 @@ RowLayout {
                 onAccepted: parent.parent._setStopColor(handelRect.stopIndex, String(selectedColor))
             }
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Color: %1\nClick to change').arg(color)
             }
         }
@@ -166,7 +166,7 @@ RowLayout {
         }
     }
 
-    Shotcut.DoubleSpinBox {
+    Bossa.DoubleSpinBox {
         id: gradientSpinner
 
         Layout.alignment: Qt.AlignVCenter

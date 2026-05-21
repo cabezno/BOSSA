@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Meltytech, LLC
+ * Copyright (c) 2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 #include "mainwindow.h"
 #include "mltcontroller.h"
 #include "settings.h"
-#include "shotcut_mlt_properties.h"
+#include "bossa_mlt_properties.h"
 
 #include <QTimer>
 
@@ -37,7 +37,7 @@ SubtitlesModel::SubtitlesModel(QObject *parent)
     , m_producer(nullptr)
     , m_commitTrack(-1)
 {
-    connect(&Settings, &ShotcutSettings::timeFormatChanged, this, [&]() {
+    connect(&Settings, &BossaSettings::timeFormatChanged, this, [&]() {
         if (m_items.size() > 0) {
             beginResetModel();
             endResetModel();
@@ -512,7 +512,7 @@ void SubtitlesModel::doInsertTrack(const SubtitlesModel::SubtitleTrack &track, i
         if (!filter || !filter->is_valid()) {
             continue;
         }
-        if (!filter->get_int("_loader") && !filter->get_int(kShotcutHiddenProperty)) {
+        if (!filter->get_int("_loader") && !filter->get_int(kBossaHiddenProperty)) {
             filterIndex = i;
             break;
         }
@@ -520,7 +520,7 @@ void SubtitlesModel::doInsertTrack(const SubtitlesModel::SubtitleTrack &track, i
     Mlt::Filter newFilter(MLT.profile(), "subtitle_feed");
     newFilter.set("feed", track.name.toUtf8().constData());
     newFilter.set("lang", track.lang.toUtf8().constData());
-    newFilter.set(kShotcutHiddenProperty, 1);
+    newFilter.set(kBossaHiddenProperty, 1);
     m_producer->attach(newFilter);
     m_producer->move_filter(m_producer->filter_count() - 1, filterIndex);
     endInsertRows();

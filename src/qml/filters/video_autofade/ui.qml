@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Meltytech, LLC
+ * Copyright (c) 2023 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     function setControls() {
@@ -86,7 +86,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: ['fade_duration', 'fade_color']
@@ -98,12 +98,12 @@ Item {
             text: qsTr('Fade duration')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('The duration of fade to apply at the beginning and end of each clip')
             }
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: durationSlider
 
             minimumValue: 0.01
@@ -115,7 +115,7 @@ Item {
             onValueChanged: filter.set('fade_duration', value * 1000.0)
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: durationSlider.value = -2
         }
 
@@ -125,7 +125,7 @@ Item {
         }
 
         RowLayout {
-            Shotcut.ColorPicker {
+            Bossa.ColorPicker {
                 id: colorSwatch
 
                 property bool isReady: false
@@ -139,13 +139,13 @@ Item {
                 }
             }
 
-            Shotcut.Button {
+            Bossa.Button {
                 text: qsTr('Transparent')
                 onClicked: colorSwatch.value = Qt.rgba(0, 0, 0, 0)
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: colorSwatch.value = Qt.rgba(0, 0, 0, 1)
         }
 
@@ -168,7 +168,7 @@ Item {
             text: qsTr('Fade in')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Status indicator showing when a fade in has occurred.')
             }
         }
@@ -198,7 +198,7 @@ Item {
             text: qsTr('Fade out')
             Layout.alignment: Qt.AlignRight
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Status indicator showing when a fade out has occurred.')
             }
         }

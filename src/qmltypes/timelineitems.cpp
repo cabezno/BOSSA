@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2026 Meltytech, LLC
+ * Copyright (c) 2015-2026 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -302,12 +302,12 @@ private:
 
 void registerTimelineItems()
 {
-    qmlRegisterType<TimelineTransition>("Shotcut.Controls", 1, 0, "TimelineTransition");
-    qmlRegisterType<TimelinePlayhead>("Shotcut.Controls", 1, 0, "TimelinePlayhead");
-    qmlRegisterType<TimelineTriangle>("Shotcut.Controls", 1, 0, "TimelineTriangle");
-    qmlRegisterType<TimelineWaveform>("Shotcut.Controls", 1, 0, "TimelineWaveform");
-    qmlRegisterType<MarkerStart>("Shotcut.Controls", 1, 0, "MarkerStart");
-    qmlRegisterType<MarkerEnd>("Shotcut.Controls", 1, 0, "MarkerEnd");
+    qmlRegisterType<TimelineTransition>("Bossa.Controls", 1, 0, "TimelineTransition");
+    qmlRegisterType<TimelinePlayhead>("Bossa.Controls", 1, 0, "TimelinePlayhead");
+    qmlRegisterType<TimelineTriangle>("Bossa.Controls", 1, 0, "TimelineTriangle");
+    qmlRegisterType<TimelineWaveform>("Bossa.Controls", 1, 0, "TimelineWaveform");
+    qmlRegisterType<MarkerStart>("Bossa.Controls", 1, 0, "MarkerStart");
+    qmlRegisterType<MarkerEnd>("Bossa.Controls", 1, 0, "MarkerEnd");
 }
 
 #include "timelineitems.moc"

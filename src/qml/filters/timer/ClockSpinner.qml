@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2024 Meltytech, LLC
+ * Copyright (c) 2018-2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,8 +17,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
-import org.shotcut.qml
+import Bossa.Controls as Bossa
+import org.bossa.qml
 
 Item {
     id: root
@@ -109,7 +109,7 @@ Item {
             }
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             id: decrementButton
 
             icon.name: 'list-remove'
@@ -117,7 +117,7 @@ Item {
             implicitWidth: 20
             implicitHeight: 20
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Decrement')
             }
 
@@ -138,7 +138,7 @@ Item {
             }
         }
 
-        Shotcut.Button {
+        Bossa.Button {
             id: incrementButton
 
             icon.name: 'list-add'
@@ -146,7 +146,7 @@ Item {
             implicitWidth: 20
             implicitHeight: 20
 
-            Shotcut.HoverTip {
+            Bossa.HoverTip {
                 text: qsTr('Increment')
             }
 
@@ -167,7 +167,7 @@ Item {
             }
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: undoButton
 
             onClicked: root.setDefaultClicked()

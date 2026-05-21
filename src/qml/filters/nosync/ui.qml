@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2024 Meltytech, LLC
+ * Copyright (c) 2019-2024 Bossa Project, LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
-Shotcut.KeyframableFilter {
+Bossa.KeyframableFilter {
     property string vertical: '0'
     property double verticalDefault: 0.2
     property string horizontal: '1'
@@ -72,7 +72,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: [vertical, horizontal]
@@ -92,7 +92,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: verticalSlider
 
             minimumValue: 0
@@ -103,11 +103,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(vertical, verticalSlider.value / verticalSlider.maximumValue, verticalKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: verticalSlider.value = verticalDefault * verticalSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: verticalKeyframesButton
 
             onToggled: {
@@ -121,7 +121,7 @@ Shotcut.KeyframableFilter {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: horizontalSlider
 
             minimumValue: 0
@@ -132,11 +132,11 @@ Shotcut.KeyframableFilter {
             onValueChanged: updateFilter(horizontal, horizontalSlider.value / horizontalSlider.maximumValue, horizontalKeyframesButton, getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             onClicked: horizontalSlider.value = horizontalDefault * horizontalSlider.maximumValue
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: horizontalKeyframesButton
 
             onToggled: {

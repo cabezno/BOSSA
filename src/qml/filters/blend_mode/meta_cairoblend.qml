@@ -1,5 +1,5 @@
 import QtQuick
-import org.shotcut.qml
+import org.bossa.qml
 
 Metadata {
     type: Metadata.Filter
@@ -13,5 +13,5 @@ Metadata {
     allowMultiple: false
     isGpuCompatible: false
     isHidden: true
-    help: 'https://forum.shotcut.org/t/blend-mode/12841/1'
+    help: 'https://forum.bossa.org/t/blend-mode/12841/1'
 }

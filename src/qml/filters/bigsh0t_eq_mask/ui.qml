@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Shotcut.Controls as Shotcut
+import Bossa.Controls as Bossa
 
 Item {
     property bool blockUpdate: true
@@ -233,7 +233,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.Preset {
+        Bossa.Preset {
             id: preset
 
             parameters: ["hfov0", "hfov1", "vfov0", "vfov1"]
@@ -280,7 +280,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: hfov0Slider
 
             minimumValue: 0
@@ -292,13 +292,13 @@ Item {
             onValueChanged: updateProperty_hfov0(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: hfov0Undo
 
             onClicked: hfov0Slider.value = 180
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: hfov0KeyframesButton
 
             onToggled: {
@@ -324,7 +324,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: hfov1Slider
 
             minimumValue: 0
@@ -336,13 +336,13 @@ Item {
             onValueChanged: updateProperty_hfov1(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: hfov1Undo
 
             onClicked: hfov1Slider.value = 200
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: hfov1KeyframesButton
 
             onToggled: {
@@ -374,7 +374,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: vfov0Slider
 
             minimumValue: 0
@@ -386,13 +386,13 @@ Item {
             onValueChanged: updateProperty_vfov0(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: vfov0Undo
 
             onClicked: vfov0Slider.value = 140
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: vfov0KeyframesButton
 
             onToggled: {
@@ -418,7 +418,7 @@ Item {
             Layout.alignment: Qt.AlignRight
         }
 
-        Shotcut.SliderSpinner {
+        Bossa.SliderSpinner {
             id: vfov1Slider
 
             minimumValue: 0
@@ -430,13 +430,13 @@ Item {
             onValueChanged: updateProperty_vfov1(getPosition())
         }
 
-        Shotcut.UndoButton {
+        Bossa.UndoButton {
             id: vfov1Undo
 
             onClicked: vfov1Slider.value = 160
         }
 
-        Shotcut.KeyframesButton {
+        Bossa.KeyframesButton {
             id: vfov1KeyframesButton
 
             onToggled: {
