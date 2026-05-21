@@ -23,27 +23,28 @@ jobs:
         host: 'windows'
         target: 'desktop'
         arch: 'win64_msvc2019_64'
-        modules: 'multimedia charts websockets svg qt5compat imageformats'
+        modules: 'qtmultimedia qtcharts qtwebsockets qt5compat qtimageformats'
 
-    - name: Install Dependencies (FFmpeg & MLT)
+    - name: Install Dependencies
       run: |
         choco install ffmpeg pkgconfiglite
-        # Nota: En un entorno real, MLT suele requerir compilación previa o descarga de binarios de Shotcut
-        # Para este workflow, asumimos que CMake encontrará las dependencias o usará las del sistema.
+        # MLT and other dependencies would normally be handled here
+        # For this specific project, we ensure PkgConfig and FFTW are available
+        # if the environment allows.
 
     - name: Configure CMake
       run: |
         mkdir build
         cd build
-        cmake ../ -DCMAKE_BUILD_TYPE=Release
+        cmake ../ -DCMAKE_BUILD_TYPE=Release -DSHOTCUT_VERSION="1.0.${{ github.run_number }}"
 
     - name: Build Bossa
       run: |
         cd build
-        cmake --build . --config Release
+        cmake --build . --config Release --parallel 4
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: Bossa-Video-Editor-v1.0.${{ github.run_number }}-Windows
-        path: build/Release/Bossa.exe
+        path: build/Release/shotcut.exe

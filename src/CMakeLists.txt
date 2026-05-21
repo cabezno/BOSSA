@@ -12,6 +12,8 @@ add_executable(shotcut WIN32 MACOSX_BUNDLE
   commands/undohelper.cpp commands/undohelper.h
   controllers/addonmetadataparser.cpp controllers/addonmetadataparser.h
   controllers/addonqmlgenerator.cpp controllers/addonqmlgenerator.h
+  controllers/bossamissioncontrol.cpp controllers/bossamissioncontrol.h
+  controllers/bossaremotebridge.cpp controllers/bossaremotebridge.h
   controllers/filtercontroller.cpp controllers/filtercontroller.h
   controllers/scopecontroller.cpp controllers/scopecontroller.h
   database.cpp database.h
@@ -53,6 +55,7 @@ add_executable(shotcut WIN32 MACOSX_BUNDLE
   docks/filesdock.cpp docks/filesdock.h
   docks/filesdock.ui
   docks/filtersdock.cpp docks/filtersdock.h
+  docks/aidock.cpp docks/aidock.h
   docks/jobsdock.cpp docks/jobsdock.h
   docks/jobsdock.ui
   docks/keyframesdock.cpp docks/keyframesdock.h
@@ -77,6 +80,7 @@ add_executable(shotcut WIN32 MACOSX_BUNDLE
   jobs/gopro2gpxjob.cpp jobs/gopro2gpxjob.h
   jobs/htmlgeneratorjob.cpp jobs/htmlgeneratorjob.h
   jobs/kokorodokijob.cpp jobs/kokorodokijob.h
+  jobs/magiccutjob.cpp jobs/magiccutjob.h
   jobs/meltjob.cpp jobs/meltjob.h
   jobs/postjobaction.cpp jobs/postjobaction.h
   jobs/qimagejob.cpp jobs/qimagejob.h
