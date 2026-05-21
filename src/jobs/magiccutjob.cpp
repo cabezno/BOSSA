@@ -20,7 +20,7 @@ void MagicCutJob::start()
          << "-af" << QString("silencedetect=noise=%1dB:d=%2").arg(m_threshold).arg(m_silenceDuration)
          << "-f" << "null" << "-";
 
-    QFileInfo ffmpegPath(qApp->applicationDirPath(), "ffmpeg");
+    QFileInfo ffmpegPath(QDir(qApp->applicationDirPath()), "ffmpeg");
     
     // Connect standard error to our parser
     connect(this, &QProcess::readyReadStandardError, this, &MagicCutJob::onReadyRead);
