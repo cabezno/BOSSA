@@ -53,29 +53,52 @@ jobs:
     - name: Deploy and Bundle DLLs
       shell: msys2 {0}
       run: |
-        cd build/src
+        # Create the exact directory structure expected by main.cpp
+        DEST="build/src"
+        mkdir -p $DEST/lib/qt6
+        mkdir -p $DEST/lib/qml
+        mkdir -p $DEST/share/shotcut/qml
         
-        # 1. Copy our internal library (CuteLogger)
-        cp ../CuteLogger/libCuteLogger.dll . || cp ../CuteLogger/CuteLogger.dll . || echo "CuteLogger DLL not found"
+        cd $DEST
         
-        # 2. Run windeployqt (ignoring errors, we will fix-up with ldd)
-        windeployqt6 --no-compiler-runtime --no-translations --qmldir ../../src/qml bossa.exe || true
+        # 1. Copy our internal library
+        cp ../CuteLogger/libCuteLogger.dll . || cp ../CuteLogger/CuteLogger.dll . || true
         
-        # 3. Create qt.conf to force look in local directories
+        # 2. Manually copy Qt Plugins to lib/qt6 (as main.cpp expects)
+        echo "Copying Qt plugins..."
+        QT_PLUGINS="/mingw64/share/qt6/plugins"
+        for plugin in platforms styles imageformats multimedia iconengines tls; do
+          cp -r "$QT_PLUGINS/$plugin" lib/qt6/
+        done
+        
+        # 3. Manually copy Qt QML modules
+        echo "Copying QML modules..."
+        QT_QML="/mingw64/share/qt6/qml"
+        cp -r $QT_QML/{Qt,QtCore,QtQml,QtQuick,QtQuick.2} lib/qml/ || true
+
+        # 4. Copy application QML files
+        echo "Copying application QML..."
+        cp -r ../../src/qml/* share/shotcut/qml/ || true
+
+        # 5. Create a precise qt.conf
         echo "[Paths]" > qt.conf
         echo "Prefix = ." >> qt.conf
-        echo "Plugins = ." >> qt.conf
-        echo "Imports = ." >> qt.conf
-        echo "Qml2Imports = ." >> qt.conf
+        echo "Plugins = lib/qt6" >> qt.conf
+        echo "Imports = lib/qml" >> qt.conf
+        echo "Qml2Imports = lib/qml" >> qt.conf
 
-        # 4. Deep Automated MinGW DLL collection
-        # We find EVERY .dll and .exe in the bundle and check their dependencies
-        echo "Starting deep-scan DLL collection..."
+        # 6. Deep Recursive DLL Collection (The "Whack-a-mole" Killer)
+        # This scans EVERY .exe and .dll in the entire structure (including lib/qt6/platforms/)
+        # and brings their dependencies to the root.
+        echo "Starting deep-scan recursive DLL collection..."
         for i in {1..4}; do
           find . -name "*.exe" -o -name "*.dll" | xargs ldd 2>/dev/null | grep /mingw64/bin | awk '{print $3}' | xargs -I {} cp -n {} . || true
         done
         
-        # 5. Hard-copy all files (convert symlinks to real files)
+        # 7. Final Sanity Check: Ensure qwindows.dll has no missing deps in its own folder
+        # Sometimes plugins need their deps right next to them or in the root. Root is usually fine with SetDllDirectory.
+        
+        # 8. Clean up symlinks
         find . -type l -exec cp --remove-destination "$(readlink -f {})" {} \; || true
 
     - name: Upload Artifact
