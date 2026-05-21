@@ -5,6 +5,9 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build-windows:
     runs-on: windows-latest
@@ -51,4 +54,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Bossa-Video-Editor-v1.0.${{ github.run_number }}-Windows
-        path: build/shotcut.exe
+        path: build/src/shotcut.exe

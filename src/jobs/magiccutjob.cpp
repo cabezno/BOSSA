@@ -1,10 +1,11 @@
-#include "magiccutjob.h"
-#include "settings.h"
-#include "Logger.h"
-#include <QRegularExpression>
 #include <QApplication>
 #include <QFileInfo>
 #include <QDir>
+#include <QRegularExpression>
+
+#include "magiccutjob.h"
+#include "settings.h"
+#include "Logger.h"
 
 MagicCutJob::MagicCutJob(const QString &resource, double threshold, double silenceDuration)
     : AbstractJob("Magic Cut Analysis")
@@ -21,7 +22,9 @@ void MagicCutJob::start()
          << "-af" << QString("silencedetect=noise=%1dB:d=%2").arg(m_threshold).arg(m_silenceDuration)
          << "-f" << "null" << "-";
 
-    QFileInfo ffmpegPath(QDir(qApp->applicationDirPath()), "ffmpeg");
+    // Use QDir properly to avoid incomplete type issues during implicit conversion
+    QDir appDir(qApp->applicationDirPath());
+    QFileInfo ffmpegPath(appDir, "ffmpeg");
     
     // Connect standard error to our parser
     connect(this, &QProcess::readyReadStandardError, this, &MagicCutJob::onReadyRead);

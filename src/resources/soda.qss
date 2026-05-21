@@ -1,28 +1,28 @@
 /* SODA FUSION Theme for Bossa */
-/* Based on SODA Core Palette */
+/* Deep Blacks & Vibrant Accents */
 
 QMainWindow, QWidget {
-    background-color: #000000; /* --soda-black */
-    color: #ffffff; /* --soda-white */
+    background-color: #000000; /* --soda-void */
+    color: #ffffff; /* --soda-t1 */
 }
 
-/* Secondary areas / docks */
+/* Secondary areas / docks / surfaces */
 QDockWidget, QMenuBar, QToolBar, QStatusBar {
     background-color: #0a0a0a; /* --soda-surface */
     color: #ffffff;
-    border: 1px solid #1a1a1a; /* --soda-border */
+    border: 1px solid rgba(255, 255, 255, 0.05); /* --soda-border-dim */
 }
 
 QMenuBar::item:selected {
-    background-color: #1a1a1a;
+    background-color: #111111; /* --soda-raised */
     color: #00e5ff; /* --soda-cyan */
 }
 
-/* Inputs and Panels */
+/* Inputs and Panels (Raised) */
 QLineEdit, QTextEdit, QPlainTextEdit, QComboBox, QAbstractItemView {
-    background-color: #050505; /* --soda-input */
+    background-color: #111111; /* --soda-raised */
     color: #ffffff;
-    border: 1px solid #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 4px;
     selection-background-color: #e040fb; /* --soda-magenta */
     selection-color: #000000;
@@ -34,9 +34,9 @@ QLineEdit:focus {
 
 /* Buttons */
 QPushButton {
-    background-color: #0a0a0a;
+    background-color: #111111;
     color: #ffffff;
-    border: 1px solid #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     padding: 5px 15px;
     border-radius: 4px;
 }
@@ -58,7 +58,7 @@ QPushButton#primaryAction {
     font-weight: bold;
 }
 
-/* Timeline and Scrollbars */
+/* Scrollbars (Deep SODA Style) */
 QScrollBar:vertical {
     border: none;
     background: #000000;
@@ -67,7 +67,7 @@ QScrollBar:vertical {
 }
 
 QScrollBar::handle:vertical {
-    background: #1a1a1a;
+    background: #111111;
     min-height: 20px;
     border-radius: 5px;
 }
@@ -84,7 +84,7 @@ QScrollBar:horizontal {
 }
 
 QScrollBar::handle:horizontal {
-    background: #1a1a1a;
+    background: #111111;
     min-width: 20px;
     border-radius: 5px;
 }
@@ -95,7 +95,7 @@ QScrollBar::handle:horizontal:hover {
 
 /* Separators */
 QMainWindow::separator {
-    background-color: #1a1a1a;
+    background-color: rgba(255, 255, 255, 0.05);
     width: 2px;
     height: 2px;
 }
@@ -106,7 +106,11 @@ QMainWindow::separator:hover {
 
 /* Labels and Muted text */
 QLabel#mutedText {
-    color: #546e7a; /* --soda-muted */
+    color: #546e7a; /* --soda-t3 */
+}
+
+QLabel#secondaryText {
+    color: #b0bec5; /* --soda-t2 */
 }
 
 /* Specialized Headers */
