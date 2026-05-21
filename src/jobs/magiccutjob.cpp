@@ -2,6 +2,8 @@
 #include "settings.h"
 #include "Logger.h"
 #include <QRegularExpression>
+#include <QApplication>
+#include <QFileInfo>
 
 MagicCutJob::MagicCutJob(const QString &resource, double threshold, double silenceDuration)
     : AbstractJob("Magic Cut Analysis")
@@ -18,19 +20,19 @@ void MagicCutJob::start()
          << "-af" << QString("silencedetect=noise=%1dB:d=%2").arg(m_threshold).arg(m_silenceDuration)
          << "-f" << "null" << "-";
 
-    m_process.setProgram(Settings.ffmpegPath());
-    m_process.setArguments(args);
+    QFileInfo ffmpegPath(qApp->applicationDirPath(), "ffmpeg");
     
-    connect(&m_process, &QProcess::readyReadStandardError, this, &MagicCutJob::onReadyRead);
-    connect(&m_process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(onFinished()));
+    // Connect standard error to our parser
+    connect(this, &QProcess::readyReadStandardError, this, &MagicCutJob::onReadyRead);
     
-    m_process.start();
-    setStatus(tr("Detecting silences..."));
+    // Let AbstractJob handle the process execution
+    AbstractJob::start(ffmpegPath.absoluteFilePath(), args);
+    setLabel(tr("Detecting silences..."));
 }
 
 void MagicCutJob::onReadyRead()
 {
-    QString output = m_process.readAllStandardError();
+    QString output = readAllStandardError();
     m_logBuffer += output;
     
     // Parse silence_start and silence_end
@@ -55,10 +57,13 @@ void MagicCutJob::onReadyRead()
             lastStart = -1.0;
         }
     }
+    
+    AbstractJob::onReadyRead();
 }
 
-void MagicCutJob::onFinished()
+void MagicCutJob::onFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-    setStatus(tr("Analysis Complete"));
-    setPercent(100);
+    setLabel(tr("Analysis Complete"));
+    emit progressUpdated(m_item, 100);
+    AbstractJob::onFinished(exitCode, exitStatus);
 }

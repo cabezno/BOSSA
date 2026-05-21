@@ -14,9 +14,9 @@ public:
 signals:
     void silenceDetected(double start, double end);
 
-private slots:
-    void onReadyRead();
-    void onFinished();
+protected slots:
+    void onReadyRead() override;
+    void onFinished(int exitCode, QProcess::ExitStatus exitStatus = QProcess::NormalExit) override;
 
 private:
     QString m_resource;
