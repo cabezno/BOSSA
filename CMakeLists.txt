@@ -10,10 +10,10 @@ if(NOT DEFINED SHOTCUT_VERSION)
   string(REGEX REPLACE "0*([0-9]+)" "\\1" SHOTCUT_VERSION "${SHOTCUT_VERSION}")
 endif()
 
-project(shotcut
+project(bossa
   VERSION ${SHOTCUT_VERSION}
-  DESCRIPTION "cross-platform (Qt), open-source (GPLv3) video editor"
-  HOMEPAGE_URL "https://www.shotcut.org"
+  DESCRIPTION "Bossa Video Editor - AI Powered & SODA Styled"
+  HOMEPAGE_URL "https://bossa.io"
   LANGUAGES CXX
 )
 
