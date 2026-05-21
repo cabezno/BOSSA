@@ -45,5 +45,5 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: Bossa-Video-Editor-Windows
+        name: Bossa-Video-Editor-v1.0.${{ github.run_number }}-Windows
         path: build/Release/Bossa.exe
