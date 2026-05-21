@@ -151,9 +151,10 @@ MainWindow::MainWindow()
     , m_multipleFilesLoading(false)
     , m_isPlaylistLoaded(false)
     , m_exitCode(EXIT_SUCCESS)
-    , m_upgradeUrl("https://www.bossa.org/download/")
+    , m_upgradeUrl("https://bossa.io/download/")
     , m_keyframesDock(0)
 {
+    setWindowIcon(QIcon(":/icons/bossa-logo-64.png"));
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
     QLibrary libSDL("libSDL2-2.0.so.0");
     if (!libSDL.load()) {
