@@ -96,14 +96,16 @@ void BossaMissionControl::importSrtToTimeline(const QString &srtPath)
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) return;
 
     TimelineDock *timeline = MAIN.timelineDock();
-    MAIN.undoStack()->beginMacro("Bossa Auto-Subtitles");
+    if (MAIN.undoStack()) {
+        MAIN.undoStack()->beginMacro("Bossa Auto-Subtitles");
 
-    // Add a new track for subtitles if needed
-    timeline->insertVideoTrack();
-    
-    // ... (Parsing logic omitted)
-    
-    MAIN.undoStack()->endMacro();
+        // Add a new track for subtitles if needed
+        timeline->insertVideoTrack();
+        
+        // ... (Parsing logic omitted)
+        
+        MAIN.undoStack()->endMacro();
+    }
     addLog("Subtitles Completed", "COMPLETED", "#00e5ff");
 }
 
@@ -126,29 +128,31 @@ void BossaMissionControl::onMagicCutFinished()
     if (!info) return;
     
     double fps = MLT.profile().fps();
-    double clipIn = info->in / fps;
+    double clipIn = info->frame_in / fps;
     
     std::sort(m_detectedSilences.begin(), m_detectedSilences.end(), [](const Silence &a, const Silence &b) {
         return a.start > b.start;
     });
 
-    MAIN.undoStack()->beginMacro(tr("Bossa Magic Cut"));
-    for (const auto &silence : m_detectedSilences) {
-        if (silence.start >= clipIn && silence.end <= (info->out / fps)) {
-            int endPos = (silence.end - clipIn) * fps + info->start;
-            int startPos = (silence.start - clipIn) * fps + info->start;
-            
-            timeline->setPosition(endPos);
-            Actions["timelineSplitAction"]->trigger();
-            
-            timeline->setPosition(startPos);
-            Actions["timelineSplitAction"]->trigger();
-            
-            int silenceClipIndex = timeline->model()->clipIndex(m_currentTrack, startPos + 1);
-            if (silenceClipIndex >= 0) timeline->remove(m_currentTrack, silenceClipIndex);
+    if (MAIN.undoStack()) {
+        MAIN.undoStack()->beginMacro(tr("Bossa Magic Cut"));
+        for (const auto &silence : m_detectedSilences) {
+            if (silence.start >= clipIn && silence.end <= (info->frame_out / fps)) {
+                int endPos = (silence.end - clipIn) * fps + info->start;
+                int startPos = (silence.start - clipIn) * fps + info->start;
+                
+                timeline->setPosition(endPos);
+                Actions["timelineSplitAction"]->trigger();
+                
+                timeline->setPosition(startPos);
+                Actions["timelineSplitAction"]->trigger();
+                
+                int silenceClipIndex = timeline->model()->clipIndex(m_currentTrack, startPos + 1);
+                if (silenceClipIndex >= 0) timeline->remove(m_currentTrack, silenceClipIndex);
+            }
         }
+        MAIN.undoStack()->endMacro();
     }
-    MAIN.undoStack()->endMacro();
     addLog("Magic Cut Completed", "DONE", "#00e5ff");
 }
 

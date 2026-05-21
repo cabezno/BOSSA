@@ -23,7 +23,8 @@
 
 #include <MltProperties.h>
 #include <QDockWidget>
-#include <QDomElement>
+#include <QtXml/QDomDocument>
+#include <QtXml/QDomElement>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
 #include <QStringList>
