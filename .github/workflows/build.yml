@@ -54,23 +54,19 @@ jobs:
       shell: msys2 {0}
       run: |
         cd build/src
-        # Run windeployqt to get Qt dependencies
+        # Run windeployqt to get Qt dependencies and plugins
         windeployqt6 --no-compiler-runtime --no-translations bossa.exe
         
-        # Manually copy MinGW runtime DLLs
-        cp /mingw64/bin/libgcc_s_seh-1.dll .
-        cp /mingw64/bin/libstdc++-6.dll .
-        cp /mingw64/bin/libwinpthread-1.dll .
+        # Copy our internal library (CuteLogger)
+        # In MinGW/CMake, SHARED libraries are usually in the output directory (bin) or beside the exe
+        cp ../CuteLogger/libCuteLogger.dll . || cp ../CuteLogger/CuteLogger.dll .
         
-        # Copy MLT and FFmpeg dependencies (essential for Bossa)
-        cp /mingw64/bin/libmlt++-7.dll .
-        cp /mingw64/bin/libmlt-7.dll .
-        cp /mingw64/bin/avcodec-*.dll .
-        cp /mingw64/bin/avformat-*.dll .
-        cp /mingw64/bin/avutil-*.dll .
-        cp /mingw64/bin/swscale-*.dll .
-        cp /mingw64/bin/swresample-*.dll .
-        cp /mingw64/bin/libfftw3-3.dll .
+        # Automated MinGW DLL collection:
+        # Use ldd to find all dependencies in /mingw64/bin and copy them
+        # We run it multiple times to catch transitive dependencies of the DLLs themselves
+        for i in {1..3}; do
+          ldd *.exe *.dll 2>/dev/null | grep /mingw64/bin | awk '{print $3}' | xargs -I {} cp -n {} .
+        done
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
