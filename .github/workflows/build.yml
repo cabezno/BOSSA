@@ -1,0 +1,49 @@
+name: Bossa Build CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: '6.5.3'
+        host: 'windows'
+        target: 'desktop'
+        arch: 'win64_msvc2019_64'
+        modules: 'qtmultimedia qt5compat qtimageformats'
+
+    - name: Install Dependencies (FFmpeg & MLT)
+      run: |
+        choco install ffmpeg pkgconfiglite
+        # Nota: En un entorno real, MLT suele requerir compilación previa o descarga de binarios de Shotcut
+        # Para este workflow, asumimos que CMake encontrará las dependencias o usará las del sistema.
+
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake ../ -DCMAKE_BUILD_TYPE=Release
+
+    - name: Build Bossa
+      run: |
+        cd build
+        cmake --build . --config Release
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Bossa-Video-Editor-Windows
+        path: build/Release/Bossa.exe
