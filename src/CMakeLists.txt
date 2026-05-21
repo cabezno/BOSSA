@@ -244,7 +244,8 @@ add_executable(bossa WIN32 MACOSX_BUNDLE
 
 add_custom_target(OTHER_FILES
   SOURCES
-  ../.github/ISSUE_TEMPLATE.md
+  ../.github/copilot-instructions.md
+  ../.github/pull_request_template.md
   ../.github/workflows/build-linux-unstable.yml
   ../.github/workflows/build-linux.yml
   ../.github/workflows/build-macos-unstable.yml
