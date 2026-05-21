@@ -19,12 +19,10 @@
 #define ENCODEDOCK_H
 
 #include "settings.h"
-#include "jobs/abstractjob.h"
 
 #include <MltProperties.h>
 #include <QDockWidget>
-#include <QtXml/QDomDocument>
-#include <QtXml/QDomElement>
+#include <QDomElement>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
 #include <QStringList>
@@ -34,7 +32,7 @@ class QTemporaryFile;
 namespace Ui {
 class EncodeDock;
 }
-
+class AbstractJob;
 class MeltJob;
 namespace Mlt {
 class Service;
@@ -61,76 +59,149 @@ public:
 
 signals:
     void captureStateChanged(bool);
+    void createOrEditFilterOnOutput(Mlt::Filter *, const QStringList & = {});
 
 public slots:
-    void on_exportButton_clicked();
-    void on_resetButton_clicked();
-    void on_actionReset_triggered();
+    void onAudioChannelsChanged();
+    void onProducerOpened();
+    void onProfileChanged();
+    void onReframeChanged();
+    void on_hwencodeButton_clicked();
+    bool detectHardwareEncoders();
 
 private slots:
-    void on_viewList_clicked(const QModelIndex &index);
-    void on_videoCheckBox_toggled(bool checked);
-    void on_audioCheckBox_toggled(bool checked);
-    void on_useHardwareEncoderCheckBox_toggled(bool checked);
-    void on_configureHardwareEncoderButton_clicked();
-    void on_preset_selected(void *p);
-    void on_preset_reset();
-    void on_preset_deleted(const QString &name);
-    void on_resX_editingFinished();
-    void on_resY_editingFinished();
-    void on_aspectX_editingFinished();
-    void on_aspectY_editingFinished();
-    void on_fps_editingFinished();
-    void on_scanMode_currentIndexChanged(int index);
-    void on_fieldOrder_currentIndexChanged(int index);
-    void on_colorRange_currentIndexChanged(int index);
-    void on_deinterlacer_currentIndexChanged(int index);
-    void on_interpolation_currentIndexChanged(int index);
-    void on_vcodec_currentIndexChanged(int index);
-    void on_vrateControl_currentIndexChanged(int index);
-    void on_vbitrate_editingFinished();
-    void on_vquality_valueChanged(int value);
-    void on_gop_editingFinished();
-    void on_bframes_editingFinished();
-    void on_acodec_currentIndexChanged(int index);
-    void on_arateControl_currentIndexChanged(int index);
-    void on_abitrate_editingFinished();
-    void on_aquality_valueChanged(int value);
-    void on_samplerate_editingFinished();
-    void on_format_currentIndexChanged(int index);
-    void on_parallel_toggled(bool checked);
-    void on_openOtherTriggered();
-    void on_tabWidget_currentChanged(int index);
+    void on_presetsTree_clicked(const QModelIndex &index);
+    void on_presetsTree_activated(const QModelIndex &index);
+
+    void on_encodeButton_clicked();
+
+    void on_streamButton_clicked();
+
+    void on_addPresetButton_clicked();
+
+    void on_removePresetButton_clicked();
+
+    void onFinished(AbstractJob *, bool isSuccess);
+
+    void on_stopCaptureButton_clicked();
+
+    void on_videoRateControlCombo_activated(int index);
+
+    void on_audioRateControlCombo_activated(int index);
+
+    void on_scanModeCombo_currentIndexChanged(int index);
+
+    void on_presetsSearch_textChanged(const QString &search);
+
+    void on_resetButton_clicked();
+
+    void openCaptureFile();
+
+    void on_formatCombo_currentIndexChanged(int index);
+
+    void on_videoBufferDurationChanged();
+
+    void on_gopSpinner_valueChanged(int value);
+
+    void on_fromCombo_currentIndexChanged(int index);
+
+    void on_videoCodecCombo_currentIndexChanged(int index);
+
+    void on_audioCodecCombo_currentIndexChanged(int index);
+
+    void setAudioChannels(int channels);
+
+    void on_widthSpinner_editingFinished();
+
+    void on_heightSpinner_editingFinished();
+
+    void on_advancedButton_clicked(bool checked);
+
+    void on_hwencodeCheckBox_clicked(bool checked);
+
+    void on_hwdecodeCheckBox_clicked(bool checked);
+
+    void on_advancedCheckBox_clicked(bool checked);
+
+    void on_fpsSpinner_editingFinished();
+
+    void on_fpsComboBox_activated(int arg1);
+
+    void on_videoQualitySpinner_valueChanged(int vq);
+
+    void on_audioQualitySpinner_valueChanged(int aq);
+
+    void on_parallelCheckbox_clicked(bool checked);
+
+    void on_resolutionComboBox_activated(int arg1);
+
+    void on_reframeButton_clicked();
+
+    void on_aspectNumSpinner_valueChanged(int value);
+
+    void on_aspectDenSpinner_valueChanged(int value);
+
+    void on_coverArtButton_clicked();
 
 private:
+    enum {
+        RateControlAverage = 0,
+        RateControlConstant,
+        RateControlQuality,
+        RateControlConstrained
+    };
+    enum {
+        AudioChannels1 = 0,
+        AudioChannels2,
+        AudioChannels4,
+        AudioChannels6,
+    };
     Ui::EncodeDock *ui;
-    QStandardItemModel *m_presetsModel;
-    PresetsProxyModel *m_presetsProxyModel;
-    QString m_currentPreset;
-    QString m_customPresetPath;
-    bool m_isUpdating;
-    Mlt::Properties m_properties;
-    Mlt::Properties m_defaultProperties;
+    Mlt::Properties *m_presets;
+    QScopedPointer<MeltJob> m_immediateJob;
+    QString m_extension;
+    Mlt::Properties *m_profiles;
+    PresetsProxyModel m_presetsModel;
+    QStringList m_outputFilenames;
+    bool m_isDefaultSettings;
+    double m_fps;
+    QStringList m_intraOnlyCodecs;
+    QStringList m_losslessVideoCodecs;
+    QStringList m_losslessAudioCodecs;
 
-    void setupPresets();
     void loadPresets();
-    void savePreset(const QString &name);
-    void deletePreset(const QString &name);
-    void updateUiFromProperties();
-    void updatePropertiesFromUi();
-    void setDefaults();
-    void showHardwareEncoderError(const QString &message);
-    void checkHardwareEncoder();
-    void updateResampleWarning();
+    Mlt::Properties *collectProperties(int realtime, bool includeProfile = false);
+    void collectProperties(QDomElement &node, int realtime);
+    void setSubtitleProperties(QDomElement &node, Mlt::Producer *service);
+    QPoint addConsumerElement(
+        Mlt::Producer *service, QDomDocument &dom, const QString &target, int realtime, int pass);
+    MeltJob *convertReframe(Mlt::Producer *service,
+                            QTemporaryFile *tmp,
+                            const QString &target,
+                            int realtime,
+                            int pass,
+                            const QThread::Priority priority);
+    MeltJob *createMeltJob(Mlt::Producer *service,
+                           const QString &target,
+                           int realtime,
+                           int pass = 0,
+                           const QThread::Priority priority = Settings.jobPriority());
+    void runMelt(const QString &target, int realtime = -1);
+    void enqueueAnalysis();
+    void enqueueMelt(const QStringList &targets, int realtime);
+    void encode(const QString &target);
+    void resetOptions();
+    Mlt::Producer *fromProducer(bool usePlaylistBin = false) const;
+    static void filterCodecParams(const QString &vcodec, QStringList &other);
+    void onVideoCodecComboChanged(int index, bool ignorePreset = false, bool resetBframes = true);
+    bool checkForMissingFiles();
+    QString &defaultFormatExtension();
+    void initSpecialCodecLists();
     void setReframeEnabled(bool enabled);
     void showResampleWarning(const QString &message);
     void hideResampleWarning(bool hide = true);
     void checkFrameRate();
     void setResolutionAspectFromProfile();
-    void collectProperties(QDomElement &node, int realtime);
-    void setSubtitleProperties(QDomElement &node, Mlt::Producer *service);
-    MeltJob *createJob(
-        Mlt::Producer *service, QDomDocument &dom, const QString &target, int realtime, int pass);
 };
 
 #endif // ENCODEDOCK_H

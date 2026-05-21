@@ -47,7 +47,6 @@
 #include "docks/recentdock.h"
 #include "docks/subtitlesdock.h"
 #include "docks/timelinedock.h"
-#include "docks/aidock.h"
 #include "jobqueue.h"
 #include "jobs/screencapturejob.h"
 #include "models/audiolevelstask.h"
@@ -63,6 +62,7 @@
 #include "settings.h"
 #include "controllers/bossamissioncontrol.h"
 #include "controllers/bossaremotebridge.h"
+#include "docks/aidock.h"
 #include "shotcut_mlt_properties.h"
 #include "util.h"
 #include "videowidget.h"
@@ -181,6 +181,10 @@ MainWindow::MainWindow()
     QmlUtilities::registerCommonTypes();
     qmlRegisterType<BossaMissionControl>("io.bossa.ai", 1, 0, "BossaMissionControl");
 
+    m_aiController = new BossaMissionControl(this);
+    m_aiBridge = new BossaRemoteBridge(this);
+    m_aiBridge->start(8080);
+
     // Create the UI.
     ui->setupUi(this);
     setDockNestingEnabled(true);
@@ -247,10 +251,6 @@ MainWindow::MainWindow()
     QImageReader::setAllocationLimit(1024);
 
     ProxyManager::removePending();
-
-    m_aiController = new BossaMissionControl(this);
-    m_aiBridge = new BossaRemoteBridge(this);
-    m_aiBridge->start(8080);
 
     for (auto &child : findChildren<QWidget *>()) {
         if (child->whatsThis().isEmpty() && !child->toolTip().isEmpty())
@@ -2968,16 +2968,16 @@ void MainWindow::updateWindowTitle()
 void MainWindow::on_actionAbout_Shotcut_triggered()
 {
     const auto copyright = QStringLiteral(
-        "Copyright &copy; 2026 <a href=\"https://bossa.io/\">Bossa Project</a>");
+        "Copyright &copy; 2011-2026 <a href=\"https://www.meltytech.com/\">Meltytech</a>, LLC");
     const auto license = QStringLiteral(
         "<a href=\"https://www.gnu.org/licenses/gpl.html\">GNU General Public License v3.0</a>");
-    const auto url = QStringLiteral("https://bossa.io/");
+    const auto url = QStringLiteral("https://www.shotcut.org/");
     QMessageBox::about(
         this,
         tr("About %1").arg(qApp->applicationName()),
         QStringLiteral(
-            "<h1>Bossa version %2</h1>"
-            "<p><a href=\"%3\">%1</a> is a free, open source, professional video editor based on Shotcut.</p>"
+            "<h1>Shotcut version %2</h1>"
+            "<p><a href=\"%3\">%1</a> is a free, open source, cross platform video editor.</p>"
             "<small><p>%4</p>"
             "<p>Licensed under the %5</p>"
             "<p>This program proudly uses the following projects:<ul>"
@@ -5198,7 +5198,7 @@ void MainWindow::onUpgradeCheckFinished(QNetworkReply *reply)
                     m_upgradeUrl = json.object().value("url").toString();
                 showStatusMessage(action, 15 /* seconds */);
             } else {
-                showStatusMessage(tr("You are running the latest version of Bossa."));
+                showStatusMessage(tr("You are running the latest version of Shotcut."));
             }
             reply->deleteLater();
             return;
