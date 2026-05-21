@@ -55,21 +55,28 @@ jobs:
       run: |
         cd build/src
         
-        # 1. Copy our internal library (CuteLogger) first so ldd can see it
-        cp ../CuteLogger/libCuteLogger.dll . || cp ../CuteLogger/CuteLogger.dll . || echo "CuteLogger DLL not found, skipping"
+        # 1. Copy our internal library (CuteLogger)
+        cp ../CuteLogger/libCuteLogger.dll . || cp ../CuteLogger/CuteLogger.dll . || echo "CuteLogger DLL not found"
         
-        # 2. Run windeployqt with QML support (ignoring errors to let ldd handle missing bits)
+        # 2. Run windeployqt (ignoring errors, we will fix-up with ldd)
         windeployqt6 --no-compiler-runtime --no-translations --qmldir ../../src/qml bossa.exe || true
         
-        # 3. Automated MinGW DLL collection using ldd (Recursive pass)
-        # This will find libdl, libiconv, libfreetype, and any others missing.
-        echo "Starting automated DLL collection..."
-        for i in {1..3}; do
-          ldd *.exe *.dll 2>/dev/null | grep /mingw64/bin | awk '{print $3}' | xargs -I {} cp -n {} . || true
+        # 3. Create qt.conf to force look in local directories
+        echo "[Paths]" > qt.conf
+        echo "Prefix = ." >> qt.conf
+        echo "Plugins = ." >> qt.conf
+        echo "Imports = ." >> qt.conf
+        echo "Qml2Imports = ." >> qt.conf
+
+        # 4. Deep Automated MinGW DLL collection
+        # We find EVERY .dll and .exe in the bundle and check their dependencies
+        echo "Starting deep-scan DLL collection..."
+        for i in {1..4}; do
+          find . -name "*.exe" -o -name "*.dll" | xargs ldd 2>/dev/null | grep /mingw64/bin | awk '{print $3}' | xargs -I {} cp -n {} . || true
         done
         
-        # 4. Final Cleanup: Ensure no symlinks are in the artifact (copy actual files)
-        find . -maxdepth 1 -type l -exec cp --remove-destination "$(readlink -f {})" {} \; || true
+        # 5. Hard-copy all files (convert symlinks to real files)
+        find . -type l -exec cp --remove-destination "$(readlink -f {})" {} \; || true
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
