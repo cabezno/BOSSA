@@ -24,7 +24,7 @@ include(FeatureSummary)
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets Quick QuickWidgets Xml Sql Network Multimedia OpenGL OpenGLWidgets Charts WebSockets)
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(mlt++ REQUIRED mlt++)
+pkg_check_modules(mlt++ REQUIRED mlt++-7 mlt++)
 pkg_check_modules(FFTW REQUIRED fftw3)
 
 add_subdirectory(CuteLogger)
