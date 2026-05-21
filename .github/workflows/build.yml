@@ -23,7 +23,7 @@ jobs:
         host: 'windows'
         target: 'desktop'
         arch: 'win64_msvc2019_64'
-        modules: 'qtmultimedia qtcharts qt5compat qtimageformats'
+        modules: 'qtmultimedia qtcharts qtwebsockets qtsvg qt5compat qtimageformats'
 
     - name: Install Dependencies (FFmpeg & MLT)
       run: |
