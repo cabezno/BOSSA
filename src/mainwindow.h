@@ -229,6 +229,7 @@ private:
     ScreenCapture *m_screenCapture;
     BossaMissionControl *m_aiController;
     BossaRemoteBridge *m_aiBridge;
+    AIDock *m_aiDock;
 
 public slots:
     bool isCompatibleWithProcessingMode(MltXmlChecker &checker, QString &fileName, bool &converted);

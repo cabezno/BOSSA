@@ -47,6 +47,7 @@
 #include "docks/recentdock.h"
 #include "docks/subtitlesdock.h"
 #include "docks/timelinedock.h"
+#include "docks/aidock.h"
 #include "jobqueue.h"
 #include "jobs/screencapturejob.h"
 #include "models/audiolevelstask.h"
@@ -520,6 +521,11 @@ void MainWindow::setupAndConnectDocks()
             this,
             SLOT(onFilesDockTriggered(bool)));
     connect(ui->actionFiles, SIGNAL(triggered()), this, SLOT(onFilesDockTriggered()));
+
+    m_aiDock = new AIDock(this);
+    m_aiDock->hide();
+    m_aiDock->toggleViewAction()->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_6));
+    ui->menuView->addAction(m_aiDock->toggleViewAction());
 
     m_timelineDock = new TimelineDock(this);
     m_timelineDock->hide();

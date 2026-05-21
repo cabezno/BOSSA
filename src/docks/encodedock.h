@@ -19,20 +19,9 @@
 #define ENCODEDOCK_H
 
 #include "settings.h"
+#include "jobs/abstractjob.h"
 
 #include <MltProperties.h>
-#include <QDockWidget>
-#include <QDomElement>
-#include <QSortFilterProxyModel>
-#include <QStandardItemModel>
-#include <QStringList>
-
-class QTreeWidgetItem;
-class QTemporaryFile;
-namespace Ui {
-class EncodeDock;
-}
-class AbstractJob;
 class MeltJob;
 namespace Mlt {
 class Service;

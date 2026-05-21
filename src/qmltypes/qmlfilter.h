@@ -31,7 +31,7 @@
 #include <QUuid>
 #include <QVariant>
 
-class AbstractJob;
+#include "jobs/abstractjob.h"
 class EncodeJob;
 class QUndoCommand;
 class FilterController;

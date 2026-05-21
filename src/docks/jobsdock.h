@@ -19,8 +19,8 @@
 #define JOBSDOCK_H
 
 #include <QDockWidget>
+#include "jobs/abstractjob.h"
 
-class AbstractJob;
 class QStandardItem;
 
 namespace Ui {
