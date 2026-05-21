@@ -4,6 +4,7 @@
 #include <QRegularExpression>
 #include <QApplication>
 #include <QFileInfo>
+#include <QDir>
 
 MagicCutJob::MagicCutJob(const QString &resource, double threshold, double silenceDuration)
     : AbstractJob("Magic Cut Analysis")
