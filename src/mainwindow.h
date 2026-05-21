@@ -78,6 +78,7 @@ public:
     TimelineDock *timelineDock() const { return m_timelineDock; }
     JobsDock *jobsDock() const { return m_jobsDock; }
     FilterController *filterController() const { return m_filterController; }
+    Player *player() const { return m_player; }
     Mlt::Playlist *playlist() const;
     bool isPlaylistValid() const;
     Mlt::Producer *multitrack() const;

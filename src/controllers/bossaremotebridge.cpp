@@ -2,6 +2,8 @@
 #include "mainwindow.h"
 #include "docks/timelinedock.h"
 #include "models/multitrackmodel.h"
+#include "player.h"
+#include "actions.h"
 #include "Logger.h"
 #include <QJsonArray>
 
@@ -54,8 +56,8 @@ void BossaRemoteBridge::processCommand(const QJsonObject &json, QTcpSocket *sock
     else if (command == "timeline_split") {
         int position = json["position"].toInt(-1);
         TimelineDock *timeline = MAIN.timelineDock();
-        if (position >= 0) timeline->seek(position);
-        timeline->split();
+        if (position >= 0) timeline->setPosition(position);
+        Actions["timelineSplitAction"]->trigger();
         response["message"] = "Split executed at " + QString::number(timeline->position());
     }
     else if (command == "timeline_remove") {
@@ -65,16 +67,17 @@ void BossaRemoteBridge::processCommand(const QJsonObject &json, QTcpSocket *sock
         response["message"] = QString("Clip %1 on track %2 removed.").arg(clip).arg(track);
     }
     else if (command == "player_play") {
-        MAIN.m_player->play();
+        if (MAIN.player()) MAIN.player()->play();
     }
     else if (command == "player_pause") {
-        MAIN.m_player->pause();
+        if (MAIN.player()) MAIN.player()->pause();
     }
     else if (command == "get_project_info") {
         QJsonObject info;
         info["file"] = MAIN.fileName();
-        info["fps"] = MLT.fps();
-        info["duration"] = MAIN.timelineDock()->model().duration();
+        info["fps"] = MLT.profile().fps();
+        if (MAIN.timelineDock() && MAIN.timelineDock()->model()->tractor())
+            info["duration"] = MAIN.timelineDock()->model()->tractor()->get_length();
         response["data"] = info;
     }
     else {
