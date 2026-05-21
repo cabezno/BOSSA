@@ -57,6 +57,7 @@ class SubtitlesDock;
 class ScreenCapture;
 class BossaMissionControl;
 class BossaRemoteBridge;
+class AIDock;
 
 class MainWindow : public QMainWindow
 {
