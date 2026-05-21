@@ -22,7 +22,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(FeatureSummary)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets Quick QuickWidgets Xml Sql Network Multimedia OpenGL OpenGLWidgets Charts WebSockets Lsecs)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Quick QuickWidgets Xml Sql Network Multimedia OpenGL OpenGLWidgets Charts WebSockets)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(mlt++ REQUIRED mlt++)
 pkg_check_modules(FFTW REQUIRED fftw3)
