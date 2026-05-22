@@ -1,0 +1,14 @@
+import QtQuick
+import org.bossa.qml
+
+Metadata {
+    type: Metadata.Filter
+    isAudio: true
+    name: qsTr("Track Auto Fade Audio")
+    keywords: qsTr('click splice fade', 'search keywords for the Auto Fade audio filter') + ' auto fade'
+    mlt_service: "autofade"
+    objectName: 'autoFade'
+    qml: "ui.qml"
+    isTrackOnly: true
+    help: 'https://forum.bossa.org/t/track-auto-fade-audio-filter/40782/1'
+}

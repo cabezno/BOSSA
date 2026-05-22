@@ -195,8 +195,26 @@ MainWindow::MainWindow()
     addToolBar(Qt::LeftToolBarArea, ui->mainToolBar);
     ui->mainToolBar->setMovable(false);
     ui->mainToolBar->setOrientation(Qt::Vertical);
-    ui->mainToolBar->setToolButtonStyle(Qt::ToolButtonTextOnly); // Legacy icons removed
+    ui->mainToolBar->setToolButtonStyle(Qt::ToolButtonTextOnly);
     ui->mainToolBar->setIconSize(QSize(0, 0));
+
+    // Refine Sidebar Actions (Professional Workflow)
+    ui->mainToolBar->clear();
+    
+    auto addSidebarAction = [&](QAction* action, const QString& label) {
+        if (action) {
+            action->setText(label);
+            ui->mainToolBar->addAction(action);
+        }
+    };
+
+    addSidebarAction(ui->actionPlaylist, "MEDIA");
+    addSidebarAction(ui->actionTimeline, "TIMELINE");
+    addSidebarAction(ui->actionFilters, "EFFECTS");
+    addSidebarAction(m_aiDock->toggleViewAction(), "BOSSA IA");
+    addSidebarAction(ui->actionEncode, "EXPORT");
+    ui->mainToolBar->addSeparator();
+    addSidebarAction(ui->actionJobs, "JOBS");
     
     // Aggressive Global QSS Injection
     QFile qssFile(":/resources/soda.qss");
