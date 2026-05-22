@@ -246,24 +246,15 @@ add_custom_target(OTHER_FILES
   SOURCES
   ../.github/copilot-instructions.md
   ../.github/pull_request_template.md
-  ../.github/workflows/build-linux-unstable.yml
-  ../.github/workflows/build-linux.yml
-  ../.github/workflows/build-macos-unstable.yml
-  ../.github/workflows/build-macos.yml
-  ../.github/workflows/build-sdk-windows-unstable.yml
-  ../.github/workflows/build-sdk-windows.yml
-  ../.github/workflows/build-windows-unstable.yml
-  ../.github/workflows/build-windows.yml
+  ../.github/workflows/build.yml
   ../COPYING
   ../icons/dark/index.theme
   ../icons/light/index.theme
-  ../packaging/linux/appimage/appimage.yml
   ../packaging/linux/Makefile
   ../packaging/linux/org.bossa.Bossa.desktop
   ../packaging/linux/org.bossa.Bossa.metainfo.xml.in
   ../packaging/linux/org.bossa.Bossa.xml
   ../packaging/linux/bossa.1
-  ../packaging/linux/snapcraft.yaml.in
   ../packaging/macos/Info.plist.in
   ../packaging/macos/bossa.icns
   ../packaging/windows/bossa.iss
