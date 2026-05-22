@@ -189,16 +189,17 @@ MainWindow::MainWindow()
     // Create the UI.
     ui->setupUi(this);
     setDockNestingEnabled(true);
-    const auto highlight = palette().highlight().color();
-    setStyleSheet(QString("QMainWindow::separator {"
-                          "  width: 5px;"
-                          "}"
-                          "QMainWindow::separator:hover {"
-                          "  background-color: rgba(%1, %2, %3, 127);"
-                          "}")
-                      .arg(highlight.red())
-                      .arg(highlight.green())
-                      .arg(highlight.blue()));
+    
+    // Aggressive Global QSS Injection
+    QFile qssFile(":/resources/soda.qss");
+    if (qssFile.open(QFile::ReadOnly)) {
+        QString qss = QLatin1String(qssFile.readAll());
+        qApp->setStyleSheet(qss);
+        setStyleSheet(qss);
+        qssFile.close();
+    } else {
+        LOG_ERROR() << "Failed to load soda.qss from resources!";
+    }
 
     ui->statusBar->hide();
 
@@ -1512,7 +1513,7 @@ void MainWindow::setupSettingsMenu()
             SLOT(onLanguageTriggered(QAction *)));
 
     // Setup the themes actions
-#if defined(SHOTCUT_THEME)
+#if defined(BOSSA_THEME)
     group = new QActionGroup(this);
     group->addAction(ui->actionSystemTheme);
     group->addAction(ui->actionSystemFusion);
@@ -4027,7 +4028,7 @@ void MainWindow::changeTheme(const QString &theme)
     LOG_DEBUG() << "Available styles:" << QStyleFactory::keys();
     auto mytheme = theme;
 
-#if !defined(SHOTCUT_THEME)
+#if !defined(BOSSA_THEME)
     // Workaround Quick Controls not using our custom palette - temporarily?
     std::unique_ptr<QStyle> style{QStyleFactory::create("fusion")};
     auto brightness = style->standardPalette().color(QPalette::Text).lightnessF();
@@ -4068,6 +4069,15 @@ void MainWindow::changeTheme(const QString &theme)
         QApplication::setPalette(palette);
         QIcon::setThemeName(kThemeDark);
         ::qputenv("QT_QUICK_CONTROLS_CONF", ":/resources/qtquickcontrols2-dark.conf");
+
+        // Aggressive Global QSS Injection
+        QFile qssFile(":/resources/soda.qss");
+        if (qssFile.open(QFile::ReadOnly)) {
+            QString qss = QLatin1String(qssFile.readAll());
+            qApp->setStyleSheet(qss);
+            setStyleSheet(qss);
+            qssFile.close();
+        }
     } else if (mytheme == "light") {
         QApplication::setStyle(kStyleFusion);
         QPalette palette;
