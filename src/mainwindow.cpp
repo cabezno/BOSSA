@@ -118,7 +118,7 @@
 
 #include <algorithm>
 
-#define SHOTCUT_THEME
+#define BOSSA_THEME
 
 static bool eventDebugCallback(void **data)
 {

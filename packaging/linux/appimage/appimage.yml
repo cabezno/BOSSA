@@ -1,4 +1,4 @@
-app: Shotcut
+app: Bossa
 verbose: true
 
 #ingredients:
@@ -9,8 +9,8 @@ verbose: true
 #    - echo "multiarch-support" >> excludedeblist
                                                                                                                                          
 script:
-  - tar -xJ -C usr/bin --strip=1 -f ../../../../scripts/shotcut-linux-x86_64-*.txz
-  - cp -p ../../../../icons/shotcut-logo-64.png shotcut.png
-  - cp -p ../../../../icons/shotcut-logo-64.png org.shotcut.Shotcut.png
-  - cp -p ../../../../packaging/linux/org.shotcut.Shotcut.desktop shotcut.desktop
-  - desktop-file-edit --set-key=Exec --set-value=shotcut shotcut.desktop
+  - tar -xJ -C usr/bin --strip=1 -f ../../../../scripts/bossa-linux-x86_64-*.txz
+  - cp -p ../../../../icons/bossa-logo-64.png bossa.png
+  - cp -p ../../../../icons/bossa-logo-64.png org.bossa.Bossa.png
+  - cp -p ../../../../packaging/linux/org.bossa.Bossa.desktop bossa.desktop
+  - desktop-file-edit --set-key=Exec --set-value=bossa bossa.desktop

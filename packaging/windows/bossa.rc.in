@@ -1,6 +1,6 @@
 #include <windows.h>
 
-IDI_ICON1	ICON	DISCARDABLE	"shotcut-logo-64.ico"
+IDI_ICON1	ICON	DISCARDABLE	"bossa-logo-64.ico"
 
 VS_VERSION_INFO VERSIONINFO
     FILEVERSION ${PRODUCT_VERSION},0
@@ -19,12 +19,12 @@ VS_VERSION_INFO VERSIONINFO
 		BEGIN
 			BLOCK "040904b0"
 			BEGIN
-				VALUE "CompanyName", "Meltytech, LLC\0"
-				VALUE "FileDescription", "Shotcut video editor\0"
+				VALUE "CompanyName", "Bossa Project, LLC\0"
+				VALUE "FileDescription", "Bossa video editor\0"
                 VALUE "FileVersion", "${SHOTCUT_VERSION}\0"
-                VALUE "LegalCopyright", "Copyright (C) 2011-2026 Meltytech, LLC. All rights reserved.\0"
-				VALUE "OriginalFilename", "shotcut.exe\0"
-				VALUE "ProductName", "Shotcut\0"
+                VALUE "LegalCopyright", "Copyright (C) 2011-2026 Bossa Project, LLC. All rights reserved.\0"
+				VALUE "OriginalFilename", "bossa.exe\0"
+				VALUE "ProductName", "Bossa\0"
                 VALUE "ProductVersion", "${SHOTCUT_VERSION}\0"
 			END
 		END
@@ -34,4 +34,3 @@ VS_VERSION_INFO VERSIONINFO
 		END
 	END
 /* End of Version info */
-

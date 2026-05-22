@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>org.shotcut.Shotcut</id>
-  <launchable type="desktop-id">org.shotcut.Shotcut.desktop</launchable>
+  <id>org.bossa.Bossa</id>
+  <launchable type="desktop-id">org.bossa.Bossa.desktop</launchable>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
-  <name>Shotcut</name>
+  <name>Bossa</name>
   <summary>Video editor</summary>
   <description>
     <p>
-      Shotcut is a free and open-source cross-platform video editing application for
+      Bossa is a free and open-source cross-platform video editing application for
       Windows, macOS, and Linux.
     </p>
     <p>
-      Shotcut supports many video, audio, and image formats via FFmpeg and screen,
+      Bossa supports many video, audio, and image formats via FFmpeg and screen,
       webcam, and audio capture. It uses a time-line for non-linear video editing of
       multiple tracks that may be composed of various file formats. Scrubbing and
       transport control are assisted by OpenGL GPU-based processing and a number of
@@ -21,34 +21,34 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>https://www.shotcut.org/assets/img/pro-formats.png</image>
+      <image>https://www.bossa.org/assets/img/pro-formats.png</image>
       <caption>Wide Format Support</caption>
     </screenshot>
     <screenshot>
-      <image>https://www.shotcut.org/assets/img/waveforms.png</image>
+      <image>https://www.bossa.org/assets/img/waveforms.png</image>
       <caption>Audio Features</caption>
     </screenshot>
     <screenshot>
-      <image>https://www.shotcut.org/assets/img/shotcut_mac_monitor.png</image>
+      <image>https://www.bossa.org/assets/img/bossa_mac_monitor.png</image>
       <caption>Video Effects</caption>
     </screenshot>
     <screenshot>
-      <image>https://www.shotcut.org/assets/img/editing-group.jpg</image>
+      <image>https://www.bossa.org/assets/img/editing-group.jpg</image>
       <caption>Editing Features</caption>
     </screenshot>
     <screenshot>
-      <image>https://www.shotcut.org/assets/img/external-monitoring.png</image>
+      <image>https://www.bossa.org/assets/img/external-monitoring.png</image>
       <caption>Display and Monitoring</caption>
     </screenshot>
   </screenshots>
-  <developer_name>Meltytech, LLC</developer_name>
+  <developer_name>Bossa Project, LLC</developer_name>
   <update_contact>dan_AT_dennedy.org</update_contact>
-  <url type="homepage">https://www.shotcut.org/</url>
-  <url type="bugtracker">https://github.com/mltframework/shotcut/issues/</url>
-  <url type="faq">https://www.shotcut.org/FAQ/</url>
-  <url type="help">https://www.shotcut.org/tutorials/</url>
-  <url type="translate">https://explore.transifex.com/ddennedy/shotcut/</url>
-  <url type="vcs-browser">https://github.com/mltframework/shotcut</url>
+  <url type="homepage">https://www.bossa.org/</url>
+  <url type="bugtracker">https://github.com/mltframework/bossa/issues/</url>
+  <url type="faq">https://www.bossa.org/FAQ/</url>
+  <url type="help">https://www.bossa.org/tutorials/</url>
+  <url type="translate">https://explore.transifex.com/ddennedy/bossa/</url>
+  <url type="vcs-browser">https://github.com/mltframework/bossa</url>
   <content_rating type="oars-1.1"/>
   <releases>
     <release version="@SHOTCUT_VERSION@" date="@SHOTCUT_DATE@"></release>

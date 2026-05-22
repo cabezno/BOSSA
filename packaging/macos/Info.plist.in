@@ -3,19 +3,19 @@
 <plist version="0.9">
 <dict>
 	<key>CFBundleIconFile</key>
-	<string>shotcut.icns</string>
+	<string>bossa.icns</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2011-2026 Meltytech, LLC</string>
+	<string>Copyright © 2011-2026 Bossa Project, LLC</string>
 	<key>CFBundleSignature</key>
 	<string>scut</string>
 	<key>CFBundleExecutable</key>
-	<string>Shotcut</string>
+	<string>Bossa</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.Meltytech.Shotcut</string>
+	<string>com.Bossa Project.Bossa</string>
 	<key>CFBundleVersion</key>
 	<string>@SHOTCUT_VERSION@</string>
 	<key>CFBundleShortVersionString</key>
@@ -27,9 +27,9 @@
     <key>LSMinimumSystemVersion</key>
 	<string>12.0.0</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Shotcut can show and record video</string>
+	<string>Bossa can show and record video</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Shotcut can monitor and record audio</string>
+	<string>Bossa can monitor and record audio</string>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -488,7 +488,7 @@
 				<string>mlt</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>shotcut.icns</string>
+			<string>bossa.icns</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 			<string>application/vnd.mlt+xml</string>
