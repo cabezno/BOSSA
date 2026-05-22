@@ -294,6 +294,7 @@ endif()
 file(GLOB_RECURSE QML_SRC "qml/*")
 target_sources(bossa PRIVATE ${QML_SRC})
 
+target_include_directories(bossa PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(bossa PRIVATE ${CMAKE_SOURCE_DIR}/CuteLogger/include)
 target_compile_definitions(bossa PRIVATE SHOTCUT_VERSION="${SHOTCUT_VERSION}")
 
