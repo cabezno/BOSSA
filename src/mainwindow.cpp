@@ -190,6 +190,14 @@ MainWindow::MainWindow()
     ui->setupUi(this);
     setDockNestingEnabled(true);
     
+    // RADIAL UI RE-ARCHITECTURE: Move Toolbar to Left Sidebar (DaVinci/AE Style)
+    removeToolBar(ui->mainToolBar);
+    addToolBar(Qt::LeftToolBarArea, ui->mainToolBar);
+    ui->mainToolBar->setMovable(false);
+    ui->mainToolBar->setOrientation(Qt::Vertical);
+    ui->mainToolBar->setToolButtonStyle(Qt::ToolButtonTextOnly); // Legacy icons removed
+    ui->mainToolBar->setIconSize(QSize(0, 0));
+    
     // Aggressive Global QSS Injection
     QFile qssFile(":/resources/soda.qss");
     if (qssFile.open(QFile::ReadOnly)) {
@@ -197,8 +205,6 @@ MainWindow::MainWindow()
         qApp->setStyleSheet(qss);
         setStyleSheet(qss);
         qssFile.close();
-    } else {
-        LOG_ERROR() << "Failed to load soda.qss from resources!";
     }
 
     ui->statusBar->hide();
