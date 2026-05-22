@@ -7,9 +7,11 @@ moc_*.cpp
 *.moc
 *.prl
 *.a
+# Ignore Makefiles except the one for packaging
 Makefile
+!packaging/linux/Makefile
 *.cache
-src/shotcut
+src/bossa
 *.user
 *.qm
 *.dot
@@ -22,12 +24,12 @@ src/qml/export-edl/node_modules
 *.jsc
 .project
 /.qmake.stash
-packaging/linux/org.shotcut.Shotcut.metainfo.xml
+packaging/linux/org.bossa.Bossa.metainfo.xml
 build/
 *.Debug
 *.Release
 *.exe
-packaging/windows/shotcut.rc
+packaging/windows/bossa.rc
 *cmake_install.cmake
 .ninja_*
 build.ninja
@@ -38,8 +40,9 @@ CuteLogger/CuteLogger_autogen/
 install_manifest.txt
 share/
 src/shotcut_autogen/
+src/bossa_autogen/
 .qt
 translations/.lupdate
 .DS_Store
-scripts/build-shotcut.conf
+scripts/build-bossa.conf
 *~

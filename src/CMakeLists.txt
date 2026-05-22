@@ -1,4 +1,5 @@
-find_package(Qt6 REQUIRED COMPONENTS Core)
+# find_package is already called in root CMakeLists.txt with all required components.
+# find_package(Qt6 REQUIRED COMPONENTS Core)
 
 add_executable(bossa WIN32 MACOSX_BUNDLE
   abstractproducerwidget.cpp abstractproducerwidget.h
@@ -259,6 +260,7 @@ add_custom_target(OTHER_FILES
   ../packaging/macos/bossa.icns
   ../packaging/windows/bossa.iss
   ../packaging/windows/bossa.rc.in
+  ../packaging/windows/bossa-logo-64.ico
   ../README.md
   ../scripts/build-bossa-msys2.sh
   ../scripts/build-bossa.sh
