@@ -4,14 +4,14 @@ if (${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.20")
   cmake_policy(SET CMP0115 NEW)
 endif()
 
-if(NOT DEFINED SHOTCUT_VERSION)
-  string(TIMESTAMP SHOTCUT_VERSION "%y.%m.%d")
+if(NOT DEFINED BOSSA_VERSION)
+  string(TIMESTAMP BOSSA_VERSION "%y.%m.%d")
   # Remove leading zero from month and day.
-  string(REGEX REPLACE "\\.0([0-9])" ".\\1" SHOTCUT_VERSION ${SHOTCUT_VERSION})
+  string(REGEX REPLACE "\\.0([0-9])" ".\\1" BOSSA_VERSION ${BOSSA_VERSION})
 endif()
 
 project(bossa
-  VERSION ${SHOTCUT_VERSION}
+  VERSION ${BOSSA_VERSION}
   DESCRIPTION "Bossa Video Editor - AI Powered & SODA Styled"
   HOMEPAGE_URL "https://bossa.io"
   LANGUAGES CXX

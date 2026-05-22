@@ -190,7 +190,10 @@ MainWindow::MainWindow()
     ui->setupUi(this);
     setDockNestingEnabled(true);
     
+    setupAndConnectDocks();
+
     // RADIAL UI RE-ARCHITECTURE: Move Toolbar to Left Sidebar (DaVinci/AE Style)
+    // This MUST be done after docks are initialized to avoid null pointer crashes (m_aiDock)
     removeToolBar(ui->mainToolBar);
     addToolBar(Qt::LeftToolBarArea, ui->mainToolBar);
     ui->mainToolBar->setMovable(false);
@@ -211,48 +214,13 @@ MainWindow::MainWindow()
     addSidebarAction(ui->actionPlaylist, "MEDIA");
     addSidebarAction(ui->actionTimeline, "TIMELINE");
     addSidebarAction(ui->actionFilters, "EFFECTS");
-    addSidebarAction(m_aiDock->toggleViewAction(), "BOSSA IA");
+    if (m_aiDock) {
+        addSidebarAction(m_aiDock->toggleViewAction(), "BOSSA IA");
+    }
     addSidebarAction(ui->actionEncode, "EXPORT");
     ui->mainToolBar->addSeparator();
     addSidebarAction(ui->actionJobs, "JOBS");
-    
-    // Aggressive Global QSS Injection
-    QFile qssFile(":/resources/soda.qss");
-    if (qssFile.open(QFile::ReadOnly)) {
-        QString qss = QLatin1String(qssFile.readAll());
-        qApp->setStyleSheet(qss);
-        setStyleSheet(qss);
-        qssFile.close();
-    }
 
-    ui->statusBar->hide();
-
-    connectUISignals();
-
-    // Accept drag-n-drop of files.
-    this->setAcceptDrops(true);
-
-    setupAndConnectUndoStack();
-
-    // Add the player widget.
-    setupAndConnectPlayerWidget();
-
-    setupSettingsMenu();
-    setupOpenOtherMenu();
-    readPlayerSettings();
-    configureVideoWidget();
-
-    // Restore custom colors from settings
-    Settings.restoreCustomColors();
-
-    centerLayoutInRemainingToolbarSpace();
-
-#ifndef SHOTCUT_NOUPGRADE
-    if (Settings.noUpgrade() || qApp->property("noupgrade").toBool())
-#endif
-        delete ui->actionUpgrade;
-
-    setupAndConnectDocks();
     setupMenuFile();
     setupMenuView();
     connectVideoWidgetSignals();

@@ -47,59 +47,63 @@ jobs:
         cd build
         cmake ../ -G Ninja \
           -DCMAKE_BUILD_TYPE=Release \
-          -DSHOTCUT_VERSION="1.0.${{ github.run_number }}"
+          -DBOSSA_VERSION="1.0.${{ github.run_number }}"
         ninja
 
     - name: Deploy and Bundle DLLs
       shell: msys2 {0}
       run: |
-        # Create the exact directory structure expected by main.cpp
+        # Create the exact directory structure expected by main.cpp (Rebranded)
         DEST="build/src"
         mkdir -p $DEST/lib/qt6
         mkdir -p $DEST/lib/qml
-        mkdir -p $DEST/share/shotcut/qml
+        mkdir -p $DEST/lib/mlt-7
+        mkdir -p $DEST/share/bossa/qml
         
         cd $DEST
         
         # 1. Copy our internal library
         cp ../CuteLogger/libCuteLogger.dll . || cp ../CuteLogger/CuteLogger.dll . || true
         
-        # 2. Manually copy Qt Plugins to lib/qt6 (as main.cpp expects)
+        # 2. Manually copy Qt Plugins to lib/qt6
         echo "Copying Qt plugins..."
         QT_PLUGINS="/mingw64/share/qt6/plugins"
-        for plugin in platforms styles imageformats multimedia iconengines tls; do
-          cp -r "$QT_PLUGINS/$plugin" lib/qt6/
+        for plugin in platforms styles imageformats multimedia iconengines tls networkinformation; do
+          if [ -d "$QT_PLUGINS/$plugin" ]; then
+            cp -r "$QT_PLUGINS/$plugin" lib/qt6/
+          fi
         done
         
-        # 3. Manually copy Qt QML modules
+        # 3. Manually copy ALL QML modules from the system
         echo "Copying QML modules..."
         QT_QML="/mingw64/share/qt6/qml"
-        cp -r $QT_QML/{Qt,QtCore,QtQml,QtQuick,QtQuick.2} lib/qml/ || true
+        cp -r $QT_QML/* lib/qml/ || true
 
-        # 4. Copy application QML files
+        # 4. Copy MLT plugins (Critical for video engine)
+        echo "Copying MLT plugins..."
+        cp -r /mingw64/lib/mlt-7/* lib/mlt-7/ || true
+
+        # 5. Copy application QML files to the correct rebranded path
         echo "Copying application QML..."
-        cp -r ../../src/qml/* share/shotcut/qml/ || true
+        cp -r ../../src/qml/* share/bossa/qml/ || true
 
-        # 5. Create a precise qt.conf
+        # 6. Create a precise qt.conf
         echo "[Paths]" > qt.conf
         echo "Prefix = ." >> qt.conf
         echo "Plugins = lib/qt6" >> qt.conf
         echo "Imports = lib/qml" >> qt.conf
         echo "Qml2Imports = lib/qml" >> qt.conf
 
-        # 6. Deep Recursive DLL Collection (The "Whack-a-mole" Killer)
-        # This scans EVERY .exe and .dll in the entire structure (including lib/qt6/platforms/)
-        # and brings their dependencies to the root.
-        echo "Starting deep-scan recursive DLL collection..."
-        for i in {1..4}; do
-          find . -name "*.exe" -o -name "*.dll" | xargs ldd 2>/dev/null | grep /mingw64/bin | awk '{print $3}' | xargs -I {} cp -n {} . || true
+        # 7. Ultimate Recursive DLL Collection (The "God Mode" scan)
+        echo "Starting ultimate-scan recursive DLL collection..."
+        for i in {1..6}; do
+          find . -type f -name "*.exe" -o -name "*.dll" -o -name "*.mjs" | xargs ldd 2>/dev/null | grep /mingw64/bin | awk '{print $3}' | xargs -I {} cp -n {} . || true
         done
         
-        # 7. Final Sanity Check: Ensure qwindows.dll has no missing deps in its own folder
-        # Sometimes plugins need their deps right next to them or in the root. Root is usually fine with SetDllDirectory.
-        
-        # 8. Clean up symlinks
+        # 8. Final Cleanup and Symlink resolution
         find . -type l -exec cp --remove-destination "$(readlink -f {})" {} \; || true
+        
+        echo "Deployment structure complete."
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4

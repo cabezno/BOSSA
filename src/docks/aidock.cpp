@@ -4,6 +4,7 @@
 #include "qmltypes/qmlutilities.h"
 #include <QQmlContext>
 #include <QVBoxLayout>
+#include <QQuickWidget>
 
 AIDock::AIDock(QWidget *parent) : QDockWidget(tr("AI Mission Control"), parent)
 {
